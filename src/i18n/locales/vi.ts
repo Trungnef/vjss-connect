@@ -1,0 +1,77 @@
+import type { Translations } from "./en";
+
+const vi: Translations = {
+  conf: {
+    shortName: "VJSS 2026",
+    fullName: "Hội nghị Bán dẫn Việt Nam – Nhật Bản 2026",
+    tagline: "Thúc đẩy nghiên cứu và công nghiệp bán dẫn qua hợp tác Việt Nam – Nhật Bản.",
+    dates: "17–19 tháng 9, 2026",
+    venue: "Đại học Bách khoa Hà Nội · Hà Nội, Việt Nam",
+  },
+  nav: {
+    home: "Trang chủ",
+    about: "Giới thiệu",
+    program: "Chương trình",
+    speakers: "Diễn giả",
+    venue: "Địa điểm",
+    organizers: "Ban tổ chức",
+    sponsors: "Nhà tài trợ",
+    cfp: "Kêu gọi bài",
+    registration: "Đăng ký",
+    news: "Tin tức",
+    contact: "Liên hệ",
+    submit: "Nộp bài",
+    register: "Đăng ký tham dự",
+    signIn: "Đăng nhập",
+  },
+  home: {
+    eyebrow: "Hội nghị học thuật quốc tế",
+    heroCtaSubmit: "Nộp bài báo",
+    heroCtaRegister: "Đăng ký tham dự",
+    stats: {
+      countries: "Quốc gia",
+      speakers: "Diễn giả mời",
+      papers: "Bài nộp dự kiến",
+      tracks: "Chủ đề chuyên môn",
+    },
+    welcomeTitle: "Lời chào từ Chủ tịch hội nghị",
+    welcomeBody:
+      "VJSS 2026 quy tụ các nhà nghiên cứu, kỹ sư và lãnh đạo doanh nghiệp từ Việt Nam, Nhật Bản và toàn thế giới để định hình thập kỷ tiếp theo của khoa học bán dẫn. Kế thừa thành công của VJSS 2025, kỳ hội nghị này mở thêm các chủ đề về đóng gói tiên tiến, bán dẫn hợp chất và EDA dựa trên AI — đồng thời làm sâu sắc thêm mối liên kết học thuật và công nghiệp giữa hai quốc gia.",
+    welcomeSignature: "GS. Chủ tịch hội nghị, VJSS 2026",
+    speakersTitle: "Diễn giả tiêu biểu",
+    speakersSubtitle: "Các diễn giả keynote và khách mời từ những trường đại học và nhà máy hàng đầu.",
+    programTitle: "Điểm nhấn chương trình",
+    programSubtitle: "Ba ngày với các keynote, phiên kỹ thuật và toạ đàm doanh nghiệp.",
+    sponsorsTitle: "Nhà tài trợ và đối tác",
+    sponsorsSubtitle: "Được đồng hành bởi các tổ chức hàng đầu của Việt Nam và Nhật Bản.",
+    importantDates: "Mốc thời gian quan trọng",
+    viewAll: "Xem tất cả",
+    viewProgram: "Xem toàn bộ chương trình",
+  },
+  dates: {
+    submissionOpen: "Mở nhận bài",
+    submissionDeadline: "Hạn nộp bài",
+    notification: "Thông báo kết quả",
+    cameraReady: "Hạn nộp bản hoàn thiện",
+    earlyReg: "Hết hạn đăng ký sớm",
+    conference: "Ngày diễn ra hội nghị",
+  },
+  footer: {
+    tagline: "Nền tảng chính thức của Hội nghị Bán dẫn Việt Nam – Nhật Bản.",
+    quickLinks: "Liên kết nhanh",
+    forAuthors: "Dành cho tác giả",
+    legal: "Pháp lý",
+    privacy: "Bảo mật",
+    terms: "Điều khoản",
+    sitemap: "Sơ đồ trang",
+    rights: "Bảo lưu mọi quyền.",
+    secretariat: "Ban thư ký",
+  },
+  common: {
+    learnMore: "Tìm hiểu thêm",
+    comingSoon: "Sắp ra mắt",
+    language: "Ngôn ngữ",
+  },
+};
+
+export default vi;
