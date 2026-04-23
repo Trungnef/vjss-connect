@@ -1,0 +1,77 @@
+import type { Translations } from "./en";
+
+const ja: Translations = {
+  conf: {
+    shortName: "VJSS 2026",
+    fullName: "日越半導体シンポジウム 2026",
+    tagline: "ベトナムと日本の連携で半導体の研究と産業を前進させる。",
+    dates: "2026年9月17日〜19日",
+    venue: "ハノイ工科大学 · ベトナム ハノイ",
+  },
+  nav: {
+    home: "ホーム",
+    about: "概要",
+    program: "プログラム",
+    speakers: "登壇者",
+    venue: "会場",
+    organizers: "主催",
+    sponsors: "スポンサー",
+    cfp: "論文募集",
+    registration: "参加登録",
+    news: "ニュース",
+    contact: "お問い合わせ",
+    submit: "論文投稿",
+    register: "参加登録",
+    signIn: "サインイン",
+  },
+  home: {
+    eyebrow: "国際学術シンポジウム",
+    heroCtaSubmit: "論文を投稿する",
+    heroCtaRegister: "参加登録する",
+    stats: {
+      countries: "参加国",
+      speakers: "招待講演者",
+      papers: "投稿予定数",
+      tracks: "技術トラック",
+    },
+    welcomeTitle: "実行委員長からのご挨拶",
+    welcomeBody:
+      "VJSS 2026 は、ベトナム、日本、そして世界各国から研究者、エンジニア、産業界のリーダーが集い、半導体科学の次の十年を形づくる場です。VJSS 2025 の成果を基盤に、本年は先進パッケージング、化合物半導体、AI 駆動型 EDA など新たなトラックを設け、両国の学術および産業連携を一層深めてまいります。",
+    welcomeSignature: "VJSS 2026 実行委員長",
+    speakersTitle: "注目の登壇者",
+    speakersSubtitle: "主要大学およびファウンドリからのキーノート・招待講演者。",
+    programTitle: "プログラムのハイライト",
+    programSubtitle: "3 日間にわたる基調講演、技術セッション、産業パネル。",
+    sponsorsTitle: "スポンサーとパートナー",
+    sponsorsSubtitle: "日越両国の主要機関にご支援いただいています。",
+    importantDates: "重要な日程",
+    viewAll: "すべて見る",
+    viewProgram: "プログラム全体を見る",
+  },
+  dates: {
+    submissionOpen: "投稿開始",
+    submissionDeadline: "投稿締切",
+    notification: "採択通知",
+    cameraReady: "最終原稿締切",
+    earlyReg: "早期登録締切",
+    conference: "開催日",
+  },
+  footer: {
+    tagline: "日越半導体シンポジウムの公式プラットフォーム。",
+    quickLinks: "クイックリンク",
+    forAuthors: "著者向け",
+    legal: "規約",
+    privacy: "プライバシー",
+    terms: "利用規約",
+    sitemap: "サイトマップ",
+    rights: "All rights reserved.",
+    secretariat: "事務局",
+  },
+  common: {
+    learnMore: "詳しく見る",
+    comingSoon: "近日公開",
+    language: "言語",
+  },
+};
+
+export default ja;
