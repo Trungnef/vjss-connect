@@ -70,7 +70,7 @@ const en = {
     comingSoon: "Coming soon",
     language: "Language",
   },
-} as const;
+};
 
 export default en;
 export type Translations = typeof en;
