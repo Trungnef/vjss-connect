@@ -1,10 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import {
-  pickLocalized,
-  resolveLocale,
-  type LocalizedText,
-} from "@/content/site-content";
+import { type MaybeLocalizedText, pickLocalized, resolveLocale } from "@/content/site-content";
 
 export function useSiteLocale() {
   const { i18n, t } = useTranslation();
@@ -14,6 +10,6 @@ export function useSiteLocale() {
     i18n,
     locale,
     t,
-    pick: (value: LocalizedText) => pickLocalized(locale, value),
+    pick: (value: MaybeLocalizedText) => pickLocalized(locale, value),
   };
 }

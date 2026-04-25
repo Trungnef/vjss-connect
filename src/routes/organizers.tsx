@@ -1,19 +1,22 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 
+import i18n from "@/i18n";
 import { PageShell } from "@/components/site/PageShell";
-import { ecosystemGroups, pageCopy } from "@/content/site-content";
+import { SectionHeading } from "@/components/site/SectionHeading";
+import { Button } from "@/components/ui/button";
+import { committeeGroups, ecosystemGroups, pageCopy } from "@/content/site-content";
 import { useSiteLocale } from "@/hooks/use-site-locale";
 
 export const Route = createFileRoute("/organizers")({
   head: () => ({
     meta: [
-      { title: "Organizers | VJSS 2026" },
+      { title: i18n.t("organizers.metaTitle") },
       {
         name: "description",
-        content:
-          "Reference ecosystem groups for organizers, co-organizers, partners, and patrons in the VJSS 2026 build.",
+        content: i18n.t("organizers.metaDescription"),
       },
-      { property: "og:title", content: "Organizers | VJSS 2026" },
+      { property: "og:title", content: i18n.t("organizers.metaTitle") },
     ],
   }),
   component: OrganizersPage,
@@ -22,86 +25,151 @@ export const Route = createFileRoute("/organizers")({
 function OrganizersPage() {
   const { pick, t } = useSiteLocale();
   const organizersPage = pageCopy.organizers;
+  const committeeMembers = committeeGroups.reduce(
+    (count, group) => count + group.members.length,
+    0,
+  );
 
   return (
     <PageShell
       eyebrow={t("nav.organizers")}
       title={pick(organizersPage.title)}
       description={pick(organizersPage.intro)}
+      meta={[
+        {
+          label: t("organizers.metaEcosystemGroups"),
+          value: ecosystemGroups.length,
+        },
+        {
+          label: t("organizers.metaCommitteeGroups"),
+          value: committeeGroups.length,
+        },
+        {
+          label: t("organizers.metaNamedMembers"),
+          value: committeeMembers,
+        },
+      ]}
+      quickLinks={[
+        { label: t("organizers.quickEcosystem"), href: "#ecosystem" },
+        { label: t("organizers.quickCommittees"), href: "#committees" },
+      ]}
+      heroNote={t("organizers.heroNote")}
+      actions={
+        <>
+          <Button asChild>
+            <Link to="/contact">
+              {t("nav.contact")}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link to="/sponsors">{t("nav.sponsors")}</Link>
+          </Button>
+        </>
+      }
       aside={
         <div className="space-y-4">
-          <div className="rounded-2xl border border-border/70 bg-background/70 p-4">
+          <div className="panel-card-muted p-4">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-vn-red">
-              CMS note
-            </p>
-            <p className="mt-2 text-sm leading-6 text-foreground/80">
-              Each organization is now modeled as its own record with name,
-              description, logo, and link fields.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-border/70 bg-background/70 p-4">
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-              {pick(organizersPage.partnerPlaceholderTitle)}
+              {t("organizers.governanceNote")}
             </p>
             <p className="mt-2 text-sm leading-6 text-foreground/80">
               {pick(organizersPage.partnerPlaceholderBody)}
             </p>
           </div>
+          <div className="panel-card-muted p-4">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+              {t("organizers.governanceStructureLabel")}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-foreground/80">
+              {t("organizers.governanceStructureBody")}
+            </p>
+          </div>
         </div>
       }
     >
-      <section className="space-y-8">
-        {ecosystemGroups.map((group) => (
-          <article key={group.id} className="rounded-3xl border border-border/70 bg-card p-7">
-            <h2 className="font-serif text-3xl font-semibold">
-              {pick(group.title)}
-            </h2>
+      <section id="ecosystem" className="anchor-target section-frame space-y-8">
+        <SectionHeading
+          eyebrow={t("organizers.ecosystemEyebrow")}
+          title={t("organizers.ecosystemTitle")}
+          description={t("organizers.ecosystemDescription")}
+        />
 
-            {group.items.length > 0 ? (
-              <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {group.items.map((item) => (
-                  <div
-                    key={item.name}
-                    className="overflow-hidden rounded-3xl border border-border/70 bg-background"
-                  >
-                    <div className="flex h-40 items-center justify-center border-b border-border/70 bg-white p-6">
-                      <img
-                        src={item.logo}
-                        alt={item.name}
-                        className="max-h-full max-w-full object-contain"
-                      />
-                    </div>
-                    <div className="space-y-3 p-5">
+        {ecosystemGroups.map((group) => (
+          <article key={group.id} className="panel-card p-7">
+            <h2 className="font-serif text-3xl font-semibold">{pick(group.title)}</h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {group.items.map((item) => (
+                <div key={item.name} className="panel-card-muted interactive-card p-5">
+                  {item.meta ? (
+                    <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-vn-red">
+                      {pick(item.meta)}
+                    </p>
+                  ) : null}
+                  <h3 className="mt-3 font-serif text-2xl font-semibold leading-tight">
+                    {item.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-foreground/80">
+                    {pick(item.description)}
+                  </p>
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-4 inline-flex text-sm font-medium text-primary"
+                    >
+                      {t("common.website")}
+                    </a>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section id="committees" className="anchor-target section-frame mt-14 space-y-8">
+        <SectionHeading
+          eyebrow={t("organizers.committeesEyebrow")}
+          title={t("organizers.committeesTitle")}
+          description={t("organizers.committeesDescription")}
+        />
+
+        {committeeGroups.map((group) => (
+          <article key={group.id} className="panel-card p-7">
+            <h2 className="font-serif text-3xl font-semibold">{pick(group.title)}</h2>
+            {group.description ? (
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-foreground/80">
+                {pick(group.description)}
+              </p>
+            ) : null}
+
+            <div className="mt-6 grid gap-4">
+              {group.members.map((member) => (
+                <div
+                  key={`${group.id}-${member.name}`}
+                  className="panel-card-muted interactive-card p-5"
+                >
+                  <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+                    <div>
                       <h3 className="font-serif text-2xl font-semibold leading-tight">
-                        {item.name}
+                        {member.name}
                       </h3>
-                      <p className="text-sm leading-7 text-foreground/80">
-                        {pick(item.description)}
+                      <p className="mt-2 text-sm font-medium text-foreground/78">
+                        {pick(member.role)}
                       </p>
-                      {item.link ? (
-                        <a
-                          href={item.link}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex text-sm font-medium text-primary"
-                        >
-                          {t("common.website")}
-                        </a>
-                      ) : null}
+                      <p className="mt-1 text-sm leading-7 text-muted-foreground">
+                        {pick(member.affiliation)}
+                      </p>
                     </div>
+                    <span className="inline-flex w-fit rounded-full border border-border/70 bg-secondary px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-foreground/70">
+                      {pick(member.status)}
+                    </span>
                   </div>
-                ))}
-              </div>
-            ) : (
-              <div className="mt-6 rounded-3xl border border-dashed border-border/80 bg-secondary p-6">
-                <p className="font-serif text-2xl font-semibold">
-                  {pick(organizersPage.partnerPlaceholderTitle)}
-                </p>
-                <p className="mt-3 text-sm leading-7 text-foreground/80">
-                  {pick(organizersPage.partnerPlaceholderBody)}
-                </p>
-              </div>
-            )}
+                </div>
+              ))}
+            </div>
           </article>
         ))}
       </section>

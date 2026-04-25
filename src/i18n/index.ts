@@ -7,9 +7,9 @@ import vi from "./locales/vi";
 import ja from "./locales/ja";
 
 export const SUPPORTED_LANGS = [
-  { code: "en", label: "English", short: "EN" },
-  { code: "vi", label: "Vietnamese", short: "VI" },
-  { code: "ja", label: "Japanese", short: "JA" },
+  { code: "en", labelKey: "languages.en", short: "EN" },
+  { code: "vi", labelKey: "languages.vi", short: "VI" },
+  { code: "ja", labelKey: "languages.ja", short: "JA" },
 ] as const;
 
 export type LangCode = (typeof SUPPORTED_LANGS)[number]["code"];

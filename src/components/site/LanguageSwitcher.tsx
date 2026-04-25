@@ -11,10 +11,9 @@ import { Button } from "@/components/ui/button";
 import { SUPPORTED_LANGS, type LangCode } from "@/i18n";
 
 export function LanguageSwitcher() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const current = (i18n.resolvedLanguage ?? "en") as LangCode;
-  const currentMeta =
-    SUPPORTED_LANGS.find((l) => l.code === current) ?? SUPPORTED_LANGS[0];
+  const currentMeta = SUPPORTED_LANGS.find((l) => l.code === current) ?? SUPPORTED_LANGS[0];
 
   return (
     <DropdownMenu>
@@ -33,14 +32,10 @@ export function LanguageSwitcher() {
           <DropdownMenuItem
             key={lang.code}
             onSelect={() => void i18n.changeLanguage(lang.code)}
-            className={
-              lang.code === current ? "font-semibold text-primary" : undefined
-            }
+            className={lang.code === current ? "font-semibold text-primary" : undefined}
           >
-            <span className="mr-2 text-xs uppercase text-muted-foreground">
-              {lang.short}
-            </span>
-            {lang.label}
+            <span className="mr-2 text-xs uppercase text-muted-foreground">{lang.short}</span>
+            {t(lang.labelKey)}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
