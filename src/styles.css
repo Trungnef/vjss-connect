@@ -66,7 +66,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   --font-serif: "Source Serif 4", "Noto Serif JP", ui-serif, Georgia, serif;
-  --font-sans: "Inter", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -155,14 +155,26 @@
   }
 
   body {
-    background-color: var(--color-background);
+    background:
+      radial-gradient(circle at top, color-mix(in oklab, var(--gold) 12%, transparent), transparent 34%),
+      linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--background) 98%, white) 0%,
+        var(--color-background) 32%,
+        color-mix(in oklab, var(--background) 94%, var(--primary)) 100%
+      );
     color: var(--color-foreground);
     font-feature-settings: "ss01", "cv11";
+    min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5 {
     font-family: var(--font-serif);
     letter-spacing: -0.01em;
+  }
+
+  img {
+    display: block;
   }
 }
 
@@ -185,6 +197,34 @@
     background-image:
       radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--navy) 10%, transparent) 1px, transparent 0);
     background-size: 24px 24px;
+  }
+
+  .surface-grid {
+    background-color: color-mix(in oklab, var(--background) 98%, white);
+    background-image:
+      linear-gradient(
+        135deg,
+        color-mix(in oklab, var(--gold) 16%, transparent) 0%,
+        transparent 22%,
+        color-mix(in oklab, var(--semi-blue) 7%, transparent) 100%
+      ),
+      linear-gradient(
+        to right,
+        color-mix(in oklab, var(--navy) 5%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--navy) 5%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: auto, 36px 36px, 36px 36px;
+  }
+
+  .soft-panel {
+    background: color-mix(in oklab, white 76%, var(--background));
+    box-shadow: 0 30px 80px -40px color-mix(in oklab, var(--navy) 28%, transparent);
+    backdrop-filter: blur(14px);
   }
 
   .text-balance { text-wrap: balance; }

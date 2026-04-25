@@ -1,4 +1,12 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { useEffect } from "react";
+import {
+  Outlet,
+  Link,
+  createRootRoute,
+  HeadContent,
+  Scripts,
+} from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 import appCss from "../styles.css?url";
 import "../i18n";
@@ -23,7 +31,7 @@ function NotFoundComponent() {
           <div className="mt-8">
             <Link
               to="/"
-              className="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+              className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
             >
               Return home
             </Link>
@@ -40,18 +48,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "VJSS 2026 — Vietnam–Japan Semiconductor Symposium" },
+      { title: "VJSS 2026 | Reference-based conference platform" },
       {
         name: "description",
         content:
-          "The official platform of the Vietnam–Japan Semiconductor Symposium 2026 — academic program, speakers, paper submission, and registration.",
+          "Reference-driven information architecture for the next Vietnam-Japan Semiconductor Symposium edition.",
       },
       { name: "author", content: "VJSS 2026 Organizing Committee" },
-      { property: "og:title", content: "VJSS 2026 — Vietnam–Japan Semiconductor Symposium" },
+      { property: "og:title", content: "VJSS 2026 | Reference-based conference platform" },
       {
         property: "og:description",
         content:
-          "Three days of keynotes, technical sessions, and Vietnam–Japan industry collaboration in semiconductors.",
+          "A cleaner 2026 build seeded from the strongest VJSS 2025 content blocks and public archive.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -69,7 +77,7 @@ export const Route = createRootRoute({
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+JP:wght@500;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+JP:wght@500;700&display=swap",
       },
     ],
   }),
@@ -93,6 +101,12 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.resolvedLanguage ?? "en";
+  }, [i18n.resolvedLanguage]);
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />

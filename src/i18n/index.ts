@@ -8,8 +8,8 @@ import ja from "./locales/ja";
 
 export const SUPPORTED_LANGS = [
   { code: "en", label: "English", short: "EN" },
-  { code: "vi", label: "Tiếng Việt", short: "VI" },
-  { code: "ja", label: "日本語", short: "JA" },
+  { code: "vi", label: "Vietnamese", short: "VI" },
+  { code: "ja", label: "Japanese", short: "JA" },
 ] as const;
 
 export type LangCode = (typeof SUPPORTED_LANGS)[number]["code"];

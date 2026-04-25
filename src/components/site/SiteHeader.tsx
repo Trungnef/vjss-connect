@@ -6,13 +6,14 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
+import logoImg from "@/assets/logo/logo.png";
 
 const navItems = [
   { to: "/about", key: "about" as const },
   { to: "/program", key: "program" as const },
   { to: "/speakers", key: "speakers" as const },
   { to: "/venue", key: "venue" as const },
-  { to: "/call-for-papers", key: "cfp" as const },
+  { to: "/organizers", key: "organizers" as const },
   { to: "/sponsors", key: "sponsors" as const },
 ];
 
@@ -21,23 +22,16 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-3 group">
-          <span
-            aria-hidden
-            className="inline-flex h-8 w-8 items-center justify-center rounded-sm bg-primary text-primary-foreground font-serif text-sm font-bold"
-          >
-            V
-            <span className="text-vn-red">·</span>
-            J
-          </span>
+    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/75">
+      <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+        <Link to="/" className="group flex items-center gap-3">
+          <img src={logoImg} alt="VJSS 2026 Logo" className="h-25 w-auto object-contain" />
           <span className="flex flex-col leading-tight">
             <span className="font-serif text-base font-semibold text-foreground">
               {t("conf.shortName")}
             </span>
             <span className="hidden text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:inline">
-              Vietnam · Japan Semiconductor
+              {t("conf.bridgeLabel")}
             </span>
           </span>
         </Link>
@@ -47,8 +41,8 @@ export function SiteHeader() {
             <Link
               key={item.to}
               to={item.to}
-              className="rounded-md px-3 py-2 text-sm font-medium text-foreground/75 transition-colors hover:bg-muted hover:text-foreground"
-              activeProps={{ className: "bg-muted text-foreground" }}
+              className="rounded-full px-3 py-2 text-sm font-medium text-foreground/75 transition-colors hover:bg-secondary hover:text-foreground"
+              activeProps={{ className: "bg-secondary text-foreground" }}
             >
               {t(`nav.${item.key}`)}
             </Link>
@@ -57,16 +51,11 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-2 lg:flex">
           <LanguageSwitcher />
-          <Button
-            asChild
-            variant="ghost"
-            size="sm"
-            className="text-sm font-medium"
-          >
-            <Link to="/">{t("nav.signIn")}</Link>
-          </Button>
-          <Button asChild size="sm" className="text-sm font-medium">
+          <Button asChild variant="outline" size="sm" className="rounded-full">
             <Link to="/call-for-papers">{t("nav.submit")}</Link>
+          </Button>
+          <Button asChild size="sm" className="rounded-full">
+            <Link to="/registration">{t("nav.register")}</Link>
           </Button>
         </div>
 
@@ -95,19 +84,21 @@ export function SiteHeader() {
               key={item.to}
               to={item.to}
               onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-muted"
-              activeProps={{ className: "bg-muted text-foreground" }}
+              className="rounded-2xl px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-secondary"
+              activeProps={{ className: "bg-secondary text-foreground" }}
             >
               {t(`nav.${item.key}`)}
             </Link>
           ))}
           <div className="mt-2 flex gap-2 border-t border-border/60 pt-3">
             <Button asChild variant="outline" size="sm" className="flex-1">
-              <Link to="/">{t("nav.signIn")}</Link>
-            </Button>
-            <Button asChild size="sm" className="flex-1">
               <Link to="/call-for-papers" onClick={() => setOpen(false)}>
                 {t("nav.submit")}
+              </Link>
+            </Button>
+            <Button asChild size="sm" className="flex-1">
+              <Link to="/registration" onClick={() => setOpen(false)}>
+                {t("nav.register")}
               </Link>
             </Button>
           </div>

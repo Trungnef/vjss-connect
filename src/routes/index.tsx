@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import i18n from "@/i18n";
 import {
   ArrowRight,
   CalendarDays,
@@ -9,28 +10,26 @@ import {
   Users,
   Globe2,
 } from "lucide-react";
-
-import heroImg from "@/assets/hero-vjss.jpg";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+
+import heroImg from "@/assets/hero_semiconductor_bg.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "VJSS 2026 — Vietnam–Japan Semiconductor Symposium" },
+      { title: i18n.t("home.metaTitle") || "VJSS 2026 — Vietnam–Japan Semiconductor Symposium" },
       {
         name: "description",
-        content:
-          "September 17–19, 2026 in Hanoi. Three days of keynotes, technical sessions, and Vietnam–Japan industry collaboration in semiconductors.",
+        content: i18n.t("home.metaDescription") || "September 17–19, 2026 in Hanoi. Three days of keynotes, technical sessions, and Vietnam–Japan industry collaboration in semiconductors.",
       },
       {
         property: "og:title",
-        content: "VJSS 2026 — Vietnam–Japan Semiconductor Symposium",
+        content: i18n.t("home.metaTitle") || "VJSS 2026 — Vietnam–Japan Semiconductor Symposium",
       },
       {
         property: "og:description",
-        content:
-          "Join leading researchers from Vietnam, Japan, and beyond — September 17–19, 2026, Hanoi.",
+        content: i18n.t("home.metaDescription") || "Join leading researchers from Vietnam, Japan, and beyond — September 17–19, 2026, Hanoi.",
       },
     ],
   }),
@@ -47,66 +46,35 @@ const stats = [
 const speakers = [
   {
     name: "Prof. Hiroshi Tanaka",
-    role: "Keynote",
-    affiliation: "University of Tokyo",
+    roleKey: "keynote",
+    affiliationKey: "utokyo",
     initials: "HT",
     accent: "jp-indigo",
   },
   {
     name: "Prof. Nguyễn Minh Hà",
-    role: "Keynote",
-    affiliation: "VNU – University of Engineering",
+    roleKey: "keynote",
+    affiliationKey: "vnu",
     initials: "NH",
     accent: "vn-red",
   },
   {
     name: "Dr. Aiko Yamamoto",
-    role: "Invited",
-    affiliation: "Renesas Electronics",
+    roleKey: "invited",
+    affiliationKey: "renesas",
     initials: "AY",
     accent: "semi-blue",
   },
   {
     name: "Dr. Trần Quốc Bảo",
-    role: "Invited",
-    affiliation: "FPT Semiconductor",
+    roleKey: "invited",
+    affiliationKey: "fpt",
     initials: "TB",
     accent: "navy",
   },
-];
+] as const;
 
-const programDays = [
-  {
-    day: "Day 1",
-    date: "Sep 17",
-    title: "Foundations & Materials",
-    items: [
-      "Opening keynote · Compound semiconductors",
-      "Materials & process technology",
-      "Welcome reception",
-    ],
-  },
-  {
-    day: "Day 2",
-    date: "Sep 18",
-    title: "Devices & Design",
-    items: [
-      "Advanced packaging keynote",
-      "Device physics · EDA & AI for chip design",
-      "Industry panel: Vietnam–Japan supply chain",
-    ],
-  },
-  {
-    day: "Day 3",
-    date: "Sep 19",
-    title: "Systems & Industry",
-    items: [
-      "Power & RF semiconductors",
-      "Talent and education roundtable",
-      "Closing & best-paper awards",
-    ],
-  },
-];
+const programDayKeys = ["day1", "day2", "day3"] as const;
 
 const importantDates = [
   { key: "submissionOpen", date: "Mar 1, 2026" },
@@ -117,16 +85,7 @@ const importantDates = [
   { key: "conference", date: "Sep 17–19, 2026" },
 ] as const;
 
-const sponsors = [
-  "VNU-UET",
-  "HUST",
-  "Univ. of Tokyo",
-  "Tohoku Univ.",
-  "Renesas",
-  "Sony Semi.",
-  "FPT Semi.",
-  "Viettel R&D",
-];
+const sponsorKeys = [0, 1, 2, 3, 4, 5, 6, 7] as const;
 
 function HomePage() {
   const { t } = useTranslation();
@@ -134,17 +93,38 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-primary text-primary-foreground">
+      <section className="relative overflow-hidden bg-navy text-primary-foreground border-b border-border">
+        
+        {/* High-Tech Glowing Ambient Orbs */}
+        <div className="absolute -top-40 -right-40 h-[800px] w-[800px] rounded-full bg-semi-blue/30 blur-[140px] pointer-events-none mix-blend-screen animate-pulse" style={{ animationDuration: '6s' }} />
+        <div className="absolute -bottom-40 -left-20 h-[600px] w-[600px] rounded-full bg-jp-indigo/40 blur-[120px] pointer-events-none mix-blend-screen animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }} />
+
+        {/* Primary Semiconductor Image Background */}
         <div className="absolute inset-0">
           <img
             src={heroImg}
             alt=""
             width={1920}
             height={1080}
-            className="h-full w-full object-cover opacity-40"
+            className="h-full w-full object-cover opacity-60 mix-blend-luminosity brightness-110 contrast-125"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/85 to-primary/40" />
+          {/* Deep Navy Gradient Overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent backdrop-blur-[2px]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-transparent opacity-90" />
         </div>
+
+        {/* Decorative Circuit Board Grid */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.15]" 
+          style={{ 
+            backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.3) 1px, transparent 1px)", 
+            backgroundSize: "64px 64px",
+            maskImage: "linear-gradient(to bottom, black 40%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 100%)"
+          }}>
+        </div>
+        
+        {/* Horizontal Laser Scanning Line */}
+        <div className="absolute inset-x-0 top-0 h-[2px] bg-gold pointer-events-none opacity-50 shadow-[0_0_15px_#d4af37] animate-[pulse_4s_ease-in-out_infinite]" />
 
         <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
           <div className="max-w-3xl">
@@ -227,7 +207,7 @@ function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-12 lg:px-8">
           <div className="lg:col-span-4">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-vn-red">
-              01 — {t("home.welcomeTitle")}
+              {t("home.welcomeCategory")}
             </p>
             <div className="gold-divider mt-4 max-w-[8rem]" />
           </div>
@@ -251,7 +231,7 @@ function HomePage() {
           <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
             <div>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-vn-red">
-                02 — Speakers
+                {t("home.speakersCategory")}
               </p>
               <h2 className="mt-3 font-serif text-3xl font-semibold sm:text-4xl">
                 {t("home.speakersTitle")}
@@ -285,13 +265,13 @@ function HomePage() {
                   variant="outline"
                   className="mt-5 w-fit border-gold/40 text-[10px] uppercase tracking-wider text-foreground/70"
                 >
-                  {s.role}
+                  {t(`home.speakersData.${s.roleKey}`)}
                 </Badge>
                 <h3 className="mt-3 font-serif text-lg font-semibold leading-snug">
                   {s.name}
                 </h3>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  {s.affiliation}
+                  {t(`home.speakersData.affiliations.${s.affiliationKey}`)}
                 </p>
               </article>
             ))}
@@ -305,7 +285,7 @@ function HomePage() {
           <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
             <div>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-vn-red">
-                03 — Program
+                {t("home.programCategory")}
               </p>
               <h2 className="mt-3 font-serif text-3xl font-semibold sm:text-4xl">
                 {t("home.programTitle")}
@@ -320,42 +300,45 @@ function HomePage() {
           </div>
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {programDays.map((day, i) => (
-              <article
-                key={day.day}
-                className="relative flex flex-col rounded-lg border border-border bg-card p-7"
-              >
-                <div className="flex items-baseline justify-between">
-                  <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                    {day.day}
-                  </span>
-                  <span className="font-serif text-sm text-jp-indigo">
-                    {day.date}
-                  </span>
-                </div>
-                <div className="gold-divider mt-4" />
-                <h3 className="mt-5 font-serif text-xl font-semibold">
-                  {day.title}
-                </h3>
-                <ul className="mt-5 space-y-3 text-sm text-foreground/80">
-                  {day.items.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <span
-                        aria-hidden
-                        className="mt-1.5 h-1 w-4 flex-none bg-gold"
-                      />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <span
-                  aria-hidden
-                  className="absolute right-6 top-6 font-serif text-5xl font-semibold text-foreground/5"
+            {programDayKeys.map((dayKey, i) => {
+              const items = t(`home.programDays.${dayKey}.items`, { returnObjects: true }) as string[];
+              return (
+                <article
+                  key={dayKey}
+                  className="relative flex flex-col rounded-lg border border-border bg-card p-7"
                 >
-                  0{i + 1}
-                </span>
-              </article>
-            ))}
+                  <div className="flex items-baseline justify-between">
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      {t(`home.programDays.${dayKey}.day`)}
+                    </span>
+                    <span className="font-serif text-sm text-jp-indigo">
+                      {t(`home.programDays.${dayKey}.date`)}
+                    </span>
+                  </div>
+                  <div className="gold-divider mt-4" />
+                  <h3 className="mt-5 font-serif text-xl font-semibold">
+                    {t(`home.programDays.${dayKey}.title`)}
+                  </h3>
+                  <ul className="mt-5 space-y-3 text-sm text-foreground/80">
+                    {items && Array.isArray(items) && items.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span
+                          aria-hidden
+                          className="mt-1.5 h-1 w-4 flex-none bg-gold"
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <span
+                    aria-hidden
+                    className="absolute right-6 top-6 font-serif text-5xl font-semibold text-foreground/5"
+                  >
+                    0{i + 1}
+                  </span>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -366,13 +349,13 @@ function HomePage() {
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-vn-red">
-                04 — Calendar
+                {t("home.calendarCategory")}
               </p>
               <h2 className="mt-3 font-serif text-3xl font-semibold sm:text-4xl">
                 {t("home.importantDates")}
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Mark your calendar — key author and registration milestones.
+                {t("home.calendarSubtitle")}
               </p>
               <Button asChild className="mt-8">
                 <Link to="/call-for-papers">
@@ -392,7 +375,7 @@ function HomePage() {
                       {t(`dates.${d.key}`)}
                     </span>
                     <span className="text-right font-mono text-sm tabular-nums text-jp-indigo">
-                      {d.date}
+                      {t(`dates.values.${d.key}`)}
                     </span>
                   </li>
                 ))}
@@ -407,7 +390,7 @@ function HomePage() {
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-vn-red">
-              05 — Partners
+              {t("home.partnersCategory")}
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold sm:text-4xl">
               {t("home.sponsorsTitle")}
@@ -418,12 +401,12 @@ function HomePage() {
           </div>
 
           <div className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-4">
-            {sponsors.map((name) => (
+            {sponsorKeys.map((idx) => (
               <div
-                key={name}
+                key={idx}
                 className="flex items-center justify-center bg-card px-4 py-8 font-serif text-sm text-foreground/70 transition hover:text-primary"
               >
-                {name}
+                {t(`home.sponsorsList.${idx}`)}
               </div>
             ))}
           </div>
@@ -435,9 +418,9 @@ function HomePage() {
             >
               <Users className="h-6 w-6 flex-none text-semi-blue" />
               <div>
-                <h3 className="font-serif text-base font-semibold">Become a sponsor</h3>
+                <h3 className="font-serif text-base font-semibold">{t("home.becomeSponsor")}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Reach the Vietnam–Japan semiconductor community.
+                  {t("home.becomeSponsorDesc")}
                 </p>
               </div>
             </Link>
@@ -447,9 +430,9 @@ function HomePage() {
             >
               <FileText className="h-6 w-6 flex-none text-vn-red" />
               <div>
-                <h3 className="font-serif text-base font-semibold">Submit a paper</h3>
+                <h3 className="font-serif text-base font-semibold">{t("home.submitPaper")}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Topics, templates, and submission guidelines.
+                  {t("home.submitPaperDesc")}
                 </p>
               </div>
             </Link>
@@ -459,9 +442,9 @@ function HomePage() {
             >
               <Mic className="h-6 w-6 flex-none text-jp-indigo" />
               <div>
-                <h3 className="font-serif text-base font-semibold">Explore the program</h3>
+                <h3 className="font-serif text-base font-semibold">{t("home.exploreProgram")}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Sessions, panels, and side events.
+                  {t("home.exploreProgramDesc")}
                 </p>
               </div>
             </Link>
@@ -474,7 +457,7 @@ function HomePage() {
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-4 py-12 text-center sm:flex-row sm:justify-center sm:gap-6 sm:text-left">
           <Globe2 className="h-6 w-6 text-gold" />
           <p className="font-serif text-base">
-            English · Tiếng Việt · 日本語 — fully trilingual program and submission system.
+            {t("home.trilingual")}
           </p>
         </div>
       </section>
