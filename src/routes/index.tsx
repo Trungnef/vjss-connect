@@ -1,15 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import i18n from "@/i18n";
-import {
-  ArrowRight,
-  CalendarDays,
-  FileText,
-  Globe2,
-  Landmark,
-  MapPin,
-  Mic,
-  Users,
-} from "lucide-react";
+import { ArrowRight, CalendarDays, FileText, Landmark, MapPin, Users } from "lucide-react";
 
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Badge } from "@/components/ui/badge";
@@ -94,7 +85,7 @@ function HomePage() {
         <div className="site-shell relative grid gap-10 py-20 sm:py-24 lg:grid-cols-[minmax(0,1.08fr)_0.78fr] lg:py-28">
           <div className="max-w-4xl">
             <span className="inline-flex rounded-full border border-white/18 bg-white/8 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-gold backdrop-blur">
-              {pick(conferenceIdentity.heroEyebrow)}
+              {t("home.heroEyebrow")}
             </span>
             <h1 className="mt-7 max-w-5xl font-serif text-4xl font-semibold leading-[1.02] text-balance sm:text-5xl lg:text-[4.6rem]">
               {pick(conferenceIdentity.fullName)}
@@ -162,7 +153,7 @@ function HomePage() {
                 {t("home.heroAsideTitle")}
               </h2>
               <p className="mt-4 text-sm leading-7 text-primary-foreground/78">
-                {pick(conferenceIdentity.referenceNote)}
+                {t("home.heroAsideBody")}
               </p>
             </aside>
 
@@ -224,7 +215,7 @@ function HomePage() {
       <section id="direction" className="site-shell anchor-target section-frame py-8 sm:py-10">
         <SectionHeading
           eyebrow={t("home.directionEyebrow")}
-          title={pick(homeWelcome.title)}
+          title={t("home.directionTitle")}
           actions={
             <Button asChild variant="outline">
               <Link to="/about">
@@ -262,11 +253,11 @@ function HomePage() {
           <article className="panel-card panel-card-strong overflow-hidden p-7 sm:p-8">
             <p className="section-kicker">{t("home.planningNoteEyebrow")}</p>
             <h2 className="mt-4 font-serif text-3xl font-semibold leading-tight sm:text-[2.55rem]">
-              {pick(homeWelcome.title)}
+              {t("home.overviewTitle")}
             </h2>
             <p className="mt-5 text-base leading-8 text-foreground/78">{pick(homeWelcome.body)}</p>
             <p className="mt-6 font-serif text-lg italic text-muted-foreground">
-              {pick(homeWelcome.signature)}
+              {t("home.overviewSignature")}
             </p>
           </article>
 

@@ -60,27 +60,30 @@ const vi: Translations = {
     ...en.home,
     metaTitle: "VJSS 2026 - Hội nghị Bán dẫn Việt Nam - Nhật Bản",
     metaDescription:
-      "20-23 tháng 9, 2026 tại Hà Nội. Theo dõi gói nội dung kế hoạch VJSS 2026, cấu trúc chương trình và mô hình hợp tác - tài trợ.",
+      "20-23 tháng 9, 2026 tại Hà Nội. Khám phá diễn giả, điểm nhấn chương trình và thông tin địa điểm của VJSS 2026.",
+    heroEyebrow: "Diễn đàn quốc tế về nghiên cứu và hợp tác bán dẫn",
     heroCtaSubmit: "Xem phạm vi abstract",
     heroCtaRegister: "Xem trạng thái đăng ký",
     heroFormatLabel: "Hình thức",
-    heroAsideEyebrow: "Tóm tắt kế hoạch",
-    heroAsideTitle: "Gói làm việc Hà Nội 2026",
+    heroAsideEyebrow: "Tổng quan hội nghị",
+    heroAsideTitle: "Kết nối bán dẫn Việt Nam - Nhật Bản tại Hà Nội",
+    heroAsideBody:
+      "Khám phá chủ đề hội nghị, các diễn giả nổi bật và những điểm nhấn chương trình của VJSS 2026 tại Hà Nội.",
     hostCardTitle: "Đơn vị chủ trì",
     startHereTitle: "Bắt đầu tại đây",
     startHereProgram: "Xem chương trình và timeline",
     startHereSpeakers: "Xem diễn giả và các phiên",
     startHereVenue: "Xem địa điểm và lưu ý di chuyển",
-    speakersTitle: "Roster diễn giả làm việc",
+    speakersTitle: "Diễn giả nổi bật",
     speakersSubtitle:
-      "Các chair, thành viên committee và người đóng góp theo track đã được nêu trong tài liệu kế hoạch.",
+      "Gặp gỡ các gương mặt học thuật, doanh nghiệp và khu vực công đến từ Việt Nam và Nhật Bản.",
     programTitle: "Khung chương trình",
     programSubtitle:
       "Bốn ngày gồm bài giảng, plenary, track kỹ thuật, site visit và hoạt động NEXUS.",
     sponsorsTitle: "Đơn vị chủ trì, bảo trợ và đối tác",
     sponsorsSubtitle:
       "Gói nội dung hiện tại đã xác lập mạng lưới chủ trì sự kiện và cấu trúc đối tác phục vụ outreach.",
-    importantDates: "Timeline triển khai",
+    importantDates: "Các mốc chính",
     viewAll: "Xem tất cả",
     viewProgram: "Xem toàn bộ chương trình",
     welcomeCategory: "01 - Tóm tắt",
@@ -88,7 +91,7 @@ const vi: Translations = {
     programCategory: "03 - Chương trình",
     calendarCategory: "04 - Timeline",
     calendarSubtitle:
-      "Site hiện bám theo working plan tháng 4/2026 cùng các mốc kế hoạch công khai mới nhất.",
+      "Theo dõi các mốc quan trọng từ thư mời diễn giả, mở nhận abstract đến giai đoạn vận hành sự kiện.",
     partnersCategory: "05 - Hợp tác",
     becomeSponsor: "Xem gói tài trợ",
     becomeSponsorDesc:
@@ -100,8 +103,11 @@ const vi: Translations = {
     contactTitle: "Liên hệ",
     contactDesc:
       "Liên hệ ban thư ký và đầu mối học thuật cho các nhu cầu về đối tác, diễn giả hoặc chương trình.",
-    directionEyebrow: "Định hướng hội nghị",
-    planningNoteEyebrow: "Ghi chú kế hoạch",
+    directionEyebrow: "Vì sao là VJSS 2026",
+    directionTitle: "Một hội nghị được thiết kế cho nghiên cứu, nhân lực và kết nối doanh nghiệp",
+    planningNoteEyebrow: "Điểm nhấn hội nghị",
+    overviewTitle: "Tổng quan hội nghị",
+    overviewSignature: "Bốn ngày kết nối nghiên cứu, phát triển nhân lực và hợp tác song phương.",
     multilingualEyebrow: "Triển khai đa ngôn ngữ",
     multilingualBody:
       "Website hiện trình bày hội nghị như một nền tảng chuyên nghiệp với hierarchy rõ hơn, CTA rõ ràng hơn và khả năng đọc quét tốt hơn trên mọi kích thước màn hình.",
@@ -434,16 +440,20 @@ const vi: Translations = {
   },
   footer: {
     ...en.footer,
-    tagline: "Nền tảng kế hoạch và outreach cho Hội nghị Bán dẫn Việt Nam - Nhật Bản 2026.",
+    tagline: "Trung tâm thông tin chính thức cho Hội nghị Bán dẫn Việt Nam - Nhật Bản 2026.",
     navigation: "Điều hướng",
     status: "Trạng thái",
     statusBody:
-      "Nội dung công khai hiện phản ánh proposal làm việc tháng 4/2026 và vẫn chờ xác nhận cuối cùng về địa điểm, ngân sách và diễn giả.",
+      "Thông tin về chương trình, địa điểm và diễn giả sẽ tiếp tục được cập nhật khi hội nghị tiến gần đến tháng 9/2026.",
     contactHeader: "Liên hệ làm việc",
     contactBody: "Xem trang liên hệ để lấy đầu mối ban thư ký và đầu mối học thuật hiện tại.",
     rights: "Bảo lưu mọi quyền.",
     snapshotEyebrow: "Tóm tắt hội nghị",
     snapshotTitle: "Thông tin hội nghị quốc tế với các bước tiếp theo rõ ràng.",
+    locationEyebrow: "Địa điểm",
+    locationTitle: "Địa chỉ tham chiếu và bản đồ",
+    locationBody:
+      "Khối này giữ sẵn thông tin địa điểm tham chiếu tại Hà Nội để người xem kiểm tra vị trí và mở bản đồ nhanh ngay từ footer.",
     formatLabel: "Hình thức",
     logoAlt: "Logo VJSS 2026",
   },

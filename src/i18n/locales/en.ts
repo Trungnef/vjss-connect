@@ -56,27 +56,30 @@ const en = {
   home: {
     metaTitle: "VJSS 2026 - Vietnam-Japan Semiconductor Symposium",
     metaDescription:
-      "September 20-23, 2026 in Hanoi. Review the VJSS 2026 planning package, program architecture and partnership model.",
+      "September 20-23, 2026 in Hanoi. Explore speakers, program highlights and venue information for VJSS 2026.",
+    heroEyebrow: "International forum on semiconductor research and partnership",
     heroCtaSubmit: "View call for abstracts",
     heroCtaRegister: "View registration status",
     heroFormatLabel: "Format",
-    heroAsideEyebrow: "Planning snapshot",
-    heroAsideTitle: "Hanoi 2026 working package",
+    heroAsideEyebrow: "Conference overview",
+    heroAsideTitle: "Semiconductor collaboration in Hanoi",
+    heroAsideBody:
+      "Explore the conference theme, featured speakers and program highlights for VJSS 2026 in Hanoi.",
     hostCardTitle: "Hosts",
     startHereTitle: "Start here",
     startHereProgram: "Review program and timeline",
     startHereSpeakers: "Browse speakers and sessions",
     startHereVenue: "Check venue and travel notes",
-    speakersTitle: "Working speaker roster",
+    speakersTitle: "Featured speakers",
     speakersSubtitle:
-      "Confirmed chairs, committee members and named track contributors from the planning files.",
+      "Meet invited voices from academia, industry and public institutions across Vietnam and Japan.",
     programTitle: "Program outline",
     programSubtitle:
       "Four days covering lectures, plenaries, technical tracks, site visits and NEXUS activities.",
     sponsorsTitle: "Hosts, patrons and partners",
     sponsorsSubtitle:
       "The current planning package already defines the event's host network and outreach-facing partner structure.",
-    importantDates: "Planning timeline",
+    importantDates: "Key milestones",
     viewAll: "View all",
     viewProgram: "View full program",
     welcomeCategory: "01 - Summary",
@@ -84,7 +87,7 @@ const en = {
     programCategory: "03 - Program",
     calendarCategory: "04 - Timeline",
     calendarSubtitle:
-      "The site now follows the April 2026 working plan and the latest public planning milestones.",
+      "Follow the major milestones from speaker invitations and abstract opening to final event delivery.",
     partnersCategory: "05 - Partnerships",
     becomeSponsor: "Explore sponsorship",
     becomeSponsorDesc: "Review engagement routes, tier logic and sponsor deliverables.",
@@ -95,8 +98,12 @@ const en = {
     contactTitle: "Contact",
     contactDesc:
       "Reach the secretariat and academic liaisons for partner, speaker or program coordination.",
-    directionEyebrow: "Conference direction",
-    planningNoteEyebrow: "Planning note",
+    directionEyebrow: "Why VJSS 2026",
+    directionTitle: "A conference built for research, talent and industry connection",
+    planningNoteEyebrow: "What to expect",
+    overviewTitle: "Conference overview",
+    overviewSignature:
+      "Four days of research exchange, talent development and bilateral collaboration.",
     multilingualEyebrow: "Multilingual delivery",
     multilingualBody:
       "The website now presents the symposium as a professional conference platform with stronger hierarchy, clearer CTA routes and cleaner scanning across device sizes.",
@@ -416,17 +423,21 @@ const en = {
     conference: "Conference dates",
   },
   footer: {
-    tagline: "Planning and outreach platform for the Vietnam-Japan Semiconductor Symposium 2026.",
+    tagline: "Official information hub for the Vietnam-Japan Semiconductor Symposium 2026.",
     navigation: "Navigation",
     status: "Status",
     statusBody:
-      "Public content reflects the April 2026 working proposal and remains subject to venue, budget and speaker confirmation.",
+      "Program, venue and speaker details continue to be updated as the conference moves toward September 2026.",
     contactHeader: "Working contact",
     contactBody: "Use the contact page for the current secretariat and academic liaison details.",
     contactEmail: "bnq.trinh@vju.ac.vn",
     rights: "All rights reserved.",
     snapshotEyebrow: "Conference snapshot",
     snapshotTitle: "International conference information with clear next-step routes.",
+    locationEyebrow: "Location",
+    locationTitle: "Reference venue and map",
+    locationBody:
+      "Keep the Hanoi host-city reference visible at the footer so visitors can check the location context and open the map quickly.",
     formatLabel: "Format",
     logoAlt: "VJSS 2026 logo",
   },

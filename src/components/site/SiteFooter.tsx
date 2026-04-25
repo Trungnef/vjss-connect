@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { CalendarDays, Globe2, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 import logoImg from "@/assets/logo/logo.webp";
 import { Button } from "@/components/ui/button";
-import { conferenceIdentity } from "@/content/site-content";
+import { conferenceIdentity, venueReference } from "@/content/site-content";
 import { useSiteLocale } from "@/hooks/use-site-locale";
 
 const navigationLinks = [
@@ -168,6 +168,67 @@ export function SiteFooter() {
               </li>
             ))}
           </ul>
+        </div>
+      </div>
+
+      <div className="site-shell pb-16">
+        <div className="grid gap-6 rounded-[2rem] border border-primary-foreground/14 bg-primary-foreground/6 p-3 shadow-[0_34px_90px_-56px_rgba(0,0,0,0.6)] backdrop-blur lg:grid-cols-[0.92fr_1.08fr]">
+          <article className="rounded-[1.6rem] border border-primary-foreground/12 bg-black/16 p-6 sm:p-7">
+            <div className="flex items-center gap-3">
+              <MapPin className="h-5 w-5 text-gold" />
+              <p className="section-kicker text-gold">{t("footer.locationEyebrow")}</p>
+            </div>
+            <h4 className="mt-4 max-w-lg font-serif text-3xl font-semibold leading-tight">
+              {t("footer.locationTitle")}
+            </h4>
+            <p className="mt-4 max-w-xl text-sm leading-7 text-primary-foreground/76">
+              {t("footer.locationBody")}
+            </p>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-[1.4rem] border border-primary-foreground/12 bg-primary-foreground/6 p-5">
+                <p className="text-[11px] uppercase tracking-[0.22em] text-primary-foreground/56">
+                  {t("venue.referenceAddress")}
+                </p>
+                <p className="mt-3 text-sm leading-7 text-primary-foreground/84">
+                  {pick(venueReference.address)}
+                </p>
+              </div>
+              <div className="rounded-[1.4rem] border border-primary-foreground/12 bg-primary-foreground/6 p-5">
+                <p className="text-[11px] uppercase tracking-[0.22em] text-primary-foreground/56">
+                  {t("common.hostCity")}
+                </p>
+                <p className="mt-3 text-sm leading-7 text-primary-foreground/84">
+                  {pick(conferenceIdentity.venue)}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild className="bg-background text-foreground hover:bg-background/95">
+                <a href={venueReference.mapLink} target="_blank" rel="noreferrer">
+                  {t("common.openMap")}
+                </a>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="border-primary-foreground/16 bg-primary-foreground/8 text-primary-foreground hover:bg-primary-foreground/12 hover:text-primary-foreground"
+              >
+                <Link to="/venue">{t("nav.venue")}</Link>
+              </Button>
+            </div>
+          </article>
+
+          <div className="overflow-hidden rounded-[1.75rem] border border-primary-foreground/12">
+            <iframe
+              src={venueReference.mapEmbed}
+              title={t("venue.mapTitle")}
+              className="h-[20rem] w-full lg:h-full lg:min-h-[22rem]"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
       </div>
 
