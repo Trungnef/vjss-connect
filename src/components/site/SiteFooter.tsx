@@ -28,7 +28,7 @@ export function SiteFooter() {
 
   return (
     <footer className="mt-32 border-t border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--navy)_94%,black),color-mix(in_oklab,var(--navy)_88%,var(--jp-indigo)))] text-primary-foreground">
-      <div className="site-shell pt-14">
+      {/* <div className="site-shell pt-14">
         <div className="rounded-[2.2rem] border border-primary-foreground/14 bg-primary-foreground/7 p-6 shadow-[0_34px_90px_-56px_rgba(0,0,0,0.6)] backdrop-blur sm:p-8">
           <div className="grid gap-6 xl:grid-cols-[minmax(0,0.9fr)_1.1fr] xl:items-end">
             <div>
@@ -94,7 +94,7 @@ export function SiteFooter() {
             </Button>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="site-shell grid gap-10 py-16 lg:grid-cols-[minmax(0,1.2fr)_0.75fr_0.95fr]">
         <div>

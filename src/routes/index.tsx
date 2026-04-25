@@ -441,7 +441,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="site-shell anchor-target section-frame pb-20 pt-6 sm:pb-24">
+      {/* <section className="site-shell anchor-target section-frame pb-20 pt-6 sm:pb-24">
         <div className="rounded-[2.25rem] border border-border/70 bg-[linear-gradient(120deg,color-mix(in_oklab,var(--navy)_94%,black),color-mix(in_oklab,var(--navy)_82%,var(--jp-indigo)))] px-6 py-8 text-primary-foreground shadow-[0_42px_100px_-56px_color-mix(in_oklab,var(--navy)_62%,transparent)] sm:px-8 sm:py-10">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-3xl">
@@ -473,7 +473,7 @@ function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }
