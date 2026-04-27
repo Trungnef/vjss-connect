@@ -71,7 +71,7 @@ function SpeakersPage() {
         { label: t("speakers.quickFilters"), href: "#filters" },
         { label: t("speakers.quickDirectory"), href: "#directory" },
       ]}
-      heroNote={t("speakers.heroNote")}
+      // heroNote={t("speakers.heroNote")}
       actions={
         <>
           <Button asChild>
@@ -216,7 +216,7 @@ function SpeakersPage() {
                             <span className="rounded-full bg-white/88 px-3 py-1 text-xs font-medium text-foreground">
                               {pick(speakerKindLabels[speaker.kind])}
                             </span>
-                            <span className="rounded-full border border-white/24 bg-black/22 px-3 py-1 text-xs font-medium text-white backdrop-blur">
+                            <span className="rounded-[0.35rem] border border-white/24 bg-black/22 px-3 py-1 text-xs font-medium text-white">
                               {pick(speakerCountryLabels[speaker.country])}
                             </span>
                           </div>

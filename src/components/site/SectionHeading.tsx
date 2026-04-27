@@ -32,11 +32,11 @@ export function SectionHeading({
             <span className="h-px w-14 bg-gradient-to-r from-gold via-semi-blue to-transparent" />
           </div>
         ) : null}
-        <h2 className="mt-4 font-serif text-3xl font-semibold leading-[1.08] text-balance sm:text-4xl lg:text-[2.85rem]">
+        <h2 className="mt-4 font-serif text-3xl font-semibold leading-[1.08] text-balance sm:text-4xl lg:text-[3rem]">
           {title}
         </h2>
         {description ? (
-          <p className="mt-4 max-w-2xl text-base leading-7 text-foreground/74 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base leading-8 text-foreground/74 sm:text-lg">
             {description}
           </p>
         ) : null}

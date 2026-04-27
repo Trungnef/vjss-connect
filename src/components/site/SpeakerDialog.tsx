@@ -33,10 +33,10 @@ export function SpeakerDialog({
         <div className="grid gap-0 md:grid-cols-[17rem_minmax(0,1fr)]">
           <div className="relative border-b border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--semi-blue)_14%,white),color-mix(in_oklab,var(--navy)_82%,black))] md:border-b-0 md:border-r">
             <div className="absolute left-5 top-5 z-10 flex flex-wrap gap-2">
-              <span className="rounded-full border border-white/16 bg-black/18 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/92 backdrop-blur">
+              <span className="rounded-[0.35rem] border border-white/16 bg-black/18 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/92">
                 {pick(speakerKindLabels[speaker.kind])}
               </span>
-              <span className="rounded-full border border-white/16 bg-black/18 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/92 backdrop-blur">
+              <span className="rounded-[0.35rem] border border-white/16 bg-black/18 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/92">
                 {pick(speakerCountryLabels[speaker.country])}
               </span>
             </div>

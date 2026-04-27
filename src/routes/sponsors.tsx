@@ -6,6 +6,7 @@ import { PageShell } from "@/components/site/PageShell";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Button } from "@/components/ui/button";
 import {
+  homePartnerNames,
   pageCopy,
   sponsorDeliverables,
   sponsorEngagementRoutes,
@@ -28,6 +29,20 @@ export const Route = createFileRoute("/sponsors")({
 });
 
 const routeIcons = [Handshake, Megaphone, Trophy] as const;
+
+const getSponsorMark = (name: string) => {
+  if (/^[A-Z0-9]{2,6}$/.test(name.trim())) {
+    return name.trim();
+  }
+
+  return name
+    .replace(/,.*$/, "")
+    .split(/\s+/)
+    .filter((part) => !["and", "of", "in", "the"].includes(part.toLowerCase()))
+    .slice(0, 3)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
+};
 
 function SponsorsPage() {
   const { pick, t } = useSiteLocale();
@@ -53,6 +68,7 @@ function SponsorsPage() {
         },
       ]}
       quickLinks={[
+        { label: t("sponsors.quickPartners"), href: "#partner-lockups" },
         { label: t("sponsors.quickRoutes"), href: "#routes" },
         { label: t("sponsors.quickTiers"), href: "#tiers" },
         { label: t("sponsors.quickDeliverables"), href: "#deliverables" },
@@ -90,7 +106,35 @@ function SponsorsPage() {
         </div>
       }
     >
-      <section id="routes" className="anchor-target section-frame">
+      <section id="partner-lockups" className="anchor-target section-frame">
+        <SectionHeading
+          eyebrow={t("sponsors.partnerLockupsEyebrow")}
+          title={t("sponsors.partnerLockupsTitle")}
+          description={t("sponsors.partnerLockupsDescription")}
+          actions={
+            <Button asChild variant="outline">
+              <Link to="/contact">
+                {t("sponsors.ctaContactSponsor")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          }
+        />
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {homePartnerNames.map((name) => (
+            <article key={name} className="institution-lockup">
+              <div className="institution-mark">{getSponsorMark(name)}</div>
+              <div>
+                <p className="institution-role">{t("sponsors.partnerPlaceholderRole")}</p>
+                <p className="institution-name mt-2">{name}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="routes" className="anchor-target section-frame mt-16">
         <SectionHeading
           eyebrow={t("sponsors.routesEyebrow")}
           title={t("sponsors.routesTitle")}

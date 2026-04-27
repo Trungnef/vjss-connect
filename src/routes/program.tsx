@@ -117,7 +117,7 @@ function ProgramPage() {
           description={t("program.browserDescription")}
         />
 
-        <div className="mt-8 rounded-[2rem] border border-border/70 bg-background/84 p-4 shadow-[0_24px_70px_-54px_color-mix(in_oklab,var(--navy)_34%,transparent)] backdrop-blur lg:sticky lg:top-24 lg:z-20">
+        <div className="mt-8 rounded-[0.85rem] border border-border/70 bg-background/92 p-4 lg:sticky lg:top-24 lg:z-20">
           <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card px-3 py-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
               <Filter className="h-3.5 w-3.5" />

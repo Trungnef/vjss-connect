@@ -85,10 +85,10 @@ const en = {
     welcomeCategory: "01 - Summary",
     speakersCategory: "02 - Speakers",
     programCategory: "03 - Program",
-    calendarCategory: "04 - Timeline",
+    calendarCategory: "03 - Timeline",
     calendarSubtitle:
       "Follow the major milestones from speaker invitations and abstract opening to final event delivery.",
-    partnersCategory: "05 - Partnerships",
+    partnersCategory: "04 - Partnerships",
     becomeSponsor: "Explore sponsorship",
     becomeSponsorDesc: "Review engagement routes, tier logic and sponsor deliverables.",
     submitPaper: "Review abstract scope",
@@ -241,6 +241,7 @@ const en = {
     metaEcosystemGroups: "Ecosystem groups",
     metaCommitteeGroups: "Committee groups",
     metaNamedMembers: "Named members",
+    quickInstitutionalMap: "Institutional map",
     quickEcosystem: "Ecosystem and hosts",
     quickCommittees: "Committee structure",
     heroNote:
@@ -249,6 +250,10 @@ const en = {
     governanceStructureLabel: "Governance structure",
     governanceStructureBody:
       "Leadership, scientific review, local execution and sponsor outreach are separated in the current working model.",
+    institutionalMapEyebrow: "Institutional map",
+    institutionalMapTitle: "Organizer, patron and outreach roles at a glance",
+    institutionalMapDescription:
+      "These text lockups are sized like logo placements so official marks can replace them later without changing the page layout.",
     ecosystemEyebrow: "Ecosystem and hosts",
     ecosystemTitle: "Institutions, patrons and partner roles",
     ecosystemDescription:
@@ -264,6 +269,7 @@ const en = {
     metaRoutes: "Engagement routes",
     metaTiers: "Sponsorship tiers",
     metaDeliverables: "Deliverable types",
+    quickPartners: "Partner lockups",
     quickRoutes: "Why sponsor",
     quickTiers: "Tier framework",
     quickDeliverables: "Deliverables and CTA",
@@ -272,6 +278,11 @@ const en = {
     outreachScopeLabel: "Outreach scope",
     outreachScopeBody:
       "Financial, in-kind, venue, hospitality, travel-support and program-linked partnerships are all supported in the current framework.",
+    partnerLockupsEyebrow: "Partner visibility",
+    partnerLockupsTitle: "Sponsor and partner placements prepared for official logos",
+    partnerLockupsDescription:
+      "Current partner names are presented as consistent text lockups with stable sizing, spacing and alignment until final logo assets are supplied.",
+    partnerPlaceholderRole: "Logo placeholder",
     routesEyebrow: "Why sponsor",
     routesTitle: "Participation routes built around value, not only logo placement",
     routesDescription:

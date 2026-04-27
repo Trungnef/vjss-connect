@@ -176,7 +176,7 @@ function NewsPage() {
         </ol>
 
         {remainingItems.length > 0 ? (
-          <div className="mt-8 rounded-[2rem] border border-border/70 bg-[linear-gradient(125deg,color-mix(in_oklab,var(--navy)_94%,black),color-mix(in_oklab,var(--navy)_82%,var(--jp-indigo)))] px-6 py-8 text-primary-foreground sm:px-8 sm:py-10">
+          <div className="mt-8 rounded-[0.85rem] border border-border/70 bg-[linear-gradient(125deg,color-mix(in_oklab,var(--navy)_94%,var(--foreground)),color-mix(in_oklab,var(--navy)_84%,var(--jp-indigo)))] px-6 py-8 text-primary-foreground sm:px-8 sm:py-10">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-3xl">
                 <p className="section-kicker text-gold/90">{t("news.stayAlignedEyebrow")}</p>

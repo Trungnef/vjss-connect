@@ -251,6 +251,7 @@ const vi: Translations = {
     metaEcosystemGroups: "Nhóm hệ sinh thái",
     metaCommitteeGroups: "Nhóm committee",
     metaNamedMembers: "Thành viên được nêu tên",
+    quickInstitutionalMap: "Bản đồ tổ chức",
     quickEcosystem: "Hệ sinh thái và đơn vị chủ trì",
     quickCommittees: "Cấu trúc committee",
     heroNote:
@@ -259,6 +260,10 @@ const vi: Translations = {
     governanceStructureLabel: "Cấu trúc vận hành",
     governanceStructureBody:
       "Phần lãnh đạo, phản biện học thuật, thực thi tại chỗ và outreach nhà tài trợ được tách rõ trong mô hình làm việc hiện tại.",
+    institutionalMapEyebrow: "Bản đồ tổ chức",
+    institutionalMapTitle: "Vai trò chủ trì, bảo trợ và outreach trong một lượt nhìn",
+    institutionalMapDescription:
+      "Các lockup chữ được đặt theo kích thước của vị trí logo để sau này có thể thay bằng logo chính thức mà không đổi bố cục trang.",
     ecosystemEyebrow: "Hệ sinh thái và đơn vị chủ trì",
     ecosystemTitle: "Các tổ chức, đơn vị bảo trợ và vai trò đối tác",
     ecosystemDescription:
@@ -276,6 +281,7 @@ const vi: Translations = {
     metaRoutes: "Hướng tham gia",
     metaTiers: "Hạng mục tài trợ",
     metaDeliverables: "Loại deliverable",
+    quickPartners: "Lockup đối tác",
     quickRoutes: "Vì sao nên tài trợ",
     quickTiers: "Khung phân hạng",
     quickDeliverables: "Deliverable và CTA",
@@ -284,6 +290,11 @@ const vi: Translations = {
     outreachScopeLabel: "Phạm vi outreach",
     outreachScopeBody:
       "Khung hiện tại hỗ trợ cả tài trợ tài chính, hiện vật, địa điểm, hospitality, hỗ trợ di chuyển và các hình thức gắn với chương trình.",
+    partnerLockupsEyebrow: "Hiện diện đối tác",
+    partnerLockupsTitle: "Vị trí đối tác và tài trợ đã sẵn sàng cho logo chính thức",
+    partnerLockupsDescription:
+      "Tên đối tác hiện được trình bày như các lockup chữ có kích thước, khoảng cách và căn chỉnh nhất quán cho đến khi có bộ logo cuối cùng.",
+    partnerPlaceholderRole: "Vị trí logo",
     routesEyebrow: "Vì sao nên tài trợ",
     routesTitle: "Các hướng tham gia được xây quanh giá trị, không chỉ là đặt logo",
     routesDescription:

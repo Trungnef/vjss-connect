@@ -24,25 +24,25 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/78 backdrop-blur-xl supports-[backdrop-filter]:bg-background/65">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-vn-red/0 via-gold to-jp-indigo/0 opacity-90" />
-      <div className="site-shell flex min-h-[5.75rem] items-center justify-between gap-4 py-3">
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/94 supports-[backdrop-filter]:bg-background/88">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-vn-red/0 via-gold to-vn-red/0 opacity-90" />
+      <div className="site-shell flex min-h-[5rem] items-center justify-between gap-4 py-3">
         <Link
           to="/"
-          className="group flex items-center gap-3 rounded-full border border-border/70 bg-white/70 px-2.5 py-2 shadow-[0_24px_60px_-42px_color-mix(in_oklab,var(--navy)_42%,transparent)] backdrop-blur"
+          className="group flex min-w-0 items-center gap-3 rounded-[0.65rem] border border-border/70 bg-card/80 px-2.5 py-2 transition hover:border-primary/25"
         >
-          <div className="rounded-[1.5rem] border border-border/60 bg-white/80 p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
+          <div className="rounded-[0.45rem] border border-border/60 bg-background p-1.5">
             <img
               src={logoImg}
               alt={t("header.logoAlt")}
-              className="h-14 w-auto object-contain sm:h-16"
+              className="h-11 w-auto object-contain sm:h-12"
             />
           </div>
-          <span className="flex flex-col leading-tight">
+          <span className="flex min-w-0 flex-col leading-tight">
             <span className="font-serif text-base font-semibold text-foreground sm:text-lg">
               {t("conf.shortName")}
             </span>
-            <span className="hidden text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:inline">
+            <span className="hidden max-w-[14rem] truncate text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:inline xl:max-w-none">
               {t("conf.bridgeLabel")}
             </span>
           </span>
@@ -52,15 +52,15 @@ export function SiteHeader() {
           aria-label={t("header.primaryNav")}
           className="hidden min-w-0 flex-1 items-center justify-center lg:flex"
         >
-          <div className="flex max-w-full flex-nowrap items-center justify-start gap-1 overflow-x-auto rounded-full border border-border/70 bg-white/72 p-1 shadow-[0_18px_42px_-34px_color-mix(in_oklab,var(--navy)_34%,transparent)] backdrop-blur [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex max-w-full flex-nowrap items-center justify-start gap-1 overflow-x-auto rounded-[0.6rem] border border-border/70 bg-card/72 p-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {navItems.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
-                className="rounded-full px-3 py-2 text-sm font-medium whitespace-nowrap text-foreground/72 transition-colors hover:bg-secondary hover:text-foreground xl:px-3.5"
+                className="rounded-[0.35rem] px-3 py-2 text-sm font-medium whitespace-nowrap text-foreground/72 transition-colors hover:bg-secondary hover:text-foreground xl:px-3.5"
                 activeProps={{
                   className:
-                    "rounded-full bg-primary px-3 py-2 text-sm font-medium whitespace-nowrap text-primary-foreground shadow-[0_14px_34px_-20px_color-mix(in_oklab,var(--navy)_48%,transparent)] xl:px-3.5",
+                    "rounded-[0.35rem] bg-primary px-3 py-2 text-sm font-medium whitespace-nowrap text-primary-foreground xl:px-3.5",
                 }}
               >
                 {t(`nav.${item.key}`)}
@@ -75,7 +75,7 @@ export function SiteHeader() {
             asChild
             variant="outline"
             size="sm"
-            className="border-primary/15 bg-white/80 px-4"
+            className="border-primary/15 bg-card/80 px-4"
           >
             <Link to="/call-for-papers">{t("nav.submit")}</Link>
           </Button>
@@ -100,7 +100,7 @@ export function SiteHeader() {
 
       <div
         className={cn(
-          "border-t border-border/60 bg-background/82 backdrop-blur-xl lg:hidden",
+          "border-t border-border/60 bg-background/96 lg:hidden",
           open ? "block" : "hidden",
         )}
       >
@@ -112,10 +112,10 @@ export function SiteHeader() {
                   key={item.to}
                   to={item.to}
                   onClick={() => setOpen(false)}
-                  className="rounded-2xl px-3 py-2.5 text-sm font-medium text-foreground/80 hover:bg-secondary"
+                  className="rounded-[0.45rem] px-3 py-2.5 text-sm font-medium text-foreground/80 hover:bg-secondary"
                   activeProps={{
                     className:
-                      "rounded-2xl bg-primary px-3 py-2.5 text-sm font-medium text-primary-foreground",
+                      "rounded-[0.45rem] bg-primary px-3 py-2.5 text-sm font-medium text-primary-foreground",
                   }}
                 >
                   {t(`nav.${item.key}`)}
@@ -123,7 +123,7 @@ export function SiteHeader() {
               ))}
             </nav>
             <div className="mt-3 flex gap-2 border-t border-border/60 pt-3">
-              <Button asChild variant="outline" size="sm" className="flex-1 bg-white/75">
+              <Button asChild variant="outline" size="sm" className="flex-1 bg-card/75">
                 <Link to="/call-for-papers" onClick={() => setOpen(false)}>
                   {t("nav.submit")}
                 </Link>

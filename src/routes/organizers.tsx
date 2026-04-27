@@ -22,6 +22,26 @@ export const Route = createFileRoute("/organizers")({
   component: OrganizersPage,
 });
 
+const getInstitutionMark = (name: string) => {
+  const acronym = name.match(/\(([^)]+)\)/)?.[1];
+
+  if (acronym && acronym.length <= 6) {
+    return acronym;
+  }
+
+  if (/^[A-Z0-9]{2,6}$/.test(name.trim())) {
+    return name.trim();
+  }
+
+  return name
+    .replace(/,.*$/, "")
+    .split(/\s+/)
+    .filter((part) => !["and", "of", "in", "the"].includes(part.toLowerCase()))
+    .slice(0, 3)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
+};
+
 function OrganizersPage() {
   const { pick, t } = useSiteLocale();
   const organizersPage = pageCopy.organizers;
@@ -50,6 +70,7 @@ function OrganizersPage() {
         },
       ]}
       quickLinks={[
+        { label: t("organizers.quickInstitutionalMap"), href: "#institutional-map" },
         { label: t("organizers.quickEcosystem"), href: "#ecosystem" },
         { label: t("organizers.quickCommittees"), href: "#committees" },
       ]}
@@ -88,7 +109,43 @@ function OrganizersPage() {
         </div>
       }
     >
-      <section id="ecosystem" className="anchor-target section-frame space-y-8">
+      <section id="institutional-map" className="anchor-target section-frame">
+        <SectionHeading
+          eyebrow={t("organizers.institutionalMapEyebrow")}
+          title={t("organizers.institutionalMapTitle")}
+          description={t("organizers.institutionalMapDescription")}
+        />
+
+        <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          {ecosystemGroups.map((group) => (
+            <article key={group.id} className="panel-card p-5">
+              <div className="flex items-end justify-between gap-4">
+                <h2 className="font-serif text-2xl font-semibold leading-tight">
+                  {pick(group.title)}
+                </h2>
+                <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+                  {group.items.length}
+                </span>
+              </div>
+              <div className="mt-5 grid gap-3">
+                {group.items.map((item) => (
+                  <div key={`lockup-${group.id}-${item.name}`} className="institution-lockup">
+                    <div className="institution-mark">{getInstitutionMark(item.name)}</div>
+                    <div>
+                      {item.meta ? (
+                        <p className="institution-role">{pick(item.meta)}</p>
+                      ) : null}
+                      <p className="institution-name mt-2">{item.name}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="ecosystem" className="anchor-target section-frame mt-16 space-y-8">
         <SectionHeading
           eyebrow={t("organizers.ecosystemEyebrow")}
           title={t("organizers.ecosystemTitle")}

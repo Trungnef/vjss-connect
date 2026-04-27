@@ -68,13 +68,13 @@ function CfpPage() {
       actions={
         <>
           <Button asChild>
-            <Link to="/program">
-              {t("nav.program")}
+            <Link to="/contact">
+              {t("cfp.ctaAskSubmissions")}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link to="/contact">{t("nav.contact")}</Link>
+            <Link to="/program">{t("cfp.ctaReviewTracks")}</Link>
           </Button>
         </>
       }
@@ -105,22 +105,54 @@ function CfpPage() {
           description={t("cfp.frameworkDescription")}
         />
 
-        <div className="mt-8 grid gap-5 lg:grid-cols-3">
-          {submissionCards.map((card, index) => (
-            <article key={card.title.en} className="panel-card interactive-card p-6">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-[1.1rem] bg-secondary text-vn-red">
-                {index === 0 ? (
-                  <FileText className="h-5 w-5" />
-                ) : index === 1 ? (
-                  <Microscope className="h-5 w-5" />
-                ) : (
-                  <CalendarClock className="h-5 w-5" />
-                )}
-              </span>
-              <h2 className="mt-5 font-serif text-2xl font-semibold">{pick(card.title)}</h2>
-              <p className="mt-4 text-sm leading-7 text-foreground/78">{pick(card.body)}</p>
-            </article>
-          ))}
+        <div className="mt-8 grid gap-5 xl:grid-cols-[0.94fr_1.06fr]">
+          <article className="panel-card panel-card-strong p-7 sm:p-8">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-[0.55rem] bg-primary text-primary-foreground">
+              <FileText className="h-5 w-5" />
+            </span>
+            <p className="mt-6 section-kicker">{pick(submissionCards[0].title)}</p>
+            <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight">
+              {pick(cfpPage.title)}
+            </h2>
+            <p className="mt-4 text-base leading-8 text-foreground/78">
+              {pick(submissionCards[0].body)}
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Button asChild>
+                <Link to="/contact">
+                  {t("cfp.ctaAskSubmissions")}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link to="/program">{t("cfp.ctaReviewTracks")}</Link>
+              </Button>
+            </div>
+          </article>
+
+          <div className="grid gap-4">
+            {submissionCards.slice(1).map((card, index) => (
+              <article key={card.title.en} className="decision-panel interactive-card">
+                <div className="flex items-start gap-4">
+                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.45rem] bg-secondary text-vn-red">
+                    {index === 0 ? (
+                      <Microscope className="h-5 w-5" />
+                    ) : (
+                      <CalendarClock className="h-5 w-5" />
+                    )}
+                  </span>
+                  <div>
+                    <h2 className="font-serif text-2xl font-semibold leading-tight">
+                      {pick(card.title)}
+                    </h2>
+                    <p className="mt-3 text-sm leading-7 text-foreground/78">
+                      {pick(card.body)}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

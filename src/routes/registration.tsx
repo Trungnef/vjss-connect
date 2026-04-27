@@ -78,12 +78,12 @@ function RegistrationPage() {
         <>
           <Button asChild>
             <Link to="/contact">
-              {t("nav.contact")}
+              {t("registration.ctaContactSupport")}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link to="/program">{t("nav.program")}</Link>
+            <Link to="/program">{t("registration.ctaReviewProgram")}</Link>
           </Button>
         </>
       }
@@ -118,12 +118,24 @@ function RegistrationPage() {
           />
 
           <div className="mt-8 grid gap-4">
-            {registrationCards.map((card) => (
-              <article key={card.title.en} className="panel-card-muted interactive-card p-5">
-                <h2 className="font-serif text-2xl font-semibold">{pick(card.title)}</h2>
-                <p className="mt-3 text-sm leading-7 text-foreground/78">{pick(card.body)}</p>
-              </article>
-            ))}
+            <article className="panel-card panel-card-strong p-6">
+              <p className="section-kicker">{pick(registrationCards[0].title)}</p>
+              <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight">
+                {pick(conferenceIdentity.format)}
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-foreground/78">
+                {pick(registrationCards[0].body)}
+              </p>
+            </article>
+
+            <div className="grid gap-4 lg:grid-cols-2">
+              {registrationCards.slice(1).map((card) => (
+                <article key={card.title.en} className="decision-panel interactive-card">
+                  <h2 className="font-serif text-2xl font-semibold">{pick(card.title)}</h2>
+                  <p className="mt-3 text-sm leading-7 text-foreground/78">{pick(card.body)}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </article>
 

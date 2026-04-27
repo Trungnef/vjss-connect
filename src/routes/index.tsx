@@ -58,6 +58,19 @@ const getInitials = (name: string) =>
     .map((part) => part[0]?.toUpperCase() ?? "")
     .join("");
 
+const getPartnerMark = (name: string) => {
+  if (/^[A-Z0-9]{2,6}$/.test(name.trim())) {
+    return name.trim();
+  }
+
+  return name
+    .split(/\s+/)
+    .filter((part) => !["and", "of", "in", "the"].includes(part.toLowerCase()))
+    .slice(0, 3)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
+};
+
 function HomePage() {
   const { pick, t } = useSiteLocale();
   const featuredSpeakers = featuredSpeakerIds
@@ -79,12 +92,9 @@ function HomePage() {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:54px_54px] opacity-30" />
         </div>
 
-        <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-vn-red/20 blur-[110px]" />
-        <div className="absolute -right-10 top-16 h-80 w-80 rounded-full bg-semi-blue/30 blur-[120px]" />
-
         <div className="site-shell relative grid gap-10 py-20 sm:py-24 lg:grid-cols-[minmax(0,1.08fr)_0.78fr] lg:py-28">
           <div className="max-w-4xl">
-            <span className="inline-flex rounded-full border border-white/18 bg-white/8 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-gold backdrop-blur">
+            <span className="inline-flex rounded-[0.35rem] border border-white/18 bg-white/8 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-gold">
               {t("home.heroEyebrow")}
             </span>
             <h1 className="mt-7 max-w-5xl font-serif text-4xl font-semibold leading-[1.02] text-balance sm:text-5xl lg:text-[4.6rem]">
@@ -96,7 +106,7 @@ function HomePage() {
             </p>
 
             <dl className="mt-10 grid gap-4 sm:grid-cols-3">
-              <div className="rounded-[1.5rem] border border-white/12 bg-white/8 px-4 py-4 backdrop-blur">
+              <div className="rounded-[0.65rem] border border-white/12 bg-white/8 px-4 py-4">
                 <dt className="text-[11px] uppercase tracking-[0.18em] text-primary-foreground/55">
                   {t("dates.conference")}
                 </dt>
@@ -105,7 +115,7 @@ function HomePage() {
                   <span>{pick(conferenceIdentity.dates)}</span>
                 </dd>
               </div>
-              <div className="rounded-[1.5rem] border border-white/12 bg-white/8 px-4 py-4 backdrop-blur">
+              <div className="rounded-[0.65rem] border border-white/12 bg-white/8 px-4 py-4">
                 <dt className="text-[11px] uppercase tracking-[0.18em] text-primary-foreground/55">
                   {t("nav.venue")}
                 </dt>
@@ -114,7 +124,7 @@ function HomePage() {
                   <span>{pick(conferenceIdentity.venue)}</span>
                 </dd>
               </div>
-              <div className="rounded-[1.5rem] border border-white/12 bg-white/8 px-4 py-4 backdrop-blur">
+              <div className="rounded-[0.65rem] border border-white/12 bg-white/8 px-4 py-4">
                 <dt className="text-[11px] uppercase tracking-[0.18em] text-primary-foreground/55">
                   {t("home.heroFormatLabel")}
                 </dt>
@@ -147,7 +157,7 @@ function HomePage() {
           </div>
 
           <div className="grid gap-4">
-            <aside className="rounded-[2rem] border border-white/14 bg-white/9 p-6 shadow-[0_34px_80px_-42px_rgba(0,0,0,0.55)] backdrop-blur-xl">
+            <aside className="rounded-[0.85rem] border border-white/14 bg-white/9 p-6">
               <p className="section-kicker text-gold/95">{t("home.heroAsideEyebrow")}</p>
               <h2 className="mt-4 font-serif text-3xl font-semibold leading-tight text-balance">
                 {t("home.heroAsideTitle")}
@@ -158,7 +168,7 @@ function HomePage() {
             </aside>
 
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[1.6rem] border border-white/12 bg-white/8 p-5 backdrop-blur">
+              <div className="rounded-[0.75rem] border border-white/12 bg-white/8 p-5">
                 <p className="section-kicker text-gold/95">{t("home.hostCardTitle")}</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {homePartnerNames.slice(0, 3).map((name) => (
@@ -171,24 +181,24 @@ function HomePage() {
                   ))}
                 </div>
               </div>
-              <div className="rounded-[1.6rem] border border-white/12 bg-white/8 p-5 backdrop-blur">
+              <div className="rounded-[0.75rem] border border-white/12 bg-white/8 p-5">
                 <p className="section-kicker text-gold/95">{t("home.startHereTitle")}</p>
                 <div className="mt-3 grid gap-2">
                   <Link
                     to="/program"
-                    className="rounded-full border border-white/12 bg-black/16 px-3 py-2 text-sm text-primary-foreground/82 transition hover:bg-white/12 hover:text-primary-foreground"
+                    className="rounded-[0.35rem] border border-white/12 bg-black/16 px-3 py-2 text-sm text-primary-foreground/82 transition hover:bg-white/12 hover:text-primary-foreground"
                   >
                     {t("home.startHereProgram")}
                   </Link>
                   <Link
                     to="/speakers"
-                    className="rounded-full border border-white/12 bg-black/16 px-3 py-2 text-sm text-primary-foreground/82 transition hover:bg-white/12 hover:text-primary-foreground"
+                    className="rounded-[0.35rem] border border-white/12 bg-black/16 px-3 py-2 text-sm text-primary-foreground/82 transition hover:bg-white/12 hover:text-primary-foreground"
                   >
                     {t("home.startHereSpeakers")}
                   </Link>
                   <Link
                     to="/venue"
-                    className="rounded-full border border-white/12 bg-black/16 px-3 py-2 text-sm text-primary-foreground/82 transition hover:bg-white/12 hover:text-primary-foreground"
+                    className="rounded-[0.35rem] border border-white/12 bg-black/16 px-3 py-2 text-sm text-primary-foreground/82 transition hover:bg-white/12 hover:text-primary-foreground"
                   >
                     {t("home.startHereVenue")}
                   </Link>
@@ -319,7 +329,7 @@ function HomePage() {
                 />
                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/46 to-transparent" />
                 <div
-                  className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center rounded-full text-lg font-semibold text-white shadow-lg"
+                  className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center rounded-full text-lg font-semibold text-primary-foreground"
                   style={{ backgroundColor: accentByKind[speaker.kind] }}
                 >
                   {getInitials(speaker.name)}
@@ -395,11 +405,12 @@ function HomePage() {
               />
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 {homePartnerNames.map((name) => (
-                  <div
-                    key={name}
-                    className="rounded-[1.4rem] border border-border/70 bg-white/76 px-4 py-4 text-center font-serif text-base text-foreground/78 shadow-[0_18px_40px_-34px_color-mix(in_oklab,var(--navy)_24%,transparent)]"
-                  >
-                    {name}
+                  <div key={name} className="institution-lockup">
+                    <div className="institution-mark">{getPartnerMark(name)}</div>
+                    <div>
+                      <p className="institution-role">{t("sponsors.partnerPlaceholderRole")}</p>
+                      <p className="institution-name mt-2">{name}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -431,40 +442,6 @@ function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* <section className="site-shell anchor-target section-frame pb-20 pt-6 sm:pb-24">
-        <div className="rounded-[2.25rem] border border-border/70 bg-[linear-gradient(120deg,color-mix(in_oklab,var(--navy)_94%,black),color-mix(in_oklab,var(--navy)_82%,var(--jp-indigo)))] px-6 py-8 text-primary-foreground shadow-[0_42px_100px_-56px_color-mix(in_oklab,var(--navy)_62%,transparent)] sm:px-8 sm:py-10">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-3xl">
-              <div className="flex items-center gap-3">
-                <Globe2 className="h-6 w-6 text-gold" />
-                <span className="section-kicker text-gold/90">{t("home.multilingualEyebrow")}</span>
-              </div>
-              <h2 className="mt-4 font-serif text-3xl font-semibold leading-tight sm:text-4xl">
-                {t("home.trilingual")}
-              </h2>
-              <p className="mt-4 text-sm leading-7 text-primary-foreground/76 sm:text-base">
-                {t("home.multilingualBody")}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Button
-                asChild
-                variant="outline"
-                className="border-white/16 bg-white/8 text-white hover:bg-white/14 hover:text-white"
-              >
-                <Link to="/registration">{t("nav.register")}</Link>
-              </Button>
-              <Button asChild className="bg-background text-foreground hover:bg-background/95">
-                <Link to="/contact">
-                  {t("nav.contact")}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section> */}
     </>
   );
 }

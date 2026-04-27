@@ -5,18 +5,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[0.35rem] text-sm font-semibold tracking-[0.01em] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "border border-primary/70 bg-primary text-primary-foreground shadow-[0_20px_50px_-24px_color-mix(in_oklab,var(--navy)_52%,transparent)] hover:-translate-y-0.5 hover:bg-primary/94 hover:shadow-[0_28px_60px_-26px_color-mix(in_oklab,var(--navy)_58%,transparent)]",
+          "border border-primary bg-primary text-primary-foreground shadow-none hover:-translate-y-0.5 hover:bg-[color-mix(in_oklab,var(--navy)_90%,var(--foreground))] hover:shadow-[0_12px_28px_-22px_color-mix(in_oklab,var(--navy)_58%,transparent)]",
         destructive:
-          "border border-destructive/70 bg-destructive text-destructive-foreground shadow-[0_18px_42px_-24px_color-mix(in_oklab,var(--vn-red)_48%,transparent)] hover:-translate-y-0.5 hover:bg-destructive/92",
+          "border border-destructive bg-destructive text-destructive-foreground shadow-none hover:-translate-y-0.5 hover:bg-destructive/92",
         outline:
-          "border border-input/90 bg-background/88 shadow-[0_18px_42px_-30px_color-mix(in_oklab,var(--navy)_30%,transparent)] backdrop-blur hover:-translate-y-0.5 hover:border-primary/30 hover:bg-white hover:text-foreground",
+          "border border-input bg-background/88 shadow-none hover:-translate-y-0.5 hover:border-primary/35 hover:bg-card hover:text-foreground",
         secondary:
-          "border border-border/70 bg-secondary text-secondary-foreground shadow-[0_16px_36px_-28px_color-mix(in_oklab,var(--navy)_24%,transparent)] hover:-translate-y-0.5 hover:bg-secondary/80",
+          "border border-border bg-secondary text-secondary-foreground shadow-none hover:-translate-y-0.5 hover:bg-secondary/80",
         ghost: "text-foreground/78 hover:-translate-y-0.5 hover:bg-accent/16 hover:text-foreground",
         link: "rounded-none px-0 text-primary underline-offset-4 hover:underline",
       },
