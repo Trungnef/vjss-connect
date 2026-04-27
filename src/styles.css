@@ -6,9 +6,9 @@
 
 /*
  * VJSS 2026 design system.
- * Mood: editorial, academic, international (IEEE / Nature feel)
- * Vietnam–Japan motif: deep navy + ivory base, semiconductor-blue accent,
- * Vietnamese red + Japanese indigo as secondary accents, gold dividers.
+ * Mood: light academic conference, premium diplomatic dossier.
+ * Vietnam-Japan motif: warm paper, deep navy/graphite text, restrained
+ * Vietnamese red and gold accents, quiet semiconductor-blue support.
  * All colors in oklch.
  */
 
@@ -49,6 +49,8 @@
   --color-semi-blue: var(--semi-blue);
   --color-ivory: var(--ivory);
   --color-navy: var(--navy);
+  --color-paper: var(--paper);
+  --color-graphite: var(--graphite);
 
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -73,38 +75,41 @@
   --radius: 0.5rem;
 
   /* Base palette */
-  --ivory: oklch(0.985 0.008 85);
-  --navy: oklch(0.235 0.05 260);
-  --semi-blue: oklch(0.55 0.14 235);
-  --vn-red: oklch(0.55 0.2 25);
-  --jp-indigo: oklch(0.35 0.09 265);
-  --gold: oklch(0.78 0.11 80);
+  --ivory: oklch(0.982 0.009 86);
+  --paper: oklch(0.996 0.004 86);
+  --warm-paper: oklch(0.965 0.014 86);
+  --graphite: oklch(0.205 0.018 252);
+  --navy: oklch(0.255 0.058 258);
+  --semi-blue: oklch(0.52 0.105 238);
+  --vn-red: oklch(0.52 0.18 28);
+  --jp-indigo: oklch(0.32 0.075 264);
+  --gold: oklch(0.735 0.105 82);
 
   --background: var(--ivory);
-  --foreground: oklch(0.18 0.03 260);
+  --foreground: var(--graphite);
 
-  --card: oklch(1 0 0);
+  --card: var(--paper);
   --card-foreground: var(--foreground);
-  --popover: oklch(1 0 0);
+  --popover: var(--paper);
   --popover-foreground: var(--foreground);
 
   --primary: var(--navy);
   --primary-foreground: var(--ivory);
 
-  --secondary: oklch(0.95 0.012 85);
+  --secondary: oklch(0.948 0.014 84);
   --secondary-foreground: var(--navy);
 
-  --muted: oklch(0.95 0.01 85);
-  --muted-foreground: oklch(0.48 0.025 260);
+  --muted: oklch(0.94 0.013 86);
+  --muted-foreground: oklch(0.45 0.025 256);
 
   --accent: var(--semi-blue);
-  --accent-foreground: oklch(1 0 0);
+  --accent-foreground: var(--paper);
 
   --destructive: var(--vn-red);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive-foreground: var(--paper);
 
-  --border: oklch(0.9 0.012 85);
-  --input: oklch(0.92 0.01 85);
+  --border: oklch(0.885 0.014 86);
+  --input: oklch(0.89 0.014 86);
   --ring: var(--semi-blue);
 
   --chart-1: var(--semi-blue);
@@ -157,18 +162,23 @@
 
   body {
     background:
+      radial-gradient(
+        circle at 12% 8%,
+        color-mix(in oklab, var(--gold) 14%, transparent) 0,
+        transparent 26rem
+      ),
+      radial-gradient(
+        circle at 88% 10%,
+        color-mix(in oklab, var(--semi-blue) 8%, transparent) 0,
+        transparent 24rem
+      ),
       linear-gradient(
         180deg,
-        color-mix(in oklab, var(--background) 99%, white) 0%,
-        var(--color-background) 42%,
-        color-mix(in oklab, var(--background) 97%, var(--primary)) 100%
-      ),
-      linear-gradient(90deg, color-mix(in oklab, var(--navy) 3.5%, transparent) 1px, transparent 1px),
-      linear-gradient(0deg, color-mix(in oklab, var(--navy) 3.5%, transparent) 1px, transparent 1px);
-    background-size:
-      auto,
-      64px 64px,
-      64px 64px;
+        var(--paper) 0%,
+        var(--background) 44%,
+        color-mix(in oklab, var(--background) 94%, var(--warm-paper)) 100%
+      );
+    background-size: auto, auto, auto;
     color: var(--color-foreground);
     font-feature-settings: "ss01", "cv11";
     min-height: 100vh;
@@ -218,7 +228,7 @@
   }
 
   .site-shell {
-    width: min(100% - 1.5rem, 92rem);
+    width: min(100% - 1.25rem, 92rem);
     margin-inline: auto;
   }
 
@@ -248,7 +258,7 @@
   .section-kicker {
     color: var(--vn-red);
     font-family: var(--font-sans);
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -258,37 +268,36 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    border-radius: 0.35rem;
-    border: 1px solid color-mix(in oklab, var(--navy) 12%, white);
-    background: color-mix(in oklab, white 88%, var(--background));
-    padding: 0.55rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklab, var(--navy) 12%, var(--paper));
+    background: color-mix(in oklab, var(--paper) 86%, var(--gold));
+    padding: 0.48rem 0.9rem;
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: color-mix(in oklab, var(--foreground) 78%, var(--semi-blue));
+    color: color-mix(in oklab, var(--foreground) 82%, var(--vn-red));
     box-shadow: none;
   }
 
   .wafer-pattern {
     background-image: radial-gradient(
       circle at 1px 1px,
-      color-mix(in oklab, var(--navy) 10%, transparent) 1px,
+      color-mix(in oklab, var(--navy) 7%, transparent) 1px,
       transparent 0
     );
-    background-size: 24px 24px;
+    background-size: 32px 32px;
   }
 
   .page-hero {
     position: relative;
     overflow: hidden;
-    background:
-      linear-gradient(
-        180deg,
-        color-mix(in oklab, white 92%, var(--background)) 0%,
-        color-mix(in oklab, white 78%, var(--background)) 58%,
-        color-mix(in oklab, var(--background) 94%, var(--navy)) 100%
-      );
+    background: linear-gradient(
+      180deg,
+      var(--paper) 0%,
+      color-mix(in oklab, var(--paper) 86%, var(--gold)) 62%,
+      color-mix(in oklab, var(--background) 95%, var(--semi-blue)) 100%
+    );
   }
 
   .page-hero::before {
@@ -306,30 +315,30 @@
         color-mix(in oklab, var(--navy) 5%, transparent) 1px,
         transparent 1px
       );
-    background-size: 40px 40px;
-    opacity: 0.72;
+    background-size: 52px 52px;
+    opacity: 0.36;
     mask-image: linear-gradient(180deg, black, transparent 88%);
     -webkit-mask-image: linear-gradient(180deg, black, transparent 88%);
     pointer-events: none;
   }
 
   .surface-grid {
-    background-color: color-mix(in oklab, var(--background) 98%, white);
+    background-color: color-mix(in oklab, var(--background) 96%, var(--paper));
     background-image:
       linear-gradient(
         135deg,
-        color-mix(in oklab, var(--gold) 16%, transparent) 0%,
+        color-mix(in oklab, var(--gold) 10%, transparent) 0%,
         transparent 22%,
-        color-mix(in oklab, var(--semi-blue) 7%, transparent) 100%
+        color-mix(in oklab, var(--semi-blue) 5%, transparent) 100%
       ),
       linear-gradient(
         to right,
-        color-mix(in oklab, var(--navy) 5%, transparent) 1px,
+        color-mix(in oklab, var(--navy) 3.5%, transparent) 1px,
         transparent 1px
       ),
       linear-gradient(
         to bottom,
-        color-mix(in oklab, var(--navy) 5%, transparent) 1px,
+        color-mix(in oklab, var(--navy) 3.5%, transparent) 1px,
         transparent 1px
       );
     background-size:
@@ -339,29 +348,29 @@
   }
 
   .soft-panel {
-    background: color-mix(in oklab, white 88%, var(--background));
+    background: color-mix(in oklab, var(--paper) 88%, var(--background));
     box-shadow: none;
   }
 
   .panel-card {
-    border: 1px solid color-mix(in oklab, var(--navy) 10%, white);
-    border-radius: 0.85rem;
-    background: color-mix(in oklab, white 90%, var(--background));
+    border: 1px solid color-mix(in oklab, var(--navy) 10%, var(--paper));
+    border-radius: 1rem;
+    background: color-mix(in oklab, var(--paper) 90%, var(--background));
     box-shadow: none;
   }
 
   .panel-card-muted {
-    border: 1px solid color-mix(in oklab, var(--navy) 10%, white);
-    border-radius: 0.65rem;
-    background: color-mix(in oklab, white 82%, var(--background));
+    border: 1px solid color-mix(in oklab, var(--navy) 8%, var(--paper));
+    border-radius: 0.8rem;
+    background: color-mix(in oklab, var(--paper) 78%, var(--background));
     box-shadow: none;
   }
 
   .panel-card-strong {
     background: linear-gradient(
       180deg,
-      color-mix(in oklab, white 90%, var(--background)) 0%,
-      color-mix(in oklab, var(--background) 91%, var(--gold)) 100%
+      color-mix(in oklab, var(--paper) 92%, var(--background)) 0%,
+      color-mix(in oklab, var(--background) 93%, var(--gold)) 100%
     );
   }
 
@@ -375,14 +384,14 @@
 
   .interactive-card:hover {
     transform: translateY(-3px);
-    border-color: color-mix(in oklab, var(--semi-blue) 26%, var(--border));
-    box-shadow: 0 14px 34px -28px color-mix(in oklab, var(--navy) 45%, transparent);
+    border-color: color-mix(in oklab, var(--gold) 45%, var(--border));
+    box-shadow: 0 18px 42px -34px color-mix(in oklab, var(--navy) 42%, transparent);
   }
 
   .metric-tile {
-    border: 1px solid color-mix(in oklab, var(--navy) 10%, white);
-    border-radius: 0.75rem;
-    background: color-mix(in oklab, white 88%, var(--background));
+    border: 1px solid color-mix(in oklab, var(--navy) 9%, var(--paper));
+    border-radius: 0.9rem;
+    background: color-mix(in oklab, var(--paper) 86%, var(--background));
     padding: 1.35rem;
     box-shadow: none;
   }
@@ -414,8 +423,12 @@
     width: 0.9rem;
     height: 0.9rem;
     border-radius: 999px;
-    background: linear-gradient(180deg, var(--gold), color-mix(in oklab, var(--gold) 72%, white));
-    box-shadow: 0 0 0 5px color-mix(in oklab, var(--background) 84%, white);
+    background: linear-gradient(
+      180deg,
+      var(--gold),
+      color-mix(in oklab, var(--gold) 72%, var(--paper))
+    );
+    box-shadow: 0 0 0 5px color-mix(in oklab, var(--background) 84%, var(--paper));
   }
 
   .border-beam {
@@ -461,12 +474,12 @@
   .hero-meta-card {
     position: relative;
     overflow: hidden;
-    border: 1px solid color-mix(in oklab, var(--navy) 11%, white);
-    border-radius: 0.75rem;
+    border: 1px solid color-mix(in oklab, var(--navy) 10%, var(--paper));
+    border-radius: 0.85rem;
     background: linear-gradient(
       180deg,
-      color-mix(in oklab, white 92%, var(--background)) 0%,
-      color-mix(in oklab, white 78%, var(--background)) 100%
+      color-mix(in oklab, var(--paper) 92%, var(--background)) 0%,
+      color-mix(in oklab, var(--paper) 78%, var(--background)) 100%
     );
     padding: 1rem;
     box-shadow: none;
@@ -489,14 +502,13 @@
   .section-frame {
     position: relative;
     overflow: hidden;
-    border: 1px solid color-mix(in oklab, var(--navy) 7%, white);
-    border-radius: 1rem;
-    background:
-      linear-gradient(
-        180deg,
-        color-mix(in oklab, white 90%, var(--background)) 0%,
-        color-mix(in oklab, white 82%, var(--background)) 100%
-      );
+    border: 1px solid color-mix(in oklab, var(--navy) 7%, var(--paper));
+    border-radius: 1.15rem;
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--paper) 92%, var(--background)) 0%,
+      color-mix(in oklab, var(--paper) 82%, var(--background)) 100%
+    );
     padding: 1.25rem;
     box-shadow: none;
   }
@@ -508,18 +520,18 @@
     background-image:
       linear-gradient(
         to right,
-        color-mix(in oklab, var(--navy) 4%, transparent) 1px,
+        color-mix(in oklab, var(--navy) 2.8%, transparent) 1px,
         transparent 1px
       ),
       linear-gradient(
         to bottom,
-        color-mix(in oklab, var(--navy) 4%, transparent) 1px,
+        color-mix(in oklab, var(--navy) 2.8%, transparent) 1px,
         transparent 1px
       );
     background-size: 42px 42px;
     mask-image: linear-gradient(180deg, black, transparent 84%);
     -webkit-mask-image: linear-gradient(180deg, black, transparent 84%);
-    opacity: 0.7;
+    opacity: 0.42;
     pointer-events: none;
   }
 
@@ -535,9 +547,9 @@
   }
 
   .quick-nav {
-    border: 1px solid color-mix(in oklab, var(--navy) 11%, white);
-    border-radius: 0.85rem;
-    background: color-mix(in oklab, white 88%, var(--background));
+    border: 1px solid color-mix(in oklab, var(--navy) 10%, var(--paper));
+    border-radius: 1rem;
+    background: color-mix(in oklab, var(--paper) 88%, var(--background));
     padding: 1rem;
     box-shadow: none;
   }
@@ -574,9 +586,9 @@
     min-height: 9.5rem;
     align-content: space-between;
     gap: 1.25rem;
-    border: 1px solid color-mix(in oklab, var(--navy) 12%, white);
-    border-radius: 0.75rem;
-    background: color-mix(in oklab, white 90%, var(--background));
+    border: 1px solid color-mix(in oklab, var(--navy) 10%, var(--paper));
+    border-radius: 0.95rem;
+    background: color-mix(in oklab, var(--paper) 90%, var(--background));
     padding: 1.25rem;
   }
 
@@ -585,9 +597,9 @@
     min-height: 4rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid color-mix(in oklab, var(--navy) 10%, white);
-    border-radius: 0.45rem;
-    background: color-mix(in oklab, white 82%, var(--background));
+    border: 1px solid color-mix(in oklab, var(--navy) 9%, var(--paper));
+    border-radius: 0.7rem;
+    background: color-mix(in oklab, var(--paper) 84%, var(--background));
     color: var(--navy);
     font-family: var(--font-serif);
     font-size: clamp(1.35rem, 3vw, 2rem);
@@ -614,10 +626,76 @@
   }
 
   .decision-panel {
-    border: 1px solid color-mix(in oklab, var(--navy) 12%, white);
-    border-radius: 0.85rem;
-    background: color-mix(in oklab, white 91%, var(--background));
+    border: 1px solid color-mix(in oklab, var(--navy) 10%, var(--paper));
+    border-radius: 1rem;
+    background: color-mix(in oklab, var(--paper) 91%, var(--background));
     padding: 1.25rem;
+  }
+
+  .institution-logo {
+    display: flex;
+    min-height: 4.4rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid color-mix(in oklab, var(--navy) 8%, var(--paper));
+    border-radius: 0.85rem;
+    background: color-mix(in oklab, var(--paper) 88%, var(--background));
+    padding: 1rem;
+  }
+
+  .institution-logo img {
+    max-height: 3rem;
+    max-width: min(13rem, 100%);
+    object-fit: contain;
+  }
+
+  .pending-logo {
+    display: flex;
+    min-height: 4.4rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed color-mix(in oklab, var(--navy) 18%, var(--paper));
+    border-radius: 0.85rem;
+    background: color-mix(in oklab, var(--paper) 78%, var(--background));
+    color: color-mix(in oklab, var(--foreground) 72%, var(--semi-blue));
+    font-family: var(--font-serif);
+    font-size: clamp(1.25rem, 3vw, 1.9rem);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .speaker-photo-frame {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        circle at 30% 20%,
+        color-mix(in oklab, var(--gold) 24%, transparent),
+        transparent 45%
+      ),
+      linear-gradient(
+        145deg,
+        color-mix(in oklab, var(--semi-blue) 10%, var(--paper)),
+        color-mix(in oklab, var(--navy) 14%, var(--background))
+      );
+  }
+
+  .speaker-photo-frame img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .speaker-placeholder-avatar {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy);
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
   }
 
   .editorial-rule {

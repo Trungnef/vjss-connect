@@ -2,12 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Handshake, Megaphone, Trophy } from "lucide-react";
 
 import i18n from "@/i18n";
+import { OrganizationLogo } from "@/components/site/OrganizationLogo";
 import { PageShell } from "@/components/site/PageShell";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Button } from "@/components/ui/button";
 import {
-  homePartnerNames,
   pageCopy,
+  partnerOrganizations,
   sponsorDeliverables,
   sponsorEngagementRoutes,
   sponsorTiers,
@@ -29,20 +30,6 @@ export const Route = createFileRoute("/sponsors")({
 });
 
 const routeIcons = [Handshake, Megaphone, Trophy] as const;
-
-const getSponsorMark = (name: string) => {
-  if (/^[A-Z0-9]{2,6}$/.test(name.trim())) {
-    return name.trim();
-  }
-
-  return name
-    .replace(/,.*$/, "")
-    .split(/\s+/)
-    .filter((part) => !["and", "of", "in", "the"].includes(part.toLowerCase()))
-    .slice(0, 3)
-    .map((part) => part[0]?.toUpperCase() ?? "")
-    .join("");
-};
 
 function SponsorsPage() {
   const { pick, t } = useSiteLocale();
@@ -122,12 +109,14 @@ function SponsorsPage() {
         />
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {homePartnerNames.map((name) => (
-            <article key={name} className="institution-lockup">
-              <div className="institution-mark">{getSponsorMark(name)}</div>
+          {partnerOrganizations.map((item) => (
+            <article key={item.name} className="institution-lockup">
+              <OrganizationLogo item={item} />
               <div>
-                <p className="institution-role">{t("sponsors.partnerPlaceholderRole")}</p>
-                <p className="institution-name mt-2">{name}</p>
+                <p className="institution-role">
+                  {item.meta ? pick(item.meta) : t("sponsors.partnerPlaceholderRole")}
+                </p>
+                <p className="institution-name mt-2">{item.name}</p>
               </div>
             </article>
           ))}

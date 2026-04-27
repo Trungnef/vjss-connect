@@ -189,7 +189,7 @@ function VenuePage() {
           <div className="mt-8 grid gap-4">
             {venueHotels.map((option, index) => (
               <article
-                key={option.area}
+                key={option.area.en}
                 className={
                   index === 0
                     ? "panel-card panel-card-strong p-6"

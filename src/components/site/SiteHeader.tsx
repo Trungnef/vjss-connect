@@ -24,12 +24,12 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/94 supports-[backdrop-filter]:bg-background/88">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-vn-red/0 via-gold to-vn-red/0 opacity-90" />
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-white/90 shadow-[0_12px_36px_-34px_color-mix(in_oklab,var(--navy)_42%,transparent)] supports-[backdrop-filter]:bg-white/78 supports-[backdrop-filter]:backdrop-blur-xl">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-vn-red/0 via-gold to-semi-blue/0 opacity-90" />
       <div className="site-shell flex min-h-[5rem] items-center justify-between gap-4 py-3">
         <Link
           to="/"
-          className="group flex min-w-0 items-center gap-3 rounded-[0.65rem] border border-border/70 bg-card/80 px-2.5 py-2 transition hover:border-primary/25"
+          className="group flex min-w-0 items-center gap-3 rounded-[0.65rem] border border-border/70 bg-white/72 px-2.5 py-2 transition hover:border-primary/25 hover:bg-white"
         >
           <div className="rounded-[0.45rem] border border-border/60 bg-background p-1.5">
             <img
@@ -71,16 +71,16 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-2 xl:flex">
           <LanguageSwitcher />
+          <Button asChild size="sm" className="px-4">
+            <Link to="/registration">{t("nav.register")}</Link>
+          </Button>
           <Button
             asChild
             variant="outline"
             size="sm"
-            className="border-primary/15 bg-card/80 px-4"
+            className="border-primary/15 bg-white/70 px-4"
           >
             <Link to="/call-for-papers">{t("nav.submit")}</Link>
-          </Button>
-          <Button asChild size="sm" className="px-4">
-            <Link to="/registration">{t("nav.register")}</Link>
           </Button>
         </div>
 
@@ -99,10 +99,7 @@ export function SiteHeader() {
       </div>
 
       <div
-        className={cn(
-          "border-t border-border/60 bg-background/96 lg:hidden",
-          open ? "block" : "hidden",
-        )}
+        className={cn("border-t border-border/60 bg-white/96 lg:hidden", open ? "block" : "hidden")}
       >
         <div className="site-shell pb-4">
           <div className="panel-card mt-4 p-3">
@@ -123,14 +120,14 @@ export function SiteHeader() {
               ))}
             </nav>
             <div className="mt-3 flex gap-2 border-t border-border/60 pt-3">
-              <Button asChild variant="outline" size="sm" className="flex-1 bg-card/75">
-                <Link to="/call-for-papers" onClick={() => setOpen(false)}>
-                  {t("nav.submit")}
-                </Link>
-              </Button>
               <Button asChild size="sm" className="flex-1">
                 <Link to="/registration" onClick={() => setOpen(false)}>
                   {t("nav.register")}
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="sm" className="flex-1 bg-white/75">
+                <Link to="/call-for-papers" onClick={() => setOpen(false)}>
+                  {t("nav.submit")}
                 </Link>
               </Button>
             </div>

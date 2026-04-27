@@ -21,11 +21,11 @@ const en = {
     venue: "Venue",
     organizers: "Organizers",
     sponsors: "Sponsors",
-    cfp: "Call for Abstracts",
+    cfp: "Submission",
     registration: "Registration",
     news: "News",
     contact: "Contact",
-    submit: "Call for Abstracts",
+    submit: "Submission",
     register: "Registration",
     signIn: "Sign in",
   },
@@ -58,13 +58,12 @@ const en = {
     metaDescription:
       "September 20-23, 2026 in Hanoi. Explore speakers, program highlights and venue information for VJSS 2026.",
     heroEyebrow: "International forum on semiconductor research and partnership",
-    heroCtaSubmit: "View call for abstracts",
-    heroCtaRegister: "View registration status",
+    heroCtaSubmit: "Submission",
+    heroCtaRegister: "Registration",
     heroFormatLabel: "Format",
     heroAsideEyebrow: "Conference overview",
     heroAsideTitle: "Semiconductor collaboration in Hanoi",
-    heroAsideBody:
-      "Explore the conference theme, featured speakers and program highlights for VJSS 2026 in Hanoi.",
+    heroAsideBody: "A concise preview of the host network shaping the Hanoi edition of VJSS 2026.",
     hostCardTitle: "Hosts",
     startHereTitle: "Start here",
     startHereProgram: "Review program and timeline",
@@ -253,7 +252,7 @@ const en = {
     institutionalMapEyebrow: "Institutional map",
     institutionalMapTitle: "Organizer, patron and outreach roles at a glance",
     institutionalMapDescription:
-      "These text lockups are sized like logo placements so official marks can replace them later without changing the page layout.",
+      "Verified marks are shown where available, with polished pending lockups preserved for assets that still require official confirmation.",
     ecosystemEyebrow: "Ecosystem and hosts",
     ecosystemTitle: "Institutions, patrons and partner roles",
     ecosystemDescription:
@@ -281,8 +280,8 @@ const en = {
     partnerLockupsEyebrow: "Partner visibility",
     partnerLockupsTitle: "Sponsor and partner placements prepared for official logos",
     partnerLockupsDescription:
-      "Current partner names are presented as consistent text lockups with stable sizing, spacing and alignment until final logo assets are supplied.",
-    partnerPlaceholderRole: "Logo placeholder",
+      "Verified organization marks are shown where available, with stable pending lockups for assets still awaiting official confirmation.",
+    partnerPlaceholderRole: "Official mark pending",
     routesEyebrow: "Why sponsor",
     routesTitle: "Participation routes built around value, not only logo placement",
     routesDescription:
@@ -360,7 +359,7 @@ const en = {
     sponsorInquiryCta: "Sponsor inquiry route",
   },
   cfp: {
-    metaTitle: "Call for Abstracts | VJSS 2026",
+    metaTitle: "Submission / Call for Abstracts | VJSS 2026",
     metaDescription:
       "Working call-for-abstracts scope, technical themes and planning milestones for VJSS 2026.",
     metaSubmissionThemes: "Submission themes",
@@ -435,7 +434,19 @@ const en = {
   },
   footer: {
     tagline: "Official information hub for the Vietnam-Japan Semiconductor Symposium 2026.",
+    description:
+      "VJSS 2026 connects Vietnam and Japan through semiconductor research, talent development, industry dialogue and long-term academic cooperation.",
     navigation: "Navigation",
+    contactInfo: "Contact information",
+    venueLabel: "Venue / location",
+    organizersLabel: "Organizers and partners",
+    organizersSummary:
+      "Hosted and supported by a Vietnam-Japan network of academic, public-sector and industry partners.",
+    previousEdition: "Reference",
+    previousEditionTitle: "VJSS 2025 Reference",
+    previousEditionBody:
+      "Review the previous edition for continuity, positioning and reference context.",
+    previousEditionCta: "VJSS Previous Edition",
     status: "Status",
     statusBody:
       "Program, venue and speaker details continue to be updated as the conference moves toward September 2026.",
@@ -451,6 +462,7 @@ const en = {
       "Keep the Hanoi host-city reference visible at the footer so visitors can check the location context and open the map quickly.",
     formatLabel: "Format",
     logoAlt: "VJSS 2026 logo",
+    copyrightNote: "Vietnam-Japan semiconductor cooperation platform.",
   },
   status: {
     draft: "Draft",

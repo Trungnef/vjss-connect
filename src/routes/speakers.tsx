@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Globe2, Mic, SlidersHorizontal, UserRound } from "lucide-react";
+import { ArrowRight, SlidersHorizontal } from "lucide-react";
 
 import i18n from "@/i18n";
 import { PageShell } from "@/components/site/PageShell";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { SpeakerDialog } from "@/components/site/SpeakerDialog";
+import { SpeakerImage } from "@/components/site/SpeakerImage";
 import { Button } from "@/components/ui/button";
 import {
   pageCopy,
@@ -205,12 +206,11 @@ function SpeakersPage() {
                         type="button"
                         className="panel-card interactive-card group overflow-hidden text-left"
                       >
-                        <div className="relative h-72 overflow-hidden border-b border-border/70 bg-secondary">
-                          <img
-                            src={speaker.image}
-                            alt={speaker.name}
-                            className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-                          />
+                        <SpeakerImage
+                          speaker={speaker}
+                          className="h-72 border-b border-border/70"
+                          imageClassName="transition duration-300 group-hover:scale-[1.03]"
+                        >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/48 via-transparent to-transparent" />
                           <div className="absolute left-5 top-5 flex flex-wrap gap-2">
                             <span className="rounded-full bg-white/88 px-3 py-1 text-xs font-medium text-foreground">
@@ -220,7 +220,7 @@ function SpeakersPage() {
                               {pick(speakerCountryLabels[speaker.country])}
                             </span>
                           </div>
-                        </div>
+                        </SpeakerImage>
 
                         <div className="space-y-4 p-6">
                           <div>

@@ -4,8 +4,8 @@ export type LocalizedText = Record<Locale, string>;
 export type MaybeLocalizedText = LocalizedText | string;
 
 export type SessionStatus = "draft" | "updated" | "final";
-
-type SpeakerKind = "government" | "academia" | "industry";
+export type AssetStatus = "verified" | "pending";
+export type SpeakerKind = "government" | "academia" | "industry";
 
 const L = (en: string, vi: string, ja: string): LocalizedText => ({
   en,
@@ -119,11 +119,32 @@ type TimelineItem = {
   output: LocalizedText;
 };
 
-type OrganizationItem = {
+export type OrganizationItem = {
   name: string;
   meta?: MaybeLocalizedText;
   description: LocalizedText;
   link?: string;
+  logo?: string;
+  logoAlt?: MaybeLocalizedText;
+  assetStatus?: AssetStatus;
+  assetSource?: string;
+};
+
+export type SpeakerRecord = {
+  id: string;
+  name: string;
+  role: MaybeLocalizedText;
+  organization: MaybeLocalizedText;
+  country: string;
+  kind: SpeakerKind;
+  sessionId?: string;
+  topic: MaybeLocalizedText;
+  summary: MaybeLocalizedText;
+  bio: MaybeLocalizedText;
+  image: string;
+  imageAlt?: MaybeLocalizedText;
+  imageStatus?: AssetStatus;
+  imageSource?: string;
 };
 
 type OrganizationGroup = {
@@ -181,29 +202,29 @@ export const conferenceIdentity = {
   shortName: "VJSS 2026",
   fullName: L(
     "Vietnam-Japan Semiconductor Symposium 2026",
-    "Há»™i nghá»‹ BÃ¡n dáº«n Viá»‡t Nam - Nháº­t Báº£n 2026",
-    "Vietnam-Japan Semiconductor Symposium 2026",
+    "Hội nghị Bán dẫn Việt Nam - Nhật Bản 2026",
+    "ベトナム・日本 半導体シンポジウム 2026",
   ),
   heroEyebrow: L(
     "Partner, sponsor and invited speaker proposal",
-    "Äá» xuáº¥t gá»­i Ä‘á»‘i tÃ¡c, nhÃ  tÃ i trá»£ vÃ  diá»…n giáº£ má»i",
+    "Đề xuất gửi đối tác, nhà tài trợ và diễn giả mời",
     "Partner, sponsor and invited speaker proposal",
   ),
   tagline: L(
     "A four-day forum linking research, education, industry and public-sector cooperation between Vietnam and Japan.",
-    "Diá»…n Ä‘Ã n kÃ©o dÃ i bá»‘n ngÃ y káº¿t ná»‘i nghiÃªn cá»©u, Ä‘Ã o táº¡o, cÃ´ng nghiá»‡p vÃ  há»£p tÃ¡c cÃ´ng giá»¯a Viá»‡t Nam vÃ  Nháº­t Báº£n.",
-    "A four-day forum linking research, education, industry and public-sector cooperation between Vietnam and Japan.",
+    "Diễn đàn kéo dài bốn ngày kết nối nghiên cứu, đào tạo, công nghiệp và hợp tác công giữa Việt Nam và Nhật Bản.",
+    "ベトナムと日本の研究、教育、産業、公共連携をつなぐ4日間のフォーラム。",
   ),
-  dates: L("September 20-23, 2026", "20-23 thÃ¡ng 9, 2026", "September 20-23, 2026"),
-  venue: L("Hanoi, Vietnam", "HÃ  Ná»™i, Viá»‡t Nam", "Hanoi, Vietnam"),
+  dates: L("September 20-23, 2026", "20-23 tháng 9, 2026", "2026年9月20日-23日"),
+  venue: L("Hanoi, Vietnam", "Hà Nội, Việt Nam", "ベトナム・ハノイ"),
   format: L(
     "In-person conference with hybrid participation",
-    "Há»™i nghá»‹ trá»±c tiáº¿p káº¿t há»£p tham dá»± hybrid",
-    "In-person conference with hybrid participation",
+    "Hội nghị trực tiếp kết hợp tham dự hybrid",
+    "対面開催（一部ハイブリッド参加対応）",
   ),
   referenceNote: L(
     "Prepared from the April 2026 conference plan and committee/program workbook.",
-    "Ná»™i dung Ä‘Æ°á»£c tá»•ng há»£p tá»« conference plan vÃ  workbook committee/program cáº­p nháº­t thÃ¡ng 4/2026.",
+    "Nội dung được tổng hợp từ conference plan và workbook committee/program cập nhật tháng 4/2026.",
     "Prepared from the April 2026 conference plan and committee/program workbook.",
   ),
   referenceEvent: {
@@ -216,32 +237,32 @@ export const conferenceIdentity = {
 export const homeMetrics = [
   {
     value: "150+",
-    label: L("target participants", "Ä‘áº¡i biá»ƒu má»¥c tiÃªu", "target participants"),
+    label: L("target participants", "đại biểu mục tiêu", "target participants"),
   },
   {
     value: "7",
-    label: L("technical themes", "chá»§ Ä‘á» ká»¹ thuáº­t", "technical themes"),
+    label: L("technical themes", "chủ đề kỹ thuật", "technical themes"),
   },
   {
     value: "4",
-    label: L("event days", "ngÃ y sá»± kiá»‡n", "event days"),
+    label: L("event days", "ngày sự kiện", "event days"),
   },
   {
     value: "2",
-    label: L("candidate venues", "phÆ°Æ¡ng Ã¡n Ä‘á»‹a Ä‘iá»ƒm", "candidate venues"),
+    label: L("candidate venues", "phương án địa điểm", "candidate venues"),
   },
 ];
 
 export const homeWelcome = {
-  title: L("Executive summary", "TÃ³m táº¯t Ä‘iá»u hÃ nh", "Executive summary"),
+  title: L("Executive summary", "Tóm tắt điều hành", "Executive summary"),
   body: L(
     "VJSS 2026 is designed as a high-impact forum linking research, education, industry and public-sector cooperation between Vietnam and Japan. The Hanoi edition combines scientific sessions, plenary and invited talks, student-oriented lectures, career and study-abroad exchange, industry-policy dialogue, networking, and site visits.",
-    "VJSS 2026 Ä‘Æ°á»£c thiáº¿t káº¿ nhÆ° má»™t diá»…n Ä‘Ã n cÃ³ tÃ¡c Ä‘á»™ng cao, káº¿t ná»‘i nghiÃªn cá»©u, giÃ¡o dá»¥c, cÃ´ng nghiá»‡p vÃ  há»£p tÃ¡c cÃ´ng giá»¯a Viá»‡t Nam vÃ  Nháº­t Báº£n. PhiÃªn báº£n táº¡i HÃ  Ná»™i káº¿t há»£p cÃ¡c phiÃªn khoa há»c, bÃ¡o cÃ¡o plenary vÃ  invited, bÃ i giáº£ng hÆ°á»›ng tá»›i sinh viÃªn, trao Ä‘á»•i nghá» nghiá»‡p vÃ  du há»c, Ä‘á»‘i thoáº¡i chÃ­nh sÃ¡ch - cÃ´ng nghiá»‡p, networking vÃ  cÃ¡c chuyáº¿n thÄƒm thá»±c Ä‘á»‹a.",
+    "VJSS 2026 được thiết kế như một diễn đàn có tác động cao, kết nối nghiên cứu, giáo dục, công nghiệp và hợp tác công giữa Việt Nam và Nhật Bản. Phiên bản tại Hà Nội kết hợp các phiên khoa học, báo cáo plenary và invited, bài giảng hướng tới sinh viên, trao đổi nghề nghiệp và du học, đối thoại chính sách - công nghiệp, networking và các chuyến thăm thực địa.",
     "VJSS 2026 is designed as a high-impact forum linking research, education, industry and public-sector cooperation between Vietnam and Japan. The Hanoi edition combines scientific sessions, plenary and invited talks, student-oriented lectures, career and study-abroad exchange, industry-policy dialogue, networking, and site visits.",
   ),
   signature: L(
     "Prepared for outreach in April 2026",
-    "Báº£n phá»¥c vá»¥ outreach thÃ¡ng 4/2026",
+    "Bản phục vụ outreach tháng 4/2026",
     "Prepared for outreach in April 2026",
   ),
 };
@@ -250,146 +271,146 @@ export const homeHighlights = [
   {
     title: L(
       "Research exchange with implementation paths",
-      "Trao Ä‘á»•i nghiÃªn cá»©u gáº¯n vá»›i kháº£ nÄƒng triá»ƒn khai",
-      "Research exchange with implementation paths",
+      "Trao đổi nghiên cứu gắn với khả năng triển khai",
+      "実装につながる研究交流",
     ),
     body: L(
       "The symposium is positioned as a practical bridge between research excellence and implementation through talks, panels, site visits and partner meetings.",
-      "Há»™i nghá»‹ Ä‘Æ°á»£c Ä‘á»‹nh vá»‹ nhÆ° má»™t cÃ¢y cáº§u thá»±c tiá»…n giá»¯a xuáº¥t sáº¯c nghiÃªn cá»©u vÃ  triá»ƒn khai thÃ´ng qua cÃ¡c bÃ i trÃ¬nh bÃ y, panel, chuyáº¿n thÄƒm thá»±c Ä‘á»‹a vÃ  cÃ¡c buá»•i gáº·p gá»¡ Ä‘á»‘i tÃ¡c.",
-      "The symposium is positioned as a practical bridge between research excellence and implementation through talks, panels, site visits and partner meetings.",
+      "Hội nghị được định vị như một cây cầu thực tiễn giữa xuất sắc nghiên cứu và triển khai thông qua các bài trình bày, panel, chuyến thăm thực địa và các buổi gặp gỡ đối tác.",
+      "講演、パネル、視察、パートナー面談を通じて、優れた研究と実装をつなぐ実践的な場として設計されています。",
     ),
   },
   {
     title: L(
       "Talent pipeline across lecture, career and industry sessions",
-      "DÃ²ng cháº£y nhÃ¢n lá»±c xuyÃªn suá»‘t tá»« bÃ i giáº£ng, Ä‘á»‹nh hÆ°á»›ng nghá» nghiá»‡p Ä‘áº¿n káº¿t ná»‘i doanh nghiá»‡p",
-      "Talent pipeline across lecture, career and industry sessions",
+      "Dòng chảy nhân lực xuyên suốt từ bài giảng, định hướng nghề nghiệp đến kết nối doanh nghiệp",
+      "講義、キャリア、産業連携を通じた人材パイプライン",
     ),
     body: L(
       "Student-facing lectures, study-abroad exchange and workforce dialogue are built into the core schedule rather than treated as side events.",
-      "CÃ¡c bÃ i giáº£ng cho sinh viÃªn, trao Ä‘á»•i du há»c vÃ  Ä‘á»‘i thoáº¡i vá» nguá»“n nhÃ¢n lá»±c Ä‘Æ°á»£c Ä‘áº·t trong lá»‹ch chÃ­nh thay vÃ¬ bá»‹ Ä‘áº©y thÃ nh hoáº¡t Ä‘á»™ng bÃªn lá».",
-      "Student-facing lectures, study-abroad exchange and workforce dialogue are built into the core schedule rather than treated as side events.",
+      "Các bài giảng cho sinh viên, trao đổi du học và đối thoại về nguồn nhân lực được đặt trong lịch chính thay vì bị đẩy thành hoạt động bên lề.",
+      "学生向け講義、留学交流、人材対話を周辺企画ではなく主要プログラムの中に組み込んでいます。",
     ),
   },
   {
     title: L(
       "Seven technical themes already mapped",
-      "Báº£y chá»§ Ä‘á» ká»¹ thuáº­t Ä‘Ã£ Ä‘Æ°á»£c xÃ¡c láº­p",
-      "Seven technical themes already mapped",
+      "Bảy chủ đề kỹ thuật đã được xác lập",
+      "7つの技術テーマを整理済み",
     ),
     body: L(
       "The working program already defines seven technical themes spanning IC design, optoelectronics, materials, packaging, AI and quantum, emerging devices, and human-resource development.",
-      "Báº£n chÆ°Æ¡ng trÃ¬nh lÃ m viá»‡c Ä‘Ã£ xÃ¡c láº­p báº£y chá»§ Ä‘á» ká»¹ thuáº­t bao trÃ¹m thiáº¿t káº¿ vi máº¡ch, quang Ä‘iá»‡n tá»­, váº­t liá»‡u, Ä‘Ã³ng gÃ³i, AI vÃ  lÆ°á»£ng tá»­, cÃ´ng nghá»‡ má»›i ná»•i vÃ  phÃ¡t triá»ƒn nguá»“n nhÃ¢n lá»±c.",
-      "The working program already defines seven technical themes spanning IC design, optoelectronics, materials, packaging, AI and quantum, emerging devices, and human-resource development.",
+      "Bản chương trình làm việc đã xác lập bảy chủ đề kỹ thuật bao trùm thiết kế vi mạch, quang điện tử, vật liệu, đóng gói, AI và lượng tử, công nghệ mới nổi và phát triển nguồn nhân lực.",
+      "IC設計、光電子、材料、パッケージング、AI・量子、新興デバイス、人材育成までを含む7つの技術テーマを設定しています。",
     ),
   },
   {
     title: L(
       "Partnership structure beyond logo exposure",
-      "Cáº¥u trÃºc há»£p tÃ¡c vÆ°á»£t ra ngoÃ i viá»‡c gáº¯n logo",
-      "Partnership structure beyond logo exposure",
+      "Cấu trúc hợp tác vượt ra ngoài việc gắn logo",
+      "ロゴ掲出にとどまらない連携設計",
     ),
     body: L(
       "The sponsorship model is framed around talent access, research collaboration, thought leadership, policy dialogue and measurable post-event deliverables.",
-      "MÃ´ hÃ¬nh tÃ i trá»£ Ä‘Æ°á»£c xÃ¢y dá»±ng xoay quanh tiáº¿p cáº­n nhÃ¢n lá»±c, há»£p tÃ¡c nghiÃªn cá»©u, vai trÃ² dáº«n dáº¯t chuyÃªn mÃ´n, Ä‘á»‘i thoáº¡i chÃ­nh sÃ¡ch vÃ  cÃ¡c deliverable cÃ³ thá»ƒ Ä‘o lÆ°á»ng sau sá»± kiá»‡n.",
-      "The sponsorship model is framed around talent access, research collaboration, thought leadership, policy dialogue and measurable post-event deliverables.",
+      "Mô hình tài trợ được xây dựng xoay quanh tiếp cận nhân lực, hợp tác nghiên cứu, vai trò dẫn dắt chuyên môn, đối thoại chính sách và các deliverable có thể đo lường sau sự kiện.",
+      "協賛モデルは、人材接点、研究連携、専門的発信、政策対話、開催後に確認できる成果を中心に構成されています。",
     ),
   },
 ];
 
 export const homeProgramDays = [
   {
-    day: L("Day 1", "NgÃ y 1", "Day 1"),
+    day: L("Day 1", "Ngày 1", "Day 1"),
     date: S("Sep 20"),
     title: L(
       "Lecture, orientation and opening sessions",
-      "BÃ i giáº£ng, Ä‘á»‹nh hÆ°á»›ng vÃ  phiÃªn khai máº¡c",
+      "Bài giảng, định hướng và phiên khai mạc",
       "Lecture, orientation and opening sessions",
     ),
     items: [
       L(
         "Lecture session for students and early-career researchers",
-        "PhiÃªn bÃ i giáº£ng cho sinh viÃªn vÃ  nhÃ  nghiÃªn cá»©u tráº»",
+        "Phiên bài giảng cho sinh viên và nhà nghiên cứu trẻ",
         "Lecture session for students and early-career researchers",
       ),
       L(
         "Study-abroad and job orientation with academia and industry representatives",
-        "Äá»‹nh hÆ°á»›ng du há»c vÃ  nghá» nghiá»‡p vá»›i Ä‘áº¡i diá»‡n há»c thuáº­t vÃ  doanh nghiá»‡p",
+        "Định hướng du học và nghề nghiệp với đại diện học thuật và doanh nghiệp",
         "Study-abroad and job orientation with academia and industry representatives",
       ),
       L(
         "Opening ceremony, plenary session 1 and parallel session 1",
-        "Khai máº¡c, plenary session 1 vÃ  parallel session 1",
+        "Khai mạc, plenary session 1 và parallel session 1",
         "Opening ceremony, plenary session 1 and parallel session 1",
       ),
       L(
         "Welcome reception and networking",
-        "Welcome reception vÃ  networking",
+        "Welcome reception và networking",
         "Welcome reception and networking",
       ),
     ],
   },
   {
-    day: L("Day 2", "NgÃ y 2", "Day 2"),
+    day: L("Day 2", "Ngày 2", "Day 2"),
     date: S("Sep 21"),
     title: L(
       "Plenary, poster and technical tracks",
-      "Plenary, poster vÃ  cÃ¡c track ká»¹ thuáº­t",
+      "Plenary, poster và các track kỹ thuật",
       "Plenary, poster and technical tracks",
     ),
     items: [
       L(
         "Plenary session 2 and parallel session 2",
-        "Plenary session 2 vÃ  parallel session 2",
+        "Plenary session 2 và parallel session 2",
         "Plenary session 2 and parallel session 2",
       ),
       L(
         "Plenary session 3 or poster session under discussion",
-        "Plenary session 3 hoáº·c poster session Ä‘ang Ä‘Æ°á»£c chá»‘t",
+        "Plenary session 3 hoặc poster session đang được chốt",
         "Plenary session 3 or poster session under discussion",
       ),
       L(
         "Parallel session 3 across thematic tracks",
-        "Parallel session 3 theo cÃ¡c track chá»§ Ä‘á»",
+        "Parallel session 3 theo các track chủ đề",
         "Parallel session 3 across thematic tracks",
       ),
-      L("Closing and banquet", "Báº¿ máº¡c vÃ  banquet", "Closing and banquet"),
+      L("Closing and banquet", "Bế mạc và banquet", "Closing and banquet"),
     ],
   },
   {
-    day: L("Day 3", "NgÃ y 3", "Day 3"),
+    day: L("Day 3", "Ngày 3", "Day 3"),
     date: S("Sep 22"),
-    title: L("Site visits", "CÃ¡c chuyáº¿n thÄƒm thá»±c Ä‘á»‹a", "Site visits"),
+    title: L("Site visits", "Các chuyến thăm thực địa", "Site visits"),
     items: [
       L(
         "Visits to local semiconductor-related facilities and laboratories",
-        "ThÄƒm cÃ¡c cÆ¡ sá»Ÿ vÃ  phÃ²ng thÃ­ nghiá»‡m liÃªn quan Ä‘áº¿n bÃ¡n dáº«n táº¡i Ä‘á»‹a phÆ°Æ¡ng",
+        "Thăm các cơ sở và phòng thí nghiệm liên quan đến bán dẫn tại địa phương",
         "Visits to local semiconductor-related facilities and laboratories",
       ),
       L(
         "Innovation-center and ecosystem partner meetings",
-        "LÃ m viá»‡c vá»›i trung tÃ¢m Ä‘á»•i má»›i sÃ¡ng táº¡o vÃ  Ä‘á»‘i tÃ¡c há»‡ sinh thÃ¡i",
+        "Làm việc với trung tâm đổi mới sáng tạo và đối tác hệ sinh thái",
         "Innovation-center and ecosystem partner meetings",
       ),
     ],
   },
   {
-    day: L("Day 4", "NgÃ y 4", "Day 4"),
+    day: L("Day 4", "Ngày 4", "Day 4"),
     date: S("Sep 23"),
     title: L(
       "NEXUS session and follow-up visits",
-      "NEXUS session vÃ  cÃ¡c cuá»™c lÃ m viá»‡c ná»‘i tiáº¿p",
+      "NEXUS session và các cuộc làm việc nối tiếp",
       "NEXUS session and follow-up visits",
     ),
     items: [
       L(
         "Dedicated JST NEXUS session for bilateral collaboration discussions",
-        "PhiÃªn JST NEXUS chuyÃªn biá»‡t cho tháº£o luáº­n há»£p tÃ¡c song phÆ°Æ¡ng",
+        "Phiên JST NEXUS chuyên biệt cho thảo luận hợp tác song phương",
         "Dedicated JST NEXUS session for bilateral collaboration discussions",
       ),
       L(
         "Institutional meetings and follow-up collaboration visits",
-        "CÃ¡c cuá»™c há»p thá»ƒ cháº¿ vÃ  cÃ¡c chuyáº¿n lÃ m viá»‡c tiáº¿p ná»‘i há»£p tÃ¡c",
+        "Các cuộc họp thể chế và các chuyến làm việc tiếp nối hợp tác",
         "Institutional meetings and follow-up collaboration visits",
       ),
     ],
@@ -398,42 +419,42 @@ export const homeProgramDays = [
 
 export const homeImportantDates = [
   {
-    label: L("April 2026", "ThÃ¡ng 4/2026", "April 2026"),
+    label: L("April 2026", "Tháng 4/2026", "April 2026"),
     value: L(
       "Organizing structure, outreach draft and venue shortlist",
-      "Chá»‘t khung tá»• chá»©c, báº£n outreach vÃ  shortlist Ä‘á»‹a Ä‘iá»ƒm",
+      "Chốt khung tổ chức, bản outreach và shortlist địa điểm",
       "Organizing structure, outreach draft and venue shortlist",
     ),
   },
   {
-    label: L("May 2026", "ThÃ¡ng 5/2026", "May 2026"),
+    label: L("May 2026", "Tháng 5/2026", "May 2026"),
     value: L(
       "Sponsor outreach, speaker invitations and track confirmation",
-      "Outreach nhÃ  tÃ i trá»£, gá»­i thÆ° má»i diá»…n giáº£ vÃ  xÃ¡c nháº­n track",
+      "Outreach nhà tài trợ, gửi thư mời diễn giả và xác nhận track",
       "Sponsor outreach, speaker invitations and track confirmation",
     ),
   },
   {
-    label: L("June 2026", "ThÃ¡ng 6/2026", "June 2026"),
+    label: L("June 2026", "Tháng 6/2026", "June 2026"),
     value: L(
       "Open abstract and contributed-talk process",
-      "Má»Ÿ quy trÃ¬nh nháº­n abstract vÃ  contributed talk",
+      "Mở quy trình nhận abstract và contributed talk",
       "Open abstract and contributed-talk process",
     ),
   },
   {
-    label: L("July 2026", "ThÃ¡ng 7/2026", "July 2026"),
+    label: L("July 2026", "Tháng 7/2026", "July 2026"),
     value: L(
       "Review submissions and finalize keynote and plenary shortlist",
-      "RÃ  soÃ¡t bÃ i gá»­i vÃ  chá»‘t shortlist keynote, plenary",
+      "Rà soát bài gửi và chốt shortlist keynote, plenary",
       "Review submissions and finalize keynote and plenary shortlist",
     ),
   },
   {
-    label: L("August 2026", "ThÃ¡ng 8/2026", "August 2026"),
+    label: L("August 2026", "Tháng 8/2026", "August 2026"),
     value: L(
       "Publish tentative program and registration updates",
-      "CÃ´ng bá»‘ chÆ°Æ¡ng trÃ¬nh dá»± kiáº¿n vÃ  cáº­p nháº­t Ä‘Äƒng kÃ½",
+      "Công bố chương trình dự kiến và cập nhật đăng ký",
       "Publish tentative program and registration updates",
     ),
   },
@@ -441,251 +462,226 @@ export const homeImportantDates = [
     label: L("September 20-23", "20-23/9", "September 20-23"),
     value: L(
       "Symposium delivery in Hanoi",
-      "Tá»• chá»©c há»™i nghá»‹ táº¡i HÃ  Ná»™i",
+      "Tổ chức hội nghị tại Hà Nội",
       "Symposium delivery in Hanoi",
     ),
   },
 ];
 
-export const homePartnerNames = [
-  "Vietnam Japan University",
-  "AVIJ",
-  "VANJ",
-  "JST",
-  "NIC Vietnam",
-  "Sony Semiconductors",
-];
-
 export const pageCopy = {
   about: {
-    title: L("About VJSS 2026", "Giá»›i thiá»‡u VJSS 2026", "About VJSS 2026"),
+    title: L("About VJSS 2026", "Giới thiệu VJSS 2026", "About VJSS 2026"),
     intro: L(
       "VJSS 2026 is positioned as a practical Vietnam-Japan platform for semiconductor research exchange, talent development, ecosystem building and long-term bilateral cooperation.",
-      "VJSS 2026 Ä‘Æ°á»£c Ä‘á»‹nh vá»‹ lÃ  má»™t ná»n táº£ng thá»±c tiá»…n Viá»‡t Nam - Nháº­t Báº£n cho trao Ä‘á»•i nghiÃªn cá»©u bÃ¡n dáº«n, phÃ¡t triá»ƒn nhÃ¢n lá»±c, xÃ¢y dá»±ng há»‡ sinh thÃ¡i vÃ  há»£p tÃ¡c song phÆ°Æ¡ng dÃ i háº¡n.",
+      "VJSS 2026 được định vị là một nền tảng thực tiễn Việt Nam - Nhật Bản cho trao đổi nghiên cứu bán dẫn, phát triển nhân lực, xây dựng hệ sinh thái và hợp tác song phương dài hạn.",
       "VJSS 2026 is positioned as a practical Vietnam-Japan platform for semiconductor research exchange, talent development, ecosystem building and long-term bilateral cooperation.",
     ),
-    visionTitle: L("Positioning", "Äá»‹nh vá»‹", "Positioning"),
-    missionTitle: L("Conference design", "Thiáº¿t káº¿ há»™i nghá»‹", "Conference design"),
-    objectiveTitle: L("Objectives", "Má»¥c tiÃªu", "Objectives"),
+    visionTitle: L("Positioning", "Định vị", "Positioning"),
+    missionTitle: L("Conference design", "Thiết kế hội nghị", "Conference design"),
+    objectiveTitle: L("Objectives", "Mục tiêu", "Objectives"),
     vision: [
       L(
         "Build a high-impact forum linking research, education, industry and public-sector cooperation between Vietnam and Japan.",
-        "XÃ¢y dá»±ng má»™t diá»…n Ä‘Ã n cÃ³ tÃ¡c Ä‘á»™ng cao káº¿t ná»‘i nghiÃªn cá»©u, giÃ¡o dá»¥c, cÃ´ng nghiá»‡p vÃ  há»£p tÃ¡c cÃ´ng giá»¯a Viá»‡t Nam vÃ  Nháº­t Báº£n.",
+        "Xây dựng một diễn đàn có tác động cao kết nối nghiên cứu, giáo dục, công nghiệp và hợp tác công giữa Việt Nam và Nhật Bản.",
         "Build a high-impact forum linking research, education, industry and public-sector cooperation between Vietnam and Japan.",
       ),
       L(
         "Move from symbolic exchange toward concrete cooperation in joint research, workforce development and partner programs.",
-        "Chuyá»ƒn tá»« giao lÆ°u mang tÃ­nh biá»ƒu tÆ°á»£ng sang há»£p tÃ¡c cá»¥ thá»ƒ trong nghiÃªn cá»©u chung, phÃ¡t triá»ƒn nguá»“n nhÃ¢n lá»±c vÃ  cÃ¡c chÆ°Æ¡ng trÃ¬nh Ä‘á»‘i tÃ¡c.",
+        "Chuyển từ giao lưu mang tính biểu tượng sang hợp tác cụ thể trong nghiên cứu chung, phát triển nguồn nhân lực và các chương trình đối tác.",
         "Move from symbolic exchange toward concrete cooperation in joint research, workforce development and partner programs.",
       ),
     ],
     mission: [
       L(
         "Combine scientific sessions, invited talks, student-facing lectures, career exchange, policy dialogue, networking and site visits in one coherent program arc.",
-        "Káº¿t há»£p cÃ¡c phiÃªn khoa há»c, invited talks, bÃ i giáº£ng hÆ°á»›ng tá»›i sinh viÃªn, trao Ä‘á»•i nghá» nghiá»‡p, Ä‘á»‘i thoáº¡i chÃ­nh sÃ¡ch, networking vÃ  site visits trong má»™t máº¡ch chÆ°Æ¡ng trÃ¬nh thá»‘ng nháº¥t.",
+        "Kết hợp các phiên khoa học, invited talks, bài giảng hướng tới sinh viên, trao đổi nghề nghiệp, đối thoại chính sách, networking và site visits trong một mạch chương trình thống nhất.",
         "Combine scientific sessions, invited talks, student-facing lectures, career exchange, policy dialogue, networking and site visits in one coherent program arc.",
       ),
       L(
         "Use the symposium as a partner platform for semiconductor talent development, technology exchange and long-term Vietnam-Japan collaboration.",
-        "Biáº¿n há»™i nghá»‹ thÃ nh má»™t ná»n táº£ng Ä‘á»‘i tÃ¡c cho phÃ¡t triá»ƒn nhÃ¢n lá»±c bÃ¡n dáº«n, trao Ä‘á»•i cÃ´ng nghá»‡ vÃ  há»£p tÃ¡c Viá»‡t Nam - Nháº­t Báº£n dÃ i háº¡n.",
+        "Biến hội nghị thành một nền tảng đối tác cho phát triển nhân lực bán dẫn, trao đổi công nghệ và hợp tác Việt Nam - Nhật Bản dài hạn.",
         "Use the symposium as a partner platform for semiconductor talent development, technology exchange and long-term Vietnam-Japan collaboration.",
       ),
     ],
     objectives: [
       L(
         "Create a forum for Vietnam-Japan researchers to present advances and identify joint projects.",
-        "Táº¡o diá»…n Ä‘Ã n Ä‘á»ƒ cÃ¡c nhÃ  nghiÃªn cá»©u Viá»‡t Nam - Nháº­t Báº£n trÃ¬nh bÃ y káº¿t quáº£ má»›i vÃ  xÃ¡c Ä‘á»‹nh cÃ¡c dá»± Ã¡n há»£p tÃ¡c.",
+        "Tạo diễn đàn để các nhà nghiên cứu Việt Nam - Nhật Bản trình bày kết quả mới và xác định các dự án hợp tác.",
         "Create a forum for Vietnam-Japan researchers to present advances and identify joint projects.",
       ),
       L(
         "Offer lectures, career orientation and student-facing sessions to strengthen the semiconductor talent pipeline.",
-        "Tá»• chá»©c cÃ¡c bÃ i giáº£ng, Ä‘á»‹nh hÆ°á»›ng nghá» nghiá»‡p vÃ  phiÃªn hÆ°á»›ng tá»›i sinh viÃªn Ä‘á»ƒ cá»§ng cá»‘ dÃ²ng cháº£y nhÃ¢n lá»±c bÃ¡n dáº«n.",
+        "Tổ chức các bài giảng, định hướng nghề nghiệp và phiên hướng tới sinh viên để củng cố dòng chảy nhân lực bán dẫn.",
         "Offer lectures, career orientation and student-facing sessions to strengthen the semiconductor talent pipeline.",
       ),
       L(
         "Connect companies with universities, laboratories and young researchers through sessions, booths and networking.",
-        "Káº¿t ná»‘i doanh nghiá»‡p vá»›i trÆ°á»ng Ä‘áº¡i há»c, phÃ²ng thÃ­ nghiá»‡m vÃ  nhÃ  nghiÃªn cá»©u tráº» thÃ´ng qua cÃ¡c phiÃªn tháº£o luáº­n, booth vÃ  networking.",
+        "Kết nối doanh nghiệp với trường đại học, phòng thí nghiệm và nhà nghiên cứu trẻ thông qua các phiên thảo luận, booth và networking.",
         "Connect companies with universities, laboratories and young researchers through sessions, booths and networking.",
       ),
       L(
         "Strengthen links among JST NEXUS teams and related Vietnam-Japan cooperation programs.",
-        "TÄƒng cÆ°á»ng liÃªn káº¿t giá»¯a cÃ¡c nhÃ³m JST NEXUS vÃ  cÃ¡c chÆ°Æ¡ng trÃ¬nh há»£p tÃ¡c Viá»‡t Nam - Nháº­t Báº£n liÃªn quan.",
+        "Tăng cường liên kết giữa các nhóm JST NEXUS và các chương trình hợp tác Việt Nam - Nhật Bản liên quan.",
         "Strengthen links among JST NEXUS teams and related Vietnam-Japan cooperation programs.",
       ),
     ],
     contextTitle: L(
       "Why the timing matters",
-      "VÃ¬ sao thá»i Ä‘iá»ƒm nÃ y quan trá»ng",
+      "Vì sao thời điểm này quan trọng",
       "Why the timing matters",
     ),
     contextBody: L(
       "Semiconductors are foundational to AI, smart mobility, robotics, aerospace, advanced manufacturing and digital infrastructure. Japan brings deep research, manufacturing and industrial know-how, while Vietnam is rapidly building talent, policy momentum and ecosystem capacity.",
-      "BÃ¡n dáº«n lÃ  ná»n táº£ng cá»§a AI, giao thÃ´ng thÃ´ng minh, robot, hÃ ng khÃ´ng vÅ© trá»¥, sáº£n xuáº¥t tiÃªn tiáº¿n vÃ  háº¡ táº§ng sá»‘. Nháº­t Báº£n cÃ³ chiá»u sÃ¢u vá» nghiÃªn cá»©u, sáº£n xuáº¥t vÃ  know-how cÃ´ng nghiá»‡p, trong khi Viá»‡t Nam Ä‘ang tÄƒng tá»‘c vá» nhÃ¢n lá»±c, Ä‘á»™ng lá»±c chÃ­nh sÃ¡ch vÃ  nÄƒng lá»±c há»‡ sinh thÃ¡i.",
+      "Bán dẫn là nền tảng của AI, giao thông thông minh, robot, hàng không vũ trụ, sản xuất tiên tiến và hạ tầng số. Nhật Bản có chiều sâu về nghiên cứu, sản xuất và know-how công nghiệp, trong khi Việt Nam đang tăng tốc về nhân lực, động lực chính sách và năng lực hệ sinh thái.",
       "Semiconductors are foundational to AI, smart mobility, robotics, aerospace, advanced manufacturing and digital infrastructure. Japan brings deep research, manufacturing and industrial know-how, while Vietnam is rapidly building talent, policy momentum and ecosystem capacity.",
     ),
     heritageTitle: L(
       "From Osaka 2025 to Hanoi 2026",
-      "Tá»« Osaka 2025 Ä‘áº¿n HÃ  Ná»™i 2026",
+      "Từ Osaka 2025 đến Hà Nội 2026",
       "From Osaka 2025 to Hanoi 2026",
     ),
     heritageBody: L(
       "The second edition builds directly on the first VJSS in Osaka. The 2026 plan keeps bilateral cooperation at the center, but expands the format with site visits, a dedicated NEXUS session, a fuller sponsorship structure and a stronger student-facing agenda.",
-      "PhiÃªn báº£n thá»© hai káº¿ thá»«a trá»±c tiáº¿p tá»« ká»³ VJSS Ä‘áº§u tiÃªn táº¡i Osaka. Káº¿ hoáº¡ch 2026 váº«n giá»¯ há»£p tÃ¡c song phÆ°Æ¡ng á»Ÿ trung tÃ¢m, Ä‘á»“ng thá»i má»Ÿ rá»™ng Ä‘á»‹nh dáº¡ng vá»›i site visit, NEXUS session chuyÃªn biá»‡t, cáº¥u trÃºc tÃ i trá»£ Ä‘áº§y Ä‘á»§ hÆ¡n vÃ  chÆ°Æ¡ng trÃ¬nh hÆ°á»›ng tá»›i sinh viÃªn rÃµ nÃ©t hÆ¡n.",
+      "Phiên bản thứ hai kế thừa trực tiếp từ kỳ VJSS đầu tiên tại Osaka. Kế hoạch 2026 vẫn giữ hợp tác song phương ở trung tâm, đồng thời mở rộng định dạng với site visit, NEXUS session chuyên biệt, cấu trúc tài trợ đầy đủ hơn và chương trình hướng tới sinh viên rõ nét hơn.",
       "The second edition builds directly on the first VJSS in Osaka. The 2026 plan keeps bilateral cooperation at the center, but expands the format with site visits, a dedicated NEXUS session, a fuller sponsorship structure and a stronger student-facing agenda.",
     ),
   },
   program: {
-    title: L("Program and timeline", "ChÆ°Æ¡ng trÃ¬nh vÃ  lá»™ trÃ¬nh", "Program and timeline"),
+    title: L("Program and timeline", "Chương trình và lộ trình", "Program and timeline"),
     intro: L(
       "The current schedule is based on the April 19 working draft. Session times, poster format, site-visit hosts and some speaker assignments remain subject to program-committee confirmation.",
-      "Lá»‹ch hiá»‡n táº¡i dá»±a trÃªn working draft ngÃ y 19/4. Thá»i lÆ°á»£ng tá»«ng phiÃªn, Ä‘á»‹nh dáº¡ng poster, Ä‘Æ¡n vá»‹ tiáº¿p Ä‘Ã³n site visit vÃ  má»™t sá»‘ phÃ¢n cÃ´ng diá»…n giáº£ váº«n chá» program committee xÃ¡c nháº­n.",
+      "Lịch hiện tại dựa trên working draft ngày 19/4. Thời lượng từng phiên, định dạng poster, đơn vị tiếp đón site visit và một số phân công diễn giả vẫn chờ program committee xác nhận.",
       "The current schedule is based on the April 19 working draft. Session times, poster format, site-visit hosts and some speaker assignments remain subject to program-committee confirmation.",
     ),
-    legendTitle: L("Working status", "Tráº¡ng thÃ¡i lÃ m viá»‡c", "Working status"),
-    architectureTitle: L(
-      "Program architecture",
-      "Kiáº¿n trÃºc chÆ°Æ¡ng trÃ¬nh",
-      "Program architecture",
-    ),
+    legendTitle: L("Working status", "Trạng thái làm việc", "Working status"),
+    architectureTitle: L("Program architecture", "Kiến trúc chương trình", "Program architecture"),
     architectureBody: L(
       "VJSS 2026 combines scientific exchange, student development, industry-policy dialogue and field engagement in one schedule.",
-      "VJSS 2026 káº¿t há»£p trao Ä‘á»•i khoa há»c, phÃ¡t triá»ƒn sinh viÃªn, Ä‘á»‘i thoáº¡i cÃ´ng nghiá»‡p - chÃ­nh sÃ¡ch vÃ  káº¿t ná»‘i thá»±c Ä‘á»‹a trong cÃ¹ng má»™t lá»‹ch trÃ¬nh.",
+      "VJSS 2026 kết hợp trao đổi khoa học, phát triển sinh viên, đối thoại công nghiệp - chính sách và kết nối thực địa trong cùng một lịch trình.",
       "VJSS 2026 combines scientific exchange, student development, industry-policy dialogue and field engagement in one schedule.",
     ),
-    timelineTitle: L("Implementation timeline", "Timeline triá»ƒn khai", "Implementation timeline"),
+    timelineTitle: L("Implementation timeline", "Timeline triển khai", "Implementation timeline"),
     timelineBody: L(
       "The working timeline runs from April outreach and venue decisions through October reporting and partner follow-up.",
-      "Timeline triá»ƒn khai kÃ©o dÃ i tá»« giai Ä‘oáº¡n outreach, quyáº¿t Ä‘á»‹nh Ä‘á»‹a Ä‘iá»ƒm trong thÃ¡ng 4 cho tá»›i bÃ¡o cÃ¡o sau sá»± kiá»‡n vÃ  follow-up Ä‘á»‘i tÃ¡c trong thÃ¡ng 10.",
+      "Timeline triển khai kéo dài từ giai đoạn outreach, quyết định địa điểm trong tháng 4 cho tới báo cáo sau sự kiện và follow-up đối tác trong tháng 10.",
       "The working timeline runs from April outreach and venue decisions through October reporting and partner follow-up.",
     ),
-    noteTitle: L(
-      "Critical decisions",
-      "CÃ¡c quyáº¿t Ä‘á»‹nh cáº§n chá»‘t sá»›m",
-      "Critical decisions",
-    ),
+    noteTitle: L("Critical decisions", "Các quyết định cần chốt sớm", "Critical decisions"),
     noteBody: L(
       "Venue, sponsorship model, invited-speaker confirmations, site-visit access, and language / recording support are the main dependencies in the current plan.",
-      "Äá»‹a Ä‘iá»ƒm, mÃ´ hÃ¬nh tÃ i trá»£, xÃ¡c nháº­n diá»…n giáº£ má»i, quyá»n truy cáº­p site visit vÃ  há»— trá»£ ngÃ´n ngá»¯ / ghi hÃ¬nh lÃ  cÃ¡c phá»¥ thuá»™c lá»›n nháº¥t trong káº¿ hoáº¡ch hiá»‡n táº¡i.",
+      "Địa điểm, mô hình tài trợ, xác nhận diễn giả mời, quyền truy cập site visit và hỗ trợ ngôn ngữ / ghi hình là các phụ thuộc lớn nhất trong kế hoạch hiện tại.",
       "Venue, sponsorship model, invited-speaker confirmations, site-visit access, and language / recording support are the main dependencies in the current plan.",
     ),
   },
   speakers: {
     title: L(
       "Invited speakers and working roster",
-      "Diá»…n giáº£ má»i vÃ  roster lÃ m viá»‡c",
+      "Diễn giả mời và roster làm việc",
       "Invited speakers and working roster",
     ),
     intro: L(
       "The current speaker directory consolidates confirmed chairs, scientific-committee members and named track contributors from the uploaded planning files.",
-      "Danh má»¥c diá»…n giáº£ hiá»‡n táº¡i tá»•ng há»£p cÃ¡c chair, thÃ nh viÃªn scientific committee vÃ  nhá»¯ng ngÆ°á»i Ä‘Ã³ng gÃ³p theo track Ä‘Ã£ Ä‘Æ°á»£c nÃªu Ä‘Ã­ch danh trong cÃ¡c file káº¿ hoáº¡ch Ä‘Æ°á»£c táº£i lÃªn.",
+      "Danh mục diễn giả hiện tại tổng hợp các chair, thành viên scientific committee và những người đóng góp theo track đã được nêu đích danh trong các file kế hoạch được tải lên.",
       "The current speaker directory consolidates confirmed chairs, scientific-committee members and named track contributors from the uploaded planning files.",
     ),
   },
   venue: {
-    title: L("Venue and logistics", "Äá»‹a Ä‘iá»ƒm vÃ  háº­u cáº§n", "Venue and logistics"),
+    title: L("Venue and logistics", "Địa điểm và hậu cần", "Venue and logistics"),
     intro: L(
       "The host city is confirmed as Hanoi, while the final venue remains under review between a university-hosted option and a hotel-conference option.",
-      "ThÃ nh phá»‘ tá»• chá»©c Ä‘Ã£ Ä‘Æ°á»£c xÃ¡c Ä‘á»‹nh lÃ  HÃ  Ná»™i, trong khi Ä‘á»‹a Ä‘iá»ƒm cuá»‘i cÃ¹ng váº«n Ä‘ang Ä‘Æ°á»£c cÃ¢n nháº¯c giá»¯a phÆ°Æ¡ng Ã¡n tá»• chá»©c táº¡i trÆ°á»ng Ä‘áº¡i há»c vÃ  phÆ°Æ¡ng Ã¡n khÃ¡ch sáº¡n - há»™i nghá»‹.",
+      "Thành phố tổ chức đã được xác định là Hà Nội, trong khi địa điểm cuối cùng vẫn đang được cân nhắc giữa phương án tổ chức tại trường đại học và phương án khách sạn - hội nghị.",
       "The host city is confirmed as Hanoi, while the final venue remains under review between a university-hosted option and a hotel-conference option.",
     ),
     nextTitle: L(
       "Venue decision status",
-      "TÃ¬nh tráº¡ng quyáº¿t Ä‘á»‹nh Ä‘á»‹a Ä‘iá»ƒm",
+      "Tình trạng quyết định địa điểm",
       "Venue decision status",
     ),
     nextBody: L(
       "The organizing committee is comparing VNU-VJU University and Sheraton Hanoi West Hotel against budget, sponsor support and operational fit.",
-      "Ban tá»• chá»©c Ä‘ang so sÃ¡nh VNU-VJU University vÃ  Sheraton Hanoi West Hotel theo cÃ¡c tiÃªu chÃ­ ngÃ¢n sÃ¡ch, há»— trá»£ tá»« nhÃ  tÃ i trá»£ vÃ  má»©c Ä‘á»™ phÃ¹ há»£p váº­n hÃ nh.",
+      "Ban tổ chức đang so sánh VNU-VJU University và Sheraton Hanoi West Hotel theo các tiêu chí ngân sách, hỗ trợ từ nhà tài trợ và mức độ phù hợp vận hành.",
       "The organizing committee is comparing VNU-VJU University and Sheraton Hanoi West Hotel against budget, sponsor support and operational fit.",
     ),
-    referenceTitle: L("Host city", "ThÃ nh phá»‘ tá»• chá»©c", "Host city"),
+    referenceTitle: L("Host city", "Thành phố tổ chức", "Host city"),
     referenceBody: L(
       "Hanoi serves as the anchor for the conference, partner meetings, site visits and the dedicated NEXUS session.",
-      "HÃ  Ná»™i Ä‘Ã³ng vai trÃ² trung tÃ¢m cho há»™i nghá»‹, cÃ¡c cuá»™c gáº·p Ä‘á»‘i tÃ¡c, chÆ°Æ¡ng trÃ¬nh site visit vÃ  NEXUS session chuyÃªn biá»‡t.",
+      "Hà Nội đóng vai trò trung tâm cho hội nghị, các cuộc gặp đối tác, chương trình site visit và NEXUS session chuyên biệt.",
       "Hanoi serves as the anchor for the conference, partner meetings, site visits and the dedicated NEXUS session.",
     ),
   },
   organizers: {
     title: L(
       "Governance and committees",
-      "Bá»™ mÃ¡y tá»• chá»©c vÃ  cÃ¡c committee",
+      "Bộ máy tổ chức và các committee",
       "Governance and committees",
     ),
     intro: L(
       "The governance model separates strategic leadership, scientific quality control, local execution, sponsorship outreach and secretariat operations.",
-      "MÃ´ hÃ¬nh quáº£n trá»‹ tÃ¡ch báº¡ch lÃ£nh Ä‘áº¡o chiáº¿n lÆ°á»£c, kiá»ƒm soÃ¡t cháº¥t lÆ°á»£ng khoa há»c, thá»±c thi táº¡i chá»—, outreach nhÃ  tÃ i trá»£ vÃ  váº­n hÃ nh ban thÆ° kÃ½.",
+      "Mô hình quản trị tách bạch lãnh đạo chiến lược, kiểm soát chất lượng khoa học, thực thi tại chỗ, outreach nhà tài trợ và vận hành ban thư ký.",
       "The governance model separates strategic leadership, scientific quality control, local execution, sponsorship outreach and secretariat operations.",
     ),
     partnerPlaceholderTitle: L(
       "Host and patron organizations",
-      "ÄÆ¡n vá»‹ chá»§ trÃ¬ vÃ  báº£o trá»£",
+      "Đơn vị chủ trì và bảo trợ",
       "Host and patron organizations",
     ),
     partnerPlaceholderBody: L(
       "The public-facing site should keep organizational roles explicit so partners, sponsors and invited speakers can see who owns each part of the event.",
-      "Site cÃ´ng khai nÃªn thá»ƒ hiá»‡n rÃµ vai trÃ² cá»§a tá»«ng tá»• chá»©c Ä‘á»ƒ Ä‘á»‘i tÃ¡c, nhÃ  tÃ i trá»£ vÃ  diá»…n giáº£ má»i nháº­n biáº¿t Ä‘Æ¡n vá»‹ nÃ o phá»¥ trÃ¡ch tá»«ng pháº§n cá»§a sá»± kiá»‡n.",
+      "Site công khai nên thể hiện rõ vai trò của từng tổ chức để đối tác, nhà tài trợ và diễn giả mời nhận biết đơn vị nào phụ trách từng phần của sự kiện.",
       "The public-facing site should keep organizational roles explicit so partners, sponsors and invited speakers can see who owns each part of the event.",
     ),
   },
   sponsors: {
-    title: L(
-      "Partnership and sponsorship",
-      "Há»£p tÃ¡c vÃ  tÃ i trá»£",
-      "Partnership and sponsorship",
-    ),
+    title: L("Partnership and sponsorship", "Hợp tác và tài trợ", "Partnership and sponsorship"),
     intro: L(
       "The proposal frames sponsorship as ecosystem participation: talent access, research exchange, thought leadership, recruitment visibility and documented post-event recognition.",
-      "Báº£n proposal Ä‘á»‹nh nghÄ©a tÃ i trá»£ nhÆ° má»™t hÃ¬nh thá»©c tham gia há»‡ sinh thÃ¡i: tiáº¿p cáº­n nhÃ¢n lá»±c, trao Ä‘á»•i nghiÃªn cá»©u, hiá»‡n diá»‡n chuyÃªn mÃ´n, kháº£ nÄƒng tuyá»ƒn dá»¥ng vÃ  ghi nháº­n sau sá»± kiá»‡n cÃ³ chá»©ng cá»©.",
+      "Bản proposal định nghĩa tài trợ như một hình thức tham gia hệ sinh thái: tiếp cận nhân lực, trao đổi nghiên cứu, hiện diện chuyên môn, khả năng tuyển dụng và ghi nhận sau sự kiện có chứng cứ.",
       "The proposal frames sponsorship as ecosystem participation: talent access, research exchange, thought leadership, recruitment visibility and documented post-event recognition.",
     ),
     upcomingTitle: L(
       "Working tier framework",
-      "Khung háº¡ng má»¥c Ä‘ang lÃ m viá»‡c",
+      "Khung hạng mục đang làm việc",
       "Working tier framework",
     ),
     upcomingBody: L(
       "Amounts and benefits remain subject to organizing-committee approval, but the tier logic is already defined for outreach.",
-      "Má»©c Ä‘Ã³ng gÃ³p vÃ  quyá»n lá»£i váº«n chá» ban tá»• chá»©c phÃª duyá»‡t, nhÆ°ng logic phÃ¢n háº¡ng Ä‘Ã£ Ä‘Æ°á»£c xÃ¡c láº­p Ä‘á»ƒ phá»¥c vá»¥ outreach.",
+      "Mức đóng góp và quyền lợi vẫn chờ ban tổ chức phê duyệt, nhưng logic phân hạng đã được xác lập để phục vụ outreach.",
       "Amounts and benefits remain subject to organizing-committee approval, but the tier logic is already defined for outreach.",
     ),
   },
   cfp: {
     title: L(
-      "Call for abstracts and talks",
-      "KÃªu gá»i abstract vÃ  bÃ i trÃ¬nh bÃ y",
-      "Call for abstracts and talks",
+      "Submission / Call for Abstracts",
+      "Nộp bài / Call for Abstracts",
+      "投稿案内 / Call for Abstracts",
     ),
     intro: L(
       "The abstract and contributed-talk process is planned for June 2026. The current page publishes the working scope so potential authors and speakers can prepare early.",
-      "Quy trÃ¬nh nháº­n abstract vÃ  contributed talk dá»± kiáº¿n má»Ÿ trong thÃ¡ng 6/2026. Trang nÃ y cÃ´ng bá»‘ pháº¡m vi lÃ m viá»‡c hiá»‡n táº¡i Ä‘á»ƒ tÃ¡c giáº£ vÃ  diá»…n giáº£ tiá»m nÄƒng cÃ³ thá»ƒ chuáº©n bá»‹ sá»›m.",
+      "Quy trình nhận abstract và contributed talk dự kiến mở trong tháng 6/2026. Trang này công bố phạm vi làm việc hiện tại để tác giả và diễn giả tiềm năng có thể chuẩn bị sớm.",
       "The abstract and contributed-talk process is planned for June 2026. The current page publishes the working scope so potential authors and speakers can prepare early.",
     ),
   },
   registration: {
-    title: L(
-      "Registration and attendance",
-      "ÄÄƒng kÃ½ vÃ  tham dá»±",
-      "Registration and attendance",
-    ),
+    title: L("Registration and attendance", "Đăng ký và tham dự", "Registration and attendance"),
     intro: L(
       "Registration content is being staged in parallel with venue, budget and sponsorship decisions. The attendee model and participation format are already clear even though fees are not yet published.",
-      "Ná»™i dung Ä‘Äƒng kÃ½ Ä‘ang Ä‘Æ°á»£c chuáº©n bá»‹ song song vá»›i quyáº¿t Ä‘á»‹nh vá» Ä‘á»‹a Ä‘iá»ƒm, ngÃ¢n sÃ¡ch vÃ  tÃ i trá»£. MÃ´ hÃ¬nh ngÆ°á»i tham dá»± vÃ  hÃ¬nh thá»©c tham gia Ä‘Ã£ rÃµ, dÃ¹ má»©c phÃ­ chÆ°a Ä‘Æ°á»£c cÃ´ng bá»‘.",
+      "Nội dung đăng ký đang được chuẩn bị song song với quyết định về địa điểm, ngân sách và tài trợ. Mô hình người tham dự và hình thức tham gia đã rõ, dù mức phí chưa được công bố.",
       "Registration content is being staged in parallel with venue, budget and sponsorship decisions. The attendee model and participation format are already clear even though fees are not yet published.",
     ),
   },
   contact: {
-    title: L("Contact and liaison", "LiÃªn há»‡ vÃ  Ä‘áº§u má»‘i", "Contact and liaison"),
+    title: L("Contact and liaison", "Liên hệ và đầu mối", "Contact and liaison"),
     intro: L(
       "The working proposal already identifies secretariat and academic-liaison contacts for sponsor outreach, invited-speaker coordination and program questions.",
-      "Báº£n proposal Ä‘ang lÃ m viá»‡c Ä‘Ã£ xÃ¡c Ä‘á»‹nh Ä‘áº§u má»‘i ban thÆ° kÃ½ vÃ  liÃªn há»‡ há»c thuáº­t cho outreach nhÃ  tÃ i trá»£, Ä‘iá»u phá»‘i diá»…n giáº£ má»i vÃ  cÃ¡c cÃ¢u há»i vá» chÆ°Æ¡ng trÃ¬nh.",
+      "Bản proposal đang làm việc đã xác định đầu mối ban thư ký và liên hệ học thuật cho outreach nhà tài trợ, điều phối diễn giả mời và các câu hỏi về chương trình.",
       "The working proposal already identifies secretariat and academic-liaison contacts for sponsor outreach, invited-speaker coordination and program questions.",
     ),
   },
   news: {
-    title: L("Planning updates", "Cáº­p nháº­t káº¿ hoáº¡ch", "Planning updates"),
+    title: L("Planning updates", "Cập nhật kế hoạch", "Planning updates"),
     intro: L(
       "These updates summarize the current planning package so the public site reflects the latest working assumptions without pretending the program is already final.",
-      "CÃ¡c cáº­p nháº­t nÃ y tÃ³m táº¯t gÃ³i káº¿ hoáº¡ch hiá»‡n táº¡i Ä‘á»ƒ site cÃ´ng khai pháº£n Ã¡nh giáº£ Ä‘á»‹nh lÃ m viá»‡c má»›i nháº¥t mÃ  khÃ´ng táº¡o cáº£m giÃ¡c chÆ°Æ¡ng trÃ¬nh Ä‘Ã£ Ä‘Æ°á»£c chá»‘t hoÃ n toÃ n.",
+      "Các cập nhật này tóm tắt gói kế hoạch hiện tại để site công khai phản ánh giả định làm việc mới nhất mà không tạo cảm giác chương trình đã được chốt hoàn toàn.",
       "These updates summarize the current planning package so the public site reflects the latest working assumptions without pretending the program is already final.",
     ),
   },
@@ -694,228 +690,228 @@ export const pageCopy = {
 export const programSessions: ProgramSession[] = [
   {
     id: "lecture-session",
-    day: L("Day 1", "NgÃ y 1", "Day 1"),
+    day: L("Day 1", "Ngày 1", "Day 1"),
     date: S("September 20, 2026"),
     time: "08:30 - 11:00",
     title: S("Lecture Session"),
     themeId: "Academic and talent",
-    theme: L("Academic and talent", "Há»c thuáº­t vÃ  nhÃ¢n lá»±c", "Academic and talent"),
+    theme: L("Academic and talent", "Học thuật và nhân lực", "Academic and talent"),
     status: "updated",
     chairs: ["Program committee"],
     summary: L(
       "Student- and young researcher-oriented lectures on semiconductor technologies and career pathways.",
-      "Chuá»—i bÃ i giáº£ng hÆ°á»›ng tá»›i sinh viÃªn vÃ  nhÃ  nghiÃªn cá»©u tráº» vá» cÃ´ng nghá»‡ bÃ¡n dáº«n vÃ  cÃ¡c lá»™ trÃ¬nh nghá» nghiá»‡p.",
+      "Chuỗi bài giảng hướng tới sinh viên và nhà nghiên cứu trẻ về công nghệ bán dẫn và các lộ trình nghề nghiệp.",
       "Student- and young researcher-oriented lectures on semiconductor technologies and career pathways.",
     ),
     speakerIds: ["le-duc-anh", "dang-thanh-tu", "huynh-van-nhat"],
   },
   {
     id: "study-abroad-job-orientation",
-    day: L("Day 1", "NgÃ y 1", "Day 1"),
+    day: L("Day 1", "Ngày 1", "Day 1"),
     date: S("September 20, 2026"),
     time: "11:00 - 12:00",
     title: S("Study Abroad and Job Orientation"),
     themeId: "Academic and talent",
-    theme: L("Academic and talent", "Há»c thuáº­t vÃ  nhÃ¢n lá»±c", "Academic and talent"),
+    theme: L("Academic and talent", "Học thuật và nhân lực", "Academic and talent"),
     status: "updated",
     chairs: ["Local committee"],
     summary: L(
       "Q&A with academic and industry representatives on study, career and training pathways.",
-      "PhiÃªn há»i Ä‘Ã¡p vá»›i Ä‘áº¡i diá»‡n há»c thuáº­t vÃ  doanh nghiá»‡p vá» con Ä‘Æ°á»ng du há»c, nghá» nghiá»‡p vÃ  Ä‘Ã o táº¡o.",
+      "Phiên hỏi đáp với đại diện học thuật và doanh nghiệp về con đường du học, nghề nghiệp và đào tạo.",
       "Q&A with academic and industry representatives on study, career and training pathways.",
     ),
     speakerIds: ["huynh-van-nhat", "luong-minh-phuong"],
   },
   {
     id: "luncheon-session",
-    day: L("Day 1", "NgÃ y 1", "Day 1"),
+    day: L("Day 1", "Ngày 1", "Day 1"),
     date: S("September 20, 2026"),
     time: "12:00 - 13:30",
     title: S("Lunch Break / Luncheon Session"),
     themeId: "Networking",
-    theme: L("Networking", "Káº¿t ná»‘i", "Networking"),
+    theme: L("Networking", "Kết nối", "Networking"),
     status: "draft",
     chairs: [],
     summary: L(
       "Potential sponsor-supported luncheon or student networking format.",
-      "Khung luncheon cÃ³ thá»ƒ Ä‘Æ°á»£c nhÃ  tÃ i trá»£ Ä‘á»“ng hÃ nh hoáº·c tá»• chá»©c theo Ä‘á»‹nh dáº¡ng networking cho sinh viÃªn.",
+      "Khung luncheon có thể được nhà tài trợ đồng hành hoặc tổ chức theo định dạng networking cho sinh viên.",
       "Potential sponsor-supported luncheon or student networking format.",
     ),
     speakerIds: [],
   },
   {
     id: "opening-ceremony",
-    day: L("Day 1", "NgÃ y 1", "Day 1"),
+    day: L("Day 1", "Ngày 1", "Day 1"),
     date: S("September 20, 2026"),
     time: "13:30 - 14:00",
     title: S("Opening Ceremony"),
     themeId: "Plenary and opening",
-    theme: L("Plenary and opening", "Khai máº¡c vÃ  plenary", "Plenary and opening"),
+    theme: L("Plenary and opening", "Khai mạc và plenary", "Plenary and opening"),
     status: "updated",
     chairs: ["Dr. Nguyen Hoang Oanh"],
     summary: L(
       "Welcome remarks by host organizations, patrons and core partners.",
-      "Pháº§n phÃ¡t biá»ƒu chÃ o má»«ng cá»§a cÃ¡c Ä‘Æ¡n vá»‹ chá»§ trÃ¬, Ä‘Æ¡n vá»‹ báº£o trá»£ vÃ  Ä‘á»‘i tÃ¡c nÃ²ng cá»‘t.",
+      "Phần phát biểu chào mừng của các đơn vị chủ trì, đơn vị bảo trợ và đối tác nòng cốt.",
       "Welcome remarks by host organizations, patrons and core partners.",
     ),
     speakerIds: ["nguyen-hoang-oanh", "toshiro-hiramoto", "bui-nguyen-quoc-trinh"],
   },
   {
     id: "plenary-session-1",
-    day: L("Day 1", "NgÃ y 1", "Day 1"),
+    day: L("Day 1", "Ngày 1", "Day 1"),
     date: S("September 20, 2026"),
     time: "14:00 - 15:30",
     title: S("Plenary Session 1"),
     themeId: "Plenary and opening",
-    theme: L("Plenary and opening", "Khai máº¡c vÃ  plenary", "Plenary and opening"),
+    theme: L("Plenary and opening", "Khai mạc và plenary", "Plenary and opening"),
     status: "updated",
     chairs: ["Scientific committee"],
     summary: L(
       "Plenary and invited presentations setting the technical and strategic tone of the symposium.",
-      "CÃ¡c bÃ i trÃ¬nh bÃ y plenary vÃ  invited Ä‘áº·t ná»n cho hÆ°á»›ng ká»¹ thuáº­t vÃ  Ä‘á»‹nh vá»‹ chiáº¿n lÆ°á»£c cá»§a há»™i nghá»‹.",
+      "Các bài trình bày plenary và invited đặt nền cho hướng kỹ thuật và định vị chiến lược của hội nghị.",
       "Plenary and invited presentations setting the technical and strategic tone of the symposium.",
     ),
     speakerIds: ["le-duc-anh", "tran-xuan-tu", "nguyen-chung-hoa"],
   },
   {
     id: "parallel-session-1",
-    day: L("Day 1", "NgÃ y 1", "Day 1"),
+    day: L("Day 1", "Ngày 1", "Day 1"),
     date: S("September 20, 2026"),
     time: "15:45 - 17:30",
     title: S("Parallel Session 1"),
     themeId: "Technical tracks",
-    theme: L("Technical tracks", "CÃ¡c track ká»¹ thuáº­t", "Technical tracks"),
+    theme: L("Technical tracks", "Các track kỹ thuật", "Technical tracks"),
     status: "draft",
     chairs: ["Track chairs"],
     summary: L(
       "Working format: one invited talk of 30 minutes and four contributed talks of 15 minutes, subject to final program design.",
-      "Äá»‹nh dáº¡ng lÃ m viá»‡c hiá»‡n táº¡i gá»“m má»™t invited talk 30 phÃºt vÃ  bá»‘n contributed talk 15 phÃºt, chá» chá»‘t theo thiáº¿t káº¿ chÆ°Æ¡ng trÃ¬nh cuá»‘i cÃ¹ng.",
+      "Định dạng làm việc hiện tại gồm một invited talk 30 phút và bốn contributed talk 15 phút, chờ chốt theo thiết kế chương trình cuối cùng.",
       "Working format: one invited talk of 30 minutes and four contributed talks of 15 minutes, subject to final program design.",
     ),
     speakerIds: ["tran-quoc-tien", "dao-thanh-toan", "nguyen-ngoc-dinh", "le-van-lich"],
   },
   {
     id: "welcome-reception",
-    day: L("Day 1", "NgÃ y 1", "Day 1"),
+    day: L("Day 1", "Ngày 1", "Day 1"),
     date: S("September 20, 2026"),
     time: "17:30 - onward",
     title: S("Welcome Reception and Networking"),
     themeId: "Networking",
-    theme: L("Networking", "Káº¿t ná»‘i", "Networking"),
+    theme: L("Networking", "Kết nối", "Networking"),
     status: "draft",
     chairs: [],
     summary: L(
       "Opening-day networking for speakers, sponsors, partners and participants.",
-      "PhiÃªn networking cuá»‘i ngÃ y Ä‘áº§u dÃ nh cho diá»…n giáº£, nhÃ  tÃ i trá»£, Ä‘á»‘i tÃ¡c vÃ  ngÆ°á»i tham dá»±.",
+      "Phiên networking cuối ngày đầu dành cho diễn giả, nhà tài trợ, đối tác và người tham dự.",
       "Opening-day networking for speakers, sponsors, partners and participants.",
     ),
     speakerIds: [],
   },
   {
     id: "plenary-session-2",
-    day: L("Day 2", "NgÃ y 2", "Day 2"),
+    day: L("Day 2", "Ngày 2", "Day 2"),
     date: S("September 21, 2026"),
     time: "09:00 - 10:30",
     title: S("Plenary Session 2"),
     themeId: "Plenary and opening",
-    theme: L("Plenary and opening", "Khai máº¡c vÃ  plenary", "Plenary and opening"),
+    theme: L("Plenary and opening", "Khai mạc và plenary", "Plenary and opening"),
     status: "updated",
     chairs: ["Scientific committee"],
     summary: L(
       "Second plenary block for invited and keynote-level talks.",
-      "Khá»‘i plenary thá»© hai dÃ nh cho cÃ¡c bÃ i trÃ¬nh bÃ y invited vÃ  keynote-level.",
+      "Khối plenary thứ hai dành cho các bài trình bày invited và keynote-level.",
       "Second plenary block for invited and keynote-level talks.",
     ),
     speakerIds: ["nguyen-tran-thuat", "le-van-hai"],
   },
   {
     id: "parallel-session-2",
-    day: L("Day 2", "NgÃ y 2", "Day 2"),
+    day: L("Day 2", "Ngày 2", "Day 2"),
     date: S("September 21, 2026"),
     time: "10:45 - 12:00",
     title: S("Parallel Session 2"),
     themeId: "Technical tracks",
-    theme: L("Technical tracks", "CÃ¡c track ká»¹ thuáº­t", "Technical tracks"),
+    theme: L("Technical tracks", "Các track kỹ thuật", "Technical tracks"),
     status: "draft",
     chairs: ["Track chairs"],
     summary: L(
       "Technical sessions continuing across the defined thematic tracks.",
-      "CÃ¡c phiÃªn ká»¹ thuáº­t tiáº¿p tá»¥c triá»ƒn khai theo cÃ¡c track chá»§ Ä‘á» Ä‘Ã£ xÃ¡c láº­p.",
+      "Các phiên kỹ thuật tiếp tục triển khai theo các track chủ đề đã xác lập.",
       "Technical sessions continuing across the defined thematic tracks.",
     ),
     speakerIds: ["bui-duy-hieu", "nguyen-ngoc-linh"],
   },
   {
     id: "luncheon-session-2",
-    day: L("Day 2", "NgÃ y 2", "Day 2"),
+    day: L("Day 2", "Ngày 2", "Day 2"),
     date: S("September 21, 2026"),
     time: "12:00 - 13:30",
     title: S("Lunch Break / Luncheon Session"),
     themeId: "Networking",
-    theme: L("Networking", "Káº¿t ná»‘i", "Networking"),
+    theme: L("Networking", "Kết nối", "Networking"),
     status: "draft",
     chairs: [],
     summary: L(
       "Optional sponsor-hosted luncheon or focused networking format.",
-      "Khung luncheon cÃ³ thá»ƒ do nhÃ  tÃ i trá»£ Ä‘á»“ng hÃ nh hoáº·c Ä‘Æ°á»£c váº­n hÃ nh nhÆ° má»™t phiÃªn networking táº­p trung.",
+      "Khung luncheon có thể do nhà tài trợ đồng hành hoặc được vận hành như một phiên networking tập trung.",
       "Optional sponsor-hosted luncheon or focused networking format.",
     ),
     speakerIds: [],
   },
   {
     id: "plenary-session-3",
-    day: L("Day 2", "NgÃ y 2", "Day 2"),
+    day: L("Day 2", "Ngày 2", "Day 2"),
     date: S("September 21, 2026"),
     time: "13:30 - 15:00",
     title: S("Plenary Session 3 / Poster Session"),
     themeId: "Plenary and opening",
-    theme: L("Plenary and opening", "Khai máº¡c vÃ  plenary", "Plenary and opening"),
+    theme: L("Plenary and opening", "Khai mạc và plenary", "Plenary and opening"),
     status: "draft",
     chairs: ["Program committee"],
     summary: L(
       "Option under discussion: a plenary talk plus a poster session in the afternoon block.",
-      "PhÆ°Æ¡ng Ã¡n Ä‘ang Ä‘Æ°á»£c tháº£o luáº­n: má»™t bÃ i plenary káº¿t há»£p vá»›i poster session trong khung buá»•i chiá»u.",
+      "Phương án đang được thảo luận: một bài plenary kết hợp với poster session trong khung buổi chiều.",
       "Option under discussion: a plenary talk plus a poster session in the afternoon block.",
     ),
     speakerIds: [],
   },
   {
     id: "parallel-session-3",
-    day: L("Day 2", "NgÃ y 2", "Day 2"),
+    day: L("Day 2", "Ngày 2", "Day 2"),
     date: S("September 21, 2026"),
     time: "15:15 - 17:00",
     title: S("Parallel Session 3"),
     themeId: "Technical tracks",
-    theme: L("Technical tracks", "CÃ¡c track ká»¹ thuáº­t", "Technical tracks"),
+    theme: L("Technical tracks", "Các track kỹ thuật", "Technical tracks"),
     status: "draft",
     chairs: ["Track chairs"],
     summary: L(
       "Final parallel technical block before closing and banquet.",
-      "Khá»‘i ká»¹ thuáº­t song song cuá»‘i cÃ¹ng trÆ°á»›c phiÃªn báº¿ máº¡c vÃ  banquet.",
+      "Khối kỹ thuật song song cuối cùng trước phiên bế mạc và banquet.",
       "Final parallel technical block before closing and banquet.",
     ),
     speakerIds: ["nguyen-chung-hoa", "dang-thanh-tu"],
   },
   {
     id: "closing-banquet",
-    day: L("Day 2", "NgÃ y 2", "Day 2"),
+    day: L("Day 2", "Ngày 2", "Day 2"),
     date: S("September 21, 2026"),
     time: "17:30 - onward",
     title: S("Closing and Banquet"),
     themeId: "Networking",
-    theme: L("Networking", "Káº¿t ná»‘i", "Networking"),
+    theme: L("Networking", "Kết nối", "Networking"),
     status: "updated",
     chairs: ["Organizing committee"],
     summary: L(
       "Closing remarks, awards, partner recognition and banquet networking.",
-      "PhÃ¡t biá»ƒu báº¿ máº¡c, trao ghi nháº­n, vinh danh Ä‘á»‘i tÃ¡c vÃ  networking táº¡i banquet.",
+      "Phát biểu bế mạc, trao ghi nhận, vinh danh đối tác và networking tại banquet.",
       "Closing remarks, awards, partner recognition and banquet networking.",
     ),
     speakerIds: ["nguyen-hoang-oanh", "huynh-van-nhat"],
   },
   {
     id: "site-visit-am",
-    day: L("Day 3", "NgÃ y 3", "Day 3"),
+    day: L("Day 3", "Ngày 3", "Day 3"),
     date: S("September 22, 2026"),
     time: "AM",
     title: S("Site Visiting"),
@@ -925,14 +921,14 @@ export const programSessions: ProgramSession[] = [
     chairs: ["Local committee"],
     summary: L(
       "Visits to semiconductor-related facilities, laboratories, innovation centers or industrial parks.",
-      "ChÆ°Æ¡ng trÃ¬nh thÄƒm cÆ¡ sá»Ÿ liÃªn quan Ä‘áº¿n bÃ¡n dáº«n, phÃ²ng thÃ­ nghiá»‡m, trung tÃ¢m Ä‘á»•i má»›i sÃ¡ng táº¡o hoáº·c khu cÃ´ng nghiá»‡p.",
+      "Chương trình thăm cơ sở liên quan đến bán dẫn, phòng thí nghiệm, trung tâm đổi mới sáng tạo hoặc khu công nghiệp.",
       "Visits to semiconductor-related facilities, laboratories, innovation centers or industrial parks.",
     ),
     speakerIds: [],
   },
   {
     id: "site-visit-pm",
-    day: L("Day 3", "NgÃ y 3", "Day 3"),
+    day: L("Day 3", "Ngày 3", "Day 3"),
     date: S("September 22, 2026"),
     time: "PM",
     title: S("Site Visiting"),
@@ -942,49 +938,49 @@ export const programSessions: ProgramSession[] = [
     chairs: ["Local committee"],
     summary: L(
       "Continuation of technical and ecosystem visits with partner meetings.",
-      "Tiáº¿p tá»¥c cÃ¡c chuyáº¿n thÄƒm ká»¹ thuáº­t, há»‡ sinh thÃ¡i vÃ  cÃ¡c buá»•i lÃ m viá»‡c vá»›i Ä‘á»‘i tÃ¡c.",
+      "Tiếp tục các chuyến thăm kỹ thuật, hệ sinh thái và các buổi làm việc với đối tác.",
       "Continuation of technical and ecosystem visits with partner meetings.",
     ),
     speakerIds: [],
   },
   {
     id: "nexus-session",
-    day: L("Day 4", "NgÃ y 4", "Day 4"),
+    day: L("Day 4", "Ngày 4", "Day 4"),
     date: S("September 23, 2026"),
     time: "AM",
     title: S("NEXUS Session"),
     themeId: "NEXUS and bilateral programs",
     theme: L(
       "NEXUS and bilateral programs",
-      "NEXUS vÃ  cÃ¡c chÆ°Æ¡ng trÃ¬nh song phÆ°Æ¡ng",
+      "NEXUS và các chương trình song phương",
       "NEXUS and bilateral programs",
     ),
     status: "updated",
     chairs: ["JST NEXUS"],
     summary: L(
       "Dedicated session for JST NEXUS teams and related bilateral collaboration discussions.",
-      "PhiÃªn chuyÃªn biá»‡t cho cÃ¡c nhÃ³m JST NEXUS vÃ  cÃ¡c tháº£o luáº­n há»£p tÃ¡c song phÆ°Æ¡ng liÃªn quan.",
+      "Phiên chuyên biệt cho các nhóm JST NEXUS và các thảo luận hợp tác song phương liên quan.",
       "Dedicated session for JST NEXUS teams and related bilateral collaboration discussions.",
     ),
     speakerIds: ["toshiro-hiramoto", "le-duc-anh", "bui-nguyen-quoc-trinh"],
   },
   {
     id: "follow-up-visits",
-    day: L("Day 4", "NgÃ y 4", "Day 4"),
+    day: L("Day 4", "Ngày 4", "Day 4"),
     date: S("September 23, 2026"),
     time: "PM",
     title: S("Follow-up Site Visit and Institutional Meetings"),
     themeId: "NEXUS and bilateral programs",
     theme: L(
       "NEXUS and bilateral programs",
-      "NEXUS vÃ  cÃ¡c chÆ°Æ¡ng trÃ¬nh song phÆ°Æ¡ng",
+      "NEXUS và các chương trình song phương",
       "NEXUS and bilateral programs",
     ),
     status: "draft",
     chairs: ["Organizing committee"],
     summary: L(
       "Follow-up site visits, institutional meetings and collaboration discussions.",
-      "CÃ¡c chuyáº¿n thÄƒm ná»‘i tiáº¿p, cuá»™c há»p cáº¥p tá»• chá»©c vÃ  tháº£o luáº­n há»£p tÃ¡c sau NEXUS session.",
+      "Các chuyến thăm nối tiếp, cuộc họp cấp tổ chức và thảo luận hợp tác sau NEXUS session.",
       "Follow-up site visits, institutional meetings and collaboration discussions.",
     ),
     speakerIds: [],
@@ -994,23 +990,23 @@ export const programSessions: ProgramSession[] = [
 export const programThemeFilters = [
   {
     id: "all",
-    label: L("All sessions", "ToÃ n bá»™ phiÃªn", "All sessions"),
+    label: L("All sessions", "Toàn bộ phiên", "All sessions"),
   },
   {
     id: "Plenary and opening",
-    label: L("Opening and plenary", "Khai máº¡c vÃ  plenary", "Opening and plenary"),
+    label: L("Opening and plenary", "Khai mạc và plenary", "Opening and plenary"),
   },
   {
     id: "Academic and talent",
-    label: L("Talent and lecture", "NhÃ¢n lá»±c vÃ  bÃ i giáº£ng", "Talent and lecture"),
+    label: L("Talent and lecture", "Nhân lực và bài giảng", "Talent and lecture"),
   },
   {
     id: "Technical tracks",
-    label: L("Technical tracks", "Track ká»¹ thuáº­t", "Technical tracks"),
+    label: L("Technical tracks", "Track kỹ thuật", "Technical tracks"),
   },
   {
     id: "Networking",
-    label: L("Networking", "Káº¿t ná»‘i", "Networking"),
+    label: L("Networking", "Kết nối", "Networking"),
   },
   {
     id: "Site visits",
@@ -1024,83 +1020,83 @@ export const programThemeFilters = [
 
 export const programArchitecture: ProgramArchitectureItem[] = [
   {
-    title: L("Scientific sessions", "PhiÃªn khoa há»c", "Scientific sessions"),
+    title: L("Scientific sessions", "Phiên khoa học", "Scientific sessions"),
     description: L(
       "Plenary, invited and contributed talks across semiconductor research themes.",
-      "CÃ¡c bÃ i trÃ¬nh bÃ y plenary, invited vÃ  contributed tráº£i trÃªn cÃ¡c chá»§ Ä‘á» nghiÃªn cá»©u bÃ¡n dáº«n.",
+      "Các bài trình bày plenary, invited và contributed trải trên các chủ đề nghiên cứu bán dẫn.",
       "Plenary, invited and contributed talks across semiconductor research themes.",
     ),
     audience: L(
       "Researchers, faculty, JST NEXUS teams and graduate students",
-      "NhÃ  nghiÃªn cá»©u, giáº£ng viÃªn, nhÃ³m JST NEXUS vÃ  há»c viÃªn sau Ä‘áº¡i há»c",
+      "Nhà nghiên cứu, giảng viên, nhóm JST NEXUS và học viên sau đại học",
       "Researchers, faculty, JST NEXUS teams and graduate students",
     ),
   },
   {
     title: L(
       "Parallel technical tracks",
-      "CÃ¡c track ká»¹ thuáº­t song song",
+      "Các track kỹ thuật song song",
       "Parallel technical tracks",
     ),
     description: L(
       "Focused sessions on IC design, materials, devices, packaging, AI and quantum, and emerging frontiers.",
-      "CÃ¡c phiÃªn táº­p trung vÃ o thiáº¿t káº¿ IC, váº­t liá»‡u, linh kiá»‡n, Ä‘Ã³ng gÃ³i, AI vÃ  lÆ°á»£ng tá»­, cÃ¹ng cÃ¡c hÆ°á»›ng cÃ´ng nghá»‡ má»›i ná»•i.",
+      "Các phiên tập trung vào thiết kế IC, vật liệu, linh kiện, đóng gói, AI và lượng tử, cùng các hướng công nghệ mới nổi.",
       "Focused sessions on IC design, materials, devices, packaging, AI and quantum, and emerging frontiers.",
     ),
     audience: L(
       "Researchers, engineers, students and companies",
-      "NhÃ  nghiÃªn cá»©u, ká»¹ sÆ°, sinh viÃªn vÃ  doanh nghiá»‡p",
+      "Nhà nghiên cứu, kỹ sư, sinh viên và doanh nghiệp",
       "Researchers, engineers, students and companies",
     ),
   },
   {
     title: L(
       "Lecture and career session",
-      "BÃ i giáº£ng vÃ  Ä‘á»‹nh hÆ°á»›ng nghá» nghiá»‡p",
+      "Bài giảng và định hướng nghề nghiệp",
       "Lecture and career session",
     ),
     description: L(
       "Introductory and advanced lectures, study-abroad guidance, job orientation and Q&A.",
-      "BÃ i giáº£ng ná»n táº£ng vÃ  nÃ¢ng cao, hÆ°á»›ng dáº«n du há»c, Ä‘á»‹nh hÆ°á»›ng viá»‡c lÃ m vÃ  há»i Ä‘Ã¡p.",
+      "Bài giảng nền tảng và nâng cao, hướng dẫn du học, định hướng việc làm và hỏi đáp.",
       "Introductory and advanced lectures, study-abroad guidance, job orientation and Q&A.",
     ),
     audience: L(
       "Students, young researchers, employers and universities",
-      "Sinh viÃªn, nhÃ  nghiÃªn cá»©u tráº», Ä‘Æ¡n vá»‹ tuyá»ƒn dá»¥ng vÃ  trÆ°á»ng Ä‘áº¡i há»c",
+      "Sinh viên, nhà nghiên cứu trẻ, đơn vị tuyển dụng và trường đại học",
       "Students, young researchers, employers and universities",
     ),
   },
   {
     title: L(
       "Industry and policy dialogue",
-      "Äá»‘i thoáº¡i cÃ´ng nghiá»‡p vÃ  chÃ­nh sÃ¡ch",
+      "Đối thoại công nghiệp và chính sách",
       "Industry and policy dialogue",
     ),
     description: L(
       "Panel and networking sessions on collaboration, workforce development and ecosystem coordination.",
-      "CÃ¡c panel vÃ  phiÃªn networking vá» há»£p tÃ¡c, phÃ¡t triá»ƒn nguá»“n nhÃ¢n lá»±c vÃ  Ä‘iá»u phá»‘i há»‡ sinh thÃ¡i.",
+      "Các panel và phiên networking về hợp tác, phát triển nguồn nhân lực và điều phối hệ sinh thái.",
       "Panel and networking sessions on collaboration, workforce development and ecosystem coordination.",
     ),
     audience: L(
       "Companies, public agencies, innovation centers and universities",
-      "Doanh nghiá»‡p, cÆ¡ quan cÃ´ng, trung tÃ¢m Ä‘á»•i má»›i sÃ¡ng táº¡o vÃ  trÆ°á»ng Ä‘áº¡i há»c",
+      "Doanh nghiệp, cơ quan công, trung tâm đổi mới sáng tạo và trường đại học",
       "Companies, public agencies, innovation centers and universities",
     ),
   },
   {
     title: L(
       "Site visits and NEXUS session",
-      "Site visit vÃ  NEXUS session",
+      "Site visit và NEXUS session",
       "Site visits and NEXUS session",
     ),
     description: L(
       "Visits to local ecosystem sites and a dedicated session for JST NEXUS teams.",
-      "ChÆ°Æ¡ng trÃ¬nh thÄƒm cÃ¡c Ä‘iá»ƒm trong há»‡ sinh thÃ¡i táº¡i Ä‘á»‹a phÆ°Æ¡ng vÃ  phiÃªn chuyÃªn biá»‡t cho cÃ¡c nhÃ³m JST NEXUS.",
+      "Chương trình thăm các điểm trong hệ sinh thái tại địa phương và phiên chuyên biệt cho các nhóm JST NEXUS.",
       "Visits to local ecosystem sites and a dedicated session for JST NEXUS teams.",
     ),
     audience: L(
       "Invited participants, NEXUS teams and strategic partners",
-      "KhÃ¡ch má»i, cÃ¡c nhÃ³m NEXUS vÃ  Ä‘á»‘i tÃ¡c chiáº¿n lÆ°á»£c",
+      "Khách mời, các nhóm NEXUS và đối tác chiến lược",
       "Invited participants, NEXUS teams and strategic partners",
     ),
   },
@@ -1110,12 +1106,12 @@ export const technicalThemes: TechnicalTheme[] = [
   {
     name: L(
       "Integrated Circuit Design and Verification",
-      "Thiáº¿t káº¿ vÃ  kiá»ƒm chá»©ng máº¡ch tÃ­ch há»£p",
+      "Thiết kế và kiểm chứng mạch tích hợp",
       "Integrated Circuit Design and Verification",
     ),
     scope: L(
       "Design methodology, verification, EDA, hardware systems and circuit technologies.",
-      "PhÆ°Æ¡ng phÃ¡p thiáº¿t káº¿, kiá»ƒm chá»©ng, EDA, há»‡ thá»‘ng pháº§n cá»©ng vÃ  cÃ¡c cÃ´ng nghá»‡ máº¡ch.",
+      "Phương pháp thiết kế, kiểm chứng, EDA, hệ thống phần cứng và các công nghệ mạch.",
       "Design methodology, verification, EDA, hardware systems and circuit technologies.",
     ),
     chairs: ["Prof. Tran Xuan Tu", "Dr. Bui Duy Hieu"],
@@ -1123,12 +1119,12 @@ export const technicalThemes: TechnicalTheme[] = [
   {
     name: L(
       "Optoelectronic Devices and Semiconductor Chip Technology",
-      "Linh kiá»‡n quang Ä‘iá»‡n tá»­ vÃ  cÃ´ng nghá»‡ chip bÃ¡n dáº«n",
+      "Linh kiện quang điện tử và công nghệ chip bán dẫn",
       "Optoelectronic Devices and Semiconductor Chip Technology",
     ),
     scope: L(
       "Optoelectronic devices, integrated chip technologies and device applications.",
-      "Linh kiá»‡n quang Ä‘iá»‡n tá»­, cÃ´ng nghá»‡ chip tÃ­ch há»£p vÃ  cÃ¡c á»©ng dá»¥ng linh kiá»‡n.",
+      "Linh kiện quang điện tử, công nghệ chip tích hợp và các ứng dụng linh kiện.",
       "Optoelectronic devices, integrated chip technologies and device applications.",
     ),
     chairs: ["Assoc. Prof. Dr. Tran Quoc Tien", "Assoc. Prof. Dr. Dao Thanh Toan"],
@@ -1136,12 +1132,12 @@ export const technicalThemes: TechnicalTheme[] = [
   {
     name: L(
       "Advanced Materials Design and Smart Processing",
-      "Thiáº¿t káº¿ váº­t liá»‡u tiÃªn tiáº¿n vÃ  xá»­ lÃ½ thÃ´ng minh",
+      "Thiết kế vật liệu tiên tiến và xử lý thông minh",
       "Advanced Materials Design and Smart Processing",
     ),
     scope: L(
       "Silicon, SiC, compound materials, smart fabrication and materials innovation.",
-      "Silicon, SiC, váº­t liá»‡u há»£p cháº¥t, cháº¿ táº¡o thÃ´ng minh vÃ  Ä‘á»•i má»›i váº­t liá»‡u.",
+      "Silicon, SiC, vật liệu hợp chất, chế tạo thông minh và đổi mới vật liệu.",
       "Silicon, SiC, compound materials, smart fabrication and materials innovation.",
     ),
     chairs: [
@@ -1153,12 +1149,12 @@ export const technicalThemes: TechnicalTheme[] = [
   {
     name: L(
       "Advanced Packaging and Testing",
-      "ÄÃ³ng gÃ³i vÃ  kiá»ƒm thá»­ tiÃªn tiáº¿n",
+      "Đóng gói và kiểm thử tiên tiến",
       "Advanced Packaging and Testing",
     ),
     scope: L(
       "Packaging architectures, reliability, testing, characterization and production readiness.",
-      "Kiáº¿n trÃºc Ä‘Ã³ng gÃ³i, Ä‘á»™ tin cáº­y, kiá»ƒm thá»­, Ä‘áº·c trÆ°ng hÃ³a vÃ  má»©c sáºµn sÃ ng sáº£n xuáº¥t.",
+      "Kiến trúc đóng gói, độ tin cậy, kiểm thử, đặc trưng hóa và mức sẵn sàng sản xuất.",
       "Packaging architectures, reliability, testing, characterization and production readiness.",
     ),
     chairs: ["Assoc. Prof. Dr. Nguyen Tran Thuat", "Assoc. Prof. Dr. Pham Van Thanh"],
@@ -1166,12 +1162,12 @@ export const technicalThemes: TechnicalTheme[] = [
   {
     name: L(
       "AI and Quantum Computing in Semiconductors",
-      "AI vÃ  Ä‘iá»‡n toÃ¡n lÆ°á»£ng tá»­ trong bÃ¡n dáº«n",
+      "AI và điện toán lượng tử trong bán dẫn",
       "AI and Quantum Computing in Semiconductors",
     ),
     scope: L(
       "Semiconductor technologies for AI, quantum computing, spintronics and emerging compute.",
-      "CÃ¡c cÃ´ng nghá»‡ bÃ¡n dáº«n cho AI, Ä‘iá»‡n toÃ¡n lÆ°á»£ng tá»­, spintronics vÃ  cÃ¡c hÆ°á»›ng tÃ­nh toÃ¡n má»›i ná»•i.",
+      "Các công nghệ bán dẫn cho AI, điện toán lượng tử, spintronics và các hướng tính toán mới nổi.",
       "Semiconductor technologies for AI, quantum computing, spintronics and emerging compute.",
     ),
     chairs: ["Assoc. Prof. Dr. Le Van Lich", "Dr. Nguyen Ngoc Linh"],
@@ -1179,12 +1175,12 @@ export const technicalThemes: TechnicalTheme[] = [
   {
     name: L(
       "Emerging Technologies in Semiconductor Frontiers",
-      "CÃ¡c cÃ´ng nghá»‡ má»›i ná»•i á»Ÿ tuyáº¿n Ä‘áº§u bÃ¡n dáº«n",
+      "Các công nghệ mới nổi ở tuyến đầu bán dẫn",
       "Emerging Technologies in Semiconductor Frontiers",
     ),
     scope: L(
       "Nitrides, organic devices, smart sensors and frontier semiconductor platforms.",
-      "Nitride, linh kiá»‡n há»¯u cÆ¡, cáº£m biáº¿n thÃ´ng minh vÃ  cÃ¡c ná»n táº£ng bÃ¡n dáº«n tuyáº¿n Ä‘áº§u.",
+      "Nitride, linh kiện hữu cơ, cảm biến thông minh và các nền tảng bán dẫn tuyến đầu.",
       "Nitrides, organic devices, smart sensors and frontier semiconductor platforms.",
     ),
     chairs: ["Dr. Le Van Hai", "Prof. Dr. Nguyen Chung Hoa"],
@@ -1192,12 +1188,12 @@ export const technicalThemes: TechnicalTheme[] = [
   {
     name: L(
       "Human Resource Development and Academic-Industrial Collaboration",
-      "PhÃ¡t triá»ƒn nguá»“n nhÃ¢n lá»±c vÃ  há»£p tÃ¡c há»c thuáº­t - cÃ´ng nghiá»‡p",
+      "Phát triển nguồn nhân lực và hợp tác học thuật - công nghiệp",
       "Human Resource Development and Academic-Industrial Collaboration",
     ),
     scope: L(
       "Education, workforce development, internships, hiring pathways and joint training.",
-      "GiÃ¡o dá»¥c, phÃ¡t triá»ƒn nhÃ¢n lá»±c, thá»±c táº­p, con Ä‘Æ°á»ng tuyá»ƒn dá»¥ng vÃ  Ä‘Ã o táº¡o chung.",
+      "Giáo dục, phát triển nhân lực, thực tập, con đường tuyển dụng và đào tạo chung.",
       "Education, workforce development, internships, hiring pathways and joint training.",
     ),
     chairs: ["Dr. Dang Thanh Tu", "Dr. Luong Minh Phuong"],
@@ -1209,17 +1205,17 @@ export const implementationTimeline: TimelineItem[] = [
     period: "April 2026",
     milestones: L(
       "Confirm organizing structure, refine partner proposal, decide sponsorship targets and shortlist venues.",
-      "XÃ¡c nháº­n cáº¥u trÃºc tá»• chá»©c, hoÃ n thiá»‡n proposal Ä‘á»‘i tÃ¡c, quyáº¿t Ä‘á»‹nh má»¥c tiÃªu tÃ i trá»£ vÃ  shortlist Ä‘á»‹a Ä‘iá»ƒm.",
+      "Xác nhận cấu trúc tổ chức, hoàn thiện proposal đối tác, quyết định mục tiêu tài trợ và shortlist địa điểm.",
       "Confirm organizing structure, refine partner proposal, decide sponsorship targets and shortlist venues.",
     ),
     owner: L(
       "Conference chairs, organizing committee and local committee",
-      "Chá»§ trÃ¬ há»™i nghá»‹, organizing committee vÃ  local committee",
+      "Chủ trì hội nghị, organizing committee và local committee",
       "Conference chairs, organizing committee and local committee",
     ),
     output: L(
       "Updated proposal, outreach list and venue comparison",
-      "Proposal cáº­p nháº­t, danh sÃ¡ch outreach vÃ  so sÃ¡nh Ä‘á»‹a Ä‘iá»ƒm",
+      "Proposal cập nhật, danh sách outreach và so sánh địa điểm",
       "Updated proposal, outreach list and venue comparison",
     ),
   },
@@ -1227,17 +1223,17 @@ export const implementationTimeline: TimelineItem[] = [
     period: "May 2026",
     milestones: L(
       "Launch sponsor outreach, issue speaker invitations and confirm tracks and session chairs.",
-      "Triá»ƒn khai outreach nhÃ  tÃ i trá»£, gá»­i thÆ° má»i diá»…n giáº£ vÃ  xÃ¡c nháº­n track cÃ¹ng session chair.",
+      "Triển khai outreach nhà tài trợ, gửi thư mời diễn giả và xác nhận track cùng session chair.",
       "Launch sponsor outreach, issue speaker invitations and confirm tracks and session chairs.",
     ),
     owner: L(
       "Sponsorship committee and scientific committee",
-      "Sponsorship committee vÃ  scientific committee",
+      "Sponsorship committee và scientific committee",
       "Sponsorship committee and scientific committee",
     ),
     output: L(
       "Sponsor meetings, invited-speaker responses and draft program framework",
-      "Cuá»™c há»p vá»›i nhÃ  tÃ i trá»£, pháº£n há»“i diá»…n giáº£ má»i vÃ  khung chÆ°Æ¡ng trÃ¬nh dá»± tháº£o",
+      "Cuộc họp với nhà tài trợ, phản hồi diễn giả mời và khung chương trình dự thảo",
       "Sponsor meetings, invited-speaker responses and draft program framework",
     ),
   },
@@ -1245,17 +1241,17 @@ export const implementationTimeline: TimelineItem[] = [
     period: "June 2026",
     milestones: L(
       "Open abstract process, confirm preliminary sponsor commitments and define site-visit plan.",
-      "Má»Ÿ nháº­n abstract, xÃ¡c nháº­n cam káº¿t tÃ i trá»£ sÆ¡ bá»™ vÃ  xÃ¡c láº­p káº¿ hoáº¡ch site visit.",
+      "Mở nhận abstract, xác nhận cam kết tài trợ sơ bộ và xác lập kế hoạch site visit.",
       "Open abstract process, confirm preliminary sponsor commitments and define site-visit plan.",
     ),
     owner: L(
       "Scientific committee and local committee",
-      "Scientific committee vÃ  local committee",
+      "Scientific committee và local committee",
       "Scientific committee and local committee",
     ),
     output: L(
       "Call for abstracts, sponsor pipeline and site-visit shortlist",
-      "Call for abstracts, pipeline nhÃ  tÃ i trá»£ vÃ  shortlist site visit",
+      "Call for abstracts, pipeline nhà tài trợ và shortlist site visit",
       "Call for abstracts, sponsor pipeline and site-visit shortlist",
     ),
   },
@@ -1263,17 +1259,17 @@ export const implementationTimeline: TimelineItem[] = [
     period: "July 2026",
     milestones: L(
       "Review submissions, finalize keynote and plenary speakers, and confirm hybrid platform logistics.",
-      "RÃ  soÃ¡t bÃ i gá»­i, chá»‘t keynote vÃ  plenary speaker, Ä‘á»“ng thá»i xÃ¡c nháº­n logistics cho hybrid platform.",
+      "Rà soát bài gửi, chốt keynote và plenary speaker, đồng thời xác nhận logistics cho hybrid platform.",
       "Review submissions, finalize keynote and plenary speakers, and confirm hybrid platform logistics.",
     ),
     owner: L(
       "Program chairs, local committee and secretariat",
-      "Program chairs, local committee vÃ  secretariat",
+      "Program chairs, local committee và secretariat",
       "Program chairs, local committee and secretariat",
     ),
     output: L(
       "Accepted talks, draft program and logistics plan",
-      "Danh sÃ¡ch bÃ i Ä‘Æ°á»£c chá»n, chÆ°Æ¡ng trÃ¬nh dá»± tháº£o vÃ  káº¿ hoáº¡ch háº­u cáº§n",
+      "Danh sách bài được chọn, chương trình dự thảo và kế hoạch hậu cần",
       "Accepted talks, draft program and logistics plan",
     ),
   },
@@ -1281,17 +1277,17 @@ export const implementationTimeline: TimelineItem[] = [
     period: "August 2026",
     milestones: L(
       "Publish tentative program, confirm travel guidance and collect sponsor materials.",
-      "CÃ´ng bá»‘ chÆ°Æ¡ng trÃ¬nh dá»± kiáº¿n, chá»‘t hÆ°á»›ng dáº«n di chuyá»ƒn vÃ  thu tháº­p materials cá»§a nhÃ  tÃ i trá»£.",
+      "Công bố chương trình dự kiến, chốt hướng dẫn di chuyển và thu thập materials của nhà tài trợ.",
       "Publish tentative program, confirm travel guidance and collect sponsor materials.",
     ),
     owner: L(
       "Secretariat, communications and sponsors",
-      "Ban thÆ° kÃ½, nhÃ³m truyá»n thÃ´ng vÃ  nhÃ  tÃ i trá»£",
+      "Ban thư ký, nhóm truyền thông và nhà tài trợ",
       "Secretariat, communications and sponsors",
     ),
     output: L(
       "Program booklet draft, sponsor logos and registration updates",
-      "Báº£n tháº£o booklet chÆ°Æ¡ng trÃ¬nh, logo nhÃ  tÃ i trá»£ vÃ  cáº­p nháº­t Ä‘Äƒng kÃ½",
+      "Bản thảo booklet chương trình, logo nhà tài trợ và cập nhật đăng ký",
       "Program booklet draft, sponsor logos and registration updates",
     ),
   },
@@ -1299,17 +1295,17 @@ export const implementationTimeline: TimelineItem[] = [
     period: "September 1-19, 2026",
     milestones: L(
       "Finalize scripts, badges, signage, banquet, AV, hybrid testing and volunteer briefing.",
-      "Chá»‘t script phiÃªn há»p, badge, signage, banquet, AV, kiá»ƒm thá»­ hybrid vÃ  briefing cho tÃ¬nh nguyá»‡n viÃªn.",
+      "Chốt script phiên họp, badge, signage, banquet, AV, kiểm thử hybrid và briefing cho tình nguyện viên.",
       "Finalize scripts, badges, signage, banquet, AV, hybrid testing and volunteer briefing.",
     ),
     owner: L(
       "Local committee and secretariat",
-      "Local committee vÃ  ban thÆ° kÃ½",
+      "Local committee và ban thư ký",
       "Local committee and secretariat",
     ),
     output: L(
       "Final run-of-show and production checklist",
-      "Run-of-show cuá»‘i cÃ¹ng vÃ  checklist triá»ƒn khai",
+      "Run-of-show cuối cùng và checklist triển khai",
       "Final run-of-show and production checklist",
     ),
   },
@@ -1317,13 +1313,13 @@ export const implementationTimeline: TimelineItem[] = [
     period: "September 20-23, 2026",
     milestones: L(
       "Execute the symposium, sponsor activities, speaker hosting, site visits and NEXUS session.",
-      "Triá»ƒn khai há»™i nghá»‹, hoáº¡t Ä‘á»™ng vá»›i nhÃ  tÃ i trá»£, Ä‘Ã³n tiáº¿p diá»…n giáº£, site visit vÃ  NEXUS session.",
+      "Triển khai hội nghị, hoạt động với nhà tài trợ, đón tiếp diễn giả, site visit và NEXUS session.",
       "Execute the symposium, sponsor activities, speaker hosting, site visits and NEXUS session.",
     ),
-    owner: L("All committees", "ToÃ n bá»™ cÃ¡c committee", "All committees"),
+    owner: L("All committees", "Toàn bộ các committee", "All committees"),
     output: L(
       "Conference delivery, media records and participation data",
-      "Tá»• chá»©c há»™i nghá»‹, há»“ sÆ¡ truyá»n thÃ´ng vÃ  dá»¯ liá»‡u tham dá»±",
+      "Tổ chức hội nghị, hồ sơ truyền thông và dữ liệu tham dự",
       "Conference delivery, media records and participation data",
     ),
   },
@@ -1331,17 +1327,17 @@ export const implementationTimeline: TimelineItem[] = [
     period: "October 2026",
     milestones: L(
       "Prepare post-event report, share sponsor deliverables, collect feedback and develop follow-up collaborations.",
-      "HoÃ n thiá»‡n bÃ¡o cÃ¡o sau sá»± kiá»‡n, bÃ n giao deliverables cho nhÃ  tÃ i trá»£, láº¥y pháº£n há»“i vÃ  phÃ¡t triá»ƒn há»£p tÃ¡c ná»‘i tiáº¿p.",
+      "Hoàn thiện báo cáo sau sự kiện, bàn giao deliverables cho nhà tài trợ, lấy phản hồi và phát triển hợp tác nối tiếp.",
       "Prepare post-event report, share sponsor deliverables, collect feedback and develop follow-up collaborations.",
     ),
     owner: L(
       "Organizing committee and secretariat",
-      "Organizing committee vÃ  ban thÆ° kÃ½",
+      "Organizing committee và ban thư ký",
       "Organizing committee and secretariat",
     ),
     output: L(
       "Post-event report and partner follow-up plan",
-      "BÃ¡o cÃ¡o sau sá»± kiá»‡n vÃ  káº¿ hoáº¡ch follow-up Ä‘á»‘i tÃ¡c",
+      "Báo cáo sau sự kiện và kế hoạch follow-up đối tác",
       "Post-event report and partner follow-up plan",
     ),
   },
@@ -1350,27 +1346,27 @@ export const implementationTimeline: TimelineItem[] = [
 export const criticalDecisions = [
   L(
     "Venue choice and budget envelope, including whether to prioritize VNU-VJU University or Sheraton Hanoi West Hotel.",
-    "Lá»±a chá»n Ä‘á»‹a Ä‘iá»ƒm vÃ  khung ngÃ¢n sÃ¡ch, bao gá»“m quyáº¿t Ä‘á»‹nh Æ°u tiÃªn VNU-VJU University hay Sheraton Hanoi West Hotel.",
+    "Lựa chọn địa điểm và khung ngân sách, bao gồm quyết định ưu tiên VNU-VJU University hay Sheraton Hanoi West Hotel.",
     "Venue choice and budget envelope, including whether to prioritize VNU-VJU University or Sheraton Hanoi West Hotel.",
   ),
   L(
     "Sponsor package definitions and the approval process for partner benefits.",
-    "Äá»‹nh nghÄ©a gÃ³i tÃ i trá»£ vÃ  quy trÃ¬nh phÃª duyá»‡t quyá»n lá»£i Ä‘á»‘i tÃ¡c.",
+    "Định nghĩa gói tài trợ và quy trình phê duyệt quyền lợi đối tác.",
     "Sponsor package definitions and the approval process for partner benefits.",
   ),
   L(
     "Confirmed keynote and invited-speaker list, with travel support policy if applicable.",
-    "Danh sÃ¡ch keynote vÃ  invited speaker Ä‘Ã£ xÃ¡c nháº­n, kÃ¨m chÃ­nh sÃ¡ch há»— trá»£ di chuyá»ƒn náº¿u Ã¡p dá»¥ng.",
+    "Danh sách keynote và invited speaker đã xác nhận, kèm chính sách hỗ trợ di chuyển nếu áp dụng.",
     "Confirmed keynote and invited-speaker list, with travel support policy if applicable.",
   ),
   L(
     "Site-visit hosts and access permissions, especially for industrial or laboratory visits.",
-    "ÄÆ¡n vá»‹ tiáº¿p Ä‘Ã³n site visit vÃ  quyá»n truy cáº­p, Ä‘áº·c biá»‡t vá»›i cÃ¡c chuyáº¿n thÄƒm cÃ´ng nghiá»‡p hoáº·c phÃ²ng thÃ­ nghiá»‡m.",
+    "Đơn vị tiếp đón site visit và quyền truy cập, đặc biệt với các chuyến thăm công nghiệp hoặc phòng thí nghiệm.",
     "Site-visit hosts and access permissions, especially for industrial or laboratory visits.",
   ),
   L(
     "Hybrid-event platform, recording policy and language / interpretation support.",
-    "Ná»n táº£ng hybrid event, chÃ­nh sÃ¡ch ghi hÃ¬nh vÃ  há»— trá»£ ngÃ´n ngá»¯ / phiÃªn dá»‹ch.",
+    "Nền tảng hybrid event, chính sách ghi hình và hỗ trợ ngôn ngữ / phiên dịch.",
     "Hybrid-event platform, recording policy and language / interpretation support.",
   ),
 ];
@@ -1378,32 +1374,32 @@ export const criticalDecisions = [
 export const expectedOutcomes = [
   L(
     "New Vietnam-Japan research links, joint proposals, NEXUS-related collaboration and follow-up workshops.",
-    "CÃ¡c liÃªn káº¿t nghiÃªn cá»©u má»›i giá»¯a Viá»‡t Nam vÃ  Nháº­t Báº£n, Ä‘á» xuáº¥t chung, há»£p tÃ¡c liÃªn quan NEXUS vÃ  workshop tiáº¿p ná»‘i.",
+    "Các liên kết nghiên cứu mới giữa Việt Nam và Nhật Bản, đề xuất chung, hợp tác liên quan NEXUS và workshop tiếp nối.",
     "New Vietnam-Japan research links, joint proposals, NEXUS-related collaboration and follow-up workshops.",
   ),
   L(
     "Student exposure to semiconductor careers, study-abroad pathways and industry opportunities.",
-    "Sinh viÃªn Ä‘Æ°á»£c tiáº¿p cáº­n cÃ¡c lá»™ trÃ¬nh nghá» nghiá»‡p bÃ¡n dáº«n, cÆ¡ há»™i du há»c vÃ  cÆ¡ há»™i tá»« doanh nghiá»‡p.",
+    "Sinh viên được tiếp cận các lộ trình nghề nghiệp bán dẫn, cơ hội du học và cơ hội từ doanh nghiệp.",
     "Student exposure to semiconductor careers, study-abroad pathways and industry opportunities.",
   ),
   L(
     "Structured contact between companies, universities and young researchers.",
-    "Káº¿t ná»‘i cÃ³ cáº¥u trÃºc giá»¯a doanh nghiá»‡p, trÆ°á»ng Ä‘áº¡i há»c vÃ  nhÃ  nghiÃªn cá»©u tráº».",
+    "Kết nối có cấu trúc giữa doanh nghiệp, trường đại học và nhà nghiên cứu trẻ.",
     "Structured contact between companies, universities and young researchers.",
   ),
   L(
     "Closer coordination among universities, agencies, innovation centers and semiconductor ecosystem stakeholders.",
-    "TÄƒng má»©c phá»‘i há»£p giá»¯a trÆ°á»ng Ä‘áº¡i há»c, cÆ¡ quan, trung tÃ¢m Ä‘á»•i má»›i sÃ¡ng táº¡o vÃ  cÃ¡c bÃªn trong há»‡ sinh thÃ¡i bÃ¡n dáº«n.",
+    "Tăng mức phối hợp giữa trường đại học, cơ quan, trung tâm đổi mới sáng tạo và các bên trong hệ sinh thái bán dẫn.",
     "Closer coordination among universities, agencies, innovation centers and semiconductor ecosystem stakeholders.",
   ),
   L(
     "Documented sponsor value through brand visibility, recruitment access and partner meetings.",
-    "GiÃ¡ trá»‹ Ä‘Æ°á»£c ghi nháº­n cho nhÃ  tÃ i trá»£ thÃ´ng qua Ä‘á»™ hiá»‡n diá»‡n thÆ°Æ¡ng hiá»‡u, kháº£ nÄƒng tiáº¿p cáº­n tuyá»ƒn dá»¥ng vÃ  cÃ¡c cuá»™c gáº·p Ä‘á»‘i tÃ¡c.",
+    "Giá trị được ghi nhận cho nhà tài trợ thông qua độ hiện diện thương hiệu, khả năng tiếp cận tuyển dụng và các cuộc gặp đối tác.",
     "Documented sponsor value through brand visibility, recruitment access and partner meetings.",
   ),
 ];
 
-export const speakers = [
+export const speakers: SpeakerRecord[] = [
   {
     id: "nguyen-hoang-oanh",
     name: "Dr. Nguyen Hoang Oanh",
@@ -1419,7 +1415,10 @@ export const speakers = [
     bio: S(
       "Named in the committee workbook as symposium chair and organizing-committee lead for VJSS 2026, representing the host university.",
     ),
-    image: makePlaceholderImage("Nguyen Hoang Oanh", "#991b1b"),
+    image: "/assets/speakers/nguyen-hoang-oanh.jpg",
+    imageAlt: S("Dr. Nguyen Hoang Oanh"),
+    imageStatus: "verified",
+    imageSource: "https://vju.ac.vn/wp-content/uploads/2023/10/2.-Nguyen-Hoang-Oanh.jpg",
   },
   {
     id: "toshiro-hiramoto",
@@ -1436,7 +1435,10 @@ export const speakers = [
     bio: S(
       "Listed in the outreach proposal as conference chair to confirm, with a central role in connecting VJSS 2026 to JST NEXUS activities.",
     ),
-    image: makePlaceholderImage("Toshiro Hiramoto", "#1d4ed8"),
+    image: "/assets/speakers/toshiro-hiramoto.jpg",
+    imageAlt: S("Prof. Toshiro Hiramoto"),
+    imageStatus: "verified",
+    imageSource: "https://www.vlsi.iis.u-tokyo.ac.jp/images/hiramoto.jpg",
   },
   {
     id: "le-duc-anh",
@@ -1453,7 +1455,10 @@ export const speakers = [
     bio: S(
       "Appears in the organizing structure and the suggested contact block, supporting academic coordination and speaker engagement.",
     ),
-    image: makePlaceholderImage("Le Duc Anh", "#0f766e"),
+    image: "/assets/speakers/le-duc-anh.jpg",
+    imageAlt: S("Assoc. Prof. Le Duc Anh"),
+    imageStatus: "verified",
+    imageSource: "https://cms.ee.t.u-tokyo.ac.jp/assets/re-deukku-ain.jpg",
   },
   {
     id: "bui-nguyen-quoc-trinh",
@@ -1468,7 +1473,10 @@ export const speakers = [
     bio: S(
       "Appears across the organizing, local and scientific rosters, and is named in the proposal's academic contact block.",
     ),
-    image: makePlaceholderImage("Bui Nguyen Quoc Trinh", "#7c3aed"),
+    image: "/assets/speakers/bui-nguyen-quoc-trinh.jpg",
+    imageAlt: S("Assoc. Prof. Dr. Bui Nguyen Quoc Trinh"),
+    imageStatus: "verified",
+    imageSource: "https://vju.ac.vn/wp-content/uploads/2023/10/PGS_TS_-Bui-Nguyen-Quoc-Trinh.jpg",
   },
   {
     id: "pham-tien-thanh",
@@ -1484,7 +1492,10 @@ export const speakers = [
     bio: S(
       "Listed in both the local committee and scientific committee, with responsibilities spanning operations and academic coordination.",
     ),
-    image: makePlaceholderImage("Pham Tien Thanh", "#b45309"),
+    image: "/assets/speakers/pham-tien-thanh.jpg",
+    imageAlt: S("Dr. Pham Tien Thanh"),
+    imageStatus: "verified",
+    imageSource: "https://vju.ac.vn/wp-content/uploads/2024/06/Dr.-Pham-Tien-Thanh.jpg",
   },
   {
     id: "tran-xuan-tu",
@@ -1666,7 +1677,10 @@ export const speakers = [
     bio: S(
       "Listed in the planning workbook under Human Resource Development and Academic-Industrial Collaboration.",
     ),
-    image: makePlaceholderImage("Luong Minh Phuong", "#6d28d9"),
+    image: "/assets/speakers/luong-minh-phuong.jpg",
+    imageAlt: S("Dr. Luong Minh Phuong"),
+    imageStatus: "verified",
+    imageSource: "https://vju.ac.vn/wp-content/uploads/2023/10/Luong-Minh-Phuong-scaled.jpg",
   },
   {
     id: "huynh-van-nhat",
@@ -1695,24 +1709,18 @@ export const featuredSpeakerIds = [
 ];
 
 export const speakerKindLabels = {
-  all: L("All", "Táº¥t cáº£", "All"),
-  government: L("Government / public", "CÆ¡ quan cÃ´ng", "Government / public"),
-  academia: L("Academia", "Há»c thuáº­t", "Academia"),
-  industry: L("Industry", "Doanh nghiá»‡p", "Industry"),
+  all: L("All", "Tất cả", "すべて"),
+  government: L("Government / public", "Cơ quan công", "公的機関"),
+  academia: L("Academia", "Học thuật", "学術"),
+  industry: L("Industry", "Doanh nghiệp", "産業界"),
 };
 
 export const speakerCountryLabels: Record<string, LocalizedText> = {
-  all: L("All locations", "Táº¥t cáº£ khu vá»±c", "All locations"),
-  Vietnam: L("Vietnam", "Viá»‡t Nam", "Vietnam"),
-  Japan: L("Japan", "Nháº­t Báº£n", "Japan"),
-  "Vietnam-Japan": L(
-    "Vietnam-Japan bridge",
-    "Cáº§u ná»‘i Viá»‡t Nam - Nháº­t Báº£n",
-    "Vietnam-Japan bridge",
-  ),
+  all: L("All locations", "Tất cả khu vực", "すべての地域"),
+  Vietnam: L("Vietnam", "Việt Nam", "ベトナム"),
+  Japan: L("Japan", "Nhật Bản", "日本"),
+  "Vietnam-Japan": L("Vietnam-Japan bridge", "Cầu nối Việt Nam - Nhật Bản", "日越ブリッジ"),
 };
-
-export type SpeakerRecord = (typeof speakers)[number];
 
 export const venueReference = {
   name: "Hanoi, Vietnam",
@@ -1721,7 +1729,7 @@ export const venueReference = {
   ),
   description: L(
     "Hanoi is the confirmed host city for the symposium, partner meetings, site visits and NEXUS activities.",
-    "HÃ  Ná»™i lÃ  thÃ nh phá»‘ chá»§ trÃ¬ Ä‘Ã£ Ä‘Æ°á»£c xÃ¡c nháº­n cho há»™i nghá»‹, cÃ¡c cuá»™c gáº·p Ä‘á»‘i tÃ¡c, site visit vÃ  hoáº¡t Ä‘á»™ng NEXUS.",
+    "Hà Nội là thành phố chủ trì đã được xác nhận cho hội nghị, các cuộc gặp đối tác, site visit và hoạt động NEXUS.",
     "Hanoi is the confirmed host city for the symposium, partner meetings, site visits and NEXUS activities.",
   ),
   mapEmbed: "https://maps.google.com/maps?q=Hanoi%20Vietnam&z=11&hl=en&t=m&output=embed&iwloc=near",
@@ -1730,26 +1738,26 @@ export const venueReference = {
 
 export const venueDirections = [
   {
-    title: L("Format and access", "HÃ¬nh thá»©c vÃ  tiáº¿p cáº­n", "Format and access"),
+    title: L("Format and access", "Hình thức và tiếp cận", "Format and access"),
     body: L(
       "The event is planned as an in-person conference with hybrid participation. Venue fit will be judged against room capacity, AV requirements and sponsor-supported activities.",
-      "Sá»± kiá»‡n Ä‘Æ°á»£c lÃªn káº¿ hoáº¡ch theo hÃ¬nh thá»©c trá»±c tiáº¿p káº¿t há»£p hybrid. Äá»‹a Ä‘iá»ƒm sáº½ Ä‘Æ°á»£c Ä‘Ã¡nh giÃ¡ theo sá»©c chá»©a, yÃªu cáº§u AV vÃ  kháº£ nÄƒng há»— trá»£ cÃ¡c hoáº¡t Ä‘á»™ng cÃ¹ng nhÃ  tÃ i trá»£.",
+      "Sự kiện được lên kế hoạch theo hình thức trực tiếp kết hợp hybrid. Địa điểm sẽ được đánh giá theo sức chứa, yêu cầu AV và khả năng hỗ trợ các hoạt động cùng nhà tài trợ.",
       "The event is planned as an in-person conference with hybrid participation. Venue fit will be judged against room capacity, AV requirements and sponsor-supported activities.",
     ),
   },
   {
-    title: L("Operational dependencies", "Phá»¥ thuá»™c váº­n hÃ nh", "Operational dependencies"),
+    title: L("Operational dependencies", "Phụ thuộc vận hành", "Operational dependencies"),
     body: L(
       "Hybrid platform, recording policy and language / interpretation support remain open decisions and will affect venue setup.",
-      "Ná»n táº£ng hybrid, chÃ­nh sÃ¡ch ghi hÃ¬nh vÃ  há»— trá»£ ngÃ´n ngá»¯ / phiÃªn dá»‹ch váº«n Ä‘ang chá» quyáº¿t Ä‘á»‹nh vÃ  sáº½ áº£nh hÆ°á»Ÿng trá»±c tiáº¿p Ä‘áº¿n cáº¥u hÃ¬nh Ä‘á»‹a Ä‘iá»ƒm.",
+      "Nền tảng hybrid, chính sách ghi hình và hỗ trợ ngôn ngữ / phiên dịch vẫn đang chờ quyết định và sẽ ảnh hưởng trực tiếp đến cấu hình địa điểm.",
       "Hybrid platform, recording policy and language / interpretation support remain open decisions and will affect venue setup.",
     ),
   },
   {
-    title: L("Site-visit integration", "TÃ­ch há»£p site visit", "Site-visit integration"),
+    title: L("Site-visit integration", "Tích hợp site visit", "Site-visit integration"),
     body: L(
       "September 22 and 23 are reserved for site visits, ecosystem meetings and the NEXUS session, so logistics planning must cover movement beyond the conference hall.",
-      "NgÃ y 22 vÃ  23/9 dÃ nh cho site visit, gáº·p gá»¡ há»‡ sinh thÃ¡i vÃ  NEXUS session, vÃ¬ váº­y káº¿ hoáº¡ch háº­u cáº§n pháº£i bao quÃ¡t cáº£ di chuyá»ƒn ngoÃ i khu vá»±c há»™i trÆ°á»ng.",
+      "Ngày 22 và 23/9 dành cho site visit, gặp gỡ hệ sinh thái và NEXUS session, vì vậy kế hoạch hậu cần phải bao quát cả di chuyển ngoài khu vực hội trường.",
       "September 22 and 23 are reserved for site visits, ecosystem meetings and the NEXUS session, so logistics planning must cover movement beyond the conference hall.",
     ),
   },
@@ -1760,7 +1768,7 @@ export const venueHotels = [
     area: S("Vietnam Japan University (VNU-VJU)"),
     description: L(
       "University-hosted option aligned with academic identity, campus-based scheduling and institutional visibility.",
-      "PhÆ°Æ¡ng Ã¡n tá»• chá»©c táº¡i trÆ°á»ng Ä‘áº¡i há»c, phÃ¹ há»£p vá»›i báº£n sáº¯c há»c thuáº­t, lá»‹ch trÃ¬nh trÃªn campus vÃ  má»©c Ä‘á»™ hiá»‡n diá»‡n thá»ƒ cháº¿.",
+      "Phương án tổ chức tại trường đại học, phù hợp với bản sắc học thuật, lịch trình trên campus và mức độ hiện diện thể chế.",
       "University-hosted option aligned with academic identity, campus-based scheduling and institutional visibility.",
     ),
   },
@@ -1768,7 +1776,7 @@ export const venueHotels = [
     area: S("Sheraton Hanoi West Hotel"),
     description: L(
       "Hotel-conference option aligned with hospitality support, sponsor hosting and compact event operations.",
-      "PhÆ°Æ¡ng Ã¡n khÃ¡ch sáº¡n - há»™i nghá»‹, phÃ¹ há»£p vá»›i há»— trá»£ lÆ°u trÃº, hoáº¡t Ä‘á»™ng tiáº¿p Ä‘Ã³n nhÃ  tÃ i trá»£ vÃ  váº­n hÃ nh sá»± kiá»‡n táº­p trung.",
+      "Phương án khách sạn - hội nghị, phù hợp với hỗ trợ lưu trú, hoạt động tiếp đón nhà tài trợ và vận hành sự kiện tập trung.",
       "Hotel-conference option aligned with hospitality support, sponsor hosting and compact event operations.",
     ),
   },
@@ -1776,7 +1784,7 @@ export const venueHotels = [
     area: S("Site-visit hosts"),
     description: L(
       "Local semiconductor facilities, laboratories, innovation centers or industrial parks remain under coordination for the September 22-23 program.",
-      "CÃ¡c cÆ¡ sá»Ÿ bÃ¡n dáº«n, phÃ²ng thÃ­ nghiá»‡m, trung tÃ¢m Ä‘á»•i má»›i sÃ¡ng táº¡o hoáº·c khu cÃ´ng nghiá»‡p táº¡i Ä‘á»‹a phÆ°Æ¡ng váº«n Ä‘ang Ä‘Æ°á»£c Ä‘iá»u phá»‘i cho chÆ°Æ¡ng trÃ¬nh ngÃ y 22-23/9.",
+      "Các cơ sở bán dẫn, phòng thí nghiệm, trung tâm đổi mới sáng tạo hoặc khu công nghiệp tại địa phương vẫn đang được điều phối cho chương trình ngày 22-23/9.",
       "Local semiconductor facilities, laboratories, innovation centers or industrial parks remain under coordination for the September 22-23 program.",
     ),
   },
@@ -1784,34 +1792,26 @@ export const venueHotels = [
 
 export const venueVisitorNotes = [
   {
-    audience: L("Delegates", "Äáº¡i biá»ƒu tham dá»±", "Delegates"),
+    audience: L("Delegates", "Đại biểu tham dự", "Delegates"),
     note: L(
       "Travel and access guidance should be published only after the venue and site-visit hosts are confirmed.",
-      "HÆ°á»›ng dáº«n di chuyá»ƒn vÃ  tiáº¿p cáº­n chá»‰ nÃªn cÃ´ng bá»‘ sau khi Ä‘á»‹a Ä‘iá»ƒm vÃ  Ä‘Æ¡n vá»‹ tiáº¿p Ä‘Ã³n site visit Ä‘Æ°á»£c xÃ¡c nháº­n.",
+      "Hướng dẫn di chuyển và tiếp cận chỉ nên công bố sau khi địa điểm và đơn vị tiếp đón site visit được xác nhận.",
       "Travel and access guidance should be published only after the venue and site-visit hosts are confirmed.",
     ),
   },
   {
-    audience: L(
-      "Sponsors and partners",
-      "NhÃ  tÃ i trá»£ vÃ  Ä‘á»‘i tÃ¡c",
-      "Sponsors and partners",
-    ),
+    audience: L("Sponsors and partners", "Nhà tài trợ và đối tác", "Sponsors and partners"),
     note: L(
       "The venue decision should consider luncheon formats, exhibition tables, partner meetings and recognition moments during opening and closing sessions.",
-      "Quyáº¿t Ä‘á»‹nh vá» Ä‘á»‹a Ä‘iá»ƒm cáº§n xÃ©t tá»›i khung luncheon, khu trÆ°ng bÃ y, cÃ¡c buá»•i gáº·p Ä‘á»‘i tÃ¡c vÃ  thá»i Ä‘iá»ƒm vinh danh trong phiÃªn khai máº¡c - báº¿ máº¡c.",
+      "Quyết định về địa điểm cần xét tới khung luncheon, khu trưng bày, các buổi gặp đối tác và thời điểm vinh danh trong phiên khai mạc - bế mạc.",
       "The venue decision should consider luncheon formats, exhibition tables, partner meetings and recognition moments during opening and closing sessions.",
     ),
   },
   {
-    audience: L(
-      "Speakers and committees",
-      "Diá»…n giáº£ vÃ  cÃ¡c committee",
-      "Speakers and committees",
-    ),
+    audience: L("Speakers and committees", "Diễn giả và các committee", "Speakers and committees"),
     note: L(
       "Travel support policy, recording consent and interpretation support should be finalized before formal confirmations are sent.",
-      "ChÃ­nh sÃ¡ch há»— trá»£ Ä‘i láº¡i, cháº¥p thuáº­n ghi hÃ¬nh vÃ  há»— trá»£ phiÃªn dá»‹ch nÃªn Ä‘Æ°á»£c chá»‘t trÆ°á»›c khi gá»­i xÃ¡c nháº­n chÃ­nh thá»©c.",
+      "Chính sách hỗ trợ đi lại, chấp thuận ghi hình và hỗ trợ phiên dịch nên được chốt trước khi gửi xác nhận chính thức.",
       "Travel support policy, recording consent and interpretation support should be finalized before formal confirmations are sent.",
     ),
   },
@@ -1820,97 +1820,130 @@ export const venueVisitorNotes = [
 export const ecosystemGroups: OrganizationGroup[] = [
   {
     id: "hosts",
-    title: L("Hosted by", "ÄÆ¡n vá»‹ chá»§ trÃ¬", "Hosted by"),
+    title: L("Hosted by", "Đơn vị chủ trì", "主催"),
     items: [
       {
         name: "Vietnam Japan University (VJU)",
-        meta: S("Host organization"),
+        meta: L("Host organization", "Đơn vị chủ trì", "主催機関"),
         description: L(
           "Primary host institution for the Hanoi edition and the operational anchor for venue planning and local coordination.",
-          "ÄÆ¡n vá»‹ chá»§ trÃ¬ chÃ­nh cá»§a phiÃªn báº£n HÃ  Ná»™i vÃ  lÃ  Ä‘áº§u má»‘i váº­n hÃ nh cho láº­p káº¿ hoáº¡ch Ä‘á»‹a Ä‘iá»ƒm cÅ©ng nhÆ° Ä‘iá»u phá»‘i táº¡i chá»—.",
+          "Đơn vị chủ trì chính của phiên bản Hà Nội và là đầu mối vận hành cho lập kế hoạch địa điểm cũng như điều phối tại chỗ.",
           "Primary host institution for the Hanoi edition and the operational anchor for venue planning and local coordination.",
         ),
+        link: "https://vju.ac.vn/",
+        logo: "/assets/organizations/vju-logo.png",
+        logoAlt: S("Vietnam Japan University logo"),
+        assetStatus: "verified",
+        assetSource: "https://vju.ac.vn/wp-content/uploads/2023/07/logo-2.png",
       },
       {
         name: "Association of Vietnamese Intellectuals in Japan (AVIJ)",
-        meta: S("Co-host network"),
+        meta: L("Co-host network", "Mạng lưới đồng chủ trì", "共同主催ネットワーク"),
         description: L(
           "Vietnam-Japan intellectual network supporting partner outreach and bilateral visibility.",
-          "Máº¡ng lÆ°á»›i trÃ­ thá»©c Viá»‡t Nam táº¡i Nháº­t há»— trá»£ outreach Ä‘á»‘i tÃ¡c vÃ  tÄƒng hiá»‡n diá»‡n song phÆ°Æ¡ng.",
+          "Mạng lưới trí thức Việt Nam tại Nhật hỗ trợ outreach đối tác và tăng hiện diện song phương.",
           "Vietnam-Japan intellectual network supporting partner outreach and bilateral visibility.",
         ),
+        link: "https://avij.org/",
+        logo: "/assets/organizations/avij-logo.png",
+        logoAlt: S("Association of Vietnamese Intellectuals in Japan logo"),
+        assetStatus: "verified",
+        assetSource:
+          "https://conf.vanj.jp/2022/wp-content/uploads/2022/11/hoi-tri-thuc-VN-tai-NB-2.png",
       },
       {
         name: "Vietnamese Academic Network in Japan (VANJ)",
-        meta: S("Co-host network"),
+        meta: L("Co-host network", "Mạng lưới đồng chủ trì", "共同主催ネットワーク"),
         description: L(
           "Academic network contributing to outreach, speaker engagement and sponsorship-facing communication.",
-          "Máº¡ng lÆ°á»›i há»c thuáº­t há»— trá»£ outreach, káº¿t ná»‘i diá»…n giáº£ vÃ  truyá»n thÃ´ng hÆ°á»›ng tá»›i nhÃ  tÃ i trá»£.",
+          "Mạng lưới học thuật hỗ trợ outreach, kết nối diễn giả và truyền thông hướng tới nhà tài trợ.",
           "Academic network contributing to outreach, speaker engagement and sponsorship-facing communication.",
         ),
+        link: "https://vanj.jp/",
+        logo: "/assets/organizations/vanj-logo.png",
+        logoAlt: S("Vietnamese Academic Network in Japan logo"),
+        assetStatus: "verified",
+        assetSource:
+          "https://conf.vanj.jp/2020/wp-content/uploads/2020/11/logo_vanj_houjin_horizontal-01.png",
       },
     ],
   },
   {
     id: "patrons",
-    title: L("Patrons", "ÄÆ¡n vá»‹ báº£o trá»£", "Patrons"),
+    title: L("Patrons", "Đơn vị bảo trợ", "後援"),
     items: [
       {
         name: "Japan Science and Technology Agency (JST)",
-        meta: S("Patron"),
+        meta: L("Patron", "Đơn vị bảo trợ", "後援機関"),
         description: L(
           "Named patron and institutional anchor for JST NEXUS participation in the 2026 plan.",
-          "ÄÆ¡n vá»‹ báº£o trá»£ Ä‘Æ°á»£c nÃªu Ä‘Ã­ch danh vÃ  lÃ  Ä‘iá»ƒm tá»±a thá»ƒ cháº¿ cho sá»± tham gia cá»§a JST NEXUS trong káº¿ hoáº¡ch 2026.",
+          "Đơn vị bảo trợ được nêu đích danh và là điểm tựa thể chế cho sự tham gia của JST NEXUS trong kế hoạch 2026.",
           "Named patron and institutional anchor for JST NEXUS participation in the 2026 plan.",
         ),
+        link: "https://www.jst.go.jp/EN/",
+        logo: "/assets/organizations/jst-logo.svg",
+        logoAlt: S("Japan Science and Technology Agency logo"),
+        assetStatus: "verified",
+        assetSource: "https://www.jst.go.jp/EN/common/img/common/logo.svg",
       },
       {
         name: "National Innovation Center (NIC), Vietnam",
-        meta: S("Patron"),
+        meta: L("Patron", "Đơn vị bảo trợ", "後援機関"),
         description: L(
           "Innovation-system patron supporting ecosystem visibility and public-sector engagement.",
-          "ÄÆ¡n vá»‹ báº£o trá»£ thuá»™c há»‡ Ä‘á»•i má»›i sÃ¡ng táº¡o, gÃ³p pháº§n tÄƒng hiá»‡n diá»‡n há»‡ sinh thÃ¡i vÃ  káº¿t ná»‘i khu vá»±c cÃ´ng.",
+          "Đơn vị bảo trợ thuộc hệ đổi mới sáng tạo, góp phần tăng hiện diện hệ sinh thái và kết nối khu vực công.",
           "Innovation-system patron supporting ecosystem visibility and public-sector engagement.",
         ),
+        link: "https://nic.gov.vn/",
+        assetStatus: "pending",
       },
     ],
   },
   {
     id: "external-relations",
-    title: L(
-      "Sponsorship and external relations",
-      "TÃ i trá»£ vÃ  Ä‘á»‘i ngoáº¡i",
-      "Sponsorship and external relations",
-    ),
+    title: L("Sponsorship and external relations", "Tài trợ và đối ngoại", "協賛・対外連携"),
     items: [
       {
         name: "VANJ",
-        meta: S("Outreach channel"),
+        meta: L("Outreach channel", "Kênh outreach", "アウトリーチ窓口"),
         description: L(
           "Supports sponsor outreach, partner relationship management and external-facing communication.",
-          "Há»— trá»£ outreach nhÃ  tÃ i trá»£, quáº£n trá»‹ quan há»‡ Ä‘á»‘i tÃ¡c vÃ  truyá»n thÃ´ng hÆ°á»›ng ra bÃªn ngoÃ i.",
+          "Hỗ trợ outreach nhà tài trợ, quản trị quan hệ đối tác và truyền thông hướng ra bên ngoài.",
           "Supports sponsor outreach, partner relationship management and external-facing communication.",
         ),
+        link: "https://vanj.jp/",
+        logo: "/assets/organizations/vanj-logo.png",
+        logoAlt: S("Vietnamese Academic Network in Japan logo"),
+        assetStatus: "verified",
+        assetSource:
+          "https://conf.vanj.jp/2020/wp-content/uploads/2020/11/logo_vanj_houjin_horizontal-01.png",
       },
       {
-        name: "Dr. Huynh Van Nhat, Sony Semiconductors",
-        meta: S("Industry link"),
+        name: "Sony Semiconductors",
+        meta: L("Industry link", "Kết nối doanh nghiệp", "産業界連携"),
         description: L(
-          "Industry-facing bridge for sponsorship conversations, workforce dialogue and company participation.",
-          "Cáº§u ná»‘i vá»›i doanh nghiá»‡p cho cÃ¡c trao Ä‘á»•i vá» tÃ i trá»£, Ä‘á»‘i thoáº¡i nguá»“n nhÃ¢n lá»±c vÃ  sá»± tham gia cá»§a cÃ´ng ty.",
-          "Industry-facing bridge for sponsorship conversations, workforce dialogue and company participation.",
+          "Industry-facing bridge for sponsorship conversations, workforce dialogue and company participation, with liaison through Dr. Huynh Van Nhat.",
+          "Cầu nối với doanh nghiệp cho các trao đổi về tài trợ, đối thoại nguồn nhân lực và sự tham gia của công ty, với đầu mối qua Dr. Huynh Van Nhat.",
+          "Industry-facing bridge for sponsorship conversations, workforce dialogue and company participation, with liaison through Dr. Huynh Van Nhat.",
         ),
+        link: "https://www.sony-semicon.com/",
+        logo: "/assets/organizations/sony-logo.svg",
+        logoAlt: S("Sony logo"),
+        assetStatus: "verified",
+        assetSource: "https://www.sony-semicon.com/files/62/logo_sony.svg",
       },
     ],
   },
 ];
+
+export const partnerOrganizations = ecosystemGroups.flatMap((group) => group.items);
 
 export const committeeGroups: CommitteeGroup[] = [
   {
     id: "leadership",
     title: L(
       "Leadership and organizing committee",
-      "LÃ£nh Ä‘áº¡o vÃ  organizing committee",
+      "Lãnh đạo và organizing committee",
       "Leadership and organizing committee",
     ),
     members: [
@@ -2056,7 +2089,7 @@ export const committeeGroups: CommitteeGroup[] = [
   },
   {
     id: "secretariat",
-    title: L("Secretariat", "Ban thÆ° kÃ½", "Secretariat"),
+    title: L("Secretariat", "Ban thư ký", "Secretariat"),
     members: [
       {
         name: "Bui Thu Trang",
@@ -2106,12 +2139,12 @@ export const committeeGroups: CommitteeGroup[] = [
     id: "themes",
     title: L(
       "Thematic session chairs and contributors",
-      "NhÃ³m trÆ°á»Ÿng track vÃ  thÃ nh pháº§n Ä‘Ã³ng gÃ³p",
+      "Nhóm trưởng track và thành phần đóng góp",
       "Thematic session chairs and contributors",
     ),
     description: L(
       "These theme rosters come directly from the uploaded working files and should remain editable as confirmations arrive.",
-      "CÃ¡c roster theo chá»§ Ä‘á» nÃ y Ä‘Æ°á»£c láº¥y trá»±c tiáº¿p tá»« file lÃ m viá»‡c Ä‘Ã£ táº£i lÃªn vÃ  cáº§n tiáº¿p tá»¥c Ä‘á»ƒ tráº¡ng thÃ¡i editable khi cÃ³ thÃªm xÃ¡c nháº­n.",
+      "Các roster theo chủ đề này được lấy trực tiếp từ file làm việc đã tải lên và cần tiếp tục để trạng thái editable khi có thêm xác nhận.",
       "These theme rosters come directly from the uploaded working files and should remain editable as confirmations arrive.",
     ),
     members: [
@@ -2173,50 +2206,50 @@ export const committeeGroups: CommitteeGroup[] = [
 
 export const sponsorEngagementRoutes: SponsorRoute[] = [
   {
-    goal: L("Talent pipeline", "DÃ²ng cháº£y nhÃ¢n lá»±c", "Talent pipeline"),
+    goal: L("Talent pipeline", "Dòng chảy nhân lực", "Talent pipeline"),
     engagement: L(
       "Career session, student lecture support, booth, recruitment networking and mentoring table.",
-      "Äá»“ng hÃ nh phiÃªn nghá» nghiá»‡p, há»— trá»£ bÃ i giáº£ng cho sinh viÃªn, booth, networking tuyá»ƒn dá»¥ng vÃ  mentoring table.",
+      "Đồng hành phiên nghề nghiệp, hỗ trợ bài giảng cho sinh viên, booth, networking tuyển dụng và mentoring table.",
       "Career session, student lecture support, booth, recruitment networking and mentoring table.",
     ),
   },
   {
-    goal: L("Research collaboration", "Há»£p tÃ¡c nghiÃªn cá»©u", "Research collaboration"),
+    goal: L("Research collaboration", "Hợp tác nghiên cứu", "Research collaboration"),
     engagement: L(
       "Technical-session participation, university meetings, NEXUS networking and site-visit discussions.",
-      "Tham gia phiÃªn ká»¹ thuáº­t, há»p vá»›i trÆ°á»ng Ä‘áº¡i há»c, networking trong khuÃ´n khá»• NEXUS vÃ  tháº£o luáº­n táº¡i cÃ¡c Ä‘iá»ƒm site visit.",
+      "Tham gia phiên kỹ thuật, họp với trường đại học, networking trong khuôn khổ NEXUS và thảo luận tại các điểm site visit.",
       "Technical-session participation, university meetings, NEXUS networking and site-visit discussions.",
     ),
   },
   {
     goal: L(
       "Brand and ecosystem visibility",
-      "Hiá»‡n diá»‡n thÆ°Æ¡ng hiá»‡u vÃ  há»‡ sinh thÃ¡i",
+      "Hiện diện thương hiệu và hệ sinh thái",
       "Brand and ecosystem visibility",
     ),
     engagement: L(
       "Logo placement, opening and closing recognition, media materials and program-booklet exposure.",
-      "Hiá»ƒn thá»‹ logo, vinh danh trong khai máº¡c vÃ  báº¿ máº¡c, xuáº¥t hiá»‡n trÃªn tÃ i liá»‡u truyá»n thÃ´ng vÃ  booklet chÆ°Æ¡ng trÃ¬nh.",
+      "Hiển thị logo, vinh danh trong khai mạc và bế mạc, xuất hiện trên tài liệu truyền thông và booklet chương trình.",
       "Logo placement, opening and closing recognition, media materials and program-booklet exposure.",
     ),
   },
   {
-    goal: L("Thought leadership", "Dáº«n dáº¯t chuyÃªn mÃ´n", "Thought leadership"),
+    goal: L("Thought leadership", "Dẫn dắt chuyên môn", "Thought leadership"),
     engagement: L(
       "Panel participation, industry remarks, invited lecture or a sponsored discussion where appropriate.",
-      "Tham gia panel, phÃ¡t biá»ƒu cá»§a doanh nghiá»‡p, bÃ i giáº£ng invited hoáº·c má»™t cuá»™c tháº£o luáº­n Ä‘Æ°á»£c tÃ i trá»£ náº¿u phÃ¹ há»£p.",
+      "Tham gia panel, phát biểu của doanh nghiệp, bài giảng invited hoặc một cuộc thảo luận được tài trợ nếu phù hợp.",
       "Panel participation, industry remarks, invited lecture or a sponsored discussion where appropriate.",
     ),
   },
   {
     goal: L(
       "Market and policy insight",
-      "GÃ³c nhÃ¬n thá»‹ trÆ°á»ng vÃ  chÃ­nh sÃ¡ch",
+      "Góc nhìn thị trường và chính sách",
       "Market and policy insight",
     ),
     engagement: L(
       "Dialogue with universities, public agencies, innovation centers and semiconductor ecosystem stakeholders.",
-      "Äá»‘i thoáº¡i vá»›i trÆ°á»ng Ä‘áº¡i há»c, cÆ¡ quan cÃ´ng, trung tÃ¢m Ä‘á»•i má»›i sÃ¡ng táº¡o vÃ  cÃ¡c bÃªn trong há»‡ sinh thÃ¡i bÃ¡n dáº«n.",
+      "Đối thoại với trường đại học, cơ quan công, trung tâm đổi mới sáng tạo và các bên trong hệ sinh thái bán dẫn.",
       "Dialogue with universities, public agencies, innovation centers and semiconductor ecosystem stakeholders.",
     ),
   },
@@ -2228,28 +2261,28 @@ export const sponsorTiers: SponsorTier[] = [
     amount: S("To be agreed"),
     contributionModel: L(
       "Major institutional or flagship sponsorship package.",
-      "GÃ³i Ä‘á»“ng hÃ nh cáº¥p tá»• chá»©c hoáº·c tÃ i trá»£ mÅ©i nhá»n.",
+      "Gói đồng hành cấp tổ chức hoặc tài trợ mũi nhọn.",
       "Major institutional or flagship sponsorship package.",
     ),
     benefits: [
       L(
         "Top-tier recognition across core event materials",
-        "Vinh danh á»Ÿ cáº¥p cao nháº¥t trÃªn cÃ¡c tÃ i liá»‡u chÃ­nh cá»§a sá»± kiá»‡n",
+        "Vinh danh ở cấp cao nhất trên các tài liệu chính của sự kiện",
         "Top-tier recognition across core event materials",
       ),
       L(
         "Opening-ceremony acknowledgement and priority booth placement",
-        "ÄÆ°á»£c nháº¯c tÃªn táº¡i khai máº¡c vÃ  Æ°u tiÃªn bá»‘ trÃ­ booth",
+        "Được nhắc tên tại khai mạc và ưu tiên bố trí booth",
         "Opening-ceremony acknowledgement and priority booth placement",
       ),
       L(
         "Panel or invited-speaker role where relevant",
-        "Vai trÃ² tham gia panel hoáº·c diá»…n giáº£ má»i khi phÃ¹ há»£p",
+        "Vai trò tham gia panel hoặc diễn giả mời khi phù hợp",
         "Panel or invited-speaker role where relevant",
       ),
       L(
         "Student engagement opportunity and post-event report",
-        "CÆ¡ há»™i Ä‘á»“ng hÃ nh cÃ¹ng sinh viÃªn vÃ  bÃ¡o cÃ¡o sau sá»± kiá»‡n",
+        "Cơ hội đồng hành cùng sinh viên và báo cáo sau sự kiện",
         "Student engagement opportunity and post-event report",
       ),
     ],
@@ -2259,24 +2292,24 @@ export const sponsorTiers: SponsorTier[] = [
     amount: S("5,000 USD or equivalent"),
     contributionModel: L(
       "Premium financial or in-kind contribution.",
-      "ÄÃ³ng gÃ³p tÃ i chÃ­nh hoáº·c hiá»‡n váº­t á»Ÿ má»©c premium.",
+      "Đóng góp tài chính hoặc hiện vật ở mức premium.",
       "Premium financial or in-kind contribution.",
     ),
     benefits: [
-      L("Prominent logo placement", "Vá»‹ trÃ­ logo ná»•i báº­t", "Prominent logo placement"),
+      L("Prominent logo placement", "Vị trí logo nổi bật", "Prominent logo placement"),
       L(
         "Exhibition table and banquet or reception acknowledgement",
-        "BÃ n trÆ°ng bÃ y vÃ  vinh danh trong banquet hoáº·c reception",
+        "Bàn trưng bày và vinh danh trong banquet hoặc reception",
         "Exhibition table and banquet or reception acknowledgement",
       ),
       L(
         "Speaking or panel opportunity subject to program fit",
-        "CÆ¡ há»™i phÃ¡t biá»ƒu hoáº·c tham gia panel náº¿u phÃ¹ há»£p vá»›i chÆ°Æ¡ng trÃ¬nh",
+        "Cơ hội phát biểu hoặc tham gia panel nếu phù hợp với chương trình",
         "Speaking or panel opportunity subject to program fit",
       ),
       L(
         "Student engagement opportunity and complimentary registrations",
-        "CÆ¡ há»™i Ä‘á»“ng hÃ nh cÃ¹ng sinh viÃªn vÃ  suáº¥t Ä‘Äƒng kÃ½ miá»…n phÃ­",
+        "Cơ hội đồng hành cùng sinh viên và suất đăng ký miễn phí",
         "Student engagement opportunity and complimentary registrations",
       ),
     ],
@@ -2286,16 +2319,16 @@ export const sponsorTiers: SponsorTier[] = [
     amount: S("3,000 USD or equivalent"),
     contributionModel: L(
       "Standard financial or in-kind contribution.",
-      "ÄÃ³ng gÃ³p tÃ i chÃ­nh hoáº·c hiá»‡n váº­t á»Ÿ má»©c tiÃªu chuáº©n.",
+      "Đóng góp tài chính hoặc hiện vật ở mức tiêu chuẩn.",
       "Standard financial or in-kind contribution.",
     ),
     benefits: [
-      L("Logo placement", "Hiá»ƒn thá»‹ logo", "Logo placement"),
-      L("Exhibition table", "BÃ n trÆ°ng bÃ y", "Exhibition table"),
-      L("Session acknowledgement", "Ghi nháº­n trong phiÃªn", "Session acknowledgement"),
+      L("Logo placement", "Hiển thị logo", "Logo placement"),
+      L("Exhibition table", "Bàn trưng bày", "Exhibition table"),
+      L("Session acknowledgement", "Ghi nhận trong phiên", "Session acknowledgement"),
       L(
         "Networking access and selected complimentary registrations",
-        "Quyá»n tham gia networking vÃ  má»™t sá»‘ suáº¥t Ä‘Äƒng kÃ½ miá»…n phÃ­",
+        "Quyền tham gia networking và một số suất đăng ký miễn phí",
         "Networking access and selected complimentary registrations",
       ),
     ],
@@ -2305,18 +2338,18 @@ export const sponsorTiers: SponsorTier[] = [
     amount: S("1,000 USD or equivalent"),
     contributionModel: L(
       "Supporting contribution.",
-      "Má»©c Ä‘Ã³ng gÃ³p há»— trá»£.",
+      "Mức đóng góp hỗ trợ.",
       "Supporting contribution.",
     ),
     benefits: [
-      L("Logo placement", "Hiá»ƒn thá»‹ logo", "Logo placement"),
-      L("Program booklet listing", "ÄÆ°á»£c liá»‡t kÃª trong booklet", "Program booklet listing"),
+      L("Logo placement", "Hiển thị logo", "Logo placement"),
+      L("Program booklet listing", "Được liệt kê trong booklet", "Program booklet listing"),
       L(
         "Poster or exhibition visibility",
-        "Hiá»‡n diá»‡n á»Ÿ poster hoáº·c khu trÆ°ng bÃ y",
+        "Hiện diện ở poster hoặc khu trưng bày",
         "Poster or exhibition visibility",
       ),
-      L("Networking access", "Quyá»n tham gia networking", "Networking access"),
+      L("Networking access", "Quyền tham gia networking", "Networking access"),
     ],
   },
   {
@@ -2324,18 +2357,18 @@ export const sponsorTiers: SponsorTier[] = [
     amount: S("Value-based"),
     contributionModel: L(
       "Venue, AV, media, hospitality, travel, translation, printing or logistics support.",
-      "Äá»“ng hÃ nh báº±ng Ä‘á»‹a Ä‘iá»ƒm, AV, truyá»n thÃ´ng, hospitality, há»— trá»£ di chuyá»ƒn, phiÃªn dá»‹ch, in áº¥n hoáº·c háº­u cáº§n.",
+      "Đồng hành bằng địa điểm, AV, truyền thông, hospitality, hỗ trợ di chuyển, phiên dịch, in ấn hoặc hậu cần.",
       "Venue, AV, media, hospitality, travel, translation, printing or logistics support.",
     ),
     benefits: [
       L(
         "Recognition aligned with contribution value and role",
-        "Ghi nháº­n tÆ°Æ¡ng xá»©ng vá»›i giÃ¡ trá»‹ vÃ  vai trÃ² Ä‘Ã³ng gÃ³p",
+        "Ghi nhận tương xứng với giá trị và vai trò đóng góp",
         "Recognition aligned with contribution value and role",
       ),
       L(
         "Integration into event materials where relevant",
-        "ÄÆ°á»£c tÃ­ch há»£p vÃ o cÃ¡c tÃ i liá»‡u sá»± kiá»‡n khi phÃ¹ há»£p",
+        "Được tích hợp vào các tài liệu sự kiện khi phù hợp",
         "Integration into event materials where relevant",
       ),
     ],
@@ -2345,57 +2378,57 @@ export const sponsorTiers: SponsorTier[] = [
 export const sponsorDeliverables = [
   L(
     "Logo placement on selected event materials, website or registration pages, backdrops and the program booklet.",
-    "Hiá»ƒn thá»‹ logo trÃªn cÃ¡c tÃ i liá»‡u phÃ¹ há»£p cá»§a sá»± kiá»‡n, website hoáº·c trang Ä‘Äƒng kÃ½, backdrop vÃ  booklet chÆ°Æ¡ng trÃ¬nh.",
+    "Hiển thị logo trên các tài liệu phù hợp của sự kiện, website hoặc trang đăng ký, backdrop và booklet chương trình.",
     "Logo placement on selected event materials, website or registration pages, backdrops and the program booklet.",
   ),
   L(
     "Exhibition or information table where venue layout permits.",
-    "Khu trÆ°ng bÃ y hoáº·c bÃ n thÃ´ng tin náº¿u máº·t báº±ng Ä‘á»‹a Ä‘iá»ƒm cho phÃ©p.",
+    "Khu trưng bày hoặc bàn thông tin nếu mặt bằng địa điểm cho phép.",
     "Exhibition or information table where venue layout permits.",
   ),
   L(
     "Recognition during opening and closing sessions and banquet according to tier.",
-    "Vinh danh trong cÃ¡c phiÃªn khai máº¡c, báº¿ máº¡c vÃ  banquet theo háº¡ng má»¥c tÃ i trá»£.",
+    "Vinh danh trong các phiên khai mạc, bế mạc và banquet theo hạng mục tài trợ.",
     "Recognition during opening and closing sessions and banquet according to tier.",
   ),
   L(
     "Opportunity to provide recruitment or technical materials to participants.",
-    "CÆ¡ há»™i gá»­i tÃ i liá»‡u tuyá»ƒn dá»¥ng hoáº·c tÃ i liá»‡u ká»¹ thuáº­t tá»›i ngÆ°á»i tham dá»±.",
+    "Cơ hội gửi tài liệu tuyển dụng hoặc tài liệu kỹ thuật tới người tham dự.",
     "Opportunity to provide recruitment or technical materials to participants.",
   ),
   L(
     "Post-event summary including participation highlights, photos and sponsor visibility records where available.",
-    "Báº£n tá»•ng káº¿t sau sá»± kiá»‡n bao gá»“m cÃ¡c Ä‘iá»ƒm nháº¥n vá» tham dá»±, hÃ¬nh áº£nh vÃ  há»“ sÆ¡ hiá»‡n diá»‡n cá»§a nhÃ  tÃ i trá»£ khi cÃ³ thá»ƒ cung cáº¥p.",
+    "Bản tổng kết sau sự kiện bao gồm các điểm nhấn về tham dự, hình ảnh và hồ sơ hiện diện của nhà tài trợ khi có thể cung cấp.",
     "Post-event summary including participation highlights, photos and sponsor visibility records where available.",
   ),
 ];
 
 export const submissionCards: CardCopy[] = [
   {
-    title: L("Current status", "Tráº¡ng thÃ¡i hiá»‡n táº¡i", "Current status"),
+    title: L("Current status", "Trạng thái hiện tại", "Current status"),
     body: L(
       "The abstract and contributed-talk process is planned for June 2026. The detailed portal, template and review workflow are not public yet.",
-      "Quy trÃ¬nh nháº­n abstract vÃ  contributed talk dá»± kiáº¿n má»Ÿ trong thÃ¡ng 6/2026. Portal, template vÃ  quy trÃ¬nh review chi tiáº¿t hiá»‡n chÆ°a cÃ´ng bá»‘ cÃ´ng khai.",
+      "Quy trình nhận abstract và contributed talk dự kiến mở trong tháng 6/2026. Portal, template và quy trình review chi tiết hiện chưa công bố công khai.",
       "The abstract and contributed-talk process is planned for June 2026. The detailed portal, template and review workflow are not public yet.",
     ),
   },
   {
-    title: L("Technical scope", "Pháº¡m vi ká»¹ thuáº­t", "Technical scope"),
+    title: L("Technical scope", "Phạm vi kỹ thuật", "Technical scope"),
     body: L(
       "Contributions are expected to align with the seven working themes already defined by the program committee.",
-      "CÃ¡c bÃ i Ä‘Ã³ng gÃ³p dá»± kiáº¿n sáº½ bÃ¡m theo báº£y chá»§ Ä‘á» lÃ m viá»‡c Ä‘Ã£ Ä‘Æ°á»£c program committee xÃ¡c láº­p.",
+      "Các bài đóng góp dự kiến sẽ bám theo bảy chủ đề làm việc đã được program committee xác lập.",
       "Contributions are expected to align with the seven working themes already defined by the program committee.",
     ),
   },
   {
     title: L(
       "What will still be confirmed",
-      "Nhá»¯ng gÃ¬ cÃ²n chá» xÃ¡c nháº­n",
+      "Những gì còn chờ xác nhận",
       "What will still be confirmed",
     ),
     body: L(
       "Deadlines, templates, poster format, final session labels and the submission URL will be published after committee approval.",
-      "Deadline, template, Ä‘á»‹nh dáº¡ng poster, tÃªn phiÃªn cuá»‘i cÃ¹ng vÃ  URL ná»™p bÃ i sáº½ Ä‘Æ°á»£c cÃ´ng bá»‘ sau khi ban chuyÃªn mÃ´n phÃª duyá»‡t.",
+      "Deadline, template, định dạng poster, tên phiên cuối cùng và URL nộp bài sẽ được công bố sau khi ban chuyên môn phê duyệt.",
       "Deadlines, templates, poster format, final session labels and the submission URL will be published after committee approval.",
     ),
   },
@@ -2403,30 +2436,26 @@ export const submissionCards: CardCopy[] = [
 
 export const registrationCards: CardCopy[] = [
   {
-    title: L("Participation format", "HÃ¬nh thá»©c tham gia", "Participation format"),
+    title: L("Participation format", "Hình thức tham gia", "Participation format"),
     body: L(
       "The symposium is planned as an in-person event with hybrid participation options for selected sessions.",
-      "Há»™i nghá»‹ Ä‘Æ°á»£c lÃªn káº¿ hoáº¡ch theo hÃ¬nh thá»©c trá»±c tiáº¿p, Ä‘á»“ng thá»i há»— trá»£ tham gia hybrid cho má»™t sá»‘ phiÃªn Ä‘Æ°á»£c lá»±a chá»n.",
+      "Hội nghị được lên kế hoạch theo hình thức trực tiếp, đồng thời hỗ trợ tham gia hybrid cho một số phiên được lựa chọn.",
       "The symposium is planned as an in-person event with hybrid participation options for selected sessions.",
     ),
   },
   {
-    title: L("Target attendees", "NhÃ³m ngÆ°á»i tham dá»±", "Target attendees"),
+    title: L("Target attendees", "Nhóm người tham dự", "Target attendees"),
     body: L(
       "Researchers, students, industry experts, public agencies, universities, innovation centers and JST NEXUS teams are all in scope.",
-      "NhÃ  nghiÃªn cá»©u, sinh viÃªn, chuyÃªn gia doanh nghiá»‡p, cÆ¡ quan cÃ´ng, trÆ°á»ng Ä‘áº¡i há»c, trung tÃ¢m Ä‘á»•i má»›i sÃ¡ng táº¡o vÃ  cÃ¡c nhÃ³m JST NEXUS Ä‘á»u náº±m trong pháº¡m vi ngÆ°á»i tham dá»± má»¥c tiÃªu.",
+      "Nhà nghiên cứu, sinh viên, chuyên gia doanh nghiệp, cơ quan công, trường đại học, trung tâm đổi mới sáng tạo và các nhóm JST NEXUS đều nằm trong phạm vi người tham dự mục tiêu.",
       "Researchers, students, industry experts, public agencies, universities, innovation centers and JST NEXUS teams are all in scope.",
     ),
   },
   {
-    title: L(
-      "Pending publication items",
-      "Ná»™i dung cÃ²n chá» cÃ´ng bá»‘",
-      "Pending publication items",
-    ),
+    title: L("Pending publication items", "Nội dung còn chờ công bố", "Pending publication items"),
     body: L(
       "Fees, payment instructions, invitation-letter policy, accommodation notes and final travel guidance depend on venue and budget approvals.",
-      "Má»©c phÃ­, hÆ°á»›ng dáº«n thanh toÃ¡n, chÃ­nh sÃ¡ch thÆ° má»i, ghi chÃº lÆ°u trÃº vÃ  hÆ°á»›ng dáº«n di chuyá»ƒn cuá»‘i cÃ¹ng phá»¥ thuá»™c vÃ o viá»‡c phÃª duyá»‡t Ä‘á»‹a Ä‘iá»ƒm vÃ  ngÃ¢n sÃ¡ch.",
+      "Mức phí, hướng dẫn thanh toán, chính sách thư mời, ghi chú lưu trú và hướng dẫn di chuyển cuối cùng phụ thuộc vào việc phê duyệt địa điểm và ngân sách.",
       "Fees, payment instructions, invitation-letter policy, accommodation notes and final travel guidance depend on venue and budget approvals.",
     ),
   },
@@ -2434,26 +2463,26 @@ export const registrationCards: CardCopy[] = [
 
 export const contactEntries: ContactEntry[] = [
   {
-    label: L("Conference secretariat", "Ban thÆ° kÃ½ há»™i nghá»‹", "Conference secretariat"),
+    label: L("Conference secretariat", "Ban thư ký hội nghị", "Conference secretariat"),
     value: L(
       "VJSS 2026 Secretariat, Vietnam Japan University",
-      "Ban thÆ° kÃ½ VJSS 2026, Vietnam Japan University",
+      "Ban thư ký VJSS 2026, Vietnam Japan University",
       "VJSS 2026 Secretariat, Vietnam Japan University",
     ),
     detail: L(
       "Primary administrative contact for program operations, registration flow and event logistics.",
-      "Äáº§u má»‘i hÃ nh chÃ­nh chÃ­nh cho váº­n hÃ nh chÆ°Æ¡ng trÃ¬nh, luá»“ng Ä‘Äƒng kÃ½ vÃ  háº­u cáº§n sá»± kiá»‡n.",
+      "Đầu mối hành chính chính cho vận hành chương trình, luồng đăng ký và hậu cần sự kiện.",
       "Primary administrative contact for program operations, registration flow and event logistics.",
     ),
   },
   {
-    label: L("Academic liaison", "LiÃªn há»‡ há»c thuáº­t", "Academic liaison"),
+    label: L("Academic liaison", "Liên hệ học thuật", "Academic liaison"),
     value: S(
       "Assoc. Prof. Le Duc Anh, The University of Tokyo / Assoc. Prof. Dr. Bui Nguyen Quoc Trinh, Vietnam Japan University",
     ),
     detail: L(
       "Named in the outreach proposal for invited-speaker coordination, program framing and academic partnership discussions.",
-      "ÄÆ°á»£c nÃªu trong proposal outreach nhÆ° Ä‘áº§u má»‘i cho Ä‘iá»u phá»‘i diá»…n giáº£ má»i, Ä‘á»‹nh hÃ¬nh chÆ°Æ¡ng trÃ¬nh vÃ  tháº£o luáº­n há»£p tÃ¡c há»c thuáº­t.",
+      "Được nêu trong proposal outreach như đầu mối cho điều phối diễn giả mời, định hình chương trình và thảo luận hợp tác học thuật.",
       "Named in the outreach proposal for invited-speaker coordination, program framing and academic partnership discussions.",
     ),
     emails: ["anh@cryst.t.u-tokyo.ac.jp", "bnq.trinh@vju.ac.vn"],
@@ -2466,12 +2495,12 @@ export const newsItems: NewsItem[] = [
     status: "updated",
     title: L(
       "Working outreach package prepared",
-      "ÄÃ£ hoÃ n thiá»‡n bá»™ tÃ i liá»‡u outreach lÃ m viá»‡c",
+      "Đã hoàn thiện bộ tài liệu outreach làm việc",
       "Working outreach package prepared",
     ),
     body: L(
       "The current website content now reflects the April 2026 proposal and committee workbook rather than the earlier 2025 reference framing.",
-      "Ná»™i dung website hiá»‡n pháº£n Ã¡nh proposal vÃ  committee workbook thÃ¡ng 4/2026 thay vÃ¬ khung tham chiáº¿u 2025 trÆ°á»›c Ä‘Ã³.",
+      "Nội dung website hiện phản ánh proposal và committee workbook tháng 4/2026 thay vì khung tham chiếu 2025 trước đó.",
       "The current website content now reflects the April 2026 proposal and committee workbook rather than the earlier 2025 reference framing.",
     ),
   },
@@ -2480,12 +2509,12 @@ export const newsItems: NewsItem[] = [
     status: "draft",
     title: L(
       "Venue shortlist under review",
-      "Shortlist Ä‘á»‹a Ä‘iá»ƒm Ä‘ang Ä‘Æ°á»£c xem xÃ©t",
+      "Shortlist địa điểm đang được xem xét",
       "Venue shortlist under review",
     ),
     body: L(
       "The committee is comparing Vietnam Japan University and Sheraton Hanoi West Hotel against budget, sponsor support and operational fit.",
-      "Ban tá»• chá»©c Ä‘ang so sÃ¡nh Vietnam Japan University vÃ  Sheraton Hanoi West Hotel theo cÃ¡c tiÃªu chÃ­ ngÃ¢n sÃ¡ch, há»— trá»£ nhÃ  tÃ i trá»£ vÃ  má»©c Ä‘á»™ phÃ¹ há»£p váº­n hÃ nh.",
+      "Ban tổ chức đang so sánh Vietnam Japan University và Sheraton Hanoi West Hotel theo các tiêu chí ngân sách, hỗ trợ nhà tài trợ và mức độ phù hợp vận hành.",
       "The committee is comparing Vietnam Japan University and Sheraton Hanoi West Hotel against budget, sponsor support and operational fit.",
     ),
   },
@@ -2494,12 +2523,12 @@ export const newsItems: NewsItem[] = [
     status: "draft",
     title: L(
       "Sponsor outreach and speaker invitations scheduled",
-      "Dá»± kiáº¿n báº¯t Ä‘áº§u outreach nhÃ  tÃ i trá»£ vÃ  gá»­i thÆ° má»i diá»…n giáº£",
+      "Dự kiến bắt đầu outreach nhà tài trợ và gửi thư mời diễn giả",
       "Sponsor outreach and speaker invitations scheduled",
     ),
     body: L(
       "The working timeline assigns May to sponsor meetings, invited-speaker invitations and confirmation of tracks and session chairs.",
-      "Timeline lÃ m viá»‡c dÃ nh thÃ¡ng 5 cho cÃ¡c cuá»™c gáº·p nhÃ  tÃ i trá»£, thÆ° má»i diá»…n giáº£ vÃ  viá»‡c xÃ¡c nháº­n track cÃ¹ng session chair.",
+      "Timeline làm việc dành tháng 5 cho các cuộc gặp nhà tài trợ, thư mời diễn giả và việc xác nhận track cùng session chair.",
       "The working timeline assigns May to sponsor meetings, invited-speaker invitations and confirmation of tracks and session chairs.",
     ),
   },
@@ -2508,12 +2537,12 @@ export const newsItems: NewsItem[] = [
     status: "draft",
     title: L(
       "Abstract process targeted for launch",
-      "Má»¥c tiÃªu má»Ÿ quy trÃ¬nh nháº­n abstract",
+      "Mục tiêu mở quy trình nhận abstract",
       "Abstract process targeted for launch",
     ),
     body: L(
       "The call for abstracts and contributed talks is planned for June, together with early sponsor-commitment confirmation and site-visit scoping.",
-      "Call for abstracts vÃ  contributed talk Ä‘Æ°á»£c lÃªn káº¿ hoáº¡ch má»Ÿ trong thÃ¡ng 6, song song vá»›i viá»‡c xÃ¡c nháº­n cam káº¿t tÃ i trá»£ ban Ä‘áº§u vÃ  khoanh vÃ¹ng site visit.",
+      "Call for abstracts và contributed talk được lên kế hoạch mở trong tháng 6, song song với việc xác nhận cam kết tài trợ ban đầu và khoanh vùng site visit.",
       "The call for abstracts and contributed talks is planned for June, together with early sponsor-commitment confirmation and site-visit scoping.",
     ),
   },

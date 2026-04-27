@@ -24,11 +24,11 @@ const vi: Translations = {
     venue: "Địa điểm",
     organizers: "Ban tổ chức",
     sponsors: "Tài trợ",
-    cfp: "Call for Abstracts",
+    cfp: "Nộp bài",
     registration: "Đăng ký",
     news: "Cập nhật",
     contact: "Liên hệ",
-    submit: "Call for Abstracts",
+    submit: "Nộp bài",
     register: "Đăng ký",
     signIn: "Đăng nhập",
   },
@@ -62,13 +62,13 @@ const vi: Translations = {
     metaDescription:
       "20-23 tháng 9, 2026 tại Hà Nội. Khám phá diễn giả, điểm nhấn chương trình và thông tin địa điểm của VJSS 2026.",
     heroEyebrow: "Diễn đàn quốc tế về nghiên cứu và hợp tác bán dẫn",
-    heroCtaSubmit: "Xem phạm vi abstract",
-    heroCtaRegister: "Xem trạng thái đăng ký",
+    heroCtaSubmit: "Nộp bài",
+    heroCtaRegister: "Đăng ký",
     heroFormatLabel: "Hình thức",
     heroAsideEyebrow: "Tổng quan hội nghị",
     heroAsideTitle: "Kết nối bán dẫn Việt Nam - Nhật Bản tại Hà Nội",
     heroAsideBody:
-      "Khám phá chủ đề hội nghị, các diễn giả nổi bật và những điểm nhấn chương trình của VJSS 2026 tại Hà Nội.",
+      "Bản xem nhanh về mạng lưới chủ trì đang định hình phiên bản VJSS 2026 tại Hà Nội.",
     hostCardTitle: "Đơn vị chủ trì",
     startHereTitle: "Bắt đầu tại đây",
     startHereProgram: "Xem chương trình và timeline",
@@ -263,7 +263,7 @@ const vi: Translations = {
     institutionalMapEyebrow: "Bản đồ tổ chức",
     institutionalMapTitle: "Vai trò chủ trì, bảo trợ và outreach trong một lượt nhìn",
     institutionalMapDescription:
-      "Các lockup chữ được đặt theo kích thước của vị trí logo để sau này có thể thay bằng logo chính thức mà không đổi bố cục trang.",
+      "Logo đã xác minh được hiển thị khi có sẵn, còn các tài sản chưa đủ xác nhận được giữ bằng lockup chờ chính thức gọn gàng.",
     ecosystemEyebrow: "Hệ sinh thái và đơn vị chủ trì",
     ecosystemTitle: "Các tổ chức, đơn vị bảo trợ và vai trò đối tác",
     ecosystemDescription:
@@ -293,8 +293,8 @@ const vi: Translations = {
     partnerLockupsEyebrow: "Hiện diện đối tác",
     partnerLockupsTitle: "Vị trí đối tác và tài trợ đã sẵn sàng cho logo chính thức",
     partnerLockupsDescription:
-      "Tên đối tác hiện được trình bày như các lockup chữ có kích thước, khoảng cách và căn chỉnh nhất quán cho đến khi có bộ logo cuối cùng.",
-    partnerPlaceholderRole: "Vị trí logo",
+      "Logo tổ chức đã xác minh được hiển thị khi có sẵn, cùng các lockup chờ chính thức ổn định cho tài sản chưa đủ xác nhận.",
+    partnerPlaceholderRole: "Đang chờ logo chính thức",
     routesEyebrow: "Vì sao nên tài trợ",
     routesTitle: "Các hướng tham gia được xây quanh giá trị, không chỉ là đặt logo",
     routesDescription:
@@ -375,7 +375,7 @@ const vi: Translations = {
   },
   cfp: {
     ...en.cfp,
-    metaTitle: "Call for Abstracts | VJSS 2026",
+    metaTitle: "Nộp bài / Call for Abstracts | VJSS 2026",
     metaDescription:
       "Phạm vi call-for-abstracts, các chủ đề kỹ thuật và mốc kế hoạch làm việc cho VJSS 2026.",
     metaSubmissionThemes: "Chủ đề nộp bài",
@@ -452,7 +452,19 @@ const vi: Translations = {
   footer: {
     ...en.footer,
     tagline: "Trung tâm thông tin chính thức cho Hội nghị Bán dẫn Việt Nam - Nhật Bản 2026.",
+    description:
+      "VJSS 2026 kết nối Việt Nam và Nhật Bản thông qua nghiên cứu bán dẫn, phát triển nhân lực, đối thoại doanh nghiệp và hợp tác học thuật dài hạn.",
     navigation: "Điều hướng",
+    contactInfo: "Thông tin liên hệ",
+    venueLabel: "Địa điểm",
+    organizersLabel: "Đơn vị tổ chức và đối tác",
+    organizersSummary:
+      "Được chủ trì và hỗ trợ bởi mạng lưới học thuật, khu vực công và doanh nghiệp giữa Việt Nam - Nhật Bản.",
+    previousEdition: "Tham khảo",
+    previousEditionTitle: "Tham khảo VJSS 2025",
+    previousEditionBody:
+      "Xem phiên bản trước để tham khảo tính kế thừa, định vị và bối cảnh chương trình.",
+    previousEditionCta: "Phiên bản VJSS trước",
     status: "Trạng thái",
     statusBody:
       "Thông tin về chương trình, địa điểm và diễn giả sẽ tiếp tục được cập nhật khi hội nghị tiến gần đến tháng 9/2026.",
@@ -467,6 +479,7 @@ const vi: Translations = {
       "Khối này giữ sẵn thông tin địa điểm tham chiếu tại Hà Nội để người xem kiểm tra vị trí và mở bản đồ nhanh ngay từ footer.",
     formatLabel: "Hình thức",
     logoAlt: "Logo VJSS 2026",
+    copyrightNote: "Nền tảng hợp tác bán dẫn Việt Nam - Nhật Bản.",
   },
   status: {
     draft: "Dự thảo",

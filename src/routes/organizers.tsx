@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 import i18n from "@/i18n";
+import { OrganizationLogo } from "@/components/site/OrganizationLogo";
 import { PageShell } from "@/components/site/PageShell";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Button } from "@/components/ui/button";
@@ -21,26 +22,6 @@ export const Route = createFileRoute("/organizers")({
   }),
   component: OrganizersPage,
 });
-
-const getInstitutionMark = (name: string) => {
-  const acronym = name.match(/\(([^)]+)\)/)?.[1];
-
-  if (acronym && acronym.length <= 6) {
-    return acronym;
-  }
-
-  if (/^[A-Z0-9]{2,6}$/.test(name.trim())) {
-    return name.trim();
-  }
-
-  return name
-    .replace(/,.*$/, "")
-    .split(/\s+/)
-    .filter((part) => !["and", "of", "in", "the"].includes(part.toLowerCase()))
-    .slice(0, 3)
-    .map((part) => part[0]?.toUpperCase() ?? "")
-    .join("");
-};
 
 function OrganizersPage() {
   const { pick, t } = useSiteLocale();
@@ -130,11 +111,9 @@ function OrganizersPage() {
               <div className="mt-5 grid gap-3">
                 {group.items.map((item) => (
                   <div key={`lockup-${group.id}-${item.name}`} className="institution-lockup">
-                    <div className="institution-mark">{getInstitutionMark(item.name)}</div>
+                    <OrganizationLogo item={item} />
                     <div>
-                      {item.meta ? (
-                        <p className="institution-role">{pick(item.meta)}</p>
-                      ) : null}
+                      {item.meta ? <p className="institution-role">{pick(item.meta)}</p> : null}
                       <p className="institution-name mt-2">{item.name}</p>
                     </div>
                   </div>
@@ -158,8 +137,9 @@ function OrganizersPage() {
             <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {group.items.map((item) => (
                 <div key={item.name} className="panel-card-muted interactive-card p-5">
+                  <OrganizationLogo item={item} />
                   {item.meta ? (
-                    <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-vn-red">
+                    <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.22em] text-vn-red">
                       {pick(item.meta)}
                     </p>
                   ) : null}

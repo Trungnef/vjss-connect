@@ -176,26 +176,22 @@ function NewsPage() {
         </ol>
 
         {remainingItems.length > 0 ? (
-          <div className="mt-8 rounded-[0.85rem] border border-border/70 bg-[linear-gradient(125deg,color-mix(in_oklab,var(--navy)_94%,var(--foreground)),color-mix(in_oklab,var(--navy)_84%,var(--jp-indigo)))] px-6 py-8 text-primary-foreground sm:px-8 sm:py-10">
+          <div className="panel-card panel-card-strong mt-8 px-6 py-8 sm:px-8 sm:py-10">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-3xl">
-                <p className="section-kicker text-gold/90">{t("news.stayAlignedEyebrow")}</p>
+                <p className="section-kicker">{t("news.stayAlignedEyebrow")}</p>
                 <h2 className="mt-4 font-serif text-3xl font-semibold leading-tight">
                   {t("news.stayAlignedTitle")}
                 </h2>
-                <p className="mt-4 text-sm leading-7 text-primary-foreground/76">
+                <p className="mt-4 text-sm leading-7 text-foreground/76">
                   {t("news.stayAlignedBody")}
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
-                <Button
-                  asChild
-                  variant="outline"
-                  className="border-white/16 bg-white/8 text-white hover:bg-white/14 hover:text-white"
-                >
+                <Button asChild variant="outline">
                   <Link to="/call-for-papers">{t("nav.cfp")}</Link>
                 </Button>
-                <Button asChild className="bg-background text-foreground hover:bg-background/95">
+                <Button asChild>
                   <Link to="/contact">
                     {t("nav.contact")}
                     <ArrowRight className="h-4 w-4" />

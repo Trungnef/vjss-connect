@@ -15,6 +15,7 @@ import {
   type SpeakerRecord,
 } from "@/content/site-content";
 import { useSiteLocale } from "@/hooks/use-site-locale";
+import { SpeakerImage } from "./SpeakerImage";
 
 export function SpeakerDialog({
   speaker,
@@ -31,7 +32,10 @@ export function SpeakerDialog({
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="max-w-4xl overflow-hidden border-border/70 bg-card p-0">
         <div className="grid gap-0 md:grid-cols-[17rem_minmax(0,1fr)]">
-          <div className="relative border-b border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--semi-blue)_14%,white),color-mix(in_oklab,var(--navy)_82%,black))] md:border-b-0 md:border-r">
+          <SpeakerImage
+            speaker={speaker}
+            className="min-h-72 border-b border-border/70 md:h-full md:border-b-0 md:border-r"
+          >
             <div className="absolute left-5 top-5 z-10 flex flex-wrap gap-2">
               <span className="rounded-[0.35rem] border border-white/16 bg-black/18 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/92">
                 {pick(speakerKindLabels[speaker.kind])}
@@ -40,13 +44,8 @@ export function SpeakerDialog({
                 {pick(speakerCountryLabels[speaker.country])}
               </span>
             </div>
-            <img
-              src={speaker.image}
-              alt={speaker.name}
-              className="h-72 w-full object-cover md:h-full"
-            />
             <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/55 to-transparent md:hidden" />
-          </div>
+          </SpeakerImage>
 
           <div className="bg-[linear-gradient(180deg,color-mix(in_oklab,white_94%,var(--background)),color-mix(in_oklab,white_82%,var(--background)))] p-6 md:p-8">
             <DialogHeader>
