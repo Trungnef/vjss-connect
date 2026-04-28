@@ -57,7 +57,7 @@ function HomePage() {
   return (
     <>
       <section className="page-hero border-b border-border/70 border-beam">
-        <div className="site-shell grid gap-10 py-16 sm:py-20 lg:grid-cols-[minmax(0,1.04fr)_0.78fr] lg:items-center lg:py-24">
+        <div className="site-shell grid gap-10 py-20 sm:py-24 lg:grid-cols-[minmax(0,1.04fr)_0.78fr] lg:items-center lg:py-28">
           <div className="max-w-5xl">
             <span className="signal-chip">{t("home.heroEyebrow")}</span>
             <h1 className="mt-7 max-w-5xl font-serif text-4xl font-semibold leading-[1.03] text-balance sm:text-5xl lg:text-[4.65rem]">
@@ -98,14 +98,14 @@ function HomePage() {
               </div>
             </dl>
 
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Button asChild size="lg">
+            <div className="mt-10 flex flex-wrap gap-4 sm:gap-3">
+              <Button asChild size="lg" className="flex-shrink-0">
                 <Link to="/registration">
                   {t("home.heroCtaRegister")}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline">
+              <Button asChild size="lg" variant="outline" className="flex-shrink-0">
                 <Link to="/call-for-papers">
                   {t("home.heroCtaSubmit")}
                   <ArrowRight className="h-4 w-4" />
@@ -136,7 +136,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section id="highlights" className="site-shell anchor-target section-frame mt-14">
+      <section id="highlights" className="site-shell anchor-target section-frame mt-20">
         <SectionHeading
           eyebrow={t("home.directionEyebrow")}
           title={t("home.directionTitle")}
@@ -150,17 +150,17 @@ function HomePage() {
           }
         />
 
-        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {homeHighlights.map((item, index) => (
-            <article key={item.title.en} className="panel-card interactive-card p-6">
-              <div className="flex items-center justify-between gap-4">
-                <span className="section-kicker">{`0${index + 1}`}</span>
-                <span className="h-8 w-8 rounded-full bg-[linear-gradient(180deg,var(--gold),color-mix(in_oklab,var(--gold)_65%,white))]" />
+            <article key={item.title.en} className="panel-card interactive-card p-5 space-y-3">
+              <div className="flex items-start justify-between gap-3">
+                <span className="text-sm font-bold leading-none text-gold">0{index + 1}</span>
+                <div className="h-1 w-6 rounded-full bg-gold flex-shrink-0" />
               </div>
-              <h2 className="mt-5 font-serif text-2xl font-semibold leading-tight">
+              <h2 className="font-serif text-lg font-semibold leading-snug">
                 {pick(item.title)}
               </h2>
-              <p className="mt-4 text-sm leading-7 text-foreground/76">{pick(item.body)}</p>
+              <p className="text-xs leading-6 text-foreground/72">{pick(item.body)}</p>
             </article>
           ))}
         </div>
@@ -168,7 +168,7 @@ function HomePage() {
 
       <section
         id="featured"
-        className="site-shell anchor-target section-frame mt-14 grid gap-8 xl:grid-cols-[1.1fr_0.9fr]"
+        className="site-shell anchor-target section-frame mt-20 grid gap-10 xl:grid-cols-[1.2fr_0.8fr]"
       >
         <article>
           <SectionHeading
@@ -185,26 +185,26 @@ function HomePage() {
             }
           />
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2">
+          <div className="mt-8 grid gap-6 sm:grid-cols-2">
             {featuredSpeakers.map((speaker) => (
-              <article key={speaker.id} className="panel-card interactive-card overflow-hidden">
-                <SpeakerImage speaker={speaker} className="h-52 border-b border-border/70">
-                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/38 to-transparent" />
+              <article key={speaker.id} className="panel-card interactive-card overflow-hidden space-y-4">
+                <SpeakerImage speaker={speaker} className="h-48 border-b border-border/40">
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/32 to-transparent" />
                 </SpeakerImage>
-                <div className="p-5">
+                <div className="px-5 pb-5 space-y-2">
                   <Badge
                     variant="outline"
-                    className="w-fit border-gold/40 bg-background/70 text-[10px] uppercase tracking-[0.18em] text-foreground/70"
+                    className="border-gold/30 bg-gold/5 text-[9px] uppercase tracking-wider text-gold/80"
                   >
                     {pick(speakerKindLabels[speaker.kind])}
                   </Badge>
-                  <h3 className="mt-4 font-serif text-2xl font-semibold leading-tight">
+                  <h3 className="font-serif text-lg font-semibold leading-snug">
                     {speaker.name}
                   </h3>
-                  <p className="mt-2 text-sm font-medium text-foreground/80">
+                  <p className="text-xs font-medium text-foreground/70">
                     {pick(speaker.role)}
                   </p>
-                  <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                  <p className="text-xs leading-5 text-foreground/60">
                     {pick(speaker.organization)}
                   </p>
                 </div>
@@ -228,13 +228,13 @@ function HomePage() {
             }
           />
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
+          <div className="mt-8 space-y-3">
             {featuredOrganizations.map(({ item, role }) => (
-              <div key={`featured-org-${item.name}`} className="institution-lockup min-h-0">
+              <div key={`featured-org-${item.name}`} className="institution-lockup min-h-0 space-y-1.5">
                 <OrganizationLogo item={item} />
-                <div>
-                  <p className="institution-role">{pick(role)}</p>
-                  <p className="institution-name mt-2">{item.name}</p>
+                <div className="space-y-0.5" >
+                  <p className="institution-role text-[10px] font-bold uppercase tracking-wider text-muted-foreground">{pick(role)}</p>
+                  <p className="institution-name text-sm font-semibold text-foreground">{item.name}</p>
                 </div>
               </div>
             ))}

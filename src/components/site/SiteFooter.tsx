@@ -31,155 +31,157 @@ export function SiteFooter() {
   const footerPartners = partnerOrganizations.slice(0, 4);
 
   return (
-    <footer className="mt-24 border-t border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--paper)_96%,var(--background)),color-mix(in_oklab,var(--background)_88%,var(--gold)))] text-foreground">
-      <div className="site-shell py-14 sm:py-16">
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.72fr_0.78fr_0.88fr]">
-          <div className="panel-card panel-card-strong p-6">
-            <div className="flex items-center gap-4">
-              <div className="rounded-[0.75rem] border border-border/70 bg-white/74 p-2">
+    <footer className="mt-24 border-t border-border/40 bg-[oklch(0.88_0.01_75)] text-foreground">
+      <div className="site-shell py-10 sm:py-12">
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.75fr_0.75fr_0.85fr]">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="rounded-md border border-border/50 bg-white/60 p-1.5">
                 <img
                   src={logoImg}
                   alt={t("footer.logoAlt")}
-                  className="h-[68px] w-auto object-contain"
+                  className="h-12 w-auto object-contain"
                 />
               </div>
               <div>
-                <p className="section-kicker">{t("conf.shortName")}</p>
-                <h2 className="mt-2 font-serif text-2xl font-semibold leading-tight">
+                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t("conf.shortName")}</p>
+                <p className="mt-1 font-serif text-sm font-semibold leading-tight text-foreground">
                   {t("conf.bridgeLabel")}
-                </h2>
+                </p>
               </div>
             </div>
-            <p className="mt-5 text-sm leading-7 text-foreground/76">{t("footer.description")}</p>
-
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="panel-card-muted p-4">
-                <CalendarDays className="h-4 w-4 text-gold" />
-                <p className="mt-3 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                  {t("dates.conference")}
-                </p>
-                <p className="mt-2 font-serif text-xl font-semibold">
+            <p className="text-xs leading-6 text-foreground/70">{t("footer.description")}</p>
+            <div className="grid gap-2 pt-2 sm:grid-cols-2">
+              <div className="space-y-1 rounded-sm border border-border/40 bg-white/30 p-3">
+                <div className="flex items-center gap-2">
+                  <CalendarDays className="h-3.5 w-3.5 text-gold" />
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                    {t("dates.conference")}
+                  </p>
+                </div>
+                <p className="font-serif text-sm font-semibold text-foreground">
                   {pick(conferenceIdentity.dates)}
                 </p>
               </div>
-              <div className="panel-card-muted p-4">
-                <MapPin className="h-4 w-4 text-vn-red" />
-                <p className="mt-3 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                  {t("footer.venueLabel")}
-                </p>
-                <p className="mt-2 font-serif text-xl font-semibold">
+              <div className="space-y-1 rounded-sm border border-border/40 bg-white/30 p-3">
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-3.5 w-3.5 text-vn-red" />
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                    {t("footer.venueLabel")}
+                  </p>
+                </div>
+                <p className="font-serif text-sm font-semibold text-foreground">
                   {pick(conferenceIdentity.venue)}
                 </p>
               </div>
             </div>
           </div>
 
-          <nav className="panel-card p-6" aria-label={t("footer.navigation")}>
-            <h3 className="section-kicker">{t("footer.navigation")}</h3>
-            <ul className="mt-5 grid gap-2 text-sm">
+          <nav className="space-y-3" aria-label={t("footer.navigation")}>
+            <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t("footer.navigation")}</p>
+            <ul className="grid gap-1.5 text-sm">
               {navigationLinks.map((item) => (
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="inline-flex rounded-[0.45rem] px-2 py-1.5 font-medium text-foreground/74 transition hover:bg-secondary hover:text-foreground"
+                    className="inline-flex text-xs font-medium text-foreground/75 transition hover:text-foreground"
                   >
                     {t(`nav.${item.key}`)}
                   </Link>
                 </li>
               ))}
             </ul>
-            <div className="mt-6 grid gap-2 border-t border-border/70 pt-5">
+            <div className="space-y-2 border-t border-border/30 pt-3">
               {actionLinks.map((item, index) => (
                 <Button
                   key={item.to}
                   asChild
                   size="sm"
                   variant={index === 0 ? "default" : "outline"}
-                  className="justify-between"
+                  className="w-full justify-between text-xs"
                 >
                   <Link to={item.to}>
                     {t(`nav.${item.key}`)}
-                    <ArrowUpRight className="h-4 w-4" />
+                    <ArrowUpRight className="h-3.5 w-3.5" />
                   </Link>
                 </Button>
               ))}
             </div>
           </nav>
 
-          <div className="grid gap-4">
-            <article className="panel-card p-6">
-              <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-semi-blue" />
-                <h3 className="section-kicker">{t("footer.contactInfo")}</h3>
+          <div className="space-y-3">
+            <article className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-semi-blue" />
+                <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t("footer.contactInfo")}</h3>
               </div>
-              <p className="mt-4 text-sm leading-7 text-foreground/76">{t("footer.contactBody")}</p>
+              <p className="text-xs leading-5 text-foreground/70">{t("footer.contactBody")}</p>
               <a
                 href={`mailto:${t("footer.contactEmail")}`}
-                className="mt-4 inline-flex text-sm font-semibold text-primary underline decoration-primary/25 underline-offset-4 hover:decoration-primary"
+                className="inline-block text-xs font-semibold text-primary underline decoration-primary/25 underline-offset-2 hover:decoration-primary"
               >
                 {t("footer.contactEmail")}
               </a>
             </article>
 
-            <article className="panel-card p-6">
-              <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-vn-red" />
-                <h3 className="section-kicker">{t("footer.venueLabel")}</h3>
+            <article className="space-y-2">
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-vn-red" />
+                <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t("footer.venueLabel")}</h3>
               </div>
-              <p className="mt-4 text-sm leading-7 text-foreground/76">
+              <p className="text-xs leading-5 text-foreground/70">
                 {pick(venueReference.address)}
               </p>
-              <Button asChild variant="outline" size="sm" className="mt-5">
+              <Button asChild variant="outline" size="sm" className="w-full text-xs">
                 <a href={venueReference.mapLink} target="_blank" rel="noreferrer">
                   {t("common.openMap")}
-                  <ArrowUpRight className="h-4 w-4" />
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              </Button>
+            </article>
+            <article className="space-y-2 rounded-sm border border-border/40 bg-white/25 p-3">
+              <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t("footer.previousEdition")}</p>
+              <h3 className="font-serif text-sm font-semibold leading-tight text-foreground">
+                {t("footer.previousEditionTitle")}
+              </h3>
+              <p className="text-xs leading-5 text-foreground/70">
+                {t("footer.previousEditionBody")}
+              </p>
+              <Button asChild variant="outline" size="sm" className="w-full text-xs">
+                <a href={previousEditionUrl} target="_blank" rel="noreferrer">
+                  {t("footer.previousEditionCta")}
+                  <ArrowUpRight className="h-3.5 w-3.5" />
                 </a>
               </Button>
             </article>
           </div>
 
-          <div className="grid gap-4">
-            <article className="panel-card p-6">
-              <div className="flex items-center gap-3">
-                <Users className="h-5 w-5 text-gold" />
-                <h3 className="section-kicker">{t("footer.organizersLabel")}</h3>
+          <div className="space-y-3">
+            <article className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Users className="h-4 w-4 text-gold" />
+                <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t("footer.organizersLabel")}</h3>
               </div>
-              <p className="mt-4 text-sm leading-7 text-foreground/76">
+              <p className="text-xs leading-5 text-foreground/70">
                 {t("footer.organizersSummary")}
               </p>
-              <div className="mt-5 grid gap-3">
+              <div className="space-y-1.5">
                 {footerPartners.map((item) => (
-                  <div key={`footer-partner-${item.name}`} className="grid gap-2">
-                    <OrganizationLogo item={item} className="min-h-0 py-3" />
-                    <p className="text-xs font-semibold leading-5 text-foreground/70">
+                  <div key={`footer-partner-${item.name}`} className="space-y-1">
+                    <OrganizationLogo item={item} className="min-h-0 py-1" />
+                    <p className="text-[10px] font-semibold leading-4 text-foreground/65">
                       {item.name}
                     </p>
                   </div>
                 ))}
               </div>
             </article>
-
-            <article className="panel-card panel-card-strong p-6">
-              <p className="section-kicker">{t("footer.previousEdition")}</p>
-              <h3 className="mt-3 font-serif text-2xl font-semibold leading-tight">
-                {t("footer.previousEditionTitle")}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-foreground/76">
-                {t("footer.previousEditionBody")}
-              </p>
-              <Button asChild variant="outline" size="sm" className="mt-5 justify-between">
-                <a href={previousEditionUrl} target="_blank" rel="noreferrer">
-                  {t("footer.previousEditionCta")}
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-              </Button>
-            </article>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-border/70 bg-white/48">
-        <div className="site-shell flex flex-col items-center justify-between gap-3 py-5 text-xs text-foreground/62 sm:flex-row">
+      <div className="border-t border-border/40 bg-[oklch(0.84_0.012_75)]">
+        <div className="site-shell flex flex-col items-center justify-between gap-2 py-4 text-[11px] text-foreground/65 sm:flex-row">
           <p>
             &copy; {year} {t("conf.shortName")}. {t("footer.rights")}
           </p>
