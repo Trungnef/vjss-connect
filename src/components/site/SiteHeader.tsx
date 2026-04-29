@@ -12,10 +12,10 @@ const navItems = [
   { to: "/about", key: "about" as const },
   { to: "/program", key: "program" as const },
   { to: "/speakers", key: "speakers" as const },
-  { to: "/venue", key: "venue" as const },
   { to: "/organizers", key: "organizers" as const },
   { to: "/sponsors", key: "sponsors" as const },
-  { to: "/news", key: "news" as const },
+  // { to: "/news", key: "news" as const },
+  { to: "/venue", key: "venue" as const },
   { to: "/contact", key: "contact" as const },
 ];
 
