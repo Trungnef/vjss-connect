@@ -8,12 +8,19 @@ RUN npm ci
 
 COPY . .
 
-RUN npm run build
+RUN npm run build && npm run smoke
 
-FROM nginx:alpine
+FROM node:22-alpine
 
-COPY --from=build /app/dist /usr/share/nginx/html
+WORKDIR /app
 
-EXPOSE 80
+ENV NODE_ENV=production
+ENV HOST=0.0.0.0
+ENV PORT=3000
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY --from=build /app/dist ./dist
+COPY server.mjs ./server.mjs
+
+EXPOSE 3000
+
+CMD ["node", "server.mjs"]
