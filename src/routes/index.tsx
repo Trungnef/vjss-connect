@@ -83,14 +83,7 @@ function HomePage() {
     ? featuredSpeakers.filter((speaker) => speaker.id !== leadSpeaker.id)
     : featuredSpeakers;
 
-  const highlightedThemes = [
-    technicalThemes[0],
-    technicalThemes[1],
-    technicalThemes[2],
-    technicalThemes[3],
-    technicalThemes[4],
-    technicalThemes[6],
-  ].filter((theme): theme is (typeof technicalThemes)[number] => Boolean(theme));
+  const highlightedThemes = technicalThemes;
 
   const delegateCount = homeMetrics[0]?.value ?? "150+";
 
@@ -174,7 +167,8 @@ function HomePage() {
     "xl:col-span-4",
     "xl:col-span-4",
     "xl:col-span-4",
-    "xl:col-span-12",
+    "xl:col-span-6",
+    "xl:col-span-6",
   ] as const;
 
   const scheduleLayouts = ["lg:col-span-2", "", "", ""] as const;
@@ -469,19 +463,19 @@ function HomePage() {
 
       <section id="themes" className="site-shell anchor-target mt-20">
         <SectionHeading
-          eyebrow={pick(L("Spotlight themes", "Chủ đề nổi bật", "Spotlight themes"))}
+          eyebrow={pick(L("Technical themes", "Chủ đề kỹ thuật", "技術テーマ"))}
           title={pick(
             L(
-              "Six conversation tracks shaping the 2026 edition.",
-              "Sáu hướng nội dung đang định hình kỳ hội nghị 2026.",
-              "Six conversation tracks shaping the 2026 edition."
+              "Seven technical themes shaping VJSS 2026.",
+              "Bảy chủ đề kỹ thuật của VJSS 2026.",
+              "VJSS 2026を構成する7つの技術テーマ。"
             )
           )}
           description={pick(
             L(
-              "From IC design and optoelectronics to advanced packaging, AI, quantum and talent development, the program is built to serve both technical depth and ecosystem relevance.",
-              "Từ thiết kế IC, quang điện tử đến đóng gói tiên tiến, AI, lượng tử và phát triển nhân lực, chương trình được xây để vừa có chiều sâu kỹ thuật vừa gắn với nhu cầu hệ sinh thái.",
-              "From IC design and optoelectronics to advanced packaging, AI, quantum and talent development, the program is built to serve both technical depth and ecosystem relevance."
+              "From IC design and optoelectronics to advanced materials, packaging, AI and quantum computing, emerging frontiers and human-resource development, the program covers both technical depth and ecosystem relevance.",
+              "Từ thiết kế IC, quang điện tử đến vật liệu tiên tiến, đóng gói, AI và điện toán lượng tử, công nghệ mới nổi và phát triển nguồn nhân lực — chương trình bao quát cả chiều sâu kỹ thuật và tính liên quan với hệ sinh thái.",
+              "IC設計、光電子から先進材料、パッケージング、AI・量子コンピューティング、新興フロンティア、人材育成までを網羅し、技術的深さとエコシステムへの貢献の両方を実現します。"
             )
           )}
           actions={
@@ -526,7 +520,7 @@ function HomePage() {
 
               <div className="mt-5 rounded-[0.9rem] border border-border/60 bg-white/70 px-4 py-3">
                 <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                  {pick(L("Track chairs", "Điều phối chủ đề", "Track chairs"))}
+                  {pick(L("Track chairs", "Điều phối chủ đề", "トラック議長"))}
                 </p>
 
                 <p className="mt-2 text-sm leading-6 text-foreground/78">
@@ -544,16 +538,16 @@ function HomePage() {
             eyebrow={pick(L("Schedule snapshot", "Lịch trình tóm tắt", "Schedule snapshot"))}
             title={pick(
               L(
-                "The conference unfolds over four purposeful days.",
-                "Hội nghị được thiết kế thành bốn ngày với nhịp nội dung rõ ràng.",
-                "The conference unfolds over four purposeful days."
+                "Four days, four distinct chapters.",
+                "Bốn ngày, bốn chương rõ ràng.",
+                "4日間、4つの異なる章。"
               )
             )}
             description={pick(
               L(
-                "Visitors can scan the overall flow quickly before diving deeper into the full program, technical sessions and implementation timeline.",
-                "Người xem có thể quét toàn bộ flow trước khi đi sâu vào lịch chi tiết, các phiên kỹ thuật và timeline triển khai.",
-                "Visitors can scan the overall flow quickly before diving deeper into the full program, technical sessions and implementation timeline."
+                "From opening lectures and plenary keynotes to parallel technical tracks, site visits and the JST NEXUS session.",
+                "Từ bài giảng khai mạc và keynote plenary, đến các track kỹ thuật song song, site visit và phiên JST NEXUS.",
+                "オープニング講義と本会議基調講演から、並行技術セッション、視察、JST NEXUS セッションまで。"
               )
             )}
             actions={
@@ -743,9 +737,9 @@ function HomePage() {
                 <p className="mt-3 max-w-xs text-sm leading-7 text-foreground/70">
                   {pick(
                     L(
-                      "Official organizations and sponsor-facing partners connected to the symposium.",
-                      "Các đơn vị chính thức và đối tác đồng hành gắn với hội nghị.",
-                      "Official organizations and sponsor-facing partners connected to the symposium."
+                      "Organizations involved in hosting, supporting and partnering with VJSS 2026.",
+                      "Các tổ chức tham gia chủ trì, bảo trợ và đồng hành cùng VJSS 2026.",
+                      "VJSS 2026 の主催、後援、パートナーとして参画する機関。"
                     )
                   )}
                 </p>
@@ -779,15 +773,15 @@ function HomePage() {
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
               <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/58">
-                {pick(L("Final call to action", "CTA cuối trang", "Final call to action"))}
+                {pick(L("Join VJSS 2026", "Tham dự VJSS 2026", "VJSS 2026 への参加"))}
               </p>
 
               <h2 className="mt-4 font-serif text-3xl font-semibold leading-tight text-white sm:text-4xl">
                 {pick(
                   L(
-                    "Reserve your place at VJSS 2026 and plan your Hanoi conference journey now.",
-                    "Đăng ký tham dự VJSS 2026 và bắt đầu lên kế hoạch cho hành trình hội nghị tại Hà Nội ngay từ bây giờ.",
-                    "Reserve your place at VJSS 2026 and plan your Hanoi conference journey now."
+                    "Reserve your place at VJSS 2026 and plan your Hanoi conference journey.",
+                    "Đăng ký tham dự VJSS 2026 và bắt đầu lên kế hoạch cho hành trình hội nghị tại Hà Nội.",
+                    "VJSS 2026 への参加を申し込み、ハノイでの会期に向けた準備を始めましょう。"
                   )
                 )}
               </h2>
@@ -795,9 +789,9 @@ function HomePage() {
               <p className="mt-4 max-w-2xl text-sm leading-7 text-white/68">
                 {pick(
                   L(
-                    "Whether you are joining as a delegate, speaker, partner or sponsor, the next step should be simple: register, review the schedule or contact the organizing team.",
-                    "Dù bạn tham gia với vai trò đại biểu, diễn giả, đối tác hay nhà tài trợ, bước tiếp theo đều nên thật rõ ràng: đăng ký, xem lịch trình hoặc liên hệ ban tổ chức.",
-                    "Whether you are joining as a delegate, speaker, partner or sponsor, the next step should be simple: register, review the schedule or contact the organizing team."
+                    "Whether you are joining as a delegate, speaker, partner or sponsor, the next step is simple: register, review the schedule or contact the organizing team.",
+                    "Dù bạn tham gia với vai trò đại biểu, diễn giả, đối tác hay nhà tài trợ, bước tiếp theo đều rất đơn giản: đăng ký, xem lịch trình hoặc liên hệ ban tổ chức.",
+                    "参加者、登壇者、パートナー、スポンサーのいずれであっても、次のステップはシンプルです — 登録する、プログラムを確認する、または運営事務局に連絡する。"
                   )
                 )}
               </p>

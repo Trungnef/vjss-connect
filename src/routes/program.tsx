@@ -70,6 +70,7 @@ function ProgramPage() {
       quickLinks={[
         { label: t("program.quickSchedule"), href: "#schedule" },
         { label: t("program.quickArchitecture"), href: "#architecture" },
+        { label: t("program.technicalEyebrow"), href: "#themes" },
         { label: t("program.quickTimeline"), href: "#timeline" },
       ]}
       heroNote={t("program.heroNote")}
@@ -230,48 +231,76 @@ function ProgramPage() {
 
       <section
         id="architecture"
-        className="anchor-target section-frame mt-16 grid gap-6 xl:grid-cols-[0.9fr_1.1fr]"
+        className="anchor-target section-frame mt-16"
       >
-        <article className="panel-card p-7 sm:p-8">
-          <SectionHeading
-            eyebrow={pick(program.architectureTitle)}
-            title={t("program.architectureTitle")}
-            description={pick(program.architectureBody)}
-          />
+        <SectionHeading
+          eyebrow={t("program.architectureEyebrow")}
+          title={t("program.architectureTitle")}
+          description={pick(program.architectureBody)}
+        />
 
-          <div className="mt-8 grid gap-4">
-            {programArchitecture.map((item) => (
-              <article key={item.title.en} className="panel-card-muted interactive-card p-5">
-                <h2 className="font-serif text-2xl font-semibold">{pick(item.title)}</h2>
-                <p className="mt-3 text-sm leading-7 text-foreground/78">
-                  {pick(item.description)}
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {programArchitecture.map((item) => (
+            <article key={item.title.en} className="panel-card interactive-card p-6">
+              <h2 className="font-serif text-2xl font-semibold leading-tight">
+                {pick(item.title)}
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-foreground/78">
+                {pick(item.description)}
+              </p>
+              <div className="mt-5 rounded-[0.9rem] border border-border/60 bg-white/70 px-4 py-3">
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+                  {t("common.audience")}
                 </p>
-                <p className="mt-4 text-sm text-muted-foreground">{pick(item.audience)}</p>
-              </article>
-            ))}
-          </div>
-        </article>
+                <p className="mt-2 text-sm leading-6 text-foreground/78">{pick(item.audience)}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-        <article className="panel-card panel-card-strong p-7 sm:p-8">
-          <SectionHeading
-            eyebrow={t("program.technicalEyebrow")}
-            title={t("program.technicalTitle")}
-            description={t("program.technicalDescription")}
-          />
+      <section
+        id="themes"
+        className="anchor-target section-frame panel-card-strong mt-16 p-7 sm:p-10"
+      >
+        <SectionHeading
+          eyebrow={t("program.technicalEyebrow")}
+          title={t("program.technicalTitle")}
+          description={t("program.technicalDescription")}
+          actions={
+            <Button asChild variant="outline">
+              <Link to="/call-for-papers">
+                {t("home.submitPaper")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          }
+        />
 
-          <div className="mt-8 grid gap-4 lg:grid-cols-2">
-            {technicalThemes.map((theme) => (
-              <article
-                key={theme.name.en}
-                className="rounded-[1.6rem] border border-border/70 bg-white/74 p-5 shadow-[0_24px_60px_-50px_color-mix(in_oklab,var(--navy)_32%,transparent)]"
-              >
-                <h2 className="font-serif text-2xl font-semibold">{pick(theme.name)}</h2>
-                <p className="mt-3 text-sm leading-7 text-foreground/78">{pick(theme.scope)}</p>
-                <p className="mt-4 text-sm text-muted-foreground">{theme.chairs.join(", ")}</p>
-              </article>
-            ))}
-          </div>
-        </article>
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {technicalThemes.map((theme, index) => (
+            <article
+              key={theme.name.en}
+              className="panel-card interactive-card relative overflow-hidden p-6"
+            >
+              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-gold">
+                {`0${index + 1} / 0${technicalThemes.length}`}
+              </span>
+              <h3 className="mt-3 font-serif text-2xl font-semibold leading-tight">
+                {pick(theme.name)}
+              </h3>
+              <p className="mt-4 text-sm leading-7 text-foreground/78">{pick(theme.scope)}</p>
+              <div className="mt-5 rounded-[0.9rem] border border-border/60 bg-white/70 px-4 py-3">
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+                  {t("common.chairs")}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-foreground/78">
+                  {theme.chairs.join(", ")}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section
