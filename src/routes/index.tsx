@@ -171,7 +171,7 @@ function HomePage() {
     "xl:col-span-6",
   ] as const;
 
-  const scheduleLayouts = ["lg:col-span-2", "", "", ""] as const;
+  const scheduleLayouts = ["", "", "", ""] as const;
 
   return (
     <>
@@ -421,36 +421,34 @@ function HomePage() {
                 key={speaker.id}
                 className="group panel-card interactive-card overflow-hidden"
               >
-                <div className="grid sm:grid-cols-[180px_minmax(0,1fr)]">
+                <div className="grid grid-cols-[140px_minmax(0,1fr)] sm:grid-cols-[160px_minmax(0,1fr)]">
                   <SpeakerImage
                     speaker={speaker}
-                    className="aspect-[4/5] border-b border-border/40 sm:h-full sm:border-b-0 sm:border-r"
+                    className="aspect-square border-r border-border/40"
                     imageClassName="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-                  >
-                    <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/20 to-transparent" />
-                  </SpeakerImage>
+                  />
 
-                  <div className="p-5 sm:p-6">
+                  <div className="flex flex-col justify-center p-4 sm:p-5">
                     <Badge
                       variant="outline"
-                      className="border-gold/28 bg-gold/5 text-[9px] uppercase tracking-[0.16em] text-gold/80"
+                      className="w-fit border-gold/28 bg-gold/5 text-[9px] uppercase tracking-[0.16em] text-gold/80"
                     >
                       {pick(speakerKindLabels[speaker.kind])}
                     </Badge>
 
-                    <h3 className="mt-4 font-serif text-2xl font-semibold leading-tight">
+                    <h3 className="mt-3 font-serif text-xl font-semibold leading-tight sm:text-2xl">
                       {speaker.name}
                     </h3>
 
-                    <p className="mt-2 text-sm font-medium text-foreground/72">
+                    <p className="mt-1.5 text-sm font-medium text-foreground/72">
                       {pick(speaker.role)}
                     </p>
 
-                    <p className="mt-1 text-xs leading-5 text-foreground/60">
+                    <p className="text-xs leading-5 text-foreground/60">
                       {pick(speaker.organization)}
                     </p>
 
-                    <p className="mt-4 text-sm leading-6 text-foreground/72">
+                    <p className="mt-3 line-clamp-2 text-sm leading-6 text-foreground/72">
                       {pick(speaker.summary)}
                     </p>
                   </div>
@@ -560,37 +558,34 @@ function HomePage() {
             }
           />
 
-          <div className="mt-8 grid gap-4 lg:grid-cols-2">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {homeProgramDays.map((day, index) => (
               <article
                 key={`${day.day.en}-${day.date.en}`}
-                className={`panel-card interactive-card p-6 ${
-                  scheduleLayouts[index] ?? ""
-                } ${index === 0 ? "panel-card-strong" : ""}`}
+                className={`panel-card interactive-card flex flex-col p-5 sm:p-6 ${
+                  index === 0 ? "panel-card-strong" : ""
+                }`}
               >
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div>
-                    <p className="section-kicker">{pick(day.day)}</p>
-
-                    <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight">
-                      {pick(day.title)}
-                    </h2>
-                  </div>
-
-                  <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-foreground/72">
+                <div className="flex items-start justify-between gap-3">
+                  <p className="section-kicker">{pick(day.day)}</p>
+                  <span className="shrink-0 rounded-full bg-secondary px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground/72">
                     {pick(day.date)}
                   </span>
                 </div>
 
-                <ul className="mt-6 space-y-3">
+                <h2 className="mt-3 font-serif text-xl font-semibold leading-tight lg:text-2xl">
+                  {pick(day.title)}
+                </h2>
+
+                <ul className="mt-4 flex-1 space-y-2">
                   {day.items.map((item) => (
                     <li
                       key={item.en}
-                      className="flex gap-3 text-sm leading-7 text-foreground/78"
+                      className="flex gap-2.5 text-sm leading-6 text-foreground/78"
                     >
                       <span
                         aria-hidden
-                        className="mt-2 h-1.5 w-1.5 rounded-full bg-gold"
+                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
                       />
                       <span>{pick(item)}</span>
                     </li>

@@ -87,26 +87,21 @@ function SpeakersPage() {
         </>
       }
       aside={
-        <div className="space-y-4">
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-            <div className="panel-card-muted p-4">
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                {t("speakers.metaWorkingRecords")}
-              </p>
-              <p className="mt-2 font-serif text-3xl font-semibold text-primary">
-                {speakers.length}
-              </p>
-            </div>
+        hasActiveFilters ? (
+          <div className="space-y-4">
             <div className="panel-card-muted p-4">
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                 {t("speakers.visibleAfterFilter")}
               </p>
               <p className="mt-2 font-serif text-3xl font-semibold text-primary">
                 {visibleSpeakers.length}
+                <span className="ml-1 text-base font-normal text-muted-foreground">
+                  / {speakers.length}
+                </span>
               </p>
             </div>
           </div>
-        </div>
+        ) : undefined
       }
     >
       <section

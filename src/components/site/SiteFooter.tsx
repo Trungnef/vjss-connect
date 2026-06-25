@@ -4,7 +4,7 @@ import { ArrowUpRight, CalendarDays, Mail, MapPin, Users } from "lucide-react";
 import logoImg from "@/assets/logo/logo.webp";
 import { OrganizationLogo } from "@/components/site/OrganizationLogo";
 import { Button } from "@/components/ui/button";
-import { conferenceIdentity, partnerOrganizations, venueReference } from "@/content/site-content";
+import { conferenceIdentity, ecosystemGroups, venueReference } from "@/content/site-content";
 import { useSiteLocale } from "@/hooks/use-site-locale";
 
 const previousEditionUrl = "https://vjsemiconductor.vanj.jp/";
@@ -28,7 +28,17 @@ const actionLinks = [
 export function SiteFooter() {
   const { pick, t } = useSiteLocale();
   const year = new Date().getFullYear();
-  const footerPartners = partnerOrganizations.slice(0, 4);
+  // Select key partners: VJU (host), JST (patron), VANJ (partner), Sony (industry)
+  const keyPartnerNames = [
+    "Vietnam Japan University (VJU)",
+    "Japan Science and Technology Agency (JST)",
+    "Vietnamese Academic Network in Japan (VANJ)",
+    "Sony Semiconductors",
+  ];
+  const allPartners = ecosystemGroups.flatMap((group) => group.items);
+  const footerPartners = keyPartnerNames
+    .map((name) => allPartners.find((p) => p.name === name))
+    .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
   return (
     <footer className="mt-24 border-t border-border/40 bg-[oklch(0.88_0.01_75)] text-foreground">

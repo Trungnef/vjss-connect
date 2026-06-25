@@ -2350,7 +2350,7 @@ export const ecosystemGroups: OrganizationGroup[] = [
           "Huynh Van Nhat博士を窓口に、協賛アウトリーチ、人材対話、企業参加を支援します。",
         ),
         link: "https://www.sony-semicon.com/",
-        logo: "/assets/organizations/sony-logo.svg",
+        logo: "/assets/organizations/sony-logo.png",
         logoAlt: S("Sony logo"),
         assetStatus: "verified",
         assetSource: "https://www.sony-semicon.com/files/62/logo_sony.svg",
