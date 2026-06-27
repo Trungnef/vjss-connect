@@ -39,6 +39,6 @@ async function checkRoute(url) {
 }
 
 await checkRoute("http://localhost/");
-await checkRoute("http://localhost/about");
+await checkRoute("http://localhost/program");
 
 console.log("Smoke check passed.");

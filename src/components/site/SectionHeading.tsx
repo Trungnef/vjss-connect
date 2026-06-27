@@ -11,7 +11,7 @@ export function SectionHeading({
   className,
 }: {
   eyebrow?: ReactNode;
-  title: ReactNode;
+  title?: ReactNode;
   description?: ReactNode;
   actions?: ReactNode;
   align?: "left" | "center";
@@ -28,13 +28,15 @@ export function SectionHeading({
       <div className={cn("max-w-3xl", align === "center" && "mx-auto")}>
         {eyebrow ? (
           <div className={cn("flex items-center gap-3", align === "center" && "justify-center")}>
-            <p className="section-kicker">{eyebrow}</p>
+            <p className="section-kicker text-[30px] font-bold">{eyebrow}</p>
             <span className="h-px w-14 bg-gradient-to-r from-gold via-semi-blue to-transparent" />
           </div>
         ) : null}
-        <h2 className="mt-4 font-serif text-3xl font-semibold leading-[1.08] text-balance sm:text-4xl lg:text-[3rem]">
-          {title}
-        </h2>
+        {title ? (
+          <h2 className="mt-4 font-serif text-3xl font-semibold leading-[1.08] text-balance sm:text-4xl lg:text-[3rem]">
+            {title}
+          </h2>
+        ) : null}
         {description ? (
           <p className="mt-4 max-w-2xl text-base leading-8 text-foreground/74 sm:text-lg">
             {description}

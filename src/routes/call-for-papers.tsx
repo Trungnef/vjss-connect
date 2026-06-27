@@ -1,19 +1,26 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CalendarClock, FileText, Microscope } from "lucide-react";
+import { ArrowRight, FileText, Microscope, CalendarClock, Target, BookOpen, Send } from "lucide-react";
 
 import i18n from "@/i18n";
 import { PageShell } from "@/components/site/PageShell";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Button } from "@/components/ui/button";
 import {
-  implementationTimeline,
   pageCopy,
   submissionCards,
   technicalThemes,
+  keyDates,
+  submissionGuidelines,
+  conferenceObjectives,
+  type LocalizedText,
 } from "@/content/site-content";
 import { useSiteLocale } from "@/hooks/use-site-locale";
 
-const submissionTimelinePeriods = new Set(["June 2026", "July 2026", "August 2026"]);
+const L = (en: string, vi: string, ja: string = en): LocalizedText => ({
+  en,
+  vi,
+  ja,
+});
 
 export const Route = createFileRoute("/call-for-papers")({
   head: () => ({
@@ -36,44 +43,28 @@ export const Route = createFileRoute("/call-for-papers")({
 function CfpPage() {
   const { pick, t } = useSiteLocale();
   const cfpPage = pageCopy.cfp;
-  const timelineItems = implementationTimeline.filter((item) =>
-    submissionTimelinePeriods.has(item.period),
-  );
 
   return (
     <PageShell
       eyebrow={t("nav.cfp")}
       title={pick(cfpPage.title)}
       description={pick(cfpPage.intro)}
-      meta={[
-        {
-          label: t("cfp.metaSubmissionThemes"),
-          value: technicalThemes.length,
-        },
-        {
-          label: t("cfp.metaTimelineStages"),
-          value: timelineItems.length,
-        },
-        {
-          label: t("cfp.metaIntakeCycle"),
-          value: "2026",
-        },
-      ]}
       quickLinks={[
         { label: t("cfp.quickFramework"), href: "#framework" },
         { label: t("cfp.quickScope"), href: "#scope" },
-        { label: t("cfp.quickTimeline"), href: "#timeline" },
+        { label: t("cfp.quickGuidelines"), href: "#guidelines" },
+        { label: t("home.importantDates"), href: "#key-dates" },
       ]}
       heroNote={t("cfp.heroNote")}
       actions={
         <>
-          <Button asChild>
+          <Button asChild className="rounded-none uppercase tracking-[0.14em]">
             <Link to="/contact">
               {t("cfp.ctaAskSubmissions")}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="rounded-none uppercase tracking-[0.14em]">
             <Link to="/program">{t("cfp.ctaReviewTracks")}</Link>
           </Button>
         </>
@@ -86,141 +77,207 @@ function CfpPage() {
               {pick(submissionCards[0].body)}
             </p>
           </div>
-          <div className="panel-card-muted p-4">
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-              {t("cfp.plannedMilestones")}
-            </p>
-            <p className="mt-2 font-serif text-3xl font-semibold text-primary">
-              {timelineItems.length}
-            </p>
-            <p className="mt-1 text-sm text-foreground/72">{t("cfp.plannedMilestonesDetail")}</p>
-          </div>
         </div>
       }
     >
-      <section id="framework" className="anchor-target section-frame">
+      <section id="framework" className="anchor-target section-frame p-5 sm:p-7 lg:p-8">
         <SectionHeading
           eyebrow={t("cfp.frameworkEyebrow")}
-          title={t("cfp.frameworkTitle")}
-          description={t("cfp.frameworkDescription")}
         />
 
-        <div className="mt-8 grid gap-5 xl:grid-cols-[0.94fr_1.06fr]">
-          <article className="panel-card panel-card-strong p-7 sm:p-8">
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-[0.55rem] bg-primary text-primary-foreground">
-              <FileText className="h-5 w-5" />
-            </span>
-            <p className="mt-6 section-kicker">{pick(submissionCards[0].title)}</p>
-            <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight">
-              {pick(cfpPage.title)}
-            </h2>
-            <p className="mt-4 text-base leading-8 text-foreground/78">
-              {pick(submissionCards[0].body)}
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Button asChild>
-                <Link to="/contact">
-                  {t("cfp.ctaAskSubmissions")}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link to="/program">{t("cfp.ctaReviewTracks")}</Link>
-              </Button>
+        <div className="mt-8 sm:mt-10 space-y-4">
+          {/* Background Card */}
+          <article className="panel-card panel-card-strong p-5 sm:p-6">
+            <div className="flex items-start gap-4">
+              <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+                <FileText className="h-5 w-5" />
+              </span>
+              <div className="flex-1">
+                <h3 className="font-serif text-xl sm:text-2xl font-semibold leading-tight">
+                  {pick(submissionCards[0].title)}
+                </h3>
+                <div className="mt-3 text-sm leading-7 text-foreground/78 text-justify space-y-4">
+                  {pick(submissionCards[0].body).split('\n\n').map((para, idx) => (
+                    <p key={idx}>{para}</p>
+                  ))}
+                </div>
+              </div>
             </div>
           </article>
 
-          <div className="grid gap-4">
-            {submissionCards.slice(1).map((card, index) => (
-              <article key={card.title.en} className="decision-panel interactive-card">
-                <div className="flex items-start gap-4">
-                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.45rem] bg-secondary text-vn-red">
-                    {index === 0 ? (
-                      <Microscope className="h-5 w-5" />
-                    ) : (
-                      <CalendarClock className="h-5 w-5" />
-                    )}
-                  </span>
-                  <div>
-                    <h2 className="font-serif text-2xl font-semibold leading-tight">
-                      {pick(card.title)}
-                    </h2>
-                    <p className="mt-3 text-sm leading-7 text-foreground/78">
-                      {pick(card.body)}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+          {/* Objectives Card */}
+          <article className="panel-card-muted p-5 sm:p-6">
+            <div className="flex items-start gap-4">
+              <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-secondary text-vn-red">
+                <Target className="h-5 w-5" />
+              </span>
+              <div className="flex-1">
+                <h3 className="font-serif text-xl sm:text-2xl font-semibold leading-tight">
+                  {t("cfp.objectivesTitle")}
+                </h3>
+                <ul className="mt-4 space-y-2.5">
+                  {conferenceObjectives.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 text-sm leading-6 text-foreground/78">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                      <span>{pick(item)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
       <section
         id="scope"
-        className="anchor-target section-frame mt-16 grid gap-6 xl:grid-cols-[1.08fr_0.92fr]"
+        className="anchor-target section-frame mt-12 sm:mt-16 p-5 sm:p-7 lg:p-8"
       >
-        <article className="panel-card p-7 sm:p-8">
-          <SectionHeading
-            eyebrow={t("cfp.scopeEyebrow")}
-            title={t("cfp.scopeTitle")}
-            description={t("cfp.scopeDescription")}
-          />
+        <SectionHeading
+          eyebrow={t("cfp.scopeEyebrow")}
+        />
 
-          <div className="mt-8 grid gap-4 lg:grid-cols-2">
-            {technicalThemes.map((theme) => (
-              <article key={theme.name.en} className="panel-card-muted interactive-card p-5">
-                <h2 className="font-serif text-2xl font-semibold">{pick(theme.name)}</h2>
-                <p className="mt-3 text-sm leading-7 text-foreground/78">{pick(theme.scope)}</p>
-                <p className="mt-4 text-sm text-muted-foreground">{theme.chairs.join(", ")}</p>
-              </article>
-            ))}
-          </div>
-        </article>
+        <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-5 md:grid-cols-2">
+            {technicalThemes.map((theme, idx) => {
+              const scopeItems = pick(theme.scope).split(";").map(s => s.trim()).filter(Boolean);
+              const isLastOdd = technicalThemes.length % 2 === 1 && idx === technicalThemes.length - 1;
+              return (
+                <article 
+                  key={theme.name.en} 
+                  className={`panel-card interactive-card p-5 sm:p-6 ${idx === 0 ? "panel-card-strong" : ""} ${isLastOdd ? "md:col-span-2" : ""}`}
+                >
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex shrink-0 items-center justify-center rounded-md bg-gold/15 px-2.5 py-1 text-l font-bold upper tracking-wider text-gold">
+                        Theme {idx + 1}:
+                      </span>
+                      <h3 className="font-serif text-lg sm:text-xl font-semibold leading-tight">{pick(theme.name)}</h3>
+                    </div>
+                    <ul className="mt-1 space-y-1.5">
+                      {scopeItems.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm leading-6 text-foreground/76">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/70" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              );
+            })}
+        </div>
+      </section>
 
-        <article id="timeline" className="anchor-target panel-card panel-card-strong p-7 sm:p-8">
-          <SectionHeading
-            eyebrow={t("cfp.timelineEyebrow")}
-            title={t("cfp.timelineTitle")}
-            description={t("cfp.timelineDescription")}
-          />
+      <section
+        id="guidelines"
+        className="anchor-target section-frame mt-12 sm:mt-16 p-5 sm:p-7 lg:p-8"
+      >
+        <SectionHeading
+          eyebrow={pick(L("Submission Guidelines", "Hướng dẫn nộp bài", "投稿ガイドライン"))}
+        />
 
-          <ol className="mt-8 grid gap-4">
-            {timelineItems.map((item) => (
-              <li key={item.period} className="timeline-rail">
-                <span className="timeline-node" aria-hidden />
-                <div className="rounded-[1.6rem] border border-border/70 bg-white/74 p-5">
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <p className="font-serif text-2xl font-semibold text-foreground">
-                      {pick(item.output)}
-                    </p>
-                    <span className="rounded-full bg-secondary px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-foreground/72">
-                      {item.period}
+        {/* Content grid - 2 columns on large screens */}
+        <div className="mt-8 sm:mt-10 grid gap-6 lg:grid-cols-2">
+          {/* Abstract Requirements - spans full width on mobile, left col on desktop */}
+          <article className="panel-card p-5 sm:p-6 lg:row-span-2">
+            <h3 className="font-serif text-xl sm:text-2xl font-semibold">{pick(L("Abstract Requirements", "Yêu cầu tóm tắt"))}</h3>
+            
+            <p className="mt-4 text-sm leading-7 text-foreground/85 text-justify">
+              {pick(L(
+                "Authors wishing to present their work at VJSS 2026 are invited to submit an abstract in English. Each submission should include the title of the presentation, author names and affiliations, the corresponding author's full contact information, the preferred presentation format (oral or poster), the relevant symposium theme, an abstract of approximately 200–300 words, and three to five keywords. VJSS 2026 welcomes contributions from academia, industry, and government, and particularly encourages submissions from graduate students, early-career professionals, and industry researchers.",
+                "Các tác giả muốn trình bày công trình tại VJSS 2026 được mời nộp tóm tắt bằng tiếng Anh. Mỗi bài nộp cần bao gồm tiêu đề bài trình bày, tên tác giả và đơn vị công tác, thông tin liên hệ đầy đủ của tác giả liên lạc, định dạng trình bày ưa thích (thuyết trình hoặc poster), chủ đề hội thảo liên quan, tóm tắt khoảng 200–300 từ, và ba đến năm từ khóa. VJSS 2026 chào đón các đóng góp từ giới học thuật, công nghiệp và chính phủ, đặc biệt khuyến khích các bài nộp từ nghiên cứu sinh, các chuyên gia trẻ và các nhà nghiên cứu trong ngành công nghiệp."
+              ))}
+            </p>
+          </article>
+
+          {/* Publishing Opportunity */}
+          <article className="panel-card-muted p-5 sm:p-6">
+            <h3 className="font-serif text-xl sm:text-2xl font-semibold">{pick(L("Publishing Opportunity", "Cơ hội xuất bản"))}</h3>
+            <p className="mt-3 text-sm leading-7 text-foreground/78 text-justify">{pick(submissionGuidelines.publishingOpportunity)}</p>
+          </article>
+
+          {/* Templates and Submission Portal */}
+          <article className="panel-card-strong p-5 sm:p-6">
+            <h3 className="font-serif text-xl sm:text-2xl font-semibold">{pick(L("Templates & Submission", "Biểu mẫu & Nộp bài"))}</h3>
+            <p className="mt-2 text-xs text-muted-foreground">{pick(L("Download templates and submit via EasyChair", "Tải biểu mẫu và nộp qua EasyChair"))}</p>
+            <div className="mt-4 flex flex-wrap gap-2 sm:gap-3">
+              <Button variant="outline" disabled className="rounded-none uppercase tracking-[0.12em] text-xs cursor-not-allowed opacity-40 hover:bg-transparent" aria-disabled="true" title="Abstract template to be updated soon">
+                {pick(L("Abstract Template", "Mẫu tóm tắt"))}
+              </Button>
+              <Button variant="outline" disabled className="rounded-none uppercase tracking-[0.12em] text-xs cursor-not-allowed opacity-40 hover:bg-transparent" aria-disabled="true" title="Full paper template to be updated soon">
+                {pick(L("Full Paper Template", "Mẫu bài toàn văn"))}
+              </Button>
+              <Button disabled className="rounded-none uppercase tracking-[0.12em] text-xs cursor-not-allowed opacity-50" aria-disabled="true" title="EasyChair submission link to be updated">
+                {pick(L("Submit via EasyChair", "Nộp qua EasyChair"))}
+              </Button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* Key Dates Section - Timeline Design */}
+      <section id="key-dates" className="anchor-target section-frame mt-12 sm:mt-16 p-5 sm:p-7 lg:p-8">
+        <SectionHeading
+          eyebrow={t("home.importantDates")}
+        />
+
+        {/* Timeline */}
+        <div className="mt-8 sm:mt-10 relative pl-7 sm:pl-9">
+            {/* Elegant gradient rail */}
+            <div className="absolute left-[7px] top-4 bottom-4 w-[2px] rounded-full bg-gradient-to-b from-gold/80 via-semi-blue/40 to-border/20" />
+            
+            <div className="space-y-2.5">
+              {keyDates.map((item, idx) => {
+                const isFirst = idx === 0;
+                const isLast = idx === keyDates.length - 1;
+                const isHighlight = isFirst || isLast;
+                const isDeadline = pick(item.label).toLowerCase().includes("deadline");
+                
+                return (
+                  <div
+                    key={idx}
+                    className={`group relative grid grid-cols-[1fr_auto] items-center gap-4 rounded-lg border px-4 py-3 sm:px-5 sm:py-3.5 transition-all duration-200 ${
+                      isHighlight 
+                        ? "border-gold/35 bg-gradient-to-r from-gold/6 to-transparent" 
+                        : "border-border/30 bg-card/50 hover:border-semi-blue/25 hover:bg-card/70"
+                    }`}
+                  >
+                    {/* Timeline node - centered vertically */}
+                    <div className={`absolute -left-7 sm:-left-9 top-1/2 -translate-y-1/2 flex h-3.5 w-3.5 items-center justify-center rounded-full ring-[3px] ring-background transition-colors ${
+                      isHighlight 
+                        ? "bg-gold" 
+                        : "bg-semi-blue/50 group-hover:bg-semi-blue/70"
+                    }`}>
+                      {isHighlight && (
+                        <span className="h-1 w-1 rounded-full bg-white" />
+                      )}
+                    </div>
+                    
+                    {/* Label */}
+                    <span className={`text-[13px] leading-snug ${isHighlight ? "font-medium text-foreground/90" : "text-foreground/75"}`}>
+                      {pick(item.label)}
+                      {"note" in item && item.note ? (
+                        <span className="ml-1.5 text-[10px] text-muted-foreground/70">
+                          ({pick(item.note as LocalizedText)})
+                        </span>
+                      ) : null}
+                    </span>
+                    
+                    {/* Date badge */}
+                    <span className={`shrink-0 rounded px-2 py-0.5 text-[11px] font-semibold tabular-nums ${
+                      isDeadline 
+                        ? "bg-vn-red/8 text-vn-red" 
+                        : isHighlight 
+                          ? "bg-primary/8 text-primary"
+                          : "bg-muted/60 text-foreground/60"
+                    }`}>
+                      {pick(item.date)}
                     </span>
                   </div>
-                  <p className="mt-4 text-sm leading-7 text-foreground/78">
-                    {pick(item.milestones)}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-
-          <div className="mt-7 grid gap-3">
-            <Button asChild className="justify-between">
-              <Link to="/contact">
-                {t("cfp.ctaAskSubmissions")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="justify-between">
-              <Link to="/program">
-                {t("cfp.ctaReviewTracks")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </article>
+                );
+              })}
+            </div>
+        </div>
       </section>
     </PageShell>
   );

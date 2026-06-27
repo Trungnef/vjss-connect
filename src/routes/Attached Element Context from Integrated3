@@ -1,0 +1,64 @@
+Attached Element Context from Integrated Browser
+
+Element: div.max-w-3xl
+
+URL: http://localhost:8081/sponsors
+
+HTML Path: div.flex.min-h-screen.flex-col.bg-background > main#main-content.flex-1 > article.relative.overflow-hidden > section.site-shell.py-10.sm:py-12 > section#partner-lockups.anchor-target.section-frame.p-5.sm:p-6 > div.flex.flex-col.gap-6.lg:flex-row.lg:items-end.lg:justify-between > div.max-w-3xl
+
+Outer HTML:
+```html
+<div class="max-w-3xl"><div class="flex items-center gap-3"><p class="section-kicker text-[30px] font-bold">Partners &amp; Sponsors</p><span class="h-px w-14 bg-gradient-to-r from-gold via-semi-blue to-transparent"></span></div><h2 class="mt-4 font-serif text-3xl font-semibold leading-[1.08] text-balance sm:text-4xl lg:text-[3rem]">Sponsors and partner organizations</h2><p class="mt-4 max-w-2xl text-base leading-8 text-foreground/74 sm:text-lg">Confirmed partner organizations supporting VJSS-2026, with more to be announced as commitments are finalized.</p></div>
+```
+
+Dimensions:
+- top: 180px
+- left: 49px
+- width: 768px
+- height: 245px
+
+CSS:
+```css
+*, ::after, ::before, ::backdrop, ::file-selector-button { box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid; }
+* { border-color: var(--color-border); }
+.max-w-3xl { max-width: var(--container-3xl); }
+
+/* Pseudo-elements */
+::selection { background: var(--semi-blue); }
+ { background: color-mix(in oklab, var(--semi-blue) 28%, white); }
+ { color: var(--navy); }
+
+/* Inherited */
+ { color: var(--color-foreground); font-feature-settings: "ss01", "cv11"; font-weight: 500 }
+html, :host { line-height: 1.5; tab-size: 4; font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"); font-feature-settings: var(--default-font-feature-settings, normal) }
+html { font-family: var(--font-sans) }
+
+/* Resolved values */
+margin: 0px;
+padding: 0px;
+border: 0px solid oklch(0.885 0.014 86);
+box-sizing: border-box;
+color: oklch(0.12 0.025 252);
+display: block;
+font-family: Manrope, "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+font-feature-settings: "cv11", "ss01";
+font-weight: 500;
+height: 244.667px;
+line-height: 24px;
+max-width: 768px;
+tab-size: 4;
+unicode-bidi: isolate /*UA*/;
+width: 768px;
+
+/* CSS variables */
+--semi-blue: oklch(0.48 0.11 238);
+--font-sans: "Manrope", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+--default-font-family: "Manrope", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+--navy: oklch(0.15 0.07 258);
+--container-3xl: 48rem;
+--color-border: oklch(0.885 0.014 86);
+--color-foreground: oklch(0.12 0.025 252);
+```

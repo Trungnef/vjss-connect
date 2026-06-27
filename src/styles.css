@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * VJSS 2026 design system.
+ * VJSS-2026 design system.
  * Mood: light academic conference, premium diplomatic dossier.
  * Vietnam-Japan motif: warm paper, deep navy/graphite text, restrained
  * Vietnamese red and gold accents, quiet semiconductor-blue support.
@@ -75,15 +75,15 @@
   --radius: 0.5rem;
 
   /* Base palette */
-  --ivory: oklch(0.982 0.009 86);
-  --paper: oklch(0.996 0.004 86);
-  --warm-paper: oklch(0.965 0.014 86);
-  --graphite: oklch(0.205 0.018 252);
-  --navy: oklch(0.255 0.058 258);
-  --semi-blue: oklch(0.52 0.105 238);
-  --vn-red: oklch(0.52 0.18 28);
-  --jp-indigo: oklch(0.32 0.075 264);
-  --gold: oklch(0.735 0.105 82);
+  --ivory: oklch(0.975 0.008 86);
+  --paper: oklch(0.992 0.004 86);
+  --warm-paper: oklch(0.96 0.012 86);
+  --graphite: oklch(0.12 0.025 252);
+  --navy: oklch(0.15 0.07 258);
+  --semi-blue: oklch(0.48 0.11 238);
+  --vn-red: oklch(0.48 0.18 28);
+  --jp-indigo: oklch(0.28 0.08 264);
+  --gold: oklch(0.68 0.12 82);
 
   --background: var(--ivory);
   --foreground: var(--graphite);
@@ -99,8 +99,8 @@
   --secondary: oklch(0.948 0.014 84);
   --secondary-foreground: var(--navy);
 
-  --muted: oklch(0.94 0.013 86);
-  --muted-foreground: oklch(0.45 0.025 256);
+  --muted: oklch(0.94 0.012 86);
+  --muted-foreground: oklch(0.38 0.03 256);
 
   --accent: var(--semi-blue);
   --accent-foreground: var(--paper);
@@ -181,6 +181,7 @@
     background-size: auto, auto, auto;
     color: var(--color-foreground);
     font-feature-settings: "ss01", "cv11";
+    font-weight: 500;
     min-height: 100vh;
     overflow-x: clip;
     text-rendering: optimizeLegibility;
@@ -257,11 +258,21 @@
 
   .section-kicker {
     color: var(--vn-red);
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: none;
+    font-style: normal;
+  }
+
+  /* Small eyebrow variant - use this for small labels */
+  .section-kicker-sm {
+    color: var(--vn-red);
     font-family: var(--font-sans);
     font-size: 0.68rem;
     font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    text-transform: none;
   }
 
   .signal-chip {

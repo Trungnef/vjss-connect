@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { ArrowRight, BookOpenText, CalendarRange, Database, Landmark, Layers3 } from "lucide-react";
 
 import i18n from "@/i18n";
@@ -14,6 +14,9 @@ import {
 import { useSiteLocale } from "@/hooks/use-site-locale";
 
 export const Route = createFileRoute("/about")({
+  beforeLoad: () => {
+    throw redirect({ to: "/" });
+  },
   head: () => ({
     meta: [
       { title: i18n.t("about.metaTitle") },

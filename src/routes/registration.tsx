@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BadgeHelp, Users } from "lucide-react";
+import { ArrowRight, Users, Calendar, CreditCard, MapPin, Clock, CheckCircle2, Mail } from "lucide-react";
 
 import i18n from "@/i18n";
 import { PageShell } from "@/components/site/PageShell";
@@ -7,17 +7,10 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 import { Button } from "@/components/ui/button";
 import {
   conferenceIdentity,
-  implementationTimeline,
   pageCopy,
-  registrationCards,
+  keyDates,
 } from "@/content/site-content";
 import { useSiteLocale } from "@/hooks/use-site-locale";
-
-const registrationTimelinePeriods = new Set([
-  "August 2026",
-  "September 1-19, 2026",
-  "September 20-23, 2026",
-]);
 
 export const Route = createFileRoute("/registration")({
   head: () => ({
@@ -33,203 +26,157 @@ export const Route = createFileRoute("/registration")({
   component: RegistrationPage,
 });
 
+// Structured registration info
+const registrationInfo = {
+  status: "coming-soon" as const, // "coming-soon" | "open" | "closed"
+  venue: {
+    name: { en: "VNU Vietnam Japan University", vi: "Trường Đại học Việt Nhật", ja: "ベトナム日本大学" },
+    location: { en: "Hanoi, Vietnam", vi: "Hà Nội, Việt Nam", ja: "ハノイ、ベトナム" },
+  },
+  format: { en: "In-person with hybrid support", vi: "Trực tiếp kết hợp trực tuyến", ja: "対面（ハイブリッド対応）" },
+  includes: [
+    { key: "sessions", icon: CheckCircle2 },
+    { key: "materials", icon: CheckCircle2 },
+    { key: "coffee", icon: CheckCircle2 },
+    { key: "networking", icon: CheckCircle2 },
+  ],
+};
+
+const audienceGroups = [
+  { key: "researchers", color: "bg-primary/10 text-primary" },
+  { key: "students", color: "bg-semi-blue/10 text-semi-blue" },
+  { key: "industry", color: "bg-gold/10 text-gold" },
+  { key: "universities", color: "bg-vn-red/10 text-vn-red" },
+  { key: "public", color: "bg-primary/10 text-primary" },
+];
+
 function RegistrationPage() {
   const { pick, t } = useSiteLocale();
   const registrationPage = pageCopy.registration;
-  const timelineItems = implementationTimeline.filter((item) =>
-    registrationTimelinePeriods.has(item.period),
+  
+  // Filter key dates for registration-related ones
+  const registrationDates = keyDates.filter(d => 
+    pick(d.label).toLowerCase().includes('registration') || 
+    pick(d.label).toLowerCase().includes('conference')
   );
-  const audienceSegments = [
-    t("registration.audienceResearchers"),
-    t("registration.audienceStudents"),
-    t("registration.audienceIndustry"),
-    t("registration.audiencePublic"),
-    t("registration.audienceUniversities"),
-    t("registration.audienceInnovation"),
-    t("registration.audienceNexus"),
-  ];
 
   return (
     <PageShell
       eyebrow={t("nav.registration")}
       title={pick(registrationPage.title)}
       description={pick(registrationPage.intro)}
-      meta={[
-        {
-          label: t("registration.metaInfoBlocks"),
-          value: registrationCards.length,
-        },
-        {
-          label: t("registration.metaStages"),
-          value: timelineItems.length,
-        },
-        {
-          label: t("registration.metaAudienceGroups"),
-          value: audienceSegments.length,
-        },
-      ]}
       quickLinks={[
-        { label: t("registration.quickAttendance"), href: "#attendance" },
-        { label: t("registration.quickTimeline"), href: "#timeline" },
-        { label: t("registration.quickSupport"), href: "#support" },
+        { label: t("registration.quickInfo"), href: "#info" },
+        { label: t("registration.quickAudience"), href: "#audience" },
+        { label: t("registration.quickDates"), href: "#dates" },
       ]}
       heroNote={t("registration.heroNote")}
       actions={
         <>
-          <Button asChild>
+          <Button asChild className="rounded-none uppercase tracking-[0.14em]">
             <Link to="/contact">
               {t("registration.ctaContactSupport")}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="rounded-none uppercase tracking-[0.14em]">
             <Link to="/program">{t("registration.ctaReviewProgram")}</Link>
           </Button>
         </>
       }
-      aside={
-        <div className="space-y-4">
-          <div className="panel-card-muted p-4">
-            <p className="section-kicker">{t("registration.attendanceNoteEyebrow")}</p>
-            <p className="mt-3 text-sm leading-6 text-foreground/80">
-              {t("registration.attendanceNoteBody")}
-            </p>
-          </div>
-          <div className="panel-card-muted p-4">
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-              {t("registration.participationModeLabel")}
-            </p>
-            <p className="mt-2 text-sm leading-6 text-foreground/80">
-              {pick(conferenceIdentity.format)}
-            </p>
-          </div>
-        </div>
-      }
     >
-      <section
-        id="attendance"
-        className="anchor-target section-frame grid gap-6 xl:grid-cols-[1.05fr_0.95fr]"
-      >
-        <article className="panel-card p-7 sm:p-8">
-          <SectionHeading
-            eyebrow={t("registration.attendanceEyebrow")}
-            title={t("registration.attendanceTitle")}
-            description={t("registration.attendanceDescription")}
-          />
+      {/* Registration Status Banner */}
+      <section id="info" className="anchor-target section-frame p-5 sm:p-7">
+        <SectionHeading
+          eyebrow={t("registration.infoTitle")}
+        />
 
-          <div className="mt-8 grid gap-4">
-            <article className="panel-card panel-card-strong p-6">
-              <p className="section-kicker">{pick(registrationCards[0].title)}</p>
-              <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight">
-                {pick(conferenceIdentity.format)}
-              </h2>
-              <p className="mt-4 text-sm leading-7 text-foreground/78">
-                {pick(registrationCards[0].body)}
-              </p>
-            </article>
-
-            <div className="grid gap-4 lg:grid-cols-2">
-              {registrationCards.slice(1).map((card) => (
-                <article key={card.title.en} className="decision-panel interactive-card">
-                  <h2 className="font-serif text-2xl font-semibold">{pick(card.title)}</h2>
-                  <p className="mt-3 text-sm leading-7 text-foreground/78">{pick(card.body)}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </article>
-
-        <article className="panel-card panel-card-strong p-7 sm:p-8">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/72 text-vn-red">
-              <Users className="h-5 w-5" />
-            </span>
-            <p className="section-kicker">{t("registration.audienceEyebrow")}</p>
-          </div>
-
-          <h2 className="mt-5 font-serif text-3xl font-semibold leading-tight">
-            {t("registration.audienceTitle")}
-          </h2>
-          <p className="mt-4 text-sm leading-7 text-foreground/78">
-            {t("registration.audienceDescription")}
-          </p>
-
-          <div className="mt-7 flex flex-wrap gap-2">
-            {audienceSegments.map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-border/70 bg-white/76 px-3 py-2 text-sm text-foreground/78"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </article>
+        <p className="mt-8 text-base sm:text-lg leading-relaxed text-foreground/70 max-w-4xl text-justify">
+          Registration fees will be announced later. The registration fee is expected to cover access to symposium sessions, conference materials, coffee breaks, and selected official networking activities. Details regarding student registration, early bird registration, industry registration, and hybrid participation will be provided on the official symposium website.
+        </p>
       </section>
 
-      <section
-        id="timeline"
-        className="anchor-target section-frame mt-16 grid gap-6 xl:grid-cols-[1.08fr_0.92fr]"
-      >
-        <article className="panel-card p-7 sm:p-8">
-          <SectionHeading
-            eyebrow={t("registration.timelineEyebrow")}
-            title={t("registration.timelineTitle")}
-            description={t("registration.timelineDescription")}
-          />
+      {/* Target Audience */}
+      {/* <section id="audience" className="anchor-target section-frame mt-12 sm:mt-16 p-5 sm:p-7">
+        <SectionHeading
+          eyebrow={t("registration.audienceTitle")}
+        />
 
-          <ol className="mt-8 grid gap-4">
-            {timelineItems.map((item) => (
-              <li key={item.period} className="timeline-rail">
-                <span className="timeline-node" aria-hidden />
-                <div className="panel-card-muted p-5">
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <p className="font-serif text-2xl font-semibold text-foreground">
-                      {pick(item.output)}
-                    </p>
-                    <span className="rounded-full bg-secondary px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-foreground/72">
-                      {item.period}
-                    </span>
-                  </div>
-                  <p className="mt-4 text-sm leading-7 text-foreground/78">
-                    {pick(item.milestones)}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </article>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {audienceGroups.map((group, index) => (
+            <article 
+              key={group.key}
+              className="panel-card interactive-card p-5 text-center"
+            >
+              <span className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${group.color}`}>
+                <Users className="h-6 w-6" />
+              </span>
+              <p className="mt-4 font-serif text-base font-semibold text-foreground">
+                {t(`registration.audience.${group.key}`)}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section> */}
 
-        <article id="support" className="anchor-target panel-card panel-card-strong p-7 sm:p-8">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/72 text-semi-blue">
-              <BadgeHelp className="h-5 w-5" />
+      {/* Key Dates */}
+      <section id="dates" className="anchor-target section-frame mt-12 sm:mt-16 p-5 sm:p-7">
+        <SectionHeading
+          eyebrow={t("registration.datesEyebrow")}
+        />
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {registrationDates.map((dateItem, index) => (
+            <article 
+              key={pick(dateItem.label)}
+              className="panel-card p-5 flex items-start gap-4"
+            >
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gold/10 text-gold font-mono text-sm font-bold">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-foreground/70">{pick(dateItem.label)}</p>
+                <p className="mt-1 font-serif text-lg font-semibold text-foreground">
+                  {pick(dateItem.date)}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-6 flex flex-col sm:flex-row gap-3">
+          <Button asChild className="rounded-none uppercase tracking-[0.14em]">
+            <Link to="/call-for-papers">
+              {t("registration.ctaViewTimeline")}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+      </section>
+
+      {/* Contact Support */}
+      <section className="section-frame mt-12 sm:mt-16 p-5 sm:p-7">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+          <div className="flex items-start gap-4">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <Mail className="h-6 w-6" />
             </span>
-            <p className="section-kicker">{t("registration.supportEyebrow")}</p>
+            <div>
+              <h3 className="font-serif text-xl font-semibold text-foreground">
+                {t("registration.supportTitle")}
+              </h3>
+              <p className="mt-1 text-sm text-foreground/70">
+                {t("registration.supportDescription")}
+              </p>
+            </div>
           </div>
-
-          <h2 className="mt-5 font-serif text-3xl font-semibold leading-tight">
-            {t("registration.supportTitle")}
-          </h2>
-          <p className="mt-4 text-sm leading-7 text-foreground/78">
-            {t("registration.supportDescription")}
-          </p>
-
-          <div className="mt-7 grid gap-3">
-            <Button asChild className="justify-between">
-              <Link to="/contact">
-                {t("registration.ctaContactSupport")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="justify-between">
-              <Link to="/program">
-                {t("registration.ctaReviewProgram")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </article>
+          <Button asChild className="rounded-none uppercase tracking-[0.14em]">
+            <Link to="/contact">
+              {t("registration.ctaContactSupport")}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
       </section>
     </PageShell>
   );

@@ -1,6 +1,6 @@
 const en = {
   conf: {
-    shortName: "VJSS 2026",
+    shortName: "VJSS-2026",
     bridgeLabel: "VIETNAM-JAPAN SEMICONDUCTOR SYMPOSIUM",
     fullName: "Vietnam-Japan Semiconductor Symposium 2026",
     tagline:
@@ -21,30 +21,33 @@ const en = {
     venue: "Venue",
     organizers: "Organizers",
     sponsors: "Sponsors",
-    cfp: "Submission",
-    registration: "Registration",
+    cfp: "Call for Papers",
+    committees: "Committees",
+    submission: "Submission & Publications",
+    registration: "Registration & Fees",
     news: "News",
     contact: "Contact",
     submit: "Submission",
     register: "Registration",
+    login: "Login",
     signIn: "Sign in",
   },
   header: {
     toggleMenu: "Toggle menu",
     primaryNav: "Primary",
     mobileNav: "Mobile",
-    logoAlt: "VJSS 2026 logo",
+    logoAlt: "VJSS-2026 logo",
   },
   pageShell: {
     home: "Home",
     onThisPage: "On this page",
   },
   root: {
-    metaTitle: "VJSS 2026 | Vietnam-Japan Semiconductor Symposium",
+    metaTitle: "VJSS-2026 | Vietnam-Japan Semiconductor Symposium",
     metaDescription:
       "Planning platform for the Vietnam-Japan Semiconductor Symposium 2026 in Hanoi.",
-    ogDescription: "Program, committees, venue planning and sponsorship structure for VJSS 2026.",
-    author: "VJSS 2026 Organizing Committee",
+    ogDescription: "Program, committees, venue planning and sponsorship structure for VJSS-2026.",
+    author: "VJSS-2026 Organizing Committee",
     skipToContent: "Skip to content",
     notFound: {
       eyebrow: "Error 404",
@@ -54,9 +57,9 @@ const en = {
     },
   },
   home: {
-    metaTitle: "VJSS 2026 - Vietnam-Japan Semiconductor Symposium",
+    metaTitle: "VJSS-2026 - Vietnam-Japan Semiconductor Symposium",
     metaDescription:
-      "September 20-23, 2026 in Hanoi. Explore speakers, program highlights and venue information for VJSS 2026.",
+      "September 20-23, 2026 in Hanoi. Explore speakers, program highlights and venue information for VJSS-2026.",
     heroEyebrow: "International forum on semiconductor research and partnership",
     heroCtaSubmit: "Submission",
     heroCtaRegister: "Registration",
@@ -77,10 +80,11 @@ const en = {
       "Four days covering lectures, plenaries, technical tracks, site visits and NEXUS activities.",
     sponsorsTitle: "Hosts, patrons and partners",
     sponsorsSubtitle:
-      "VJSS 2026 is hosted by Vietnam Japan University and AVIJ, with JST and NIC as patrons and VANJ as the partner network.",
+      "VJSS-2026 is hosted by Vietnam Japan University and AVIJ, with JST and NIC as patrons and VANJ as the partner network.",
     importantDates: "Key milestones",
     viewAll: "View all",
     viewProgram: "View full program",
+    viewSchedule: "View schedule",
     welcomeCategory: "01 - Summary",
     speakersCategory: "02 - Speakers",
     programCategory: "03 - Program",
@@ -91,13 +95,13 @@ const en = {
     becomeSponsor: "Become a sponsor",
     becomeSponsorDesc: "Explore engagement routes, sponsorship tiers and partner benefits.",
     submitPaper: "Submit an abstract",
-    submitPaperDesc: "Submit to one of the seven technical themes of VJSS 2026.",
+    submitPaperDesc: "Submit to one of the seven technical themes of VJSS-2026.",
     exploreProgram: "Explore the program",
     exploreProgramDesc: "Browse the four-day schedule, technical tracks and plenary sessions.",
     contactTitle: "Contact",
     contactDesc:
       "Reach the secretariat and academic liaisons for partner, speaker or program coordination.",
-    directionEyebrow: "Why VJSS 2026",
+    directionEyebrow: "Why VJSS-2026",
     directionTitle: "A conference built for research, talent and industry connection",
     planningNoteEyebrow: "What to expect",
     overviewTitle: "Conference overview",
@@ -105,12 +109,12 @@ const en = {
       "Four days of research exchange, talent development and bilateral collaboration.",
     multilingualEyebrow: "Multilingual",
     multilingualBody:
-      "Information about VJSS 2026 is published in English, Vietnamese and Japanese to serve participants from both countries.",
+      "Information about VJSS-2026 is published in English, Vietnamese and Japanese to serve participants from both countries.",
     trilingual:
       "English · Vietnamese · Japanese",
   },
   about: {
-    metaTitle: "About | VJSS 2026",
+    metaTitle: "About | VJSS-2026",
     metaDescription:
       "Positioning, design and objectives of the Vietnam-Japan Semiconductor Symposium 2026 in Hanoi.",
     metaProgramScope: "{{themes}} themes",
@@ -119,7 +123,7 @@ const en = {
     quickContext: "Strategic context",
     quickOutcomes: "Expected outcomes",
     heroNote:
-      "VJSS 2026 brings together research, talent development and industry cooperation between Vietnam and Japan in a four-day program in Hanoi.",
+      "VJSS-2026 brings together research, talent development and industry cooperation between Vietnam and Japan in a four-day program in Hanoi.",
     asideFormatLabel: "Event format",
     framingEyebrow: "Positioning",
     framingTitle: "A bilateral platform for research, talent and implementation",
@@ -129,21 +133,21 @@ const en = {
     designIntentBody:
       "The program guides participants from orientation through technical depth, partner networking and follow-up collaboration in a single coherent arc.",
     outcomesEyebrow: "Expected outcomes",
-    outcomesTitle: "What VJSS 2026 is designed to produce",
+    outcomesTitle: "What VJSS-2026 is designed to produce",
     outcomesDescription:
       "Academic, ecosystem and partnership outputs that extend beyond the four days in Hanoi.",
     nextRoutesEyebrow: "Next steps",
     nextRoutesTitle: "Explore the program and partnership options",
     nextRoutesBody:
-      "Review the schedule, committees and sponsorship framework to plan your participation in VJSS 2026.",
+      "Review the schedule, committees and sponsorship framework to plan your participation in VJSS-2026.",
     ctaProgram: "Explore Program",
     ctaSponsors: "Sponsorship Framework",
     ctaContact: "Contact Secretariat",
   },
   program: {
-    metaTitle: "Program | VJSS 2026",
+    metaTitle: "Program | VJSS-2026",
     metaDescription:
-      "Four-day program, technical themes and timeline for VJSS 2026 in Hanoi, September 20-23, 2026.",
+      "Four-day program, technical themes and timeline for VJSS-2026 in Hanoi, September 20-23, 2026.",
     metaVisibleSessions: "Visible sessions",
     metaVisibleDetail: "of {{count}} sessions",
     metaTracks: "Technical tracks",
@@ -154,10 +158,10 @@ const en = {
     heroNote:
       "Four days of plenary and invited talks, parallel technical sessions, student lectures, site visits and a dedicated JST NEXUS session.",
     visibleCardDetail: "of {{count}} sessions",
-    browserEyebrow: "Schedule",
-    browserTitle: "Filter the four-day schedule by theme",
+    browserEyebrow: "Tentative Schedule",
+    browserTitle: "Four-day program schedule",
     browserDescription:
-      "Browse the schedule by track, day and session type. Each session links to chairs and confirmed speakers.",
+      "Browse sessions by day and track. Filter by theme to find relevant sessions.",
     filterLabel: "Filter",
     emptyEyebrow: "No matching sessions",
     emptyTitle: "Adjust the theme filter to see the full schedule.",
@@ -175,7 +179,7 @@ const en = {
     ctaContactProgram: "Contact Program Team",
   },
   speakers: {
-    metaTitle: "Speakers | VJSS 2026",
+    metaTitle: "Speakers | VJSS-2026",
     metaDescription:
       "Plenary, lecture and invited speakers at the Vietnam-Japan Semiconductor Symposium 2026.",
     metaWorkingRecords: "Speakers",
@@ -191,7 +195,7 @@ const en = {
       "Filter by role or geography to find speakers by track and institution.",
     roleLabel: "Role",
     geographyLabel: "Geography",
-    directoryEyebrow: "All speakers",
+    directoryEyebrow: "Invited Speakers",
     directoryTitle: "Speakers across academia, industry and public institutions",
     directoryDescription:
       "Open a profile to see each speaker's affiliation, topic and associated session.",
@@ -205,8 +209,8 @@ const en = {
       "Reset the role and geography filters to see all speakers.",
   },
   venue: {
-    metaTitle: "Venue | VJSS 2026",
-    metaDescription: "Host city, venue and logistics information for VJSS 2026 in Hanoi.",
+    metaTitle: "Venue | VJSS-2026",
+    metaDescription: "Host city, venue and logistics information for VJSS-2026 in Hanoi.",
     metaReferenceVenue: "Host city",
     metaVenueOptions: "Venue options",
     metaEventMode: "Format",
@@ -215,56 +219,57 @@ const en = {
     quickFlow: "Travel and access",
     quickShortlist: "Venue options",
     heroNote:
-      "VJSS 2026 takes place in Hanoi, Vietnam. The exact conference venue is being finalized between Vietnam Japan University and Sheraton Hanoi West Hotel.",
+      "VJSS-2026 takes place in Hanoi, Vietnam. The exact conference venue is being finalized between Vietnam Japan University and Sheraton Hanoi West Hotel.",
+    hostCity: "Host city",
     referenceAddress: "Address",
+    referenceVenue: "Primary venue",
+    alternativeVenue: "Alternative venue",
+    pendingConfirmation: "Final confirmation pending",
     mapTitle: "Hanoi host city map",
-    visitorFlowEyebrow: "Travel and access",
+    visitorFlowEyebrow: "Venue & Accommodation",
     visitorFlowTitle: "Getting to Hanoi and navigating the symposium",
     visitorFlowDescription:
       "Travel, transfer and on-site information to help attendees plan their visit to Hanoi.",
     shortlistEyebrow: "Venue options",
     shortlistTitle: "Two venue options under consideration",
     shortlistDescription:
-      "VJSS 2026 will be held either on the Vietnam Japan University campus or at Sheraton Hanoi West Hotel. The final venue will be announced ahead of the symposium.",
+      "VJSS-2026 will be held either on the Vietnam Japan University campus or at Sheraton Hanoi West Hotel. The final venue will be announced ahead of the symposium.",
     planningEyebrow: "Logistics notes",
     planningTitle: "What attendees need to know",
     planningDescription:
-      "Practical notes on travel support, accommodation and on-site logistics for VJSS 2026.",
+      "Practical notes on travel support, accommodation and on-site logistics for VJSS-2026.",
     candidateLabel: "Option {{number}}",
     ctaReviewRegistration: "Registration",
     ctaAskLogistics: "Ask about logistics",
   },
   organizers: {
-    metaTitle: "Organizers | VJSS 2026",
+    metaTitle: "Organizers | VJSS-2026",
     metaDescription:
       "Hosts, patrons, partners and the committee structure of the Vietnam-Japan Semiconductor Symposium 2026.",
-    metaEcosystemGroups: "Organization groups",
-    metaCommitteeGroups: "Committees",
-    metaNamedMembers: "Named members",
-    quickInstitutionalMap: "Hosts and patrons",
-    quickEcosystem: "Organizations",
-    quickCommittees: "Committees",
     heroNote:
-      "VJSS 2026 is hosted by Vietnam Japan University and AVIJ, with JST and NIC as patrons, VANJ as the partner network, and Sony Semiconductors as industry liaison.",
-    governanceNote: "Note",
-    governanceStructureLabel: "Committee structure",
-    governanceStructureBody:
-      "VJSS 2026 is organized through conference chairs, an organizing committee, a scientific committee, a local committee and the secretariat.",
-    institutionalMapEyebrow: "Hosts and patrons",
-    institutionalMapTitle: "Hosts, patrons and partners at a glance",
-    institutionalMapDescription:
-      "The institutions that host, support and partner with VJSS 2026.",
-    ecosystemEyebrow: "Organizations",
-    ecosystemTitle: "Hosts, patrons and partners",
-    ecosystemDescription:
-      "Who is involved in organizing and supporting the symposium.",
-    committeesEyebrow: "Committees",
-    committeesTitle: "The committees delivering VJSS 2026",
-    committeesDescription:
-      "Conference chairs, organizing, scientific and local committees, plus the secretariat and the track contributors.",
+      "VJSS-2026 is hosted by Vietnam Japan University and AVIJ, with JST and NIC as patrons supporting bilateral semiconductor collaboration.",
+    
+    // Quick links
+    quickHosts: "Host institutions",
+    quickPatrons: "Patrons",
+    
+    // Hosts section
+    hostsEyebrow: "Host Organizations",
+    hostsTitle: "Hosted by leading Vietnam-Japan institutions",
+    hostsDescription: "The primary institutions organizing and hosting VJSS-2026 in Hanoi.",
+    
+    // Patrons section
+    patronsEyebrow: "Patrons & Endorsers",
+    patronsTitle: "Supported by key innovation partners",
+    patronsDescription: "Patron organizations providing institutional support and strategic alignment for VJSS-2026.",
+    
+    // CTA section
+    ctaCommitteesTitle: "Meet the organizing committees",
+    ctaCommitteesDescription: "Learn about the conference chairs, organizing committee, scientific committee, and secretariat.",
+    viewCommittees: "View Committees",
   },
   sponsors: {
-    metaTitle: "Sponsors | VJSS 2026",
+    metaTitle: "Sponsors | VJSS-2026",
     metaDescription: "Sponsorship engagement routes, tier framework and benefits for the Vietnam-Japan Semiconductor Symposium 2026.",
     metaRoutes: "Engagement routes",
     metaTiers: "Sponsorship tiers",
@@ -277,16 +282,16 @@ const en = {
       "Five sponsorship tiers — Strategic Partner, Platinum, Gold, Silver and In-kind — with engagement routes spanning talent, research collaboration, thought leadership and ecosystem visibility.",
     outreachScopeLabel: "Sponsorship scope",
     outreachScopeBody:
-      "Financial, in-kind, venue, hospitality, travel support and program-linked partnerships are all welcome at VJSS 2026.",
-    partnerLockupsEyebrow: "Partners",
+      "Financial, in-kind, venue, hospitality, travel support and program-linked partnerships are all welcome at VJSS-2026.",
+    partnerLockupsEyebrow: "Partners & Sponsors",
     partnerLockupsTitle: "Sponsors and partner organizations",
     partnerLockupsDescription:
-      "Confirmed partner organizations supporting VJSS 2026, with more to be announced as commitments are finalized.",
+      "Confirmed partner organizations supporting VJSS-2026, with more to be announced as commitments are finalized.",
     partnerPlaceholderRole: "Official logo pending",
     routesEyebrow: "Why sponsor",
     routesTitle: "Engagement routes built around value, not only logo placement",
     routesDescription:
-      "Sponsors of VJSS 2026 gain talent access, research collaboration opportunities, thought leadership platforms, ecosystem visibility and policy dialogue.",
+      "Sponsors of VJSS-2026 gain talent access, research collaboration opportunities, thought leadership platforms, ecosystem visibility and policy dialogue.",
     tiersEyebrow: "Tiers",
     tiersTitle: "Flexible tiers for institutional, premium and in-kind support",
     tiersDescription:
@@ -294,9 +299,9 @@ const en = {
     deliverablesEyebrow: "Sponsor benefits",
     deliverablesTitle: "What sponsoring partners receive",
     deliverablesDescription:
-      "Concrete benefits provided to sponsors before, during and after VJSS 2026.",
+      "Concrete benefits provided to sponsors before, during and after VJSS-2026.",
     ctaEyebrow: "Become a sponsor",
-    ctaTitle: "Start a sponsorship conversation with the VJSS 2026 team",
+    ctaTitle: "Start a sponsorship conversation with the VJSS-2026 team",
     ctaBody:
       "Contact the secretariat or the sponsorship liaison to discuss package scope, visibility, recruitment opportunities and in-kind contributions.",
     ctaNextStepLabel: "Next step",
@@ -306,7 +311,7 @@ const en = {
     ctaReviewOrganizers: "View Organizers",
   },
   news: {
-    metaTitle: "News | VJSS 2026",
+    metaTitle: "News | VJSS-2026",
     metaDescription: "Latest news and announcements for the Vietnam-Japan Semiconductor Symposium 2026.",
     metaPublished: "Published items",
     metaUpdated: "Latest",
@@ -314,13 +319,13 @@ const en = {
     quickFeatured: "Latest update",
     quickTimeline: "News timeline",
     heroNote:
-      "Announcements about the program, speakers, abstract submissions and the road to VJSS 2026 in Hanoi.",
+      "Announcements about the program, speakers, abstract submissions and the road to VJSS-2026 in Hanoi.",
     overviewEyebrow: "Latest update",
     cadenceLabel: "Stay informed",
     cadenceBody:
-      "News and announcements about VJSS 2026 are published here as the program is finalized and the symposium approaches.",
+      "News and announcements about VJSS-2026 are published here as the program is finalized and the symposium approaches.",
     statusEyebrow: "Latest",
-    statusTitle: "The latest from VJSS 2026",
+    statusTitle: "The latest from VJSS-2026",
     statusDescription:
       "The most recent announcement is highlighted at the top, followed by a chronological timeline of earlier updates.",
     updatedLabel: "Latest",
@@ -331,13 +336,13 @@ const en = {
     timelineDescription:
       "Follow the announcements from sponsor and speaker confirmations to abstract submission and program publication.",
     stayAlignedEyebrow: "Stay updated",
-    stayAlignedTitle: "Bookmark this page for the latest from VJSS 2026",
+    stayAlignedTitle: "Bookmark this page for the latest from VJSS-2026",
     stayAlignedBody:
       "Program changes, submission deadlines and sponsor announcements will be published here as they happen.",
   },
   contact: {
-    metaTitle: "Contact | VJSS 2026",
-    metaDescription: "Contact the VJSS 2026 secretariat and academic liaisons for program, registration, speaker and sponsorship questions.",
+    metaTitle: "Contact | VJSS-2026",
+    metaDescription: "Contact the VJSS-2026 secretariat and academic liaisons for program, registration, speaker and sponsorship questions.",
     metaDirectEmails: "Direct emails",
     metaPaths: "Contact paths",
     metaPriority: "Channels",
@@ -346,37 +351,47 @@ const en = {
     quickContacts: "Primary contacts",
     quickActions: "Get in touch",
     heroNote:
-      "Reach the VJSS 2026 secretariat for program operations and registration, or the academic liaisons for partner, sponsor and invited-speaker coordination.",
+      "Reach the VJSS-2026 secretariat for program operations and registration, or the academic liaisons for partner, sponsor and invited-speaker coordination.",
     directEmailsEyebrow: "Direct emails",
     directEmailsAvailable: "Published",
-    contactsEyebrow: "Primary contacts",
-    contactsTitle: "Pick the right contact for operations, academia or sponsorship",
+    contactsEyebrow: "Contact Information",
+    contactsTitle: "Get in touch with VJSS-2026",
     contactsDescription:
-      "Main contact channels for VJSS 2026, with direct email addresses for the academic liaisons.",
-    actionsEyebrow: "Get in touch",
-    actionsTitle: "Send a message to the VJSS 2026 team",
-    actionsDescription:
-      "Send an email to the academic liaisons or use the navigation to learn more about sponsorship, registration or the program.",
-    sponsorInquiryCta: "Sponsorship inquiry",
+      "Main contact channels for VJSS-2026, with direct email addresses for the secretariat and academic liaisons.",
+    primaryContact: "Primary contact",
+    academicLiaisons: "Academic Liaisons",
+    academicLiaisonsNote: "For program-related queries, reach the academic liaisons via the general email address.",
+    secretariat: "Conference Secretariat",
+    actionsEyebrow: "Quick actions",
+    actionsTitle: "How can we help?",
+    actionEmail: "Email us",
+    actionEmailDesc: "Send a message to the VJSS-2026 secretariat for general inquiries.",
+    actionRegister: "Register",
+    actionRegisterDesc: "Sign up for the symposium and secure your spot.",
+    actionSponsor: "Become a sponsor",
+    actionSponsorDesc: "Explore sponsorship opportunities and partnership benefits.",
+    goToRegistration: "Go to registration",
+    sponsorInquiryCta: "View sponsorship",
   },
   cfp: {
-    metaTitle: "Call for Abstracts | VJSS 2026",
+    metaTitle: "Call for Abstracts | VJSS-2026",
     metaDescription:
-      "Submit abstracts and contributed talks for the seven technical themes of VJSS 2026.",
+      "Submit abstracts and contributed talks for the seven technical themes of VJSS-2026.",
     metaSubmissionThemes: "Submission themes",
     metaTimelineStages: "Timeline stages",
     metaIntakeCycle: "Submission cycle",
     quickFramework: "Submission overview",
     quickScope: "Technical scope",
+    quickGuidelines: "Submission guidelines",
     quickTimeline: "Submission timeline",
     heroNote:
-      "Submit abstracts and contributed talks across the seven technical themes of VJSS 2026. Submission opens in June 2026.",
+      "Submit abstracts and contributed talks across the seven technical themes of VJSS-2026. Submission opens in June 2026.",
     plannedMilestones: "Submission window",
     plannedMilestonesDetail: "June to August 2026",
-    frameworkEyebrow: "Submission overview",
-    frameworkTitle: "Submit an abstract to VJSS 2026",
+    frameworkEyebrow: "Call for Papers",
+    frameworkTitle: "Submit an abstract to VJSS-2026",
     frameworkDescription:
-      "Status, technical scope and process for submitting abstracts to VJSS 2026.",
+      "Status, technical scope and process for submitting abstracts to VJSS-2026.",
     scopeEyebrow: "Technical scope",
     scopeTitle: "Seven technical themes accepting submissions",
     scopeDescription:
@@ -387,48 +402,142 @@ const en = {
       "Key milestones from the opening of submissions through review and program publication.",
     ctaAskSubmissions: "Ask about submissions",
     ctaReviewTracks: "View Program Tracks",
+    objectivesTitle: "Objectives",
   },
   registration: {
-    metaTitle: "Registration | VJSS 2026",
+    metaTitle: "Registration | VJSS-2026",
     metaDescription:
-      "Attendance information, target audience and registration timeline for VJSS 2026 in Hanoi.",
-    metaInfoBlocks: "Information blocks",
-    metaStages: "Registration stages",
-    metaAudienceGroups: "Audience groups",
-    quickAttendance: "Attendance",
-    quickTimeline: "Registration timeline",
-    quickSupport: "Support",
+      "Attendance information, target audience and registration timeline for VJSS-2026 in Hanoi.",
+    quickInfo: "Registration info",
+    quickAudience: "Who should attend",
+    quickDates: "Key dates",
     heroNote:
-      "VJSS 2026 welcomes researchers, students, industry experts, universities and public agencies for four days in Hanoi.",
-    attendanceNoteEyebrow: "Note",
-    attendanceNoteBody:
-      "Registration fees, payment details and invitation letters will be announced ahead of the symposium.",
-    participationModeLabel: "Participation mode",
-    attendanceEyebrow: "Attendance",
-    attendanceTitle: "Who attends VJSS 2026",
-    attendanceDescription:
-      "The symposium is designed for researchers, students, industry partners, universities and public agencies across Vietnam and Japan.",
-    audienceEyebrow: "Audience",
-    audienceTitle: "For academic, industry and ecosystem participants",
-    audienceDescription:
-      "VJSS 2026 brings together researchers, students, industry partners and public agencies from Vietnam and Japan.",
-    timelineEyebrow: "Registration timeline",
-    timelineTitle: "Key dates from registration opening to on-site participation",
-    timelineDescription:
-      "Registration opens ahead of the symposium. Detailed timeline and fees will be announced in advance.",
-    supportEyebrow: "Need help",
-    supportTitle: "Contact the team for registration and logistics questions",
-    supportDescription:
-      "Reach the secretariat for registration questions, payment details, invitation letters and on-site logistics.",
+      "VJSS-2026 welcomes researchers, students, industry experts, universities and public agencies for four days in Hanoi.",
+    
+    // Info section
+    infoEyebrow: "Symposium Registration",
+    infoTitle: "Register for VJSS-2026",
+    infoDescription: "Join researchers, industry leaders, and students from Vietnam and Japan for four days of collaboration.",
+    
+    // Status
+    statusLabel: "Registration status",
+    statusComingSoon: "Coming Soon",
+    statusOpen: "Now Open",
+    statusClosed: "Closed",
+    statusDescription: "Registration details, fees, and payment information will be announced ahead of the symposium. Stay tuned for updates.",
+    
+    // Includes
+    includesLabel: "Registration includes",
+    includes: {
+      sessions: "All symposium sessions",
+      materials: "Conference materials",
+      coffee: "Coffee breaks",
+      networking: "Networking events",
+    },
+    
+    // Venue & Format
+    venueLabel: "Venue",
+    formatLabel: "Format",
+    datesLabel: "Conference dates",
+    
+    // Audience section
+    audienceEyebrow: "Target audience",
+    audienceTitle: "Who should attend VJSS-2026",
+    audienceDescription: "The symposium brings together diverse participants from academia, industry, and government sectors.",
+    audience: {
+      researchers: "Researchers",
+      students: "Students",
+      industry: "Industry experts",
+      universities: "Universities",
+      public: "Public agencies",
+    },
+    
+    // Dates section
+    datesEyebrow: "Important dates",
+    datesTitle: "Registration timeline",
+    datesDescription: "Key milestones for registration and the symposium.",
+    
+    // Support
+    supportTitle: "Questions about registration?",
+    supportDescription: "Contact the secretariat for registration, payment, or invitation letters.",
+    
+    // CTAs
     ctaContactSupport: "Contact Registration Team",
     ctaReviewProgram: "View Program",
-    audienceResearchers: "Researchers",
-    audienceStudents: "Students",
-    audienceIndustry: "Industry experts",
-    audiencePublic: "Public agencies",
-    audienceUniversities: "Universities",
-    audienceInnovation: "Innovation centers",
-    audienceNexus: "JST NEXUS teams",
+    ctaViewTimeline: "View Full Timeline",
+  },
+  committees: {
+    metaTitle: "Committees | VJSS-2026",
+    metaDescription: "Organizing, Scientific, Local Organizing Committees and Conference Secretariat of the Vietnam-Japan Semiconductor Symposium 2026.",
+    heroNote: "VJSS-2026 is organized through a structured committee model: organizing committee, local organizing committee, scientific committee and the conference secretariat.",
+    quickOrganizing: "Organizing Committee",
+    quickLocal: "Local Organizing Committee",
+    quickScientific: "Scientific Committee",
+    quickSecretariat: "Conference Secretariat",
+    committeesEyebrow: "Organizing Committee",
+    committeesTitle: "The committees delivering VJSS-2026",
+    committeesDescription: "Conference chairs, organizing, scientific and local committees, plus the secretariat.",
+  },
+  submission: {
+    metaTitle: "Submission & Publications | VJSS-2026",
+    metaDescription: "Submission guidelines, publishing opportunities and abstract submission for VJSS-2026.",
+    
+    // Page header
+    pageTitle: "Submit your work to VJSS-2026",
+    pageDescription: "Authors are invited to submit abstracts across seven technical themes covering semiconductor design, devices, materials, AI, and more.",
+    heroNote: "Submit abstracts and contributed talks across the seven technical themes of VJSS-2026. Submission opens in June 2026.",
+    
+    // Quick links
+    quickGuidelines: "Guidelines",
+    quickTimeline: "Timeline",
+    quickThemes: "Themes",
+    quickPublishing: "Publishing",
+    quickSubmit: "Submit",
+    
+    // Guidelines section
+    guidelinesEyebrow: "Paper Submission",
+    guidelinesTitle: "How to prepare your submission",
+    guidelinesDescription: "Follow these guidelines to prepare and submit your abstract for VJSS-2026.",
+    
+    // Status
+    statusLabel: "Submission status",
+    statusComingSoon: "Opening Soon",
+    statusOpen: "Now Open",
+    statusClosed: "Closed",
+    statusDescription: "The online submission system will open in June 2026. Templates and detailed instructions will be available soon.",
+    
+    // Templates
+    templatesLabel: "Templates",
+    abstractTemplateCta: "Abstract Template",
+    fullPaperTemplateCta: "Full Paper Template",
+    templatesPending: "Templates will be available soon",
+    
+    // Requirements
+    requirementsTitle: "Abstract Requirements",
+    requirementsText: "Authors wishing to present their work at VJSS 2026 are invited to submit an abstract in English. Each submission should include the title of the presentation, author names and affiliations, the corresponding author's full contact information, the preferred presentation format (oral or poster), the relevant symposium theme, an abstract of approximately 200–300 words, and three to five keywords. VJSS 2026 welcomes contributions from academia, industry, and government, and particularly encourages submissions from graduate students, early-career professionals, and industry researchers.",
+    
+    // Timeline section
+    timelineEyebrow: "Submission timeline",
+    timelineTitle: "Key dates for authors",
+    timelineDescription: "Important deadlines from abstract submission to notification of acceptance.",
+    viewFullTimeline: "View full timeline",
+    
+    // Themes section
+    themesEyebrow: "Technical themes",
+    themesTitle: "Seven themes accepting submissions",
+    themesDescription: "Select the most relevant theme for your abstract from the seven technical tracks.",
+    viewThemeDetails: "View theme details",
+    
+    // Publishing section
+    publishingEyebrow: "Publishing opportunity",
+    publishingTitle: "Post-symposium publications",
+    publishingDescription: "Selected works may be invited for full paper submission.",
+    
+    // Submit section
+    submitTitle: "Ready to submit?",
+    submitDescription: "Submit your abstract via the EasyChair submission system.",
+    submitCta: "Submit Abstract",
+    easyChairPending: "Coming soon",
   },
   dates: {
     conference: "Conference dates",
@@ -436,11 +545,13 @@ const en = {
   footer: {
     tagline: "Official information hub for the Vietnam-Japan Semiconductor Symposium 2026.",
     description:
-      "VJSS 2026 connects Vietnam and Japan through semiconductor research, talent development, industry dialogue and long-term academic cooperation.",
+      "VJSS-2026 connects Vietnam and Japan through semiconductor research, talent development, industry dialogue and long-term academic cooperation.",
     navigation: "Navigation",
     contactInfo: "Contact information",
     venueLabel: "Venue / location",
     organizersLabel: "Organizers and partners",
+    organizers: "Organizers",
+    partners: "Partners",
     organizersSummary:
       "Hosted and supported by a Vietnam-Japan network of academic, public-sector and industry partners.",
     previousEdition: "Previous edition",
@@ -450,7 +561,7 @@ const en = {
     previousEditionCta: "Visit VJSS 2025 site",
     status: "Status",
     statusBody:
-      "Program, venue and speaker information is being updated as VJSS 2026 approaches in September.",
+      "Program, venue and speaker information is being updated as VJSS-2026 approaches in September.",
     contactHeader: "Contact",
     contactBody: "See the contact page for the secretariat and academic liaison details.",
     contactEmail: "bnq.trinh@vju.ac.vn",
@@ -460,10 +571,11 @@ const en = {
     locationEyebrow: "Location",
     locationTitle: "Host city",
     locationBody:
-      "VJSS 2026 takes place in Hanoi, Vietnam. The final venue will be announced ahead of the symposium.",
+      "VJSS-2026 takes place in Hanoi, Vietnam. The final venue will be announced ahead of the symposium.",
     formatLabel: "Format",
-    logoAlt: "VJSS 2026 logo",
+    logoAlt: "VJSS-2026 logo",
     copyrightNote: "Vietnam-Japan semiconductor cooperation platform.",
+    madeBy: "Made by",
   },
   status: {
     draft: "Draft",
@@ -488,6 +600,7 @@ const en = {
     session: "Session",
     openMap: "Open map",
     website: "Website",
+    visitWebsite: "Visit website",
     explore: "Explore",
     referenceOnly: "Reference only",
     format: "Format",

@@ -4,37 +4,19 @@ import {
   CalendarDays,
   Clock3,
   Cpu,
-  GraduationCap,
-  Handshake,
-  Landmark,
-  Layers3,
   MapPin,
-  Mic,
-  Sparkles,
-  Users,
 } from "lucide-react";
 
 import heroConferenceImg from "@/assets/herro_banner.png";
 import i18n from "@/i18n";
-import { OrganizationLogo } from "@/components/site/OrganizationLogo";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { SpeakerImage } from "@/components/site/SpeakerImage";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   conferenceIdentity,
-  ecosystemGroups,
-  expectedOutcomes,
-  featuredSpeakerIds,
-  homeHighlights,
-  homeMetrics,
+  keyDates,
+  homeWelcome,
   homeProgramDays,
-  pageCopy,
-  programSessions,
-  speakerKindLabels,
-  speakers,
   technicalThemes,
-  venueReference,
   type LocalizedText,
 } from "@/content/site-content";
 import { useSiteLocale } from "@/hooks/use-site-locale";
@@ -71,22 +53,6 @@ const L = (en: string, vi: string, ja: string = en): LocalizedText => ({
 function HomePage() {
   const { pick, t } = useSiteLocale();
 
-  const aboutPage = pageCopy.about;
-
-  const featuredSpeakers = featuredSpeakerIds
-    .map((speakerId) => speakers.find((speaker) => speaker.id === speakerId))
-    .filter((speaker): speaker is (typeof speakers)[number] => Boolean(speaker));
-
-  const leadSpeaker = featuredSpeakers[0] ?? null;
-
-  const supportingSpeakers = leadSpeaker
-    ? featuredSpeakers.filter((speaker) => speaker.id !== leadSpeaker.id)
-    : featuredSpeakers;
-
-  const highlightedThemes = technicalThemes;
-
-  const delegateCount = homeMetrics[0]?.value ?? "150+";
-
   const heroFacts = [
     {
       label: t("dates.conference"),
@@ -105,62 +71,6 @@ function HomePage() {
     },
   ];
 
-  const overviewCards = [
-    {
-      title: L("Technical depth", "Chiều sâu kỹ thuật"),
-      body: L(
-        "Seven themes spanning IC design, materials, packaging, AI, quantum and workforce development.",
-        "Bảy chủ đề trải từ thiết kế IC, vật liệu, đóng gói, AI, lượng tử tới phát triển nhân lực."
-      ),
-      icon: Cpu,
-    },
-    {
-      title: L("Bilateral exchange", "Kết nối song phương"),
-      body: L(
-        "Researchers, universities, agencies and companies from Vietnam and Japan meet in one program arc.",
-        "Nhà nghiên cứu, trường đại học, cơ quan và doanh nghiệp từ Việt Nam, Nhật Bản gặp nhau trong cùng một mạch chương trình."
-      ),
-      icon: Handshake,
-    },
-    {
-      title: L("Talent pipeline", "Dòng chảy nhân lực"),
-      body: L(
-        "Student lectures, orientation sessions and networking are built into the core conference experience.",
-        "Bài giảng cho sinh viên, phiên định hướng và networking được đặt ngay trong khung chương trình chính."
-      ),
-      icon: GraduationCap,
-    },
-  ] as const;
-
-  const attendanceReasons = [
-    {
-      title: L("Build new research connections", "Mở ra kết nối nghiên cứu mới"),
-      body: expectedOutcomes[0],
-      icon: Sparkles,
-    },
-    {
-      title: L("Strengthen the talent pipeline", "Tăng cường dòng chảy nhân lực bán dẫn"),
-      body: expectedOutcomes[1],
-      icon: GraduationCap,
-    },
-    {
-      title: L(
-        "Meet universities and industry in one place",
-        "Gặp gỡ trường đại học và doanh nghiệp trong cùng một không gian"
-      ),
-      body: expectedOutcomes[2],
-      icon: Handshake,
-    },
-    {
-      title: L(
-        "Follow ecosystem and policy alignment",
-        "Nắm bắt các chuyển động hệ sinh thái và chính sách"
-      ),
-      body: expectedOutcomes[3],
-      icon: Landmark,
-    },
-  ] as const;
-
   const themeLayouts = [
     "xl:col-span-7",
     "xl:col-span-5",
@@ -170,8 +80,6 @@ function HomePage() {
     "xl:col-span-6",
     "xl:col-span-6",
   ] as const;
-
-  const scheduleLayouts = ["", "", "", ""] as const;
 
   return (
     <>
@@ -187,384 +95,285 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="site-shell mt-10 sm:mt-12">
-        <div className="section-frame p-5 sm:p-7 lg:p-8">
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-            <div>
-              <p className="inline-flex items-center gap-2 rounded-full border border-gold/25 bg-gold/8 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-gold/90">
-                <Sparkles className="h-3.5 w-3.5" />
-                {t("home.heroEyebrow")}
-              </p>
-
-              <h1 className="mt-5 max-w-3xl font-serif text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
-                {pick(conferenceIdentity.fullName)}
-              </h1>
-
-              <p className="mt-4 max-w-3xl text-base leading-8 text-foreground/72 sm:text-lg">
-                {pick(conferenceIdentity.tagline)}
-              </p>
-
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Button asChild size="lg" className="bg-navy text-white hover:bg-navy/90">
-                  <Link to="/registration">
-                    {t("home.heroCtaRegister")}
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-
-                <Button asChild size="lg" variant="outline">
-                  <Link to="/program">
-                    {pick(L("View schedule", "Xem lịch trình", "View schedule"))}
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-              {heroFacts.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <article
-                    key={item.label}
-                    className="panel-card-muted p-5"
-                  >
-                    <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                      <Icon className="h-4 w-4 text-semi-blue" />
-                      {item.label}
-                    </div>
-
-                    <p className="mt-3 text-sm font-semibold leading-6 text-foreground">
-                      {item.value}
-                    </p>
-                  </article>
-                );
-              })}
+      {/* Welcome Section */}
+      <section id="welcome" className="site-shell anchor-target mt-16 sm:mt-20 lg:mt-24">
+        <article className="section-frame p-6 sm:p-8 lg:p-12 xl:p-16">
+          {/* Section Header */}
+          <div className="mb-10 lg:mb-14">
+            <div className="flex items-center gap-4">
+              <span className="inline-block w-12 h-px bg-gradient-to-r from-vn-red to-gold" />
+              <h2 className="section-kicker text-base sm:text-lg lg:text-4xl tracking-[0.06em]">
+                {pick(L("Welcome to VJSS-2026", "Chào mừng đến với VJSS-2026", "VJSS-2026 へようこそ"))}
+              </h2>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="site-shell mt-10 sm:mt-12">
-        <div className="grid gap-4 md:grid-cols-3">
-          {overviewCards.map((item, index) => {
-            const Icon = item.icon;
-
-            return (
-              <article
-                key={item.title.en}
-                className={`panel-card interactive-card p-5 sm:p-6 ${
-                  index === 0 ? "panel-card-strong" : ""
-                }`}
-              >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-semi-blue">
-                  <Icon className="h-5 w-5" />
-                </span>
-
-                <h2 className="mt-5 font-serif text-2xl font-semibold leading-tight">
-                  {pick(item.title)}
-                </h2>
-
-                <p className="mt-3 text-sm leading-7 text-foreground/74">
-                  {pick(item.body)}
-                </p>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section
-        id="intro"
-        className="site-shell anchor-target mt-20 grid gap-6 xl:grid-cols-[1.02fr_0.98fr]"
-      >
-        <article className="section-frame p-6 sm:p-8">
-          <SectionHeading
-            eyebrow={pick(L("About the conference", "Giới thiệu hội nghị", "About the conference"))}
-            title={pick(
-              L(
-                "A professional Vietnam-Japan platform for semiconductor dialogue and collaboration.",
-                "Một nền tảng chuyên nghiệp Việt Nam - Nhật Bản cho đối thoại và hợp tác bán dẫn.",
-                "A professional Vietnam-Japan platform for semiconductor dialogue and collaboration."
-              )
-            )}
-            description={pick(aboutPage.intro)}
-            actions={
-              <Button asChild variant="outline">
-                <Link to="/about">
-                  {t("nav.about")}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            }
-          />
-
-          <div className="mt-8 grid gap-4 lg:grid-cols-2">
-            <div className="panel-card-muted p-5">
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                {t("home.heroFormatLabel")}
-              </p>
-              <p className="mt-3 text-sm leading-7 text-foreground/80">
-                {pick(conferenceIdentity.format)}
-              </p>
-            </div>
-
-            <div className="panel-card-muted p-5">
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                {pick(L("Venue note", "Ghi chú địa điểm", "Venue note"))}
-              </p>
-              <p className="mt-3 text-sm leading-7 text-foreground/80">
-                {pick(venueReference.address)}
+          
+          {/* Content with decorative border */}
+          <div className="relative">
+            <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-gold via-semi-blue/60 to-transparent rounded-full hidden lg:block" />
+            <div className="lg:pl-8 xl:pl-12">
+              <p className="text-base leading-8 text-foreground/80 sm:text-lg sm:leading-9 lg:text-xl lg:leading-10 sm:text-justify">
+                {pick(homeWelcome.body)}
               </p>
             </div>
           </div>
         </article>
-
-        <aside className="section-frame surface-grid p-6 sm:p-8">
-          <p className="section-kicker">
-            {pick(L("What sets it apart", "Điểm nổi bật", "What sets it apart"))}
-          </p>
-
-          <div className="mt-6 space-y-6">
-            {homeHighlights.map((item, index) => (
-              <article
-                key={item.title.en}
-                className={
-                  index === 0
-                    ? "grid gap-3 sm:grid-cols-[3rem_minmax(0,1fr)]"
-                    : "grid gap-3 border-t border-border/60 pt-6 sm:grid-cols-[3rem_minmax(0,1fr)]"
-                }
-              >
-                <span className="font-serif text-3xl font-semibold text-gold">
-                  {`0${index + 1}`}
-                </span>
-
-                <div>
-                  <h2 className="font-serif text-2xl font-semibold leading-tight">
-                    {pick(item.title)}
-                  </h2>
-                  <p className="mt-2 text-sm leading-7 text-foreground/76">
-                    {pick(item.body)}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </aside>
       </section>
 
-      <section id="speakers" className="site-shell anchor-target mt-20">
-        <SectionHeading
-          eyebrow={t("home.speakersCategory")}
-          title={t("home.speakersTitle")}
-          description={t("home.speakersSubtitle")}
-          actions={
-            <Button asChild variant="outline">
-              <Link to="/speakers">
-                {t("home.viewAll")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          }
-        />
-
-        <div className="mt-8 grid gap-6 lg:grid-cols-12">
-          {leadSpeaker ? (
-            <article className="group panel-card interactive-card overflow-hidden lg:col-span-7">
-              <div className="grid md:grid-cols-[minmax(250px,0.9fr)_1.1fr]">
-                <SpeakerImage
-                  speaker={leadSpeaker}
-                  className="aspect-[4/5] border-b border-border/40 md:h-full md:min-h-[420px] md:border-b-0 md:border-r"
-                  imageClassName="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-                >
-                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/28 to-transparent" />
-                </SpeakerImage>
-
-                <div className="p-6 sm:p-7">
-                  <Badge
-                    variant="outline"
-                    className="border-gold/30 bg-gold/6 text-[10px] uppercase tracking-[0.16em] text-gold/80"
-                  >
-                    {pick(speakerKindLabels[leadSpeaker.kind])}
-                  </Badge>
-
-                  <h2 className="mt-5 font-serif text-3xl font-semibold leading-tight">
-                    {leadSpeaker.name}
-                  </h2>
-
-                  <p className="mt-3 text-base font-medium text-foreground/78">
-                    {pick(leadSpeaker.role)}
-                  </p>
-
-                  <p className="mt-1 text-sm leading-6 text-foreground/64">
-                    {pick(leadSpeaker.organization)}
-                  </p>
-
-                  <div className="editorial-rule mt-6" />
-
-                  <p className="mt-6 font-serif text-xl leading-tight text-primary">
-                    {pick(leadSpeaker.topic)}
-                  </p>
-
-                  <p className="mt-4 text-sm leading-7 text-foreground/78">
-                    {pick(leadSpeaker.summary)}
-                  </p>
-                </div>
-              </div>
-            </article>
-          ) : null}
-
-          <div className="grid gap-5 lg:col-span-5">
-            {supportingSpeakers.map((speaker) => (
-              <article
-                key={speaker.id}
-                className="group panel-card interactive-card overflow-hidden"
-              >
-                <div className="grid grid-cols-[140px_minmax(0,1fr)] sm:grid-cols-[160px_minmax(0,1fr)]">
-                  <SpeakerImage
-                    speaker={speaker}
-                    className="aspect-square border-r border-border/40"
-                    imageClassName="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-                  />
-
-                  <div className="flex flex-col justify-center p-4 sm:p-5">
-                    <Badge
-                      variant="outline"
-                      className="w-fit border-gold/28 bg-gold/5 text-[9px] uppercase tracking-[0.16em] text-gold/80"
-                    >
-                      {pick(speakerKindLabels[speaker.kind])}
-                    </Badge>
-
-                    <h3 className="mt-3 font-serif text-xl font-semibold leading-tight sm:text-2xl">
-                      {speaker.name}
-                    </h3>
-
-                    <p className="mt-1.5 text-sm font-medium text-foreground/72">
-                      {pick(speaker.role)}
-                    </p>
-
-                    <p className="text-xs leading-5 text-foreground/60">
-                      {pick(speaker.organization)}
-                    </p>
-
-                    <p className="mt-3 line-clamp-2 text-sm leading-6 text-foreground/72">
-                      {pick(speaker.summary)}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            ))}
+      {/* News and Announcements Section */}
+      <section id="news-announcements" className="site-shell anchor-target mt-16 sm:mt-20 lg:mt-24">
+        <div className="section-frame p-6 sm:p-8 lg:p-12 xl:p-16">
+          {/* Section Header */}
+          <div className="mb-10 lg:mb-14">
+            <div className="flex items-center gap-4">
+              <span className="inline-block w-12 h-px bg-gradient-to-r from-vn-red to-gold" />
+              <h2 className="section-kicker text-base sm:text-lg lg:text-4xl tracking-[0.06em]">
+                {pick(L("News & Announcements", "Tin tức & Thông báo", "ニュース・お知らせ"))}
+              </h2>
+            </div>
+          </div>
+          
+          {/* Content */}
+          <div className="panel-card p-6 sm:p-8 lg:p-10 max-w-4xl">
+            <p className="text-base leading-8 text-foreground/80 sm:text-lg sm:leading-9">
+              {pick(
+                L(
+                  "News and announcements will be updated soon.",
+                  "Tin tức và thông báo của hội thảo sẽ được cập nhật sớm.",
+                  "News and announcements will be updated soon."
+                )
+              )}
+            </p>
+            <div className="mt-6 pt-6 border-t border-border/40 text-sm text-muted-foreground/70 italic">
+              {pick(
+                L(
+                  "[CMS Note: News links will be listed here in chronological order with the latest news on top]",
+                  "[Ghi chú CMS: Link các tin tức về hội thảo sẽ được liệt kê tại đây theo thứ tự tin mới nhất trên đầu]",
+                  "[CMS Note: News links will be listed here in chronological order with the latest news on top]"
+                )
+              )}
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="themes" className="site-shell anchor-target mt-20">
-        <SectionHeading
-          eyebrow={pick(L("Technical themes", "Chủ đề kỹ thuật", "技術テーマ"))}
-          title={pick(
-            L(
-              "Seven technical themes shaping VJSS 2026.",
-              "Bảy chủ đề kỹ thuật của VJSS 2026.",
-              "VJSS 2026を構成する7つの技術テーマ。"
-            )
-          )}
-          description={pick(
-            L(
-              "From IC design and optoelectronics to advanced materials, packaging, AI and quantum computing, emerging frontiers and human-resource development, the program covers both technical depth and ecosystem relevance.",
-              "Từ thiết kế IC, quang điện tử đến vật liệu tiên tiến, đóng gói, AI và điện toán lượng tử, công nghệ mới nổi và phát triển nguồn nhân lực — chương trình bao quát cả chiều sâu kỹ thuật và tính liên quan với hệ sinh thái.",
-              "IC設計、光電子から先進材料、パッケージング、AI・量子コンピューティング、新興フロンティア、人材育成までを網羅し、技術的深さとエコシステムへの貢献の両方を実現します。"
-            )
-          )}
-          actions={
-            <Button asChild variant="outline">
+      {/* Technical Themes Section */}
+      <section id="themes" className="site-shell anchor-target mt-16 sm:mt-20 lg:mt-24">
+        <div className="section-frame p-6 sm:p-8 lg:p-12 xl:p-16">
+          {/* Section Header */}
+          <div className="mb-10 lg:mb-14 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <span className="inline-block w-12 h-px bg-gradient-to-r from-vn-red to-gold" />
+              <h2 className="section-kicker text-base sm:text-lg lg:text-4xl tracking-[0.06em]">
+                {pick(L("Theme Clusters", "Chủ đề Kỹ thuật", "技術テーマ"))}
+              </h2>
+            </div>
+            <Button asChild variant="outline" className="rounded-none uppercase tracking-[0.14em] w-fit">
               <Link to="/call-for-papers">
                 {t("home.submitPaper")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-          }
-        />
+          </div>
 
-        <div className="mt-8 grid gap-4 xl:grid-cols-12">
-          {highlightedThemes.map((theme, index) => (
+          <div className="grid gap-4 xl:grid-cols-12">
+          {technicalThemes.map((theme, index) => (
             <article
               key={theme.name.en}
-              className={`panel-card interactive-card p-6 ${
-                themeLayouts[index] ?? "xl:col-span-4"
-              } ${
-                index === 0 || index === highlightedThemes.length - 1
+              className={`panel-card interactive-card p-6 ${themeLayouts[index] ?? "xl:col-span-4"
+                } ${index === 0 || index === technicalThemes.length - 1
                   ? "panel-card-strong"
                   : ""
-              }`}
+                }`}
             >
               <div className="flex items-start justify-between gap-3">
-                <span className="text-sm font-bold leading-none text-gold">
-                  {`0${index + 1}`}
-                </span>
-
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-semi-blue">
                   <Cpu className="h-5 w-5" />
                 </span>
               </div>
 
               <h2 className="mt-5 max-w-2xl font-serif text-2xl font-semibold leading-tight">
-                {pick(theme.name)}
+                <span className="text-gold">Theme {index + 1}:</span> {pick(theme.name)}
               </h2>
 
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-foreground/76">
-                {pick(theme.scope)}
-              </p>
-
-              <div className="mt-5 rounded-[0.9rem] border border-border/60 bg-white/70 px-4 py-3">
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                  {pick(L("Track chairs", "Điều phối chủ đề", "トラック議長"))}
-                </p>
-
-                <p className="mt-2 text-sm leading-6 text-foreground/78">
-                  {theme.chairs.join(", ")}
-                </p>
-              </div>
+              <ul className="mt-4 max-w-3xl space-y-1.5">
+                {pick(theme.scope).split(";").map(s => s.trim()).filter(Boolean).map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm leading-6 text-foreground/76">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/70" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </article>
           ))}
+          </div>
         </div>
       </section>
 
-      <section id="schedule" className="site-shell anchor-target mt-20">
-        <div className="section-frame p-6 sm:p-8">
-          <SectionHeading
-            eyebrow={pick(L("Schedule snapshot", "Lịch trình tóm tắt", "Schedule snapshot"))}
-            title={pick(
-              L(
-                "Four days, four distinct chapters.",
-                "Bốn ngày, bốn chương rõ ràng.",
-                "4日間、4つの異なる章。"
-              )
-            )}
-            description={pick(
-              L(
-                "From opening lectures and plenary keynotes to parallel technical tracks, site visits and the JST NEXUS session.",
-                "Từ bài giảng khai mạc và keynote plenary, đến các track kỹ thuật song song, site visit và phiên JST NEXUS.",
-                "オープニング講義と本会議基調講演から、並行技術セッション、視察、JST NEXUS セッションまで。"
-              )
-            )}
-            actions={
-              <Button asChild variant="outline">
-                <Link to="/program">
-                  {t("home.viewProgram")}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            }
-          />
+      {/* Key Dates Section - Timeline Design */}
+      <section id="key-dates" className="site-shell anchor-target mt-16 sm:mt-20 lg:mt-24">
+        <div className="section-frame p-6 sm:p-8 lg:p-12 xl:p-16">
+          {/* Section Header */}
+          <div className="mb-10 lg:mb-14 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <span className="inline-block w-12 h-px bg-gradient-to-r from-vn-red to-gold" />
+              <h2 className="section-kicker text-base sm:text-lg lg:text-4xl tracking-[0.06em]">
+                {pick(L("Key Dates", "Mốc thời gian quan trọng", "重要な日程"))}
+              </h2>
+            </div>
+            <Button asChild variant="outline" className="rounded-none uppercase tracking-[0.14em] w-fit">
+              <Link to="/submission">
+                {t("nav.submit")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {/* Timeline - Full width */}
+          <div className="relative pl-7 sm:pl-9">
+              {/* Elegant gradient rail */}
+              <div className="absolute left-[7px] top-4 bottom-4 w-[2px] rounded-full bg-gradient-to-b from-gold/80 via-semi-blue/40 to-border/20" />
+              
+              <div className="space-y-2.5">
+                {keyDates.map((item, idx) => {
+                  const isFirst = idx === 0;
+                  const isLast = idx === keyDates.length - 1;
+                  const isHighlight = isFirst || isLast;
+                  const isDeadline = pick(item.label).toLowerCase().includes("deadline");
+                  
+                  return (
+                    <div
+                      key={idx}
+                      className={`group relative grid grid-cols-[1fr_auto] items-center gap-4 rounded-lg border px-4 py-3 sm:px-5 sm:py-3.5 transition-all duration-200 ${
+                        isHighlight 
+                          ? "border-gold/35 bg-gradient-to-r from-gold/6 to-transparent" 
+                          : "border-border/30 bg-card/50 hover:border-semi-blue/25 hover:bg-card/70"
+                      }`}
+                    >
+                      {/* Timeline node - centered vertically */}
+                      <div className={`absolute -left-7 sm:-left-9 top-1/2 -translate-y-1/2 flex h-3.5 w-3.5 items-center justify-center rounded-full ring-[3px] ring-background transition-colors ${
+                        isHighlight 
+                          ? "bg-gold" 
+                          : "bg-semi-blue/50 group-hover:bg-semi-blue/70"
+                      }`}>
+                        {isHighlight && (
+                          <span className="h-1 w-1 rounded-full bg-white" />
+                        )}
+                      </div>
+                      
+                      {/* Label */}
+                      <span className={`text-sm sm:text-base leading-snug ${isHighlight ? "font-medium text-foreground/90" : "text-foreground/75"}`}>
+                        {pick(item.label)}
+                        {"note" in item && item.note ? (
+                          <span className="ml-1.5 text-xs text-muted-foreground/70">
+                            ({pick(item.note as LocalizedText)})
+                          </span>
+                        ) : null}
+                      </span>
+                      
+                      {/* Date badge */}
+                      <span className={`shrink-0 rounded px-2.5 py-1 text-xs sm:text-sm font-semibold tabular-nums ${
+                        isDeadline 
+                          ? "bg-vn-red/8 text-vn-red" 
+                          : isHighlight 
+                            ? "bg-primary/8 text-primary"
+                            : "bg-muted/60 text-foreground/60"
+                      }`}>
+                        {pick(item.date)}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+        </div>
+      </section>
+
+      {/* Conference Venue Section */}
+      <section id="venue" className="site-shell anchor-target mt-16 sm:mt-20 lg:mt-24">
+        <div className="section-frame p-6 sm:p-8 lg:p-12 xl:p-16">
+          {/* Section Header */}
+          <div className="mb-10 lg:mb-14 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <span className="inline-block w-12 h-px bg-gradient-to-r from-vn-red to-gold" />
+              <h2 className="section-kicker text-base sm:text-lg lg:text-4xl tracking-[0.06em]">
+                {pick(L("Conference Venue", "Địa điểm Hội thảo", "会場"))}
+              </h2>
+            </div>
+            <Button asChild variant="outline" className="rounded-none uppercase tracking-[0.14em] w-fit">
+              <Link to="/venue">
+                {t("nav.venue")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+          
+          {/* Content - Full width 2-column layout */}
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
+            {/* VNU Card */}
+            <div className="panel-card p-6 sm:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/10">
+                  <MapPin className="h-5 w-5 text-gold" />
+                </div>
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                  {pick(L("Option 1", "Lựa chọn 1", "オプション1"))}
+                </p>
+              </div>
+              <p className="font-serif text-xl sm:text-2xl font-semibold text-foreground leading-tight">
+                {pick(L("Vietnam National University, Hanoi", "Đại học Quốc gia Hà Nội", "ベトナム国家大学ハノイ校"))}
+              </p>
+              <p className="mt-3 text-base text-muted-foreground">
+                {pick(L("Academic venue", "Địa điểm học thuật", "学術会場"))}
+              </p>
+            </div>
+
+            {/* Sheraton Card */}
+            <div className="panel-card p-6 sm:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-semi-blue/10">
+                  <MapPin className="h-5 w-5 text-semi-blue" />
+                </div>
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                  {pick(L("Option 2", "Lựa chọn 2", "オプション2"))}
+                </p>
+              </div>
+              <p className="font-serif text-xl sm:text-2xl font-semibold text-foreground leading-tight">
+                {pick(L("Sheraton Hanoi West", "Sheraton Hanoi West", "シェラトンハノイウエスト"))}
+              </p>
+              <p className="mt-3 text-base text-muted-foreground">
+                {pick(L("Hotel venue", "Địa điểm khách sạn", "ホテル会場"))}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tentative Schedule Section */}
+            <section id="schedule" className="site-shell anchor-target mt-16 sm:mt-20 lg:mt-24">
+        <div className="section-frame p-6 sm:p-8 lg:p-12 xl:p-16">
+          {/* Section Header */}
+          <div className="mb-10 lg:mb-14 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <span className="inline-block w-12 h-px bg-gradient-to-r from-vn-red to-gold" />
+              <h2 className="section-kicker text-base sm:text-lg lg:text-4xl tracking-[0.06em]">
+                {pick(L("Tentative Schedule", "Lịch trình Dự kiến", "暫定スケジュール"))}
+              </h2>
+            </div>
+            <Button asChild variant="outline" className="rounded-none uppercase tracking-[0.14em] w-fit">
+              <Link to="/program">
+                {t("home.viewProgram")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {homeProgramDays.map((day, index) => (
               <article
                 key={`${day.day.en}-${day.date.en}`}
-                className={`panel-card interactive-card flex flex-col p-5 sm:p-6 ${
-                  index === 0 ? "panel-card-strong" : ""
-                }`}
+                className={`panel-card interactive-card flex flex-col p-5 sm:p-6 ${index === 0 ? "panel-card-strong" : ""
+                  }`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <p className="section-kicker">{pick(day.day)}</p>
@@ -597,186 +406,21 @@ function HomePage() {
         </div>
       </section>
 
-      <section
-        id="why-attend"
-        className="site-shell anchor-target mt-20 grid gap-6 xl:grid-cols-[0.94fr_1.06fr]"
-      >
-        <article className="section-frame p-6 sm:p-8">
-          <SectionHeading
-            eyebrow={pick(L("Why attend", "Lý do nên tham dự", "Why attend"))}
-            title={pick(
-              L(
-                "Join a symposium built to create lasting value after the event ends.",
-                "Tham dự một hội nghị được thiết kế để tạo giá trị tiếp nối sau khi sự kiện kết thúc.",
-                "Join a symposium built to create lasting value after the event ends."
-              )
-            )}
-            description={pick(
-              L(
-                "VJSS 2026 is not positioned as a one-off gathering. It is designed to catalyze research exchange, talent access and ecosystem follow-up between Vietnam and Japan.",
-                "VJSS 2026 không được định vị như một buổi gặp gỡ đơn lẻ. Hội nghị được thiết kế để kích hoạt trao đổi nghiên cứu, tiếp cận nhân lực và hợp tác hệ sinh thái giữa Việt Nam và Nhật Bản.",
-                "VJSS 2026 is not positioned as a one-off gathering. It is designed to catalyze research exchange, talent access and ecosystem follow-up between Vietnam and Japan."
-              )
-            )}
-          />
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-[1.25rem] border border-border/60 bg-secondary/55 p-5">
-              <Mic className="h-5 w-5 text-semi-blue" />
-              <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                {pick(L("Speakers", "Diễn giả"))}
-              </p>
-              <p className="mt-2 font-serif text-3xl font-semibold">
-                {speakers.length}
-              </p>
-            </div>
-
-            <div className="rounded-[1.25rem] border border-border/60 bg-secondary/55 p-5">
-              <Layers3 className="h-5 w-5 text-semi-blue" />
-              <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                {pick(L("Sessions", "Phiên"))}
-              </p>
-              <p className="mt-2 font-serif text-3xl font-semibold">
-                {programSessions.length}
-              </p>
-            </div>
-
-            <div className="rounded-[1.25rem] border border-border/60 bg-secondary/55 p-5">
-              <Users className="h-5 w-5 text-semi-blue" />
-              <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                {pick(L("Delegates", "Đại biểu"))}
-              </p>
-              <p className="mt-2 font-serif text-3xl font-semibold">
-                {delegateCount}
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-4 rounded-[1.25rem] border border-border/60 bg-secondary/55 p-5">
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-              {pick(L("Built for", "Phù hợp cho", "Built for"))}
-            </p>
-
-            <p className="mt-3 text-sm leading-7 text-foreground/78">
-              {pick(
-                L(
-                  "Academic leaders, researchers, students, policymakers, sponsor teams and companies looking for partnership, recruitment or market insight.",
-                  "Lãnh đạo học thuật, nhà nghiên cứu, sinh viên, nhà hoạch định chính sách, nhà tài trợ và doanh nghiệp đang tìm cơ hội hợp tác, tuyển dụng hoặc góc nhìn thị trường.",
-                  "Academic leaders, researchers, students, policymakers, sponsor teams and companies looking for partnership, recruitment or market insight."
-                )
-              )}
-            </p>
-          </div>
-        </article>
-
-        <div className="grid gap-4">
-          {attendanceReasons.map((item, index) => {
-            const Icon = item.icon;
-
-            return (
-              <article
-                key={item.title.en}
-                className={`panel-card interactive-card p-5 sm:p-6 ${
-                  index === 0 ? "panel-card-strong" : ""
-                }`}
-              >
-                <div className="flex gap-4">
-                  <span className="inline-flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-secondary text-vn-red">
-                    <Icon className="h-5 w-5" />
-                  </span>
-
-                  <div>
-                    <h2 className="font-serif text-2xl font-semibold leading-tight">
-                      {pick(item.title)}
-                    </h2>
-
-                    <p className="mt-3 text-sm leading-7 text-foreground/78">
-                      {pick(item.body)}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section id="partners" className="site-shell anchor-target mt-20">
-        <SectionHeading
-          eyebrow={t("home.partnersCategory")}
-          title={t("home.sponsorsTitle")}
-          description={t("home.sponsorsSubtitle")}
-          actions={
-            <Button asChild variant="outline">
-              <Link to="/sponsors">
-                {t("nav.sponsors")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          }
-        />
-
-        <div className="section-frame mt-8 p-6 sm:p-8">
-          {ecosystemGroups.map((group, groupIndex) => (
-            <div
-              key={group.id}
-              className={
-                groupIndex === 0
-                  ? "grid gap-6 lg:grid-cols-[13rem_minmax(0,1fr)]"
-                  : "mt-8 grid gap-6 border-t border-border/60 pt-8 lg:grid-cols-[13rem_minmax(0,1fr)]"
-              }
-            >
-              <div>
-                <p className="section-kicker">{pick(group.title)}</p>
-
-                <p className="mt-3 max-w-xs text-sm leading-7 text-foreground/70">
-                  {pick(
-                    L(
-                      "Organizations involved in hosting, supporting and partnering with VJSS 2026.",
-                      "Các tổ chức tham gia chủ trì, bảo trợ và đồng hành cùng VJSS 2026.",
-                      "VJSS 2026 の主催、後援、パートナーとして参画する機関。"
-                    )
-                  )}
-                </p>
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                {group.items.map((item) => (
-                  <article
-                    key={`${group.id}-${item.name}`}
-                    className="panel-card interactive-card p-4"
-                  >
-                    <OrganizationLogo item={item} />
-
-                    <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                      {item.meta ? pick(item.meta) : pick(group.title)}
-                    </p>
-
-                    <p className="mt-2 text-sm font-semibold leading-6 text-foreground">
-                      {item.name}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="site-shell mt-20 pb-20">
-        <div className="home-cta-card px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+      {/* Join VJSS CTA Section */}
+      <section className="site-shell mt-12 sm:mt-16 pb-12 sm:pb-16">
+        <div className="home-cta-card px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-14">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
               <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/58">
-                {pick(L("Join VJSS 2026", "Tham dự VJSS 2026", "VJSS 2026 への参加"))}
+                {pick(L("Join VJSS-2026", "Tham dự VJSS-2026", "VJSS-2026 への参加"))}
               </p>
 
               <h2 className="mt-4 font-serif text-3xl font-semibold leading-tight text-white sm:text-4xl">
                 {pick(
                   L(
-                    "Reserve your place at VJSS 2026 and plan your Hanoi conference journey.",
-                    "Đăng ký tham dự VJSS 2026 và bắt đầu lên kế hoạch cho hành trình hội nghị tại Hà Nội.",
-                    "VJSS 2026 への参加を申し込み、ハノイでの会期に向けた準備を始めましょう。"
+                    "Reserve your place at VJSS-2026 and plan your Hanoi conference journey.",
+                    "Đăng ký tham dự VJSS-2026 và bắt đầu lên kế hoạch cho hành trình hội nghị tại Hà Nội.",
+                    "VJSS-2026 への参加を申し込み、ハノイでの会期に向けた準備を始めましょう。"
                   )
                 )}
               </h2>
@@ -796,10 +440,10 @@ function HomePage() {
               <Button
                 asChild
                 size="lg"
-                className="border-gold bg-gold text-navy hover:bg-[color-mix(in_oklab,var(--gold)_82%,var(--paper))] hover:text-navy"
+                className="rounded-none uppercase tracking-[0.14em] border-gold bg-gold text-navy hover:bg-[color-mix(in_oklab,var(--gold)_82%,var(--paper))] hover:text-navy"
               >
                 <Link to="/registration">
-                  {pick(L("Register now", "Đăng ký tham dự", "Register now"))}
+                  {pick(L("Register now", "Đăng ký tham dự", "参加登録する"))}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
@@ -808,7 +452,7 @@ function HomePage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white/16 bg-white/6 text-white hover:border-white/28 hover:bg-white/10 hover:text-white"
+                className="rounded-none uppercase tracking-[0.14em] border-white/16 bg-white/6 text-white hover:border-white/28 hover:bg-white/10 hover:text-white"
               >
                 <Link to="/contact">
                   {t("nav.contact")}

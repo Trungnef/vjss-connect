@@ -44,21 +44,6 @@ function VenuePage() {
       eyebrow={t("nav.venue")}
       title={pick(venuePage.title)}
       description={pick(venuePage.intro)}
-      meta={[
-        {
-          label: t("venue.metaReferenceVenue"),
-          value: pick(venueReference.name),
-        },
-        {
-          label: t("venue.metaVenueOptions"),
-          value: venueHotels.length,
-        },
-        {
-          label: t("venue.metaEventMode"),
-          value: t("venue.metaEventModeValue"),
-          detail: pick(conferenceIdentity.format),
-        },
-      ]}
       quickLinks={[
         { label: t("venue.quickReference"), href: "#reference" },
         { label: t("venue.quickFlow"), href: "#visitor-flow" },
@@ -67,13 +52,13 @@ function VenuePage() {
       heroNote={t("venue.heroNote")}
       actions={
         <>
-          <Button asChild>
+          <Button asChild className="rounded-none uppercase tracking-[0.14em]">
             <Link to="/registration">
               {t("nav.registration")}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="rounded-none uppercase tracking-[0.14em]">
             <Link to="/contact">{t("nav.contact")}</Link>
           </Button>
         </>
@@ -97,53 +82,92 @@ function VenuePage() {
     >
       <section
         id="reference"
-        className="anchor-target section-frame grid gap-6 xl:grid-cols-[1.02fr_0.98fr]"
+        className="anchor-target section-frame p-5 sm:p-7 grid gap-5 sm:gap-6 xl:grid-cols-[1.1fr_0.9fr]"
       >
-        <article className="panel-card p-7 sm:p-8">
-          <SectionHeading
-            eyebrow={pick(venuePage.referenceTitle)}
-            title={pick(venueReference.name)}
-            description={pick(venuePage.referenceBody)}
-            actions={
-              <Button asChild variant="outline">
-                <a href={venueReference.mapLink} target="_blank" rel="noreferrer">
-                  {t("common.openMap")}
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </Button>
-            }
-          />
+        <article className="panel-card panel-card-strong p-6 sm:p-8 relative overflow-hidden">
+          {/* Decorative gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-vn-red/[0.03] via-transparent to-gold/[0.03] pointer-events-none" />
+          
+          {/* Header with icon and title */}
+          <div className="relative flex flex-col gap-5">
+            <div className="flex items-center gap-4">
+              <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-vn-red/15 to-vn-red/5 text-vn-red shadow-sm">
+                <MapPinned className="h-7 w-7" />
+              </span>
+              <div>
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                  {t("venue.hostCity")}
+                </p>
+                <h2 className="mt-1.5 font-serif text-xl font-semibold leading-tight sm:text-3xl lg:text-[2.75rem]">
+                  Hanoi, Vietnam
+                </h2>
+              </div>
+            </div>
+            
+            <Button asChild variant="outline" className="rounded-none uppercase tracking-[0.14em] w-fit">
+              <a href={venueReference.mapLink} target="_blank" rel="noreferrer">
+                {t("common.openMap")}
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </Button>
+          </div>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            <div className="panel-card-muted p-5">
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                {t("venue.referenceAddress")}
+          {/* Venue options grid */}
+          <div className="relative mt-8 grid gap-4 sm:grid-cols-2">
+            <div className="group rounded-2xl border border-semi-blue/20 bg-gradient-to-br from-semi-blue/[0.06] to-transparent p-5 transition-all hover:border-semi-blue/35 hover:shadow-sm">
+              <div className="flex items-center gap-2.5 mb-3">
+                <Building2 className="h-5 w-5 text-semi-blue" />
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-semi-blue font-semibold">
+                  {t("venue.referenceVenue")}
+                </p>
+              </div>
+              <p className="text-[15px] leading-relaxed text-foreground/90 font-medium">
+                Vietnam National University, Hanoi
               </p>
-              <p className="mt-3 text-sm leading-7 text-foreground/78">
-                {pick(venueReference.address)}
+              <p className="mt-2 text-xs text-muted-foreground">
+                {t("venue.pendingConfirmation")}
               </p>
             </div>
-            <div className="panel-card-muted p-5">
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                {t("common.hostCity")}
+            
+            <div className="group rounded-2xl border border-gold/20 bg-gradient-to-br from-gold/[0.06] to-transparent p-5 transition-all hover:border-gold/35 hover:shadow-sm">
+              <div className="flex items-center gap-2.5 mb-3">
+                <Hotel className="h-5 w-5 text-gold" />
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold font-semibold">
+                  {t("venue.alternativeVenue")}
+                </p>
+              </div>
+              <p className="text-[15px] leading-relaxed text-foreground/90 font-medium">
+                Sheraton Hanoi West
               </p>
-              <p className="mt-3 text-sm leading-7 text-foreground/78">
-                {pick(conferenceIdentity.venue)}
+              <p className="mt-2 text-xs text-muted-foreground">
+                {t("venue.pendingConfirmation")}
               </p>
             </div>
           </div>
 
-          <div className="mt-6 rounded-[1.6rem] border border-border/70 bg-secondary p-5 text-sm leading-7 text-foreground/78">
-            {pick(venueReference.description)}
-          </div>
+          {/* Address bar */}
+          {/* <div className="relative mt-6 rounded-xl border border-border/60 bg-background/60 px-5 py-4">
+            <div className="flex items-start gap-3">
+              <Compass className="h-4 w-4 mt-0.5 text-muted-foreground/70 shrink-0" />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
+                  {t("venue.referenceAddress")}
+                </p>
+                <p className="text-sm leading-6 text-foreground/80">
+                  {pick(venueReference.address)}
+                </p>
+              </div>
+            </div>
+          </div> */}
         </article>
 
-        <div className="panel-card overflow-hidden p-2">
-          <div className="overflow-hidden rounded-[1.6rem] border border-border/70">
+        {/* Map card */}
+        <div className="panel-card overflow-hidden p-2.5 shadow-sm">
+          <div className="overflow-hidden rounded-[1.25rem] border border-border/50">
             <iframe
               src={venueReference.mapEmbed}
               title={t("venue.mapTitle")}
-              className="h-[28rem] w-full"
+              className="h-[30rem] w-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
@@ -151,100 +175,6 @@ function VenuePage() {
         </div>
       </section>
 
-      <section id="visitor-flow" className="anchor-target section-frame mt-16">
-        <SectionHeading
-          eyebrow={t("venue.visitorFlowEyebrow")}
-          title={t("venue.visitorFlowTitle")}
-          description={t("venue.visitorFlowDescription")}
-        />
-
-        <div className="mt-8 grid gap-5 lg:grid-cols-3">
-          {venueDirections.map((item, index) => {
-            const Icon = directionIcons[index % directionIcons.length];
-
-            return (
-              <article key={item.title.en} className="panel-card interactive-card p-6">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-[1.1rem] bg-secondary text-vn-red">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <h2 className="mt-5 font-serif text-2xl font-semibold">{pick(item.title)}</h2>
-                <p className="mt-4 text-sm leading-7 text-foreground/78">{pick(item.body)}</p>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section
-        id="shortlist"
-        className="anchor-target section-frame mt-16 grid gap-6 xl:grid-cols-[1fr_0.94fr]"
-      >
-        <article className="panel-card p-7 sm:p-8">
-          <SectionHeading
-            eyebrow={t("venue.shortlistEyebrow")}
-            title={t("venue.shortlistTitle")}
-            description={t("venue.shortlistDescription")}
-          />
-
-          <div className="mt-8 grid gap-4">
-            {venueHotels.map((option, index) => (
-              <article
-                key={option.area.en}
-                className={
-                  index === 0
-                    ? "panel-card panel-card-strong p-6"
-                    : "panel-card-muted interactive-card p-6"
-                }
-              >
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <h2 className="font-serif text-2xl font-semibold">{pick(option.area)}</h2>
-                  <span className="rounded-full bg-secondary px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-foreground/72">
-                    {t("venue.candidateLabel", { number: index + 1 })}
-                  </span>
-                </div>
-                <p className="mt-4 text-sm leading-7 text-foreground/78">
-                  {pick(option.description)}
-                </p>
-              </article>
-            ))}
-          </div>
-        </article>
-
-        <article className="panel-card panel-card-strong p-7 sm:p-8">
-          <SectionHeading
-            eyebrow={t("venue.planningEyebrow")}
-            title={t("venue.planningTitle")}
-            description={t("venue.planningDescription")}
-          />
-
-          <ol className="mt-8 grid gap-4">
-            {venueVisitorNotes.map((note) => (
-              <li key={note.audience.en} className="timeline-rail">
-                <span className="timeline-node" aria-hidden />
-                <div className="rounded-[1.6rem] border border-border/70 bg-white/74 p-5">
-                  <h2 className="font-serif text-2xl font-semibold">{pick(note.audience)}</h2>
-                  <p className="mt-3 text-sm leading-7 text-foreground/78">{pick(note.note)}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-
-          <div className="mt-7 grid gap-3">
-            <Button asChild className="justify-between">
-              <Link to="/registration">
-                {t("venue.ctaReviewRegistration")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="justify-between">
-              <Link to="/contact">
-                {t("venue.ctaAskLogistics")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </article>
-      </section>
     </PageShell>
   );
 }

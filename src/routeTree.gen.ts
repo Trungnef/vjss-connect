@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VenueRouteImport } from './routes/venue'
+import { Route as SubmissionRouteImport } from './routes/submission'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as SpeakersRouteImport } from './routes/speakers'
 import { Route as RegistrationRouteImport } from './routes/registration'
@@ -17,6 +18,7 @@ import { Route as ProgramRouteImport } from './routes/program'
 import { Route as OrganizersRouteImport } from './routes/organizers'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CommitteesRouteImport } from './routes/committees'
 import { Route as CallForPapersRouteImport } from './routes/call-for-papers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -24,6 +26,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const VenueRoute = VenueRouteImport.update({
   id: '/venue',
   path: '/venue',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SubmissionRoute = SubmissionRouteImport.update({
+  id: '/submission',
+  path: '/submission',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SponsorsRoute = SponsorsRouteImport.update({
@@ -61,6 +68,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommitteesRoute = CommitteesRouteImport.update({
+  id: '/committees',
+  path: '/committees',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CallForPapersRoute = CallForPapersRouteImport.update({
   id: '/call-for-papers',
   path: '/call-for-papers',
@@ -81,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/call-for-papers': typeof CallForPapersRoute
+  '/committees': typeof CommitteesRoute
   '/contact': typeof ContactRoute
   '/news': typeof NewsRoute
   '/organizers': typeof OrganizersRoute
@@ -88,12 +101,14 @@ export interface FileRoutesByFullPath {
   '/registration': typeof RegistrationRoute
   '/speakers': typeof SpeakersRoute
   '/sponsors': typeof SponsorsRoute
+  '/submission': typeof SubmissionRoute
   '/venue': typeof VenueRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/call-for-papers': typeof CallForPapersRoute
+  '/committees': typeof CommitteesRoute
   '/contact': typeof ContactRoute
   '/news': typeof NewsRoute
   '/organizers': typeof OrganizersRoute
@@ -101,6 +116,7 @@ export interface FileRoutesByTo {
   '/registration': typeof RegistrationRoute
   '/speakers': typeof SpeakersRoute
   '/sponsors': typeof SponsorsRoute
+  '/submission': typeof SubmissionRoute
   '/venue': typeof VenueRoute
 }
 export interface FileRoutesById {
@@ -108,6 +124,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/call-for-papers': typeof CallForPapersRoute
+  '/committees': typeof CommitteesRoute
   '/contact': typeof ContactRoute
   '/news': typeof NewsRoute
   '/organizers': typeof OrganizersRoute
@@ -115,6 +132,7 @@ export interface FileRoutesById {
   '/registration': typeof RegistrationRoute
   '/speakers': typeof SpeakersRoute
   '/sponsors': typeof SponsorsRoute
+  '/submission': typeof SubmissionRoute
   '/venue': typeof VenueRoute
 }
 export interface FileRouteTypes {
@@ -123,6 +141,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/call-for-papers'
+    | '/committees'
     | '/contact'
     | '/news'
     | '/organizers'
@@ -130,12 +149,14 @@ export interface FileRouteTypes {
     | '/registration'
     | '/speakers'
     | '/sponsors'
+    | '/submission'
     | '/venue'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/call-for-papers'
+    | '/committees'
     | '/contact'
     | '/news'
     | '/organizers'
@@ -143,12 +164,14 @@ export interface FileRouteTypes {
     | '/registration'
     | '/speakers'
     | '/sponsors'
+    | '/submission'
     | '/venue'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/call-for-papers'
+    | '/committees'
     | '/contact'
     | '/news'
     | '/organizers'
@@ -156,6 +179,7 @@ export interface FileRouteTypes {
     | '/registration'
     | '/speakers'
     | '/sponsors'
+    | '/submission'
     | '/venue'
   fileRoutesById: FileRoutesById
 }
@@ -163,6 +187,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CallForPapersRoute: typeof CallForPapersRoute
+  CommitteesRoute: typeof CommitteesRoute
   ContactRoute: typeof ContactRoute
   NewsRoute: typeof NewsRoute
   OrganizersRoute: typeof OrganizersRoute
@@ -170,6 +195,7 @@ export interface RootRouteChildren {
   RegistrationRoute: typeof RegistrationRoute
   SpeakersRoute: typeof SpeakersRoute
   SponsorsRoute: typeof SponsorsRoute
+  SubmissionRoute: typeof SubmissionRoute
   VenueRoute: typeof VenueRoute
 }
 
@@ -180,6 +206,13 @@ declare module '@tanstack/react-router' {
       path: '/venue'
       fullPath: '/venue'
       preLoaderRoute: typeof VenueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/submission': {
+      id: '/submission'
+      path: '/submission'
+      fullPath: '/submission'
+      preLoaderRoute: typeof SubmissionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sponsors': {
@@ -231,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/committees': {
+      id: '/committees'
+      path: '/committees'
+      fullPath: '/committees'
+      preLoaderRoute: typeof CommitteesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/call-for-papers': {
       id: '/call-for-papers'
       path: '/call-for-papers'
@@ -259,6 +299,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CallForPapersRoute: CallForPapersRoute,
+  CommitteesRoute: CommitteesRoute,
   ContactRoute: ContactRoute,
   NewsRoute: NewsRoute,
   OrganizersRoute: OrganizersRoute,
@@ -266,6 +307,7 @@ const rootRouteChildren: RootRouteChildren = {
   RegistrationRoute: RegistrationRoute,
   SpeakersRoute: SpeakersRoute,
   SponsorsRoute: SponsorsRoute,
+  SubmissionRoute: SubmissionRoute,
   VenueRoute: VenueRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,0 +1,115 @@
+Attached Element Context from Integrated Browser
+
+Element: article#organizing.anchor-target.section-frame.p-5.sm:p-6
+
+URL: http://localhost:8081/committees
+
+HTML Path: div.flex.min-h-screen.flex-col.bg-background > main#main-content.flex-1 > article.relative.overflow-hidden > section.site-shell.py-10.sm:py-12.space-y-0 > section.space-y-8.sm:space-y-12 > article#organizing.anchor-target.section-frame.p-5.sm:p-6
+
+Outer HTML:
+```html
+<article id="organizing" class="anchor-target section-frame p-5 sm:p-6"><div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"><div class="max-w-3xl"><div class="flex items-center gap-3"><p class="section-kicker text-[30px] font-bold">Committees</p><span class="h-px w-14 bg-gradient-to-r from-gold via-semi-blue to-transparent"></span></div><h2 class="mt-4 font-serif text-3xl font-semibold leading-[1.08] text-balance sm:text-4xl lg:text-[3rem]">Organizing Committee</h2></div></div><div class="mt-5 sm:mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3"><div class="panel-card p-4 sm:p-5"><div class="flex items-start gap-3 sm:gap-4"><div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs sm:text-sm font-bold text-primary">HO</div><div class="min-w-0"><h3 class="font-serif text-lg font-semibold leading-tight">Dr. Nguyen Hoang Oanh</h3><p class="mt-1 text-sm font-medium text-vn-red">Chairman</p><p class="mt-1 text-sm leading-6 text-muted-foreground">Rector of VNU Vietnam Japan University</p></div></div></div><div class="panel-card p-4 sm:p-5"><div class="flex items-start gap-3 sm:gap-4"><div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs sm:text-sm font-bold text-primary">TH</div><div class="min-w-0"><h3 class="font-serif text-lg font-semibold leading-tight">Prof. Toshiro Hiramoto</h3><p class="mt-1 text-sm font-medium text-vn-red">Chairman</p><p class="mt-1 text-sm leading-6 text-muted-foreground">JST NEXUS Program Officer</p></div></div></div><div class="panel-card p-4 sm:p-5"><div class="flex items-start gap-3 sm:gap-4"><div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs sm:text-sm font-bold text-primary">NH</div><div class="min-w-0"><h3 class="font-serif text-lg font-semibold leading-tight">Dr. Do Ngoc Ha</h3><p class="mt-1 text-sm font-medium text-vn-red">Member</p><p class="mt-1 text-sm leading-6 text-muted-foreground">VNU Vietnam Japan University</p></div></div></div><div class="panel-card p-4 sm:p-5"><div class="flex items-start gap-3 sm:gap-4"><div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs sm:text-sm font-bold text-primary">DA</div><div class="min-w-0"><h3 class="font-serif text-lg font-semibold leading-tight">Assoc. Prof. Le Duc Anh</h3><p class="mt-1 text-sm font-medium text-vn-red">Member</p><p class="mt-1 text-sm leading-6 text-muted-foreground">The University of Tokyo, Japan</p></div></div></div><div class="panel-card p-4 sm:p-5"><div class="flex items-start gap-3 sm:gap-4"><div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs sm:text-sm font-bold text-primary">QT</div><div class="min-w-0"><h3 class="font-serif text-lg font-semibold leading-tight">Assoc. Prof. Bui Nguyen Quoc Trinh</h3><p class="mt-1 text-sm font-medium text-vn-red">Member</p><p class="mt-1 text-sm leading-6 text-muted-foreground">VNU Vietnam Japan University</p></div></div></div><div class="panel-card p-4 sm:p-5"><div class="flex items-start gap-3 sm:gap-4"><div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs sm:text-sm font-bold text-primary">TT</div><div class="min-w-0"><h3 class="font-serif text-lg font-semibold leading-tight">Dr. Pham Tien Thanh</h3><p class="mt-1 text-sm font-medium text-vn-red">Member</p><p class="mt-1 text-sm leading-6 text-muted-foreground">VNU Vietnam Japan University</p></div></div></div><div class="panel-card p-4 sm:p-5"><div class="flex items-start gap-3 sm:gap-4"><div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs sm:text-sm font-bold text-primary">MT</div><div class="min-w-0"><h3 class="font-serif text-lg font-semibold leading-tight">Assoc. Prof. Hoang Thi Minh Thao</h3><p class="mt-1 text-sm font-medium text-vn-red">Member</p><p class="mt-1 text-sm leading-6 text-muted-foreground">VNU Vietnam Japan University</p></div></div></div><div class="panel-card p-4 sm:p-5"><div class="flex items-start gap-3 sm:gap-4"><div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs sm:text-sm font-bold text-primary">AH</div><div class="min-w-0"><h3 class="font-serif text-lg font-semibold leading-tight">Assoc. Prof. Nguyen Thi An Hang</h3><p class="mt-1 text-sm font-medium text-vn-red">Member</p><p class="mt-1 text-sm leading-6 text-muted-foreground">VNU Vietnam Japan University</p></div></div></div><div class="panel-card p-4 sm:p-5"><div class="flex items-start gap-3 sm:gap-4"><div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs sm:text-sm font-bold text-primary">TT</div><div class="min-w-0"><h3 class="font-serif text-lg font-semibold leading-tight">Dr. Dang Thanh Tu</h3><p class="mt-1 text-sm font-medium text-vn-red">Member</p><p class="mt-1 text-sm leading-6 text-muted-foreground">VNU Vietnam Japan University</p></div></div></div><div class="panel-card p-4 sm:p-5"><div class="flex items-start gap-3 sm:gap-4"><div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs sm:text-sm font-bold text-primary">QV</div><div class="min-w-0"><h3 class="font-serif text-lg font-semibold leading-tight">Dr. Vu Quang Viet</h3><p class="mt-1 text-sm font-medium text-vn-red">Member</p><p class="mt-1 text-sm leading-6 text-muted-foreground">VNU Vietnam Japan University</p></div></div></div><div class="panel-card p-4 sm:p-5"><div class="flex items-start gap-3 sm:gap-4"><div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs sm:text-sm font-bold text-primary">NH</div><div class="min-w-0"><h3 class="font-serif text-lg font-semibold leading-tight">MA. Nguyen Ngoc Huong</h3><p class="mt-1 text-sm font-medium text-vn-red">Member</p><p class="mt-1 text-sm leading-6 text-muted-foreground">VNU Vietnam Japan University</p></div></div></div><div class="panel-card p-4 sm:p-5"><div class="flex items-start gap-3 sm:gap-4"><div class="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs sm:text-sm font-bold text-primary">TT</div><div class="min-w-0"><h3 class="font-serif text-lg font-semibold leading-tight">BA. Bui Thu Trang</h3><p class="mt-1 text-sm font-medium text-vn-red">Member</p><p class="mt-1 text-sm leading-6 text-muted-foreground">VNU Vietnam Japan University</p></div></div></div></div></article>
+```
+
+Dimensions:
+- top: 155px
+- left: 40px
+- width: 1261px
+- height: 763px
+
+CSS:
+```css
+*, ::after, ::before, ::backdrop, ::file-selector-button { box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid; }
+* { border-color: var(--color-border); }
+:where(& > :not(:last-child)) { --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 8) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 8) * calc(1 - var(--tw-space-y-reverse))); }
+:where(& > :not(:last-child)) { --tw-space-y-reverse: 0;
+        margin-block-start: calc(calc(var(--spacing) * 12) * var(--tw-space-y-reverse));
+        margin-block-end: calc(calc(var(--spacing) * 12) * calc(1 - var(--tw-space-y-reverse))); }
+.p-5 { padding: calc(var(--spacing) * 5); }
+.sm\:p-6 { @media (width >= 40rem) {
+      padding: calc(var(--spacing) * 6);
+    } }
+ { padding: calc(var(--spacing) * 6); }
+.anchor-target { scroll-margin-top: 7.5rem; }
+.section-frame { position: relative;
+    overflow: hidden;
+    border: 1px solid var(--navy); }
+ { border: 1px solid color-mix(in oklab, var(--navy) 7%, var(--paper)); }
+ { border-radius: 1.15rem;
+    background: linear-gradient( 180deg, var(--paper) 0%, var(--paper) 100% ); }
+ { background: linear-gradient( 180deg, color-mix(in oklab, var(--paper) 92%, var(--background)) 0%, color-mix(in oklab, var(--paper) 82%, var(--background)) 100% ); }
+ { padding: 1.25rem;
+    box-shadow: none; }
+.section-frame { padding: 1.5rem; }
+
+/* Pseudo-elements */
+.section-frame::before { content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient( to right, var(--navy) 1px, transparent 1px ), linear-gradient( to bottom, var(--navy) 1px, transparent 1px ); }
+ { background-image: linear-gradient( to right, color-mix(in oklab, var(--navy) 2.8%, transparent) 1px, transparent 1px ), linear-gradient( to bottom, color-mix(in oklab, var(--navy) 2.8%, transparent) 1px, transparent 1px ); }
+ { background-size: 42px 42px;
+    mask-image: linear-gradient(180deg, black, transparent 84%);
+    -webkit-mask-image: linear-gradient(180deg, black, transparent 84%);
+    opacity: 0.42;
+    pointer-events: none; }
+::selection { background: var(--semi-blue); }
+ { background: color-mix(in oklab, var(--semi-blue) 28%, white); }
+ { color: var(--navy); }
+
+/* Inherited */
+ { color: var(--color-foreground); font-feature-settings: "ss01", "cv11"; font-weight: 500 }
+html, :host { line-height: 1.5; tab-size: 4; font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"); font-feature-settings: var(--default-font-feature-settings, normal) }
+html { font-family: var(--font-sans) }
+
+/* Resolved values */
+margin: 0px 0px 48px;
+padding: 24px;
+border-radius: 18.4px;
+border: 1.33333px solid oklab(0.93306 -0.000759272 -0.00108199);
+background-image: linear-gradient(oklab(0.99064 0.000301348 0.00430948) 0%, oklab(0.98894 0.000329251 0.0047085) 100%);
+background-size: auto;
+bottom: 0px;
+box-shadow: none;
+box-sizing: border-box;
+color: oklch(0.12 0.025 252);
+content: normal;
+display: block;
+font-family: Manrope, "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+font-feature-settings: "cv11", "ss01";
+font-weight: 500;
+height: 714.667px;
+left: 0px;
+line-height: 24px;
+margin-block-end: 48px;
+margin-block-start: 0px;
+mask-image: none;
+opacity: 1;
+overflow-x: hidden;
+overflow-y: hidden;
+pointer-events: auto;
+position: relative;
+right: 0px;
+scroll-margin-top: 120px;
+tab-size: 4;
+top: 0px;
+unicode-bidi: isolate /*UA*/;
+width: 1261.33px;
+
+/* CSS variables */
+--semi-blue: oklch(0.48 0.11 238);
+--font-sans: "Manrope", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+--default-font-family: "Manrope", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+--navy: oklch(0.15 0.07 258);
+--spacing: 0.25rem;
+--background: oklch(0.975 0.008 86);
+--color-border: oklch(0.885 0.014 86);
+--color-foreground: oklch(0.12 0.025 252);
+--tw-space-y-reverse: 0;
+--paper: oklch(0.992 0.004 86);
+```
