@@ -971,15 +971,17 @@ export const ecosystemGroups: OrganizationGroup[] = [
         assetSource: "https://www.jst.go.jp/EN/common/img/common/logo.svg",
       },
       {
-        name: "National Innovation Center (NIC), Vietnam",
+        name: "Consulate General of the Socialist Republic of Vietnam in Osaka, Japan",
         meta: L("Patron", "Đơn vị bảo trợ", "後援機関"),
         description: L(
-          "Innovation-system patron supporting ecosystem visibility and public-sector engagement in Vietnam.",
-          "Đơn vị bảo trợ trong hệ đổi mới sáng tạo, hỗ trợ hiện diện hệ sinh thái và kết nối khu vực công tại Việt Nam.",
-          "ベトナムのイノベーション・エコシステムにおける後援機関で、公的セクターとの連携を支援します。"
+          "Official diplomatic support from the Vietnamese consulate in Osaka, strengthening bilateral academic and scientific collaboration.",
+          "Hỗ trợ ngoại giao chính thức từ Tổng Lãnh sự quán Việt Nam tại Osaka, củng cố hợp tác học thuật và khoa học song phương.",
+          "大阪のベトナム総領事館による公式な外交支援で、二国間の学術・科学協力を強化します。"
         ),
-        link: "https://nic.gov.vn/",
-        assetStatus: "pending",
+        link: "https://osaka.mofa.gov.vn/",
+        logo: "/assets/organizations/cgtsrvn.png",
+        logoAlt: S("Consulate General of the Socialist Republic of Vietnam in Osaka, Japan logo"),
+        assetStatus: "verified",
       },
     ],
   },
@@ -1348,33 +1350,24 @@ export const newsItems: NewsItem[] = [];
 export const keyDates = [
   {
     label: L("Abstract Submission Deadline", "Hạn nộp tóm tắt", "アブストラクト提出締切"),
-    date: L("July 31, 2026", "31/7/2026", "2026年7月31日"),
+    date: L("July 24, 2026", "24/7/2026", "2026年7月24日"),
   },
   {
-    label: L("Abstract Notification of Acceptance", "Thông báo chấp nhận tóm tắt", "アブストラクト採否通知"),
-    date: L("August 15, 2026", "15/8/2026", "2026年8月15日"),
+    label: L("Notification of Acceptance", "Thông báo chấp nhận", "採否通知"),
+    date: L("August 8, 2026", "8/8/2026", "2026年8月8日"),
+  },
+  {
+    label: L("Early Bird Registration Deadline", "Hạn đăng ký ưu đãi sớm", "早期登録締切"),
+    date: L("August 10, 2026", "10/8/2026", "2026年8月10日"),
+  },
+  {
+    label: L("Symposium Dates", "Ngày Hội thảo", "シンポジウム日程"),
+    date: L("September 20-23, 2026", "20-23/9/2026", "2026年9月20-23日"),
   },
   {
     label: L("Full Paper Submission Deadline", "Hạn nộp bài toàn văn", "フルペーパー提出締切"),
     date: L("October 30, 2026", "30/10/2026", "2026年10月30日"),
-    note: L("if applicable", "nếu áp dụng", "該当する場合"),
-  },
-  {
-    label: L("Full Paper Notification of Acceptance", "Thông báo chấp nhận bài toàn văn", "フルペーパー採否通知"),
-    date: L("December 15, 2026", "15/12/2026", "2026年12月15日"),
-    note: L("if applicable", "nếu áp dụng", "該当する場合"),
-  },
-  {
-    label: L("Early Bird Registration Deadline", "Hạn đăng ký ưu đãi sớm", "早期登録締切"),
-    date: L("July 31, 2026", "31/7/2026", "2026年7月31日"),
-  },
-  {
-    label: L("Registration Deadline", "Hạn đăng ký", "登録締切"),
-    date: L("August 31, 2026", "31/8/2026", "2026年8月31日"),
-  },
-  {
-    label: L("Conference Dates", "Ngày hội thảo", "会議日程"),
-    date: L("September 20-23, 2026", "20-23/9/2026", "2026年9月20-23日"),
+    note: L("Tentative", "Dự kiến", "暫定"),
   },
 ];
 

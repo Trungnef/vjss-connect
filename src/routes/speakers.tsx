@@ -1,8 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Users } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Users, ArrowRight, Mic2 } from "lucide-react";
 import i18n from "@/i18n";
 import { PageShell } from "@/components/site/PageShell";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { Button } from "@/components/ui/button";
 import { pageCopy } from "@/content/site-content";
 import { useSiteLocale } from "@/hooks/use-site-locale";
 
@@ -34,16 +35,33 @@ function SpeakersPage() {
       title={pick(speakersPage.title)}
       description={pick(speakersPage.intro)}
     >
-      <div className="max-w-2xl mx-auto">
-        <section className="section-frame p-6 sm:p-10 lg:p-12 text-center flex flex-col items-center">
-          <div className="inline-flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-secondary text-primary mb-5 sm:mb-6 border border-border/60">
-            <Users className="h-6 w-6 sm:h-7 sm:w-7 text-vn-red" />
-          </div>
+      <div className="max-w-xl mx-auto">
+        <section className="section-frame text-center flex flex-col items-center">
+          <span className="icon-wrap icon-wrap-lg icon-wrap-primary mb-5">
+            <Mic2 className="h-7 w-7" />
+          </span>
           <SectionHeading
             align="center"
             eyebrow={pick(speakersPage.title)}
-            title={pick(speakersPage.intro)}
+            size="small"
           />
+          <p className="mt-4 text-sm leading-relaxed text-foreground/70 max-w-md">
+            {pick(speakersPage.intro)}
+          </p>
+          {/* <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Button asChild variant="outline" size="sm" className="rounded-none uppercase tracking-wider text-xs">
+              <Link to="/call-for-papers">
+                {t("nav.cfp")}
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="sm" className="rounded-none uppercase tracking-wider text-xs">
+              <Link to="/program">
+                {t("nav.program")}
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </Button>
+          </div> */}
         </section>
       </div>
     </PageShell>

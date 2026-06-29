@@ -11,15 +11,16 @@ import { useSiteLocale } from "@/hooks/use-site-locale";
 const footerContacts = {
   academicLiaisons: [
     {
-      name: "Le Duc Anh",
-      title: "Assoc. Prof.",
-      affiliation: { en: "University of Tokyo", vi: "Đại học Tokyo", ja: "東京大学" },
-    },
-    {
       name: "Bui Nguyen Quoc Trinh",
       title: "Assoc. Prof.",
       affiliation: { en: "VNU Vietnam Japan University", vi: "Trường Đại học Việt Nhật", ja: "ベトナム日本大学" },
     },
+    {
+      name: "Le Duc Anh",
+      title: "Assoc. Prof.",
+      affiliation: { en: "University of Tokyo", vi: "Đại học Tokyo", ja: "東京大学" },
+    },
+    
   ],
   secretariat: {
     name: "Bui Thu Trang",
@@ -39,15 +40,14 @@ const navigationLinks = [
   { to: "/speakers", key: "speakers" as const },
   { to: "/organizers", key: "organizers" as const },
   { to: "/sponsors", key: "sponsors" as const },
-  { to: "/venue", key: "venue" as const },
   { to: "/program", key: "program" as const },
+  { to: "/venue", key: "venue" as const },
+  { to: "/registration", key: "register" as const },
+  { to: "/submission", key: "submit" as const },
   { to: "/contact", key: "contact" as const },
 ];
 
-const actionLinks = [
-  { to: "/registration", key: "registration" as const },
-  { to: "/submission", key: "submission" as const },
-];
+
 
 export function SiteFooter() {
   const { pick, t } = useSiteLocale();
@@ -60,9 +60,9 @@ export function SiteFooter() {
   const footerPartners = patronsGroup?.items ?? [];
 
   return (
-    <footer className="mt-24 border-t border-border/40 bg-[oklch(0.88_0.01_75)] text-foreground">
-      <div className="site-shell py-10 sm:py-12">
-        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.75fr_0.75fr_0.85fr]">
+    <footer className="mt-16 border-t border-border/35 bg-[oklch(0.89_0.008_78)] text-foreground">
+      <div className="site-shell py-8 sm:py-10">
+        <div className="grid gap-5 lg:grid-cols-[1.1fr_0.7fr_0.7fr_0.8fr]">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="rounded-md border border-border/50 bg-white/60 p-1.5">
@@ -130,78 +130,79 @@ export function SiteFooter() {
 
           <nav className="space-y-3" aria-label={t("footer.navigation")}>
             <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t("footer.navigation")}</p>
-            <ul className="grid gap-1.5 text-sm">
-              {navigationLinks.map((item) => (
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+              {navigationLinks.slice(0, -2).map((item) => (
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="inline-flex text-xs font-medium text-foreground/75 transition hover:text-foreground"
+                    className="group inline-flex items-center gap-1.5 text-[13px] font-medium text-foreground/70 transition-colors hover:text-foreground"
                   >
+                    <span className="h-1 w-1 rounded-full bg-gold/50 transition-colors group-hover:bg-gold" />
                     {t(`nav.${item.key}`)}
                   </Link>
                 </li>
               ))}
             </ul>
             <div className="space-y-2 border-t border-border/30 pt-3">
-              {actionLinks.map((item, index) => (
-                <Button
-                  key={item.to}
-                  asChild
-                  size="sm"
-                  variant={index === 0 ? "default" : "outline"}
-                  className="w-full justify-between text-xs"
-                >
-                  <Link to={item.to}>
-                    {t(`nav.${item.key}`)}
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </Link>
-                </Button>
-              ))}
+              <Button asChild size="sm" className="w-full justify-between text-xs">
+                <Link to="/submission">
+                  {t("nav.submit")}
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              </Button>
+              <Button asChild size="sm" variant="outline" className="w-full justify-between text-xs">
+                <Link to="/contact">
+                  {t("nav.contact")}
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              </Button>
             </div>
           </nav>
 
           <div className="space-y-3">
-            {/* Academic Liaisons */}
-            <article className="space-y-2 rounded-sm border border-border/40 bg-white/25 p-3">
-              <div className="flex items-center gap-2">
-                <Users className="h-4 w-4 text-gold" />
-                <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t("contact.academicLiaisons")}</h3>
+            {/* Contact Card - combines Academic Liaisons and Secretariat */}
+            <article className="rounded-sm border border-border/40 bg-white/25 p-3">
+              <div className="flex items-center gap-2 mb-3">
+                <Mail className="h-4 w-4 text-vn-red" />
+                <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t("nav.contact")}</h3>
               </div>
-              <div className="space-y-2">
-                {footerContacts.academicLiaisons.map((liaison) => (
-                  <div key={liaison.name} className="text-xs">
-                    <p className="font-semibold text-foreground">{liaison.title} {liaison.name}</p>
-                    <p className="text-foreground/60">{pick(liaison.affiliation)}</p>
-                  </div>
-                ))}
+              
+              {/* Academic Liaisons */}
+              <div className="space-y-2 pb-3 border-b border-border/30">
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70">{t("contact.academicLiaisons")}</p>
+                <div className="space-y-1.5">
+                  {footerContacts.academicLiaisons.map((liaison) => (
+                    <div key={liaison.name} className="text-xs">
+                      <p className="font-semibold text-foreground">{liaison.title} {liaison.name}</p>
+                      <p className="text-foreground/55">{pick(liaison.affiliation)}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </article>
 
-            {/* Conference Secretariat */}
-            <article className="space-y-2 rounded-sm border border-border/40 bg-white/25 p-3">
-              <div className="flex items-center gap-2">
-                <Building2 className="h-4 w-4 text-semi-blue" />
-                <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t("contact.secretariat")}</h3>
-              </div>
-              <div className="text-xs">
-                <p className="font-semibold text-foreground">{footerContacts.secretariat.title}. {footerContacts.secretariat.name}</p>
-                <p className="text-foreground/60">{pick(footerContacts.secretariat.affiliation)}</p>
-              </div>
-              <div className="space-y-1.5 pt-1">
-                <a
-                  href={`mailto:${footerContacts.secretariat.email}`}
-                  className="flex items-center gap-2 text-xs font-medium text-foreground/75 hover:text-primary transition-colors"
-                >
-                  <Mail className="h-3.5 w-3.5 text-primary" />
-                  <span>{footerContacts.secretariat.email}</span>
-                </a>
-                <a
-                  href={`tel:${footerContacts.secretariat.phone.replace(/\s/g, '')}`}
-                  className="flex items-center gap-2 text-xs font-medium text-foreground/75 hover:text-semi-blue transition-colors"
-                >
-                  <Phone className="h-3.5 w-3.5 text-semi-blue" />
-                  <span>{footerContacts.secretariat.phone}</span>
-                </a>
+              {/* Conference Secretariat */}
+              <div className="space-y-2 pt-3">
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70">{t("contact.secretariat")}</p>
+                <div className="text-xs">
+                  <p className="font-semibold text-foreground">{footerContacts.secretariat.title}. {footerContacts.secretariat.name}</p>
+                  <p className="text-foreground/55">{pick(footerContacts.secretariat.affiliation)}</p>
+                </div>
+                <div className="space-y-1.5 pt-1">
+                  <a
+                    href={`mailto:${footerContacts.secretariat.email}`}
+                    className="flex items-center gap-2 text-xs font-medium text-foreground/75 hover:text-primary transition-colors"
+                  >
+                    <Mail className="h-3.5 w-3.5 text-primary" />
+                    <span>{footerContacts.secretariat.email}</span>
+                  </a>
+                  <a
+                    href={`tel:${footerContacts.secretariat.phone.replace(/\s/g, '')}`}
+                    className="flex items-center gap-2 text-xs font-medium text-foreground/75 hover:text-semi-blue transition-colors"
+                  >
+                    <Phone className="h-3.5 w-3.5 text-semi-blue" />
+                    <span>{footerContacts.secretariat.phone}</span>
+                  </a>
+                </div>
               </div>
             </article>
 
@@ -263,21 +264,21 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="border-t border-border/40 bg-[oklch(0.84_0.012_75)]">
-        <div className="site-shell flex flex-col items-center justify-between gap-2 py-4 text-[11px] text-foreground/65 sm:flex-row">
+      <div className="border-t border-border/35 bg-[oklch(0.86_0.01_78)]">
+        <div className="site-shell flex flex-col items-center justify-between gap-2 py-3 text-[10px] text-foreground/60 sm:flex-row">
           <p>
             &copy; {year} {t("conf.shortName")}. {t("footer.rights")}
           </p>
           <p className="flex items-center gap-1.5">
             {t("footer.copyrightNote")}
-            <span className="text-foreground/40">•</span>
+            <span className="text-foreground/35">•</span>
             <span>
               {t("footer.madeBy")}{" "}
               <a
                 href="https://www.facebook.com/Trungg.nef"
                 target="_blank"
                 rel="noreferrer"
-                className="font-medium text-semi-blue hover:text-primary hover:underline transition-colors"
+                className="font-medium text-semi-blue/90 hover:text-primary hover:underline transition-colors"
               >
                 Trune
               </a>

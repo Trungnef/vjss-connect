@@ -259,7 +259,7 @@ const en = {
     hostsDescription: "The primary institutions organizing and hosting VJSS-2026 in Hanoi.",
     
     // Patrons section
-    patronsEyebrow: "Patrons & Endorsers",
+    patronsEyebrow: "Patrons",
     patronsTitle: "Supported by key innovation partners",
     patronsDescription: "Patron organizations providing institutional support and strategic alignment for VJSS-2026.",
     
@@ -551,7 +551,7 @@ const en = {
     venueLabel: "Venue / location",
     organizersLabel: "Organizers and partners",
     organizers: "Organizers",
-    partners: "Partners",
+    partners: "Patrons",
     organizersSummary:
       "Hosted and supported by a Vietnam-Japan network of academic, public-sector and industry partners.",
     previousEdition: "Previous edition",

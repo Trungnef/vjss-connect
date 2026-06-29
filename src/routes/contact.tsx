@@ -91,18 +91,21 @@ function ContactPage() {
           <div className="grid gap-4 sm:grid-cols-2">
             {structuredContacts.academicLiaisons.map((liaison, index) => (
               <article key={liaison.name} className="panel-card interactive-card p-5">
-                <div className="flex items-start gap-4">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gold/10 text-gold font-mono text-sm font-bold">
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <span className="icon-wrap icon-wrap-md icon-wrap-gold">
+                    <User className="h-5 w-5" />
+                  </span>
+                  <span className="font-mono text-xs font-medium text-muted-foreground/60">
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-serif text-lg font-semibold text-foreground">
-                      {liaison.title} {liaison.name}
-                    </p>
-                    <p className="mt-1 text-sm text-foreground/65 truncate">
-                      {pick(liaison.affiliation)}
-                    </p>
-                  </div>
+                </div>
+                <div>
+                  <p className="font-serif text-lg font-semibold text-foreground">
+                    {liaison.title} {liaison.name}
+                  </p>
+                  <p className="mt-1 text-sm text-foreground/65 truncate">
+                    {pick(liaison.affiliation)}
+                  </p>
                 </div>
               </article>
             ))}

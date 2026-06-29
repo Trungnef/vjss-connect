@@ -80,23 +80,21 @@ function CfpPage() {
         </div>
       }
     >
-      <section id="framework" className="anchor-target section-frame p-5 sm:p-7 lg:p-8">
-        <SectionHeading
-          eyebrow={t("cfp.frameworkEyebrow")}
-        />
+      <section id="framework" className="anchor-target section-frame">
+        <SectionHeading eyebrow={t("cfp.frameworkEyebrow")} />
 
-        <div className="mt-8 sm:mt-10 space-y-4">
+        <div className="mt-6 space-y-4">
           {/* Background Card */}
           <article className="panel-card panel-card-strong p-5 sm:p-6">
             <div className="flex items-start gap-4">
-              <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+              <span className="icon-wrap icon-wrap-md bg-primary text-primary-foreground shrink-0">
                 <FileText className="h-5 w-5" />
               </span>
               <div className="flex-1">
-                <h3 className="font-serif text-xl sm:text-2xl font-semibold leading-tight">
+                <h3 className="font-serif text-lg sm:text-xl font-semibold leading-tight">
                   {pick(submissionCards[0].title)}
                 </h3>
-                <div className="mt-3 text-sm leading-7 text-foreground/78 text-justify space-y-4">
+                <div className="mt-3 text-sm leading-relaxed text-foreground/75 text-justify space-y-3">
                   {pick(submissionCards[0].body).split('\n\n').map((para, idx) => (
                     <p key={idx}>{para}</p>
                   ))}
@@ -108,17 +106,17 @@ function CfpPage() {
           {/* Objectives Card */}
           <article className="panel-card-muted p-5 sm:p-6">
             <div className="flex items-start gap-4">
-              <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-secondary text-vn-red">
+              <span className="icon-wrap icon-wrap-md icon-wrap-primary shrink-0">
                 <Target className="h-5 w-5" />
               </span>
               <div className="flex-1">
-                <h3 className="font-serif text-xl sm:text-2xl font-semibold leading-tight">
+                <h3 className="font-serif text-lg sm:text-xl font-semibold leading-tight">
                   {t("cfp.objectivesTitle")}
                 </h3>
-                <ul className="mt-4 space-y-2.5">
+                <ul className="mt-3 space-y-2">
                   {conferenceObjectives.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-sm leading-6 text-foreground/78">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                    <li key={idx} className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground/72">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/70" />
                       <span>{pick(item)}</span>
                     </li>
                   ))}
@@ -131,46 +129,45 @@ function CfpPage() {
 
       <section
         id="scope"
-        className="anchor-target section-frame mt-12 sm:mt-16 p-5 sm:p-7 lg:p-8"
+        className="anchor-target section-frame mt-8 sm:mt-10"
       >
-        <SectionHeading
-          eyebrow={t("cfp.scopeEyebrow")}
-        />
+        <SectionHeading eyebrow={t("cfp.scopeEyebrow")} />
 
-        <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-5 md:grid-cols-2">
-            {technicalThemes.map((theme, idx) => {
-              const scopeItems = pick(theme.scope).split(";").map(s => s.trim()).filter(Boolean);
-              const isLastOdd = technicalThemes.length % 2 === 1 && idx === technicalThemes.length - 1;
-              return (
-                <article 
-                  key={theme.name.en} 
-                  className={`panel-card interactive-card p-5 sm:p-6 ${idx === 0 ? "panel-card-strong" : ""} ${isLastOdd ? "md:col-span-2" : ""}`}
-                >
-                  <div className="flex flex-col gap-3">
-                    <div className="flex items-center gap-3">
-                      <span className="inline-flex shrink-0 items-center justify-center rounded-md bg-gold/15 px-2.5 py-1 text-l font-bold upper tracking-wider text-gold">
-                        Theme {idx + 1}:
-                      </span>
-                      <h3 className="font-serif text-lg sm:text-xl font-semibold leading-tight">{pick(theme.name)}</h3>
-                    </div>
-                    <ul className="mt-1 space-y-1.5">
-                      {scopeItems.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm leading-6 text-foreground/76">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/70" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+        <div className="mt-6 grid gap-3 sm:gap-4 md:grid-cols-2">
+          {technicalThemes.map((theme, idx) => {
+            const scopeItems = pick(theme.scope).split(";").map(s => s.trim()).filter(Boolean);
+            const isLastOdd = technicalThemes.length % 2 === 1 && idx === technicalThemes.length - 1;
+            return (
+              <article 
+                key={theme.name.en} 
+                className={`panel-card interactive-card p-4 sm:p-5 ${idx === 0 ? "panel-card-strong" : ""} ${isLastOdd ? "md:col-span-2" : ""}`}
+              >
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="inline-flex shrink-0 items-center justify-center rounded-md bg-gold/12 px-2 py-0.5 text-xs font-bold tracking-wider text-gold">
+                      Theme {idx + 1}
+                    </span>
+                    <span className="font-mono text-[10px] text-muted-foreground/50">{String(idx + 1).padStart(2, '0')}</span>
                   </div>
-                </article>
-              );
-            })}
+                  <h3 className="font-serif text-base sm:text-lg font-semibold leading-tight">{pick(theme.name)}</h3>
+                  <ul className="mt-1 space-y-1">
+                    {scopeItems.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm leading-relaxed text-foreground/70">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/60" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 
       <section
         id="guidelines"
-        className="anchor-target section-frame mt-12 sm:mt-16 p-5 sm:p-7 lg:p-8"
+        className="anchor-target section-frame mt-8 sm:mt-10"
       >
         <SectionHeading
           eyebrow={pick(L("Submission Guidelines", "Hướng dẫn nộp bài", "投稿ガイドライン"))}

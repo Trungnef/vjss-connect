@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Filter, Cpu, Lightbulb, Layers, Package, Brain, Sparkles, Users } from "lucide-react";
+import { ArrowRight, Filter } from "lucide-react";
 
 import i18n from "@/i18n";
 import { PageShell } from "@/components/site/PageShell";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { StatusBadge } from "@/components/site/StatusBadge";
 import { Button } from "@/components/ui/button";
 import {
   pageCopy,
   programSessions,
   programThemeFilters,
-  technicalThemes,
 } from "@/content/site-content";
 import { useSiteLocale } from "@/hooks/use-site-locale";
 
@@ -49,7 +47,6 @@ function ProgramPage() {
       description={pick(program.intro)}
       quickLinks={[
         { label: t("program.quickSchedule"), href: "#schedule" },
-        { label: t("program.technicalEyebrow"), href: "#themes" },
       ]}
       heroNote={t("program.heroNote")}
       actions={
@@ -212,120 +209,6 @@ function ProgramPage() {
             </p>
           </div>
         )}
-      </section>
-
-      <section
-        id="themes"
-        className="anchor-target section-frame mt-12 sm:mt-16 p-5 sm:p-7"
-      >
-        <SectionHeading
-          eyebrow={t("program.technicalEyebrow")}
-          // title={t("program.technicalTitle")}
-          actions={
-            <Button asChild variant="outline" className="rounded-none uppercase tracking-[0.14em]">
-              <Link to="/call-for-papers">
-                {t("home.submitPaper")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          }
-        />
-
-        {/* 
-          Balanced grid layout for 7 themes:
-          - xl: 3 cols → Row 1: [1][1][1], Row 2: [1][1][1], Row 3: [full-width featured]
-          - md: 2 cols → alternating layout with last item full width
-          - mobile: single column
-        */}
-        <div className="mt-10 grid gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {technicalThemes.map((theme, index) => {
-            // Theme-specific configurations with full class names for Tailwind
-            const themeConfigs = [
-              { icon: Cpu, iconBox: "bg-gold/10 group-hover:bg-gold/18", iconColor: "text-gold", gradient: "from-gold/15 to-gold/5" },
-              { icon: Lightbulb, iconBox: "bg-semi-blue/10 group-hover:bg-semi-blue/18", iconColor: "text-semi-blue", gradient: "from-semi-blue/15 to-semi-blue/5" },
-              { icon: Layers, iconBox: "bg-vn-red/10 group-hover:bg-vn-red/15", iconColor: "text-vn-red", gradient: "from-vn-red/12 to-vn-red/4" },
-              { icon: Package, iconBox: "bg-primary/10 group-hover:bg-primary/18", iconColor: "text-primary", gradient: "from-primary/15 to-primary/5" },
-              { icon: Brain, iconBox: "bg-gold/10 group-hover:bg-gold/18", iconColor: "text-gold", gradient: "from-gold/15 to-gold/5" },
-              { icon: Sparkles, iconBox: "bg-semi-blue/10 group-hover:bg-semi-blue/18", iconColor: "text-semi-blue", gradient: "from-semi-blue/15 to-semi-blue/5" },
-              { icon: Users, iconBox: "bg-vn-red/10 group-hover:bg-vn-red/15", iconColor: "text-vn-red", gradient: "from-vn-red/12 to-vn-red/4" },
-            ];
-            const config = themeConfigs[index];
-            const Icon = config.icon;
-            
-            // Last theme (index 6) spans full width for featured closing emphasis
-            const isFeatured = index === 6;
-            
-            return (
-              <article
-                key={theme.name.en}
-                className={`group relative overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-card to-card/80 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/25 hover:shadow-[0_24px_60px_-20px_color-mix(in_oklab,var(--navy)_22%,transparent)] ${isFeatured ? 'md:col-span-2 xl:col-span-3 p-7 sm:p-8' : 'p-6 sm:p-7'}`}
-              >
-                {/* Gradient accent bar at top */}
-                <div className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${config.gradient} to-transparent`} />
-                
-                {isFeatured ? (
-                  // Featured layout: horizontal with icon left, content right
-                  <div className="flex flex-col sm:flex-row sm:items-start gap-5 sm:gap-8">
-                    {/* Left: Icon and number */}
-                    <div className="flex items-center gap-4 sm:flex-col sm:items-start sm:gap-3">
-                      <div className={`inline-flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-xl transition-colors ${config.iconBox}`}>
-                        <Icon className={`h-7 w-7 sm:h-8 sm:w-8 ${config.iconColor}`} />
-                      </div>
-                      <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-muted/80 px-2.5 font-mono text-xs font-bold text-muted-foreground">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                    </div>
-                    {/* Right: Title and description */}
-                    <div className="flex-1">
-                      <h3 className="font-serif text-xl sm:text-2xl lg:text-[1.65rem] font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
-                        {pick(theme.name)}
-                      </h3>
-                      <ul className="mt-4 space-y-1.5 max-w-3xl">
-                        {pick(theme.scope).split(";").map(s => s.trim()).filter(Boolean).map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm sm:text-[15px] leading-relaxed text-foreground/65">
-                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/70" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                ) : (
-                  // Standard card layout
-                  <>
-                    {/* Header with icon and number */}
-                    <div className="mb-5 flex items-start justify-between">
-                      <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl transition-colors ${config.iconBox}`}>
-                        <Icon className={`h-6 w-6 ${config.iconColor}`} />
-                      </div>
-                      <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-muted/80 px-2 font-mono text-[11px] font-bold text-muted-foreground">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                    </div>
-                    
-                    {/* Title */}
-                    <h3 className="font-serif text-lg sm:text-xl lg:text-[1.35rem] font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
-                      {pick(theme.name)}
-                    </h3>
-                    
-                    {/* Scope description */}
-                    <ul className="mt-4 space-y-1.5">
-                      {pick(theme.scope).split(";").map(s => s.trim()).filter(Boolean).map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-[13px] leading-relaxed text-foreground/65">
-                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/70" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                )}
-                
-                {/* Bottom decorative element */}
-                <div className={`absolute -bottom-12 -right-12 h-32 w-32 rounded-full bg-gradient-to-br ${config.gradient} to-transparent opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-70`} />
-              </article>
-            );
-          })}
-        </div>
       </section>
     </PageShell>
   );

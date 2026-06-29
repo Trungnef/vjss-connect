@@ -112,37 +112,11 @@ function VenuePage() {
             </Button>
           </div>
 
-          {/* Venue options grid */}
-          <div className="relative mt-8 grid gap-4 sm:grid-cols-2">
-            <div className="group rounded-2xl border border-semi-blue/20 bg-gradient-to-br from-semi-blue/[0.06] to-transparent p-5 transition-all hover:border-semi-blue/35 hover:shadow-sm">
-              <div className="flex items-center gap-2.5 mb-3">
-                <Building2 className="h-5 w-5 text-semi-blue" />
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-semi-blue font-semibold">
-                  {t("venue.referenceVenue")}
-                </p>
-              </div>
-              <p className="text-[15px] leading-relaxed text-foreground/90 font-medium">
-                Vietnam National University, Hanoi
-              </p>
-              <p className="mt-2 text-xs text-muted-foreground">
-                {t("venue.pendingConfirmation")}
-              </p>
-            </div>
-            
-            <div className="group rounded-2xl border border-gold/20 bg-gradient-to-br from-gold/[0.06] to-transparent p-5 transition-all hover:border-gold/35 hover:shadow-sm">
-              <div className="flex items-center gap-2.5 mb-3">
-                <Hotel className="h-5 w-5 text-gold" />
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold font-semibold">
-                  {t("venue.alternativeVenue")}
-                </p>
-              </div>
-              <p className="text-[15px] leading-relaxed text-foreground/90 font-medium">
-                Sheraton Hanoi West
-              </p>
-              <p className="mt-2 text-xs text-muted-foreground">
-                {t("venue.pendingConfirmation")}
-              </p>
-            </div>
+          <div className="relative mt-8 rounded-2xl border border-border/70 bg-background/80 p-6 text-sm leading-6 text-foreground/90">
+            <p className="font-semibold text-sm text-foreground">Note</p>
+            <p className="mt-3">
+              The official venue will be announced at a later date.
+            </p>
           </div>
 
           {/* Address bar */}
