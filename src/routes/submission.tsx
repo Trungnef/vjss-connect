@@ -123,15 +123,20 @@ function SubmissionPage() {
                 {t("submission.templatesLabel")}
               </p>
               <div className="grid gap-2">
-                <div className="flex items-center justify-between rounded-lg border border-border/60 bg-background/50 px-3 py-2">
+                <a 
+                  href="/assets/VJSS2026-Abstract-Template.docx" 
+                  download="VJSS2026-Abstract-Template.docx"
+                  className="flex items-center justify-between rounded-lg border border-primary/30 bg-primary/5 px-3 py-2 transition-colors hover:border-primary/50 hover:bg-primary/10"
+                >
                   <div className="flex items-center gap-2">
-                    <FileText className="h-4 w-4 text-primary/55" />
-                    <span className="text-sm font-medium text-foreground/75">{t("submission.abstractTemplateCta")}</span>
+                    <FileText className="h-4 w-4 text-primary" />
+                    <span className="text-sm font-medium text-foreground">{t("submission.abstractTemplateCta")}</span>
                   </div>
-                  <Button disabled size="sm" variant="ghost" className="h-7 px-2 opacity-40">
+                  <span className="flex items-center gap-1.5 text-xs font-medium text-primary">
                     <Download className="h-3.5 w-3.5" />
-                  </Button>
-                </div>
+                    {t("submission.downloadLabel")}
+                  </span>
+                </a>
                 {/* <div className="flex items-center justify-between rounded-lg border border-border/60 bg-background/50 px-3 py-2">
                   <div className="flex items-center gap-2">
                     <FileText className="h-4 w-4 text-primary/55" />
@@ -142,7 +147,6 @@ function SubmissionPage() {
                   </Button>
                 </div> */}
               </div>
-              <p className="mt-2 text-[11px] text-muted-foreground/60">{t("submission.templatesPending")}</p>
             </div>
           </article>
 

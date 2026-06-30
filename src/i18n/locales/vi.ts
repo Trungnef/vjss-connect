@@ -425,49 +425,76 @@ const vi: Translations = {
     ...en.registration,
     metaTitle: "Đăng ký | VJSS-2026",
     metaDescription:
-      "Thông tin tham dự, đối tượng và lộ trình đăng ký cho VJSS-2026 tại Hà Nội.",
-    quickInfo: "Thông tin đăng ký",
-    quickAudience: "Ai nên tham dự",
+      "Phí đăng ký, thông tin thanh toán và lộ trình đăng ký cho VJSS-2026 tại Hà Nội.",
+    quickFees: "Phí đăng ký",
+    quickPayment: "Thông tin thanh toán",
     quickDates: "Mốc thời gian",
     heroNote:
       "VJSS-2026 chào đón nhà nghiên cứu, sinh viên, chuyên gia doanh nghiệp, trường đại học và cơ quan công cho bốn ngày tại Hà Nội.",
     
-    // Info section
-    infoEyebrow: "Đăng ký Hội thảo",
-    infoTitle: "Đăng ký tham dự VJSS-2026",
-    infoDescription: "Tham gia cùng các nhà nghiên cứu, lãnh đạo doanh nghiệp và sinh viên từ Việt Nam và Nhật Bản trong bốn ngày hợp tác.",
+    // I. Registration Fees Section
+    feesTitle: "Phí đăng ký",
     
-    // Status
-    statusLabel: "Trạng thái đăng ký",
-    statusComingSoon: "Sắp mở",
-    statusOpen: "Đang mở",
-    statusClosed: "Đã đóng",
-    statusDescription: "Chi tiết đăng ký, phí và thông tin thanh toán sẽ được công bố trước hội nghị. Hãy theo dõi để cập nhật.",
-    
-    // Includes
-    includesLabel: "Đăng ký bao gồm",
-    includes: {
-      sessions: "Tất cả phiên họp",
-      materials: "Tài liệu hội nghị",
-      coffee: "Nghỉ giải lao",
-      networking: "Sự kiện kết nối",
+    // Table headers
+    table: {
+      optionCode: "Mã đăng ký",
+      category: "Hạng mục đăng ký",
+      earlyBird: "Phí ưu đãi sớm",
+      earlyBirdDate: "(Đến ngày 10/08/2026)",
+      regular: "Phí thông thường",
+      regularDate: "(11–31/08/2026)",
     },
     
-    // Venue & Format
-    venueLabel: "Địa điểm",
-    formatLabel: "Hình thức",
-    datesLabel: "Ngày hội nghị",
+    // Categories
+    categories: {
+      international: {
+        title: "Đại biểu quốc tế",
+        description: "(Thuộc các cơ sở ngoài Việt Nam)",
+      },
+      domestic: {
+        title: "Đại biểu trong nước",
+        description: "(Thuộc các cơ sở tại Việt Nam)",
+      },
+      student: {
+        title: "Sinh viên",
+        description: "(Thuộc các cơ sở tại Việt Nam)",
+      },
+    },
     
-    // Audience section
-    audienceEyebrow: "Đối tượng",
-    audienceTitle: "Ai nên tham dự VJSS-2026",
-    audienceDescription: "Hội nghị quy tụ đa dạng người tham gia từ học thuật, doanh nghiệp và cơ quan chính phủ.",
-    audience: {
-      researchers: "Nhà nghiên cứu",
-      students: "Sinh viên",
-      industry: "Chuyên gia doanh nghiệp",
-      universities: "Trường đại học",
-      public: "Cơ quan công",
+    // Notes
+    notes: {
+      noteLabel: "Lưu ý:",
+      domesticRate: "Mức phí trong nước chỉ áp dụng cho đại biểu thuộc các cơ sở tại Việt Nam.",
+      internationalRate: "Đại biểu thuộc các cơ sở ngoài Việt Nam cần đăng ký theo hạng mục Đại biểu quốc tế.",
+    },
+    
+    // Payment Information Section
+    paymentTitle: "Thông tin thanh toán",
+    paymentIntro: "Phí đăng ký có thể thanh toán qua chuyển khoản ngân hàng với thông tin tài khoản như sau：S",
+    
+    // Bank info
+    bankInfo: {
+      title: "Thông tin chuyển khoản",
+      accountName: "Tên tài khoản",
+      accountNumber: "Số tài khoản",
+      bankBranch: "Ngân hàng & Chi nhánh",
+      swiftCode: "Mã Swift",
+    },
+    
+    // Payment reference
+    paymentRef: {
+      title: "Nội dung chuyển khoản",
+      description: "Vui lòng sử dụng định dạng sau cho nội dung chuyển khoản:",
+      formatLabel: "Định dạng",
+      example: "Ví dụ:",
+    },
+    
+    // Payment notes
+    paymentNotes: {
+      uploadReceipt: "Sau khi hoàn tất thanh toán, vui lòng tải lên biên lai thanh toán trên website hội thảo để xác minh.",
+      confirmation: "Đăng ký chỉ được xác nhận sau khi Ban Tổ chức đã nhận và xác minh thanh toán thành công.",
+      bankCharges: "Người đăng ký chịu trách nhiệm cho tất cả phí chuyển khoản ngân hàng, bao gồm phí ngân hàng trung gian. Vui lòng đảm bảo Ban Tổ chức nhận đủ toàn bộ phí đăng ký.",
+      nonRefundable: "Phí đăng ký không được hoàn lại.",
     },
     
     // Dates section
@@ -531,6 +558,7 @@ const vi: Translations = {
     abstractTemplateCta: "Mẫu tóm tắt",
     fullPaperTemplateCta: "Mẫu bài toàn văn",
     templatesPending: "Mẫu sẽ được cung cấp sớm",
+    downloadLabel: "Tải xuống",
     
     // Requirements
     requirementsTitle: "Yêu cầu tóm tắt",

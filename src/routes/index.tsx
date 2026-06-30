@@ -16,7 +16,7 @@ import {
   Calendar,
 } from "lucide-react";
 
-import heroConferenceImg from "@/assets/herro_banner.png";
+import heroConferenceImg from "@/assets/hero_banner.png";
 import i18n from "@/i18n";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Button } from "@/components/ui/button";
@@ -128,7 +128,7 @@ function HomePage() {
           <div className="relative mt-8 lg:mt-10">
             <div className="absolute -left-3 top-0 bottom-0 w-[3px] bg-gradient-to-b from-gold via-semi-blue/50 to-transparent rounded-full hidden lg:block" />
             <div className="lg:pl-8">
-              <p className="text-base leading-relaxed text-foreground/78 sm:text-lg sm:leading-8 lg:text-xl lg:leading-9 text-justify max-w-4xl">
+              <p className="text-base leading-relaxed text-foreground/78 sm:text-lg sm:leading-8 text-justify">
                 {pick(homeWelcome.body)}
               </p>
             </div>
@@ -188,8 +188,8 @@ function HomePage() {
           <SectionHeading
             eyebrow={pick(L("Theme Clusters", "Chủ đề Kỹ thuật", "技術テーマ"))}
             actions={
-              <Button asChild variant="outline" size="sm" className="rounded-none uppercase tracking-wider text-xs">
-                <Link to="/call-for-papers">
+              <Button asChild size="sm" className="rounded-none uppercase tracking-wider text-xs bg-primary text-primary-foreground hover:bg-primary/90">
+                <Link to="/submission">
                   {t("home.submitPaper")}
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
@@ -244,7 +244,7 @@ function HomePage() {
           <SectionHeading
             eyebrow={pick(L("Key Dates", "Mốc thời gian quan trọng", "重要な日程"))}
             actions={
-              <Button asChild variant="outline" size="sm" className="rounded-none uppercase tracking-wider text-xs">
+              <Button asChild size="sm" className="rounded-none uppercase tracking-wider text-xs bg-primary text-primary-foreground hover:bg-primary/90">
                 <Link to="/submission">
                   {t("nav.submit")}
                   <ArrowRight className="h-3.5 w-3.5" />
@@ -359,10 +359,10 @@ function HomePage() {
                 </p>
               </div>
               <p className="font-serif text-lg sm:text-xl font-semibold text-foreground leading-tight">
-                {pick(L("Hybrid", "Hybrid", "ハイブリッド"))}
+                {pick(L("In-person", "Trực tiếp", "対面"))}
               </p>
               <p className="mt-2 text-sm text-muted-foreground/70">
-                {pick(L("In-person & Online", "Trực tiếp & Trực tuyến", "対面＆オンライン"))}
+                {pick(L("With hybrid participation support", "Có hỗ trợ tham gia trực tuyến", "ハイブリッド参加対応"))}
               </p>
             </div>
           </div>

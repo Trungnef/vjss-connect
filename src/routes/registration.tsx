@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Users, Calendar, CreditCard, MapPin, Clock, CheckCircle2, Mail } from "lucide-react";
+import { ArrowRight, Users, Calendar, CreditCard, MapPin, Clock, CheckCircle2, Mail, Building2, FileText, AlertCircle, Upload } from "lucide-react";
 
 import i18n from "@/i18n";
 import { PageShell } from "@/components/site/PageShell";
@@ -26,29 +26,34 @@ export const Route = createFileRoute("/registration")({
   component: RegistrationPage,
 });
 
-// Structured registration info
-const registrationInfo = {
-  status: "coming-soon" as const, // "coming-soon" | "open" | "closed"
-  venue: {
-    name: { en: "VNU Vietnam Japan University", vi: "Trường Đại học Việt Nhật", ja: "ベトナム日本大学" },
-    location: { en: "Hanoi, Vietnam", vi: "Hà Nội, Việt Nam", ja: "ハノイ、ベトナム" },
+// Registration fee data
+const registrationFees = [
+  {
+    code: "OPT1",
+    categoryKey: "international",
+    earlyBird: { usd: 300, vnd: null },
+    regular: { usd: 350, vnd: null },
   },
-  format: { en: "In-person with hybrid support", vi: "Trực tiếp kết hợp trực tuyến", ja: "対面（ハイブリッド対応）" },
-  includes: [
-    { key: "sessions", icon: CheckCircle2 },
-    { key: "materials", icon: CheckCircle2 },
-    { key: "coffee", icon: CheckCircle2 },
-    { key: "networking", icon: CheckCircle2 },
-  ],
-};
-
-const audienceGroups = [
-  { key: "researchers", color: "bg-primary/10 text-primary" },
-  { key: "students", color: "bg-semi-blue/10 text-semi-blue" },
-  { key: "industry", color: "bg-gold/10 text-gold" },
-  { key: "universities", color: "bg-vn-red/10 text-vn-red" },
-  { key: "public", color: "bg-primary/10 text-primary" },
+  {
+    code: "OPT2",
+    categoryKey: "domestic",
+    earlyBird: { usd: null, vnd: 2000000 },
+    regular: { usd: null, vnd: 2500000 },
+  },
+  {
+    code: "OPT3",
+    categoryKey: "student",
+    earlyBird: { usd: null, vnd: 1000000 },
+    regular: { usd: null, vnd: 1500000 },
+  },
 ];
+
+const bankInfo = {
+  accountName: "Vietnam Japan University [Truong Dai hoc Viet Nhat]",
+  accountNumber: "2600816336",
+  bankBranch: "BIDV – My Dinh Branch",
+  swiftCode: "BIDVVNVX",
+};
 
 function RegistrationPage() {
   const { pick, t } = useSiteLocale();
@@ -57,14 +62,26 @@ function RegistrationPage() {
   // Show all key dates
   const registrationDates = keyDates;
 
+  // Format VND with thousand separator
+  const formatVND = (amount: number | null) => {
+    if (amount === null) return "—";
+    return amount.toLocaleString("vi-VN");
+  };
+
+  // Format USD
+  const formatUSD = (amount: number | null) => {
+    if (amount === null) return "—";
+    return amount.toString();
+  };
+
   return (
     <PageShell
       eyebrow={t("nav.registration")}
       title={pick(registrationPage.title)}
       description={pick(registrationPage.intro)}
       quickLinks={[
-        { label: t("registration.quickInfo"), href: "#info" },
-        { label: t("registration.quickAudience"), href: "#audience" },
+        { label: t("registration.quickFees"), href: "#fees" },
+        { label: t("registration.quickPayment"), href: "#payment" },
         { label: t("registration.quickDates"), href: "#dates" },
       ]}
       heroNote={t("registration.heroNote")}
@@ -82,46 +99,254 @@ function RegistrationPage() {
         </>
       }
     >
-      {/* Registration Status Banner */}
-      <section id="info" className="anchor-target section-frame">
-        <SectionHeading eyebrow={t("registration.infoTitle")} />
+      {/* I. Registration Fees Section */}
+      <section id="fees" className="anchor-target section-frame">
+        <SectionHeading eyebrow={t("registration.feesTitle")} />
 
-        <div className="mt-6 panel-card p-5 sm:p-6 max-w-3xl">
-          <div className="flex items-start gap-4">
-            <span className="icon-wrap icon-wrap-md icon-wrap-gold shrink-0">
-              <CreditCard className="h-5 w-5" />
-            </span>
-            <div className="flex-1">
-              <p className="text-sm sm:text-base leading-relaxed text-foreground/72 text-justify">
-                Registration fees will be announced later. The registration fee is expected to cover access to symposium sessions, conference materials, coffee breaks, and selected official networking activities. Details regarding student registration, early bird registration, industry registration, and hybrid participation will be provided on the official symposium website.
+        {/* Fee Table - Clean academic data table */}
+        <div className="mt-8">
+          {/* Desktop Table */}
+          <div className="hidden lg:block">
+            <div className="overflow-hidden rounded-xl border border-border bg-card">
+              <table className="w-full">
+                <thead>
+                  {/* Main header row */}
+                  <tr className="bg-navy/[0.03]">
+                    <th rowSpan={2} className="w-28 px-5 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-foreground/80 border-b border-r border-border/60 align-bottom">
+                      {t("registration.table.optionCode")}
+                    </th>
+                    <th rowSpan={2} className="px-6 py-4 text-left text-[11px] font-bold uppercase tracking-wider text-foreground/80 border-b border-r border-border/60 align-bottom">
+                      {t("registration.table.category")}
+                    </th>
+                    <th colSpan={2} className="px-4 py-3 text-center border-b border-r border-border/60 bg-gold/[0.08]">
+                      <div className="flex flex-col items-center gap-0.5">
+                        <span className="text-[12px] font-bold uppercase tracking-wider text-gold">{t("registration.table.earlyBird")}</span>
+                        <span className="text-[11px] font-medium text-foreground/70">
+                          {t("registration.table.earlyBirdDate")}
+                        </span>
+                      </div>
+                    </th>
+                    <th colSpan={2} className="px-4 py-3 text-center border-b border-border/60">
+                      <div className="flex flex-col items-center gap-0.5">
+                        <span className="text-[12px] font-bold uppercase tracking-wider text-foreground">{t("registration.table.regular")}</span>
+                        <span className="text-[11px] font-medium text-foreground/70">
+                          {t("registration.table.regularDate")}
+                        </span>
+                      </div>
+                    </th>
+                  </tr>
+                  {/* Currency sub-header */}
+                  <tr className="bg-navy/[0.02]">
+                    <th className="w-24 px-4 py-2.5 text-center text-[11px] font-semibold uppercase tracking-wide text-foreground/75 border-b border-r border-border/40 bg-gold/[0.04]">USD</th>
+                    <th className="w-32 px-4 py-2.5 text-center text-[11px] font-semibold uppercase tracking-wide text-foreground/75 border-b border-r border-border/60 bg-gold/[0.04]">VND</th>
+                    <th className="w-24 px-4 py-2.5 text-center text-[11px] font-semibold uppercase tracking-wide text-foreground/75 border-b border-r border-border/40">USD</th>
+                    <th className="w-32 px-4 py-2.5 text-center text-[11px] font-semibold uppercase tracking-wide text-foreground/75 border-b border-border/60">VND</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/40">
+                  {registrationFees.map((fee, index) => (
+                    <tr key={fee.code} className={`${index % 2 === 1 ? "bg-navy/[0.015]" : "bg-transparent"} hover:bg-navy/[0.04] transition-colors duration-150`}>
+                      <td className="px-5 py-5 border-r border-border/40 align-top">
+                        <span className="inline-flex items-center justify-center rounded bg-navy/8 px-2.5 py-1 text-[11px] font-bold tracking-wide text-navy">
+                          {fee.code}
+                        </span>
+                      </td>
+                      <td className="px-6 py-5 border-r border-border/40">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[15px] font-bold text-foreground leading-snug">
+                            {t(`registration.categories.${fee.categoryKey}.title`)}
+                          </span>
+                          <span className="text-[13px] font-medium text-foreground/70 leading-relaxed">
+                            {t(`registration.categories.${fee.categoryKey}.description`)}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-5 text-center border-r border-border/30 bg-gold/[0.025]">
+                        <span className={`text-[15px] font-semibold tabular-nums ${fee.earlyBird.usd ? "text-gold" : "text-foreground/25"}`}>
+                          {fee.earlyBird.usd ? `$${formatUSD(fee.earlyBird.usd)}` : "—"}
+                        </span>
+                      </td>
+                      <td className="px-4 py-5 text-center border-r border-border/40 bg-gold/[0.025]">
+                        <span className={`text-[15px] font-semibold tabular-nums ${fee.earlyBird.vnd ? "text-gold" : "text-foreground/25"}`}>
+                          {fee.earlyBird.vnd ? formatVND(fee.earlyBird.vnd) : "—"}
+                        </span>
+                      </td>
+                      <td className="px-4 py-5 text-center border-r border-border/30">
+                        <span className={`text-[15px] font-semibold tabular-nums ${fee.regular.usd ? "text-foreground" : "text-foreground/25"}`}>
+                          {fee.regular.usd ? `$${formatUSD(fee.regular.usd)}` : "—"}
+                        </span>
+                      </td>
+                      <td className="px-4 py-5 text-center">
+                        <span className={`text-[15px] font-semibold tabular-nums ${fee.regular.vnd ? "text-foreground" : "text-foreground/25"}`}>
+                          {fee.regular.vnd ? formatVND(fee.regular.vnd) : "—"}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Mobile Cards */}
+          <div className="lg:hidden divide-y divide-border/30">
+            {registrationFees.map((fee) => (
+              <div key={fee.code} className="p-5">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <span className="inline-flex items-center justify-center rounded-md bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary mb-2">
+                      {fee.code}
+                    </span>
+                    <h4 className="font-semibold text-foreground">
+                      {t(`registration.categories.${fee.categoryKey}.title`)}
+                    </h4>
+                    <p className="text-xs text-foreground/55 mt-0.5">
+                      {t(`registration.categories.${fee.categoryKey}.description`)}
+                    </p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="rounded-lg bg-gold/5 border border-gold/20 p-3">
+                    <div className="text-[10px] uppercase tracking-wider text-gold/70 mb-1">{t("registration.table.earlyBird")}</div>
+                    <div className="text-sm font-semibold text-gold tabular-nums">
+                      {fee.earlyBird.usd ? `$${formatUSD(fee.earlyBird.usd)}` : `₫${formatVND(fee.earlyBird.vnd)}`}
+                    </div>
+                  </div>
+                  <div className="rounded-lg bg-muted/30 border border-border/30 p-3">
+                    <div className="text-[10px] uppercase tracking-wider text-foreground/50 mb-1">{t("registration.table.regular")}</div>
+                    <div className="text-sm font-semibold text-foreground tabular-nums">
+                      {fee.regular.usd ? `$${formatUSD(fee.regular.usd)}` : `₫${formatVND(fee.regular.vnd)}`}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Fee Notes */}
+        <div className="mt-6 space-y-3">
+          <div className="flex items-start gap-3 p-4 rounded-lg bg-muted/20 border border-border/30">
+            <AlertCircle className="h-4 w-4 text-foreground/50 shrink-0 mt-0.5" />
+            <div className="space-y-2">
+              <p className="text-sm text-foreground/70">
+                <span className="font-medium text-foreground">{t("registration.notes.noteLabel")}</span>
               </p>
+              <ul className="text-sm text-foreground/70 space-y-1.5 list-disc list-inside">
+                <li>{t("registration.notes.domesticRate")}</li>
+                <li>{t("registration.notes.internationalRate")}</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Target Audience */}
-      {/* <section id="audience" className="anchor-target section-frame mt-12 sm:mt-16 p-5 sm:p-7">
-        <SectionHeading
-          eyebrow={t("registration.audienceTitle")}
-        />
+      {/* II. Payment Information Section */}
+      <section id="payment" className="anchor-target section-frame mt-10 sm:mt-12">
+        <SectionHeading eyebrow={t("registration.paymentTitle")} />
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {audienceGroups.map((group, index) => (
-            <article 
-              key={group.key}
-              className="panel-card interactive-card p-5 text-center"
-            >
-              <span className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${group.color}`}>
-                <Users className="h-6 w-6" />
-              </span>
-              <p className="mt-4 font-serif text-base font-semibold text-foreground">
-                {t(`registration.audience.${group.key}`)}
+        <p className="mt-4 text-sm sm:text-base text-foreground/70 max-w-3xl">
+          {t("registration.paymentIntro")}
+        </p>
+
+        {/* Payment Cards Grid */}
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+          {/* Bank Information Card */}
+          <div className="rounded-xl border border-gray-300 dark:border-gray-600 bg-gradient-to-br from-card via-card to-muted/20 shadow-sm overflow-hidden">
+            <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                  <Building2 className="h-5 w-5" />
+                </span>
+                <h4 className="font-semibold text-base text-foreground">{t("registration.bankInfo.title")}</h4>
+              </div>
+            </div>
+            <div className="p-6">
+              <div className="space-y-5">
+                <div className="pb-4 border-b border-gray-100 dark:border-gray-700/50">
+                  <label className="text-[10px] uppercase tracking-wider text-foreground/50 block mb-1.5">{t("registration.bankInfo.accountName")}</label>
+                  <p className="text-sm font-medium text-foreground leading-relaxed">{bankInfo.accountName}</p>
+                </div>
+                <div className="grid grid-cols-2 gap-5">
+                  <div>
+                    <label className="text-[10px] uppercase tracking-wider text-foreground/50 block mb-1.5">{t("registration.bankInfo.accountNumber")}</label>
+                    <p className="text-base font-mono font-bold text-primary tracking-wide">{bankInfo.accountNumber}</p>
+                  </div>
+                  <div>
+                    <label className="text-[10px] uppercase tracking-wider text-foreground/50 block mb-1.5">{t("registration.bankInfo.swiftCode")}</label>
+                    <p className="text-base font-mono font-bold text-foreground tracking-wide">{bankInfo.swiftCode}</p>
+                  </div>
+                </div>
+                <div>
+                  <label className="text-[10px] uppercase tracking-wider text-foreground/50 block mb-1.5">{t("registration.bankInfo.bankBranch")}</label>
+                  <p className="text-sm font-medium text-foreground">{bankInfo.bankBranch}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Payment Reference Card */}
+          <div className="rounded-xl border border-gray-300 dark:border-gray-600 bg-gradient-to-br from-card via-card to-gold/5 shadow-sm overflow-hidden">
+            <div className="bg-gradient-to-r from-gold/10 via-gold/5 to-transparent px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-gold/15 text-gold">
+                  <FileText className="h-5 w-5" />
+                </span>
+                <h4 className="font-semibold text-base text-foreground">{t("registration.paymentRef.title")}</h4>
+              </div>
+            </div>
+            <div className="p-6">
+              <p className="text-sm text-foreground/70 leading-relaxed">
+                {t("registration.paymentRef.description")}
               </p>
-            </article>
-          ))}
+              <div className="mt-5 p-4 rounded-lg bg-muted/50 border border-gray-200 dark:border-gray-700">
+                <p className="text-[10px] uppercase tracking-wider text-foreground/50 mb-2">{t("registration.paymentRef.formatLabel")}</p>
+                <code className="text-sm font-mono font-bold text-primary block break-all">
+                  [Participant Name] – [Abstract ID] – VJSS2026 – [Option code(s)]
+                </code>
+              </div>
+              <div className="mt-4 p-3 rounded-lg bg-gold/5 border border-gold/20">
+                <p className="text-[10px] uppercase tracking-wider text-gold/70 mb-1">{t("registration.paymentRef.example")}</p>
+                <code className="text-sm font-mono font-medium text-foreground">
+                  Nguyen Van A – A010 – VJSS2026 – OPT1
+                </code>
+              </div>
+            </div>
+          </div>
         </div>
-      </section> */}
+
+        {/* Payment Notes */}
+        <div className="mt-8">
+          <div className="rounded-xl border border-gray-300 dark:border-gray-600 bg-gradient-to-r from-amber-50/50 via-transparent to-transparent dark:from-amber-900/10 p-5 sm:p-6">
+            <div className="flex items-start gap-4">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 shrink-0">
+                <AlertCircle className="h-5 w-5" />
+              </span>
+              <div className="flex-1">
+                <h4 className="font-semibold text-foreground mb-3">{t("registration.notes.noteLabel")}</h4>
+                <ul className="text-sm text-foreground/75 space-y-2.5">
+                  <li className="flex items-start gap-2.5">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0 mt-0.5">1</span>
+                    <span>{t("registration.paymentNotes.uploadReceipt")}</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0 mt-0.5">2</span>
+                    <span>{t("registration.paymentNotes.confirmation")}</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0 mt-0.5">3</span>
+                    <span>{t("registration.paymentNotes.bankCharges")}</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-vn-red/10 text-vn-red text-xs font-bold shrink-0 mt-0.5">4</span>
+                    <span className="font-medium">{t("registration.paymentNotes.nonRefundable")}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Key Dates */}
       <section id="dates" className="anchor-target section-frame mt-8 sm:mt-10">

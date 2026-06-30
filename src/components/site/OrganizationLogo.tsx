@@ -33,8 +33,9 @@ export function OrganizationLogo({
   const status = item.assetStatus ?? (item.logo ? "verified" : "pending");
 
   if (item.logo) {
+    const hasLgClass = className?.includes("institution-logo-lg");
     return (
-      <div className={cn("institution-logo", className)} data-asset-status={status}>
+      <div className={cn(hasLgClass ? "institution-logo-lg" : "institution-logo", className)} data-asset-status={status}>
         <img src={item.logo} alt={item.logoAlt ? pick(item.logoAlt) : item.name} />
       </div>
     );

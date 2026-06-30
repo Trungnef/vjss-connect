@@ -407,49 +407,76 @@ const en = {
   registration: {
     metaTitle: "Registration | VJSS-2026",
     metaDescription:
-      "Attendance information, target audience and registration timeline for VJSS-2026 in Hanoi.",
-    quickInfo: "Registration info",
-    quickAudience: "Who should attend",
+      "Registration fees, payment information and timeline for VJSS-2026 in Hanoi.",
+    quickFees: "Registration Fees",
+    quickPayment: "Payment Information",
     quickDates: "Key dates",
     heroNote:
       "VJSS-2026 welcomes researchers, students, industry experts, universities and public agencies for four days in Hanoi.",
     
-    // Info section
-    infoEyebrow: "Symposium Registration",
-    infoTitle: "Register for VJSS-2026",
-    infoDescription: "Join researchers, industry leaders, and students from Vietnam and Japan for four days of collaboration.",
+    // I. Registration Fees Section
+    feesTitle: "Registration Fees",
     
-    // Status
-    statusLabel: "Registration status",
-    statusComingSoon: "Coming Soon",
-    statusOpen: "Now Open",
-    statusClosed: "Closed",
-    statusDescription: "Registration details, fees, and payment information will be announced ahead of the symposium. Stay tuned for updates.",
-    
-    // Includes
-    includesLabel: "Registration includes",
-    includes: {
-      sessions: "All symposium sessions",
-      materials: "Conference materials",
-      coffee: "Coffee breaks",
-      networking: "Networking events",
+    // Table headers
+    table: {
+      optionCode: "Option code",
+      category: "Registration Category",
+      earlyBird: "Early Bird fee",
+      earlyBirdDate: "(Until August 10, 2026)",
+      regular: "Regular fee",
+      regularDate: "(August 11–31, 2026)",
     },
     
-    // Venue & Format
-    venueLabel: "Venue",
-    formatLabel: "Format",
-    datesLabel: "Conference dates",
+    // Categories
+    categories: {
+      international: {
+        title: "International Participants",
+        description: "(Affiliated with institutions outside Vietnam)",
+      },
+      domestic: {
+        title: "Domestic Participants",
+        description: "(Affiliated with institutions in Vietnam)",
+      },
+      student: {
+        title: "Student Participants",
+        description: "(Affiliated with institutions in Vietnam)",
+      },
+    },
     
-    // Audience section
-    audienceEyebrow: "Target audience",
-    audienceTitle: "Who should attend VJSS-2026",
-    audienceDescription: "The symposium brings together diverse participants from academia, industry, and government sectors.",
-    audience: {
-      researchers: "Researchers",
-      students: "Students",
-      industry: "Industry experts",
-      universities: "Universities",
-      public: "Public agencies",
+    // Notes
+    notes: {
+      noteLabel: "Note:",
+      domesticRate: "Domestic registration rates apply only to participants affiliated with institutions in Vietnam.",
+      internationalRate: "Participants affiliated with institutions outside Vietnam should register under the International Participant category.",
+    },
+    
+    // II. Payment Information Section
+    paymentTitle: "Payment Information",
+    paymentIntro: "Registration fees may be paid by bank transfer using the following account information:",
+    
+    // Bank info
+    bankInfo: {
+      title: "Bank Transfer Details",
+      accountName: "Account Name",
+      accountNumber: "Account Number",
+      bankBranch: "Bank & Branch",
+      swiftCode: "Swift Code",
+    },
+    
+    // Payment reference
+    paymentRef: {
+      title: "Payment Reference",
+      description: "Please use the following format for the payment reference:",
+      formatLabel: "Format",
+      example: "Example:",
+    },
+    
+    // Payment notes
+    paymentNotes: {
+      uploadReceipt: "After completing the payment, please upload the payment receipt on the symposium website for verification.",
+      confirmation: "Registration will be confirmed only after the payment has been successfully received and verified by the Organizing Committee.",
+      bankCharges: "Participants are responsible for all bank transfer charges, including intermediary bank fees. Please ensure that the Organizing Committee receives the full registration fee.",
+      nonRefundable: "Registration fees are non-refundable.",
     },
     
     // Dates section
@@ -511,6 +538,7 @@ const en = {
     abstractTemplateCta: "Abstract Template",
     fullPaperTemplateCta: "Full Paper Template",
     templatesPending: "Templates will be available soon",
+    downloadLabel: "Download",
     
     // Requirements
     requirementsTitle: "Abstract Requirements",

@@ -286,46 +286,75 @@ const ja: Translations = {
   registration: {
     ...en.registration,
     metaTitle: "参加案内 | VJSS-2026",
-    quickInfo: "登録情報",
-    quickAudience: "参加対象者",
+    metaDescription: "VJSS-2026の参加登録料、支払い情報、タイムライン。",
+    quickFees: "参加登録料",
+    quickPayment: "支払い情報",
     quickDates: "重要な日程",
+    heroNote: "VJSS-2026は、研究者、学生、企業専門家、大学、公的機関を4日間ハノイにお迎えします。",
     
-    // Info section
-    infoEyebrow: "シンポジウム参加登録",
-    infoTitle: "VJSS-2026に登録する",
-    infoDescription: "ベトナムと日本の研究者、業界リーダー、学生と4日間のコラボレーションに参加しましょう。",
+    // I. Registration Fees Section
+    feesTitle: "参加登録料",
     
-    // Status
-    statusLabel: "登録状況",
-    statusComingSoon: "近日公開",
-    statusOpen: "受付中",
-    statusClosed: "締切",
-    statusDescription: "登録詳細、料金、支払い情報はシンポジウム開催前に発表されます。最新情報をお待ちください。",
-    
-    // Includes
-    includesLabel: "登録に含まれるもの",
-    includes: {
-      sessions: "全セッションへの参加",
-      materials: "会議資料",
-      coffee: "コーヒーブレイク",
-      networking: "ネットワーキングイベント",
+    // Table headers
+    table: {
+      optionCode: "オプションコード",
+      category: "登録カテゴリー",
+      earlyBird: "早期割引料金",
+      earlyBirdDate: "（2026年8月10日まで）",
+      regular: "通常料金",
+      regularDate: "（2026年8月11日〜31日）",
     },
     
-    // Venue & Format
-    venueLabel: "会場",
-    formatLabel: "形式",
-    datesLabel: "会議日程",
+    // Categories
+    categories: {
+      international: {
+        title: "海外参加者",
+        description: "（ベトナム国外の機関に所属）",
+      },
+      domestic: {
+        title: "国内参加者",
+        description: "（ベトナム国内の機関に所属）",
+      },
+      student: {
+        title: "学生参加者",
+        description: "（ベトナム国内の機関に所属）",
+      },
+    },
     
-    // Audience section
-    audienceEyebrow: "対象者",
-    audienceTitle: "VJSS-2026の参加対象者",
-    audienceDescription: "本シンポジウムは学術界、産業界、政府機関から多様な参加者を集めます。",
-    audience: {
-      researchers: "研究者",
-      students: "学生",
-      industry: "企業関係者",
-      universities: "大学",
-      public: "公的機関",
+    // Notes
+    notes: {
+      noteLabel: "注意:",
+      domesticRate: "国内料金はベトナム国内の機関に所属する参加者にのみ適用されます。",
+      internationalRate: "ベトナム国外の機関に所属する参加者は、海外参加者カテゴリーでご登録ください。",
+    },
+    
+    // II. Payment Information Section
+    paymentTitle: "支払い情報",
+    paymentIntro: "参加登録料は以下の口座情報を使用して銀行振込でお支払いいただけます：",
+    
+    // Bank info
+    bankInfo: {
+      title: "銀行振込詳細",
+      accountName: "口座名義",
+      accountNumber: "口座番号",
+      bankBranch: "銀行・支店",
+      swiftCode: "Swiftコード",
+    },
+    
+    // Payment reference
+    paymentRef: {
+      title: "振込時の摘要欄",
+      description: "振込時の摘要欄には以下の形式をご使用ください：",
+      formatLabel: "形式",
+      example: "例：",
+    },
+    
+    // Payment notes
+    paymentNotes: {
+      uploadReceipt: "お支払い完了後、シンポジウムウェブサイトに支払い証明をアップロードして確認を受けてください。",
+      confirmation: "登録は、組織委員会が支払いを受領・確認した後にのみ確定されます。",
+      bankCharges: "参加者は中継銀行手数料を含むすべての振込手数料を負担していただきます。組織委員会が登録料全額を受け取れるようご確認ください。",
+      nonRefundable: "参加登録料は返金不可です。",
     },
     
     // Dates section
@@ -389,6 +418,7 @@ const ja: Translations = {
     abstractTemplateCta: "アブストラクトテンプレート",
     fullPaperTemplateCta: "フルペーパーテンプレート",
     templatesPending: "テンプレートは近日公開予定",
+    downloadLabel: "ダウンロード",
     
     // Requirements
     requirementsTitle: "アブストラクト要件",

@@ -92,7 +92,7 @@ function OrganizersPage() {
                   <div className="relative h-32 sm:h-40 flex items-center justify-center rounded-xl bg-white border border-border/50 mb-6 overflow-hidden p-4 sm:p-6">
                     <OrganizationLogo 
                       item={item} 
-                      className="max-h-24 sm:max-h-28 w-auto object-contain"
+                      className="institution-logo-lg max-h-24 sm:max-h-28 w-auto object-contain"
                     />
                   </div>
 

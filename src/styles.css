@@ -735,6 +735,29 @@
     object-fit: contain;
   }
 
+  .institution-logo-lg img {
+    max-height: 6rem;
+    max-width: min(18rem, 100%);
+    object-fit: contain;
+  }
+
+  /* Embassy logo — keep it modest so "In Japan" text remains visible */
+  .institution-logo-lg img[src*="embassy"] {
+    max-height: 8rem;
+  }
+
+  @media (min-width: 640px) {
+    .institution-logo-lg img[src*="embassy"] {
+      max-height: 9rem;
+    }
+  }
+
+  /* Footer logo adjustments */
+  .institution-logo img[src*="embassy"] {
+    max-height: 5rem;
+    max-width: min(10rem, 100%);
+  }
+
   .pending-logo {
     display: flex;
     min-height: 4.4rem;

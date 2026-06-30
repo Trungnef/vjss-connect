@@ -198,11 +198,10 @@ function CfpPage() {
             <h3 className="font-serif text-xl sm:text-2xl font-semibold">{pick(L("Templates & Submission", "Biểu mẫu & Nộp bài"))}</h3>
             <p className="mt-2 text-xs text-muted-foreground">{pick(L("Download templates and submit via EasyChair", "Tải biểu mẫu và nộp qua EasyChair"))}</p>
             <div className="mt-4 flex flex-wrap gap-2 sm:gap-3">
-              <Button variant="outline" disabled className="rounded-none uppercase tracking-[0.12em] text-xs cursor-not-allowed opacity-40 hover:bg-transparent" aria-disabled="true" title="Abstract template to be updated soon">
-                {pick(L("Abstract Template", "Mẫu tóm tắt"))}
-              </Button>
-              <Button variant="outline" disabled className="rounded-none uppercase tracking-[0.12em] text-xs cursor-not-allowed opacity-40 hover:bg-transparent" aria-disabled="true" title="Full paper template to be updated soon">
-                {pick(L("Full Paper Template", "Mẫu bài toàn văn"))}
+              <Button variant="outline" asChild className="rounded-none uppercase tracking-[0.12em] text-xs">
+                <a href="/assets/VJSS2026-Abstract-Template.docx" download="VJSS2026-Abstract-Template.docx">
+                  {pick(L("Abstract Template", "Mẫu tóm tắt"))}
+                </a>
               </Button>
               <Button disabled className="rounded-none uppercase tracking-[0.12em] text-xs cursor-not-allowed opacity-50" aria-disabled="true" title="EasyChair submission link to be updated">
                 {pick(L("Submit via EasyChair", "Nộp qua EasyChair"))}
@@ -251,17 +250,17 @@ function CfpPage() {
                     </div>
                     
                     {/* Label */}
-                    <span className={`text-[13px] leading-snug ${isHighlight ? "font-medium text-foreground/90" : "text-foreground/75"}`}>
+                    <span className={`text-sm sm:text-base leading-snug ${isHighlight ? "font-medium text-foreground/88" : "text-foreground/72"}`}>
                       {pick(item.label)}
                       {"note" in item && item.note ? (
-                        <span className="ml-1.5 text-[10px] text-muted-foreground/70">
+                        <span className="ml-1.5 text-xs text-muted-foreground/65">
                           ({pick(item.note as LocalizedText)})
                         </span>
                       ) : null}
                     </span>
                     
                     {/* Date badge */}
-                    <span className={`shrink-0 rounded px-2 py-0.5 text-[11px] font-semibold tabular-nums ${
+                    <span className={`shrink-0 rounded-md px-2.5 py-1 text-xs sm:text-sm font-semibold tabular-nums ${
                       isDeadline 
                         ? "bg-vn-red/8 text-vn-red" 
                         : isHighlight 
